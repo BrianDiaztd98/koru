@@ -7,8 +7,8 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
     
-    --color-navy: #0A192F;
-    --color-mint: #00BFA6;
+    --color-navy: #0E788D;
+    --color-mint: #0EB3B9;
 }
 
 @layer base {
@@ -42,6 +42,35 @@
     /* Card hover effects with professional timing */
     .service-card, .team-card, .video-card {
         transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hero-gradient-overlay {
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.25) 0%, rgba(15, 23, 42, 0.80) 52%, rgba(15, 23, 42, 0.92) 100%);
+        backdrop-filter: blur(1px);
+    }
+
+    .hero-card {
+        @apply bg-slate-950/80 border border-white/10 shadow-2xl backdrop-blur-2xl;
+    }
+
+    .glass-panel {
+        @apply bg-white/10 border border-white/10 shadow-2xl rounded-3xl backdrop-blur-2xl;
+    }
+
+    .section-tag {
+        @apply inline-flex items-center rounded-full bg-mint/10 text-mint px-3 py-1 text-xs uppercase tracking-[0.35em] font-semibold;
+    }
+
+    .section-divider {
+        border-top: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
     
     /* Parallax subtle effect for hero */

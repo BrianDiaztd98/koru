@@ -19,9 +19,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function showSlide(index) {
         slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-            slide.classList.toggle('opacity-0', i !== index);
-            slide.classList.toggle('opacity-100', i === index);
+            const video = slide.querySelector('video');
+            const isActive = i === index;
+            slide.classList.toggle('active', isActive);
+            slide.classList.toggle('opacity-0', !isActive);
+            slide.classList.toggle('opacity-100', isActive);
+            if (video) {
+                if (isActive) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
+            }
         });
         indicators.forEach((ind, i) => {
             ind.classList.toggle('active', i === index);
@@ -41,5 +50,15 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(() => {
         currentSlide = (currentSlide + 1) % slides.length;
         showSlide(currentSlide);
-    }, 5000);
+    }, 10000);
+
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            const open = mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', String(!open));
+        });
+    }
 });
