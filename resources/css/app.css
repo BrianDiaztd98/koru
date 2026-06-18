@@ -6,4 +6,56 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    
+    --color-navy: #0A192F;
+    --color-mint: #00BFA6;
+}
+
+@layer base {
+    body {
+        @apply bg-white text-gray-900;
+    }
+}
+
+@layer utilities {
+    /* Professional animation easing */
+    .animate-fade-in {
+        animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Smooth carousel transitions */
+    .carousel-slide {
+        transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    /* Card hover effects with professional timing */
+    .service-card, .team-card, .video-card {
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    /* Parallax subtle effect for hero */
+    @keyframes parallax {
+        0% {
+            background-position: center top;
+        }
+        100% {
+            background-position: center bottom;
+        }
+    }
+    
+    .parallax-bg {
+        background-attachment: fixed;
+        animation: parallax 30s ease infinite;
+    }
 }
