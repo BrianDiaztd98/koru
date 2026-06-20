@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon_bgvoid.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
     <title>Koru Center - Massage, Rehabilitation & Sport Performance</title>
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
