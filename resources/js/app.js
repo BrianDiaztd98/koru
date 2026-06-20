@@ -1,5 +1,6 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Alpine from 'alpinejs';
 
 // Initialize AOS with professional settings
 AOS.init({
@@ -11,47 +12,11 @@ AOS.init({
     anchorPlacement: 'top-bottom',
 });
 
-// Carousel functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const slides = document.querySelectorAll('.carousel-slide');
-    const indicators = document.querySelectorAll('.carousel-indicator');
-    let currentSlide = 0;
-    
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            const video = slide.querySelector('video');
-            const isActive = i === index;
-            slide.classList.toggle('active', isActive);
-            slide.classList.toggle('opacity-0', !isActive);
-            slide.classList.toggle('opacity-100', isActive);
-            if (video) {
-                if (isActive) {
-                    video.play().catch(() => {});
-                } else {
-                    video.pause();
-                }
-            }
-        });
-        indicators.forEach((ind, i) => {
-            ind.classList.toggle('active', i === index);
-            ind.classList.toggle('bg-mint', i === index);
-            ind.classList.toggle('bg-white/30', i !== index);
-        });
-    }
-    
-    indicators.forEach((ind, index) => {
-        ind.addEventListener('click', () => {
-            currentSlide = index;
-            showSlide(currentSlide);
-        });
-    });
-    
-    // Auto-rotate carousel
-    setInterval(() => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }, 10000);
+// Initialize Alpine.js
+Alpine.start();
 
+// Mobile menu functionality
+document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const openVideoModalButton = document.getElementById('open-video-modal');

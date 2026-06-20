@@ -5,7 +5,7 @@
         'activePillar' => $activePillar,
     ])
 
-    <main class="overflow-hidden pt-24">
+    <main class="overflow-hidden">
         @include('livewire.components.hero-carousel', [
             'localizedSettings' => $localizedSettings,
         ])
