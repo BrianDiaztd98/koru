@@ -223,6 +223,10 @@ class LandingPage extends Component
             'hours' => $settings['hours'] ?? 'Thu-Tue, 8am-8pm',
             'address' => $settings['address'] ?? '6405 NW 36th St, #100, Virginia Gardens FL 33166',
             'footer_disclaimer' => $settings['footer_disclaimer_'.$locale] ?? 'Insurance & self-pay options available.',
+            'contact_email' => $settings['contact_email'] ?? 'info@korucenter.com',
+            'social_instagram' => $settings['social_instagram'] ?? '',
+            'social_facebook' => $settings['social_facebook'] ?? '',
+            'footer_copyright' => $settings['footer_copyright_'.$locale] ?? '© '.date('Y').' Koru Center. All rights reserved.',
         ];
     }
 

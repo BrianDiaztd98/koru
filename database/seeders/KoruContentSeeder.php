@@ -48,6 +48,11 @@ class KoruContentSeeder extends Seeder
             'address' => '6405 NW 36th St, Suite 100, Virginia Gardens, FL 33166',
             'footer_disclaimer_en' => 'Insurance and self-pay options are available. Appointments by reservation only.',
             'footer_disclaimer_es' => 'Opciones de seguro y pago privado disponibles. Citas solo con reserva.',
+            'contact_email' => 'info@korucenter.com',
+            'social_instagram' => 'https://instagram.com/korucenter',
+            'social_facebook' => 'https://facebook.com/korucenter',
+            'footer_copyright_en' => '© '.date('Y').' Koru Center. All rights reserved.',
+            'footer_copyright_es' => '© '.date('Y').' Koru Center. Todos los derechos reservados.',
         ];
 
         foreach ($settings as $key => $value) {
