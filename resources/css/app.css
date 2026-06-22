@@ -36,7 +36,20 @@
     
     /* Smooth carousel transitions */
     .carousel-slide {
-        transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: opacity 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: opacity, transform;
+        backface-visibility: hidden;
+    }
+
+    /* Carousel indicators: subtle scaling on active for polish */
+    .carousel-indicator {
+        transition: transform 280ms cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 220ms ease;
+        transform-origin: center;
+    }
+
+    .carousel-indicator.active {
+        transform: scale(1.45);
+        background-color: var(--color-mint, #0EB3B9);
     }
     
     /* Card hover effects with professional timing */
@@ -50,11 +63,11 @@
     }
 
     .hero-card {
-        @apply bg-slate-950/80 border border-white/10 shadow-2xl backdrop-blur-2xl;
+        @apply bg-slate-950/95 border border-slate-800/70 shadow-xl;
     }
 
     .glass-panel {
-        @apply bg-white/10 border border-white/10 shadow-2xl rounded-3xl backdrop-blur-2xl;
+        @apply bg-slate-950/90 border border-slate-800/60 shadow-xl rounded-3xl backdrop-blur-sm;
     }
 
     .section-tag {
@@ -84,8 +97,28 @@
     }
     
     .parallax-bg {
-        background-attachment: fixed;
+        /* Avoid background-attachment: fixed (expensive on scroll). Use scroll attachment and a subtle transform animation.
+           Heavy parallax removed to improve scroll performance across browsers. */
+        background-attachment: scroll;
         animation: parallax 30s ease infinite;
+        will-change: transform;
+    }
+
+    /* Respect reduced motion preferences: disable non-essential animation */
+    @media (prefers-reduced-motion: reduce) {
+        .carousel-slide,
+        .service-card,
+        .team-card,
+        .video-card,
+        .animate-fade-in {
+            transition: none !important;
+            animation: none !important;
+        }
+
+        .parallax-bg {
+            animation: none !important;
+            background-attachment: scroll;
+        }
     }
     
     .line-clamp-3 {

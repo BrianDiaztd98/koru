@@ -1,5 +1,5 @@
 <section id="hero-carousel" 
-         class="relative bg-slate-950 text-white overflow-hidden" 
+         class="relative bg-slate-950 text-white overflow-hidden"
          wire:ignore
          x-data="{ currentSlide: 0, totalSlides: 3, autoPlay: true, autoPlayTimer: null }" 
          x-init="autoPlayTimer = setInterval(() => { if(autoPlay) { currentSlide = (currentSlide + 1) % totalSlides } }, 6000)">
@@ -57,9 +57,15 @@
                     <div class="relative h-full w-full">
                         
                         <!-- Imagen de Fondo con efecto de escala fluido -->
-                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[6000ms] ease-out" 
-                             :class="currentSlide === {{ $slide['id'] }} ? 'scale-100' : 'scale-105'"
-                             style="background-image: url('{{ $slide['image'] }}');"></div>
+                            <img src="{{ $slide['image'] }}"
+                                 alt=""
+                                 aria-hidden="true"
+                                 loading="{{ $loop->first ? 'eager' : 'lazy' }}"
+                                 decoding="async"
+                                 fetchpriority="{{ $loop->first ? 'high' : 'low' }}"
+                                 class="absolute inset-0 h-full w-full object-cover transition-transform duration-[6000ms] ease-out"
+                                 :class="currentSlide === {{ $slide['id'] }} ? 'scale-100' : 'scale-105'"
+                                 style="will-change: transform; backface-visibility: hidden;">
                         
                         <!-- Degradados Cinematográficos Médicos -->
                         <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent"></div>
@@ -67,7 +73,7 @@
                         
                         <!-- Contenido Interno del Slide -->
                         <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pt-20">
-                            <div class="max-w-2xl w-full" data-aos="fade-right" data-aos-duration="1200">
+                            <div class="max-w-2xl w-full scroll-animate" data-speed="0.12" data-aos="fade-right" data-aos-duration="1000">
                                 
                                 <span class="inline-flex items-center rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9] mb-6 font-mono">
                                     {{ $slide['badge'] }}

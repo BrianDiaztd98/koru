@@ -63,12 +63,12 @@
                 },
                 setFirstActiveInPage() {
                     this.activeDrip = (this.currentPage - 1) * this.perPage;
-                    this.$nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); });
+                    $nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); });
                 }
              }"
              x-init="$watch('currentPage', value => setFirstActiveInPage())">
             
-            <div class="lg:col-span-5 flex flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950/60 p-8 backdrop-blur-md relative overflow-hidden" data-aos="fade-right" data-aos-duration="800">
+            <div class="lg:col-span-5 flex flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950/60 p-8 backdrop-blur-md relative overflow-hidden scroll-animate" data-speed="0.08" data-aos="fade-right" data-aos-duration="800">
                 <div class="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-[#0EB3B9]/10 blur-3xl"></div>
                 
                 <div class="relative z-10 flex-1 flex flex-col justify-between min-h-[380px] sm:min-h-[340px]">
@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-7 flex flex-col justify-between" data-aos="fade-left" data-aos-duration="800">
+            <div class="lg:col-span-7 flex flex-col justify-between scroll-animate" data-speed="0.06" data-aos="fade-left" data-aos-duration="800">
                 
                 <div class="flex flex-col gap-3 min-h-[340px]">
                     @foreach($ivDrips as $index => $drip)

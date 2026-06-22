@@ -22,7 +22,7 @@
             @foreach($teamMembers as $member)
                 <div wire:key="team-member-desktop-{{ $member['id'] ?? $loop->index }}"
                      x-data="{ expanded: false }" 
-                     class="group flex flex-col h-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" 
+                     class="group scroll-animate flex flex-col h-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" data-speed="0.06" 
                      data-aos="fade-up" 
                      data-aos-delay="{{ 100 + ($loop->index * 50) }}" 
                      data-aos-duration="600">
@@ -88,10 +88,7 @@
                          class="snap-center shrink-0 w-[280px] sm:w-[320px] flex flex-col h-full">
                         
                         <div x-data="{ expanded: false }" 
-                             class="group flex flex-col h-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm transition-all duration-300"
-                             data-aos="fade-up" 
-                             data-aos-delay="{{ 50 + ($loop->index * 30) }}" 
-                             data-aos-duration="600">
+                             class="group scroll-animate flex flex-col h-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm transition-all duration-300" data-speed="0.06" data-aos="fade-up" data-aos-delay="{{ 50 + ($loop->index * 30) }}" data-aos-duration="600">
                             
                             <!-- Imagen Móvil -->
                             <div class="aspect-[3/4] w-full overflow-hidden bg-slate-950 relative border-b border-slate-800/60">

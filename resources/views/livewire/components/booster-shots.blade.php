@@ -43,13 +43,13 @@
                 },
                 setFirstActiveInPage() {
                     this.activeShot = (this.currentPage - 1) * this.perPage;
-                    this.$nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); });
+                    $nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); });
                 }
              }"
              x-init="$watch('currentPage', value => setFirstActiveInPage())">
             
             <!-- PANEL IZQUIERDO: Tarjeta de Enfoque Clínico Dinámica -->
-            <div class="lg:col-span-5 flex flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950/60 p-8 backdrop-blur-md relative overflow-hidden" 
+            <div class="lg:col-span-5 flex flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950/60 p-8 backdrop-blur-md relative overflow-hidden scroll-animate" data-speed="0.08"
                  data-aos="fade-right" 
                  data-aos-duration="800"
                  data-aos-anchor-placement="top-bottom">
@@ -117,7 +117,7 @@
             </div>
 
             <!-- PANEL DERECHO: Selector de Menú con Listado Paginado -->
-            <div class="lg:col-span-7 flex flex-col justify-between" 
+            <div class="lg:col-span-7 flex flex-col justify-between scroll-animate" data-speed="0.06"
                  data-aos="fade-left" 
                  data-aos-duration="800"
                  data-aos-anchor-placement="top-bottom">

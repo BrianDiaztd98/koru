@@ -9,14 +9,13 @@
 
     <title>{{ $title ?? 'Koru Center - Massage, Rehabilitation & Sport Performance' }}</title>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
+    @vite(['resources/css/app.css'])
     @livewireStyles
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans antialiased">
     {{ $slot }}
 
     @livewireScripts
+    @vite(['resources/js/app.js'])
 </body>
 </html>

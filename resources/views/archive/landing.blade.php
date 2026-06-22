@@ -15,7 +15,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
-                    <img src="{{ asset('img/logo.png') }}" alt="Koru Center" class="h-20 w-auto object-contain" />
+                    <img src="{{ asset('img/logo.png') }}" alt="Koru Center" class="h-20 w-auto object-contain" loading="lazy" decoding="async" fetchpriority="low" />
                 </div>
                 <div class="hidden md:flex items-center space-x-4 flex-1 justify-end">
                     <a href="#services" class="text-gray-700 hover:text-mint transition-colors" data-i18n="nav.services">Servicios</a>
@@ -63,10 +63,10 @@
             <div class="carousel-container h-auto min-h-[68vh] md:min-h-[72vh] lg:min-h-[70vh]">
                 <div class="carousel-slide active absolute inset-0 h-full">
                     <div class="relative overflow-hidden">
-                        <div class="absolute inset-0 bg-cover bg-center blur-[2px]" style="background-image: url('{{ asset('img/carrucel/relaxing.jpg') }}');"></div>
+                        <div class="absolute inset-0 bg-cover bg-center blur-[2px]" style="background-image: url('{{ asset('img/carrucel/relaxing.jpg') }}'); will-change: transform; backface-visibility: hidden;"></div>
                         <div class="absolute inset-0 hero-gradient-overlay"></div>
                         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-h-[68vh] md:min-h-[72vh] lg:min-h-[70vh] flex items-center py-8 sm:py-10 lg:py-12">
-                            <div class="max-w-2xl" data-aos="fade-right" data-aos-duration="1200" data-aos-easing="ease-out-cubic">
+                                <div class="max-w-2xl" data-aos="fade-right" data-aos-duration="1000">
                                 <div class="inline-flex items-center gap-3 mb-6">
                                     <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-sm font-semibold uppercase tracking-[0.3em] text-gray-200">
                                         Wellness & Performance
@@ -111,10 +111,10 @@
                 </div>
                 <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000 h-full">
                     <div class="h-full relative overflow-hidden">
-                        <div class="absolute inset-0 bg-cover bg-center blur-[2px]" style="background-image: url('{{ asset('img/carrucel/normatec.png') }}');"></div>
+                        <div class="absolute inset-0 bg-cover bg-center blur-[2px]" style="background-image: url('{{ asset('img/carrucel/normatec.png') }}'); will-change: transform; backface-visibility: hidden;"></div>
                         <div class="absolute inset-0 hero-gradient-overlay"></div>
                         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex items-center py-8 sm:py-10 lg:py-12">
-                            <div class="max-w-2xl" data-aos="fade-right" data-aos-duration="1200" data-aos-easing="ease-out-cubic">
+                            <div class="max-w-2xl" data-aos="fade-right" data-aos-duration="1000">
                                 <div class="inline-flex items-center gap-3 mb-6">
                                     <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-sm font-semibold uppercase tracking-[0.3em] text-gray-200">
                                         Recuperación avanzada
@@ -142,10 +142,10 @@
                 </div>
                 <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000 h-full">
                     <div class="h-full relative overflow-hidden">
-                        <div class="absolute inset-0 bg-cover bg-center blur-[2px]" style="background-image: url('{{ asset('img/carrucel/luzroja.webp') }}');"></div>
+                        <div class="absolute inset-0 bg-cover bg-center blur-[2px]" style="background-image: url('{{ asset('img/carrucel/luzroja.webp') }}'); will-change: transform; backface-visibility: hidden;"></div>
                         <div class="absolute inset-0 hero-gradient-overlay"></div>
                         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full flex items-center py-8 sm:py-10 lg:py-12">
-                            <div class="max-w-2xl" data-aos="fade-right" data-aos-duration="1200" data-aos-easing="ease-out-cubic">
+                            <div class="max-w-2xl" data-aos="fade-right" data-aos-duration="1000">
                                 <div class="inline-flex items-center gap-3 mb-6">
                                     <span class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-sm font-semibold uppercase tracking-[0.3em] text-gray-200">
                                         Regeneración total
@@ -238,9 +238,9 @@
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Deep Tissue Massage -->
-                <div class="service-card group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
+                <div class="service-card group scroll-animate relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-speed="0.08" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
                     <div class="relative overflow-hidden">
-                        <img src="{{ asset('img/services/deeptissuemassage.webp') }}" alt="Deep Tissue Massage" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="{{ asset('img/services/deeptissuemassage.webp') }}" alt="Deep Tissue Massage" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/10 to-transparent"></div>
                         <span class="absolute top-4 left-4 inline-flex items-center rounded-full bg-mint/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-mint">Popular</span>
                     </div>
@@ -256,9 +256,9 @@
                 </div>
 
                 <!-- Relaxing Massage -->
-                <div class="service-card group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="150" data-aos-duration="700">
+                <div class="service-card group scroll-animate relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-speed="0.08" data-aos="fade-up" data-aos-delay="150" data-aos-duration="700">
                     <div class="relative overflow-hidden">
-                        <img src="{{ asset('img/services/RelaxingMassage.jpg') }}" alt="Relaxing Massage" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="{{ asset('img/services/RelaxingMassage.jpg') }}" alt="Relaxing Massage" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/10 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -273,9 +273,9 @@
                 </div>
 
                 <!-- Sport Recovery Therapy -->
-                <div class="service-card group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
+                <div class="service-card group scroll-animate relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-speed="0.08" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
                     <div class="relative overflow-hidden">
-                        <img src="{{ asset('img/services/SportRecoveryTherapy.webp') }}" alt="Sport Recovery Therapy" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="{{ asset('img/services/SportRecoveryTherapy.webp') }}" alt="Sport Recovery Therapy" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/10 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -290,9 +290,9 @@
                 </div>
 
                 <!-- Super Recovery -->
-                <div class="service-card group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="250" data-aos-duration="700">
+                <div class="service-card group scroll-animate relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-speed="0.08" data-aos="fade-up" data-aos-delay="250" data-aos-duration="700">
                     <div class="relative overflow-hidden">
-                        <img src="{{ asset('img/services/SuperRecovery.webp') }}" alt="Super Recovery" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="{{ asset('img/services/SuperRecovery.webp') }}" alt="Super Recovery" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/10 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -307,9 +307,9 @@
                 </div>
 
                 <!-- No Hands Session -->
-                <div class="service-card group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="300" data-aos-duration="700">
+                <div class="service-card group scroll-animate relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-speed="0.08" data-aos="fade-up" data-aos-delay="300" data-aos-duration="700">
                     <div class="relative overflow-hidden">
-                        <img src="{{ asset('img/services/nohands.jpg') }}" alt="No Hands Session" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="{{ asset('img/services/nohands.jpg') }}" alt="No Hands Session" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/10 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -324,9 +324,9 @@
                 </div>
 
                 <!-- Therapeutic Rehab -->
-                <div class="service-card group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="350" data-aos-duration="700">
+                <div class="service-card group scroll-animate relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-speed="0.08" data-aos="fade-up" data-aos-delay="350" data-aos-duration="700">
                     <div class="relative overflow-hidden">
-                        <img src="{{ asset('img/services/Therapeutic Rehab.webp') }}" alt="Therapeutic Rehab" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="{{ asset('img/services/Therapeutic Rehab.webp') }}" alt="Therapeutic Rehab" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/10 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -341,9 +341,9 @@
                 </div>
 
                 <!-- Mom-to-Be -->
-                <div class="service-card group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="400" data-aos-duration="700">
+                <div class="service-card group scroll-animate relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-speed="0.08" data-aos="fade-up" data-aos-delay="400" data-aos-duration="700">
                     <div class="relative overflow-hidden">
-                        <img src="{{ asset('img/services/Mom-to-Be.jpg') }}" alt="Mom-to-Be" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="{{ asset('img/services/Mom-to-Be.jpg') }}" alt="Mom-to-Be" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/10 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -358,9 +358,9 @@
                 </div>
 
                 <!-- Couples -->
-                <div class="service-card group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="450" data-aos-duration="700">
+                <div class="service-card group scroll-animate relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-speed="0.08" data-aos="fade-up" data-aos-delay="450" data-aos-duration="700">
                     <div class="relative overflow-hidden">
-                        <img src="{{ asset('img/services/Couples.webp') }}" alt="Couples" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="{{ asset('img/services/Couples.webp') }}" alt="Couples" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/10 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -375,9 +375,9 @@
                 </div>
 
                 <!-- Koru at Home -->
-                <div class="service-card group relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up" data-aos-delay="500" data-aos-duration="700">
+                <div class="service-card group scroll-animate relative overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white/95 shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl" data-speed="0.08" data-aos="fade-up" data-aos-delay="500" data-aos-duration="700">
                     <div class="relative overflow-hidden">
-                        <img src="{{ asset('img/services/Koru at Home.jpg') }}" alt="Koru at Home" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105">
+                        <img src="{{ asset('img/services/Koru at Home.jpg') }}" alt="Koru at Home" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" fetchpriority="low">
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/10 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -408,7 +408,7 @@
             
             <div class="grid gap-6 lg:grid-cols-3 mb-12">
                 <!-- Video 1 -->
-                <div class="video-card glass-panel p-6" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="600">
+                <div class="video-card glass-panel scroll-animate p-6" data-speed="0.06" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="600">
                     <div class="relative aspect-video bg-navy rounded-3xl overflow-hidden shadow-lg">
                         <video controls muted playsinline preload="metadata" class="w-full h-full object-cover">
                             <source src="{{ asset('videos/testimonials/1.mp4') }}" type="video/mp4">
@@ -419,7 +419,7 @@
                 </div>
 
                 <!-- Video 2 -->
-                <div class="video-card glass-panel p-6" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
+                <div class="video-card glass-panel scroll-animate p-6" data-speed="0.06" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="600">
                     <div class="relative aspect-video bg-navy rounded-3xl overflow-hidden shadow-lg">
                         <video controls muted playsinline preload="metadata" class="w-full h-full object-cover">
                             <source src="{{ asset('videos/testimonials/2.mp4') }}" type="video/mp4">
@@ -430,7 +430,7 @@
                 </div>
 
                 <!-- Video 3 -->
-                <div class="video-card glass-panel p-6" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="600">
+                <div class="video-card glass-panel scroll-animate p-6" data-speed="0.06" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="600">
                     <div class="relative aspect-video bg-navy rounded-3xl overflow-hidden shadow-lg">
                         <video controls muted playsinline preload="metadata" class="w-full h-full object-cover">
                             <source src="{{ asset('videos/testimonials/3.mp4') }}" type="video/mp4">
@@ -522,9 +522,9 @@
                     ];
                 @endphp
                 @foreach ($teamMembers as $member)
-                    <div class="team-card overflow-hidden rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="{{ 100 + ($loop->index * 100) }}" data-aos-duration="600">
+                    <div class="team-card scroll-animate overflow-hidden rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100" data-speed="0.06" data-aos="fade-up" data-aos-delay="{{ 100 + ($loop->index * 100) }}" data-aos-duration="600">
                         <div class="aspect-9/16 w-full overflow-hidden bg-gray-100">
-                            <img src="{{ asset('img/team/'. $member['img'] .'.png') }}" alt="{{ $member['name'] }}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+                            <img src="{{ asset('img/team/'. $member['img'] .'.png') }}" alt="{{ $member['name'] }}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" decoding="async" fetchpriority="low">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-navy mb-1">{{ $member['name'] }}</h3>
@@ -543,9 +543,9 @@
                 <div class="-mx-4 px-4 overflow-x-auto no-scrollbar snap-x snap-mandatory flex gap-4">
                     @foreach ($teamMembers as $member)
                         <div class="snap-center shrink-0 w-64 sm:w-72 max-w-xs">
-                            <div class="team-card overflow-hidden rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100" data-aos="zoom-in" data-aos-delay="{{ 100 + ($loop->index * 80) }}" data-aos-duration="600">
+                            <div class="team-card scroll-animate overflow-hidden rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100" data-speed="0.06" data-aos="zoom-in" data-aos-delay="{{ 100 + ($loop->index * 80) }}" data-aos-duration="600">
                                 <div class="aspect-9/16 w-full overflow-hidden bg-gray-100">
-                                    <img src="{{ asset('img/team/'. $member['img'] .'.png') }}" alt="{{ $member['name'] }}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+                                    <img src="{{ asset('img/team/'. $member['img'] .'.png') }}" alt="{{ $member['name'] }}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" loading="lazy" decoding="async" fetchpriority="low">
                                 </div>
                                 <div class="p-5">
                                     <h3 class="text-lg font-semibold text-navy mb-1">{{ $member['name'] }}</h3>

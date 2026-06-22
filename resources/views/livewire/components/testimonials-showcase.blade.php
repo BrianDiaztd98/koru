@@ -55,7 +55,7 @@
                          data-aos="fade-up"
                          data-aos-delay="{{ 100 + ($loop->index * 50) }}"
                          data-aos-duration="600"
-                         class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]">
+                         class="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)] scroll-animate" data-speed="0.06">
                     
                     <!-- Contenedor Superior Flexible para Simetría de Altura -->
                     <div class="flex-1 flex flex-col">

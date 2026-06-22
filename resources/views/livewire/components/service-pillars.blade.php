@@ -47,17 +47,17 @@
                 nextPage() { 
                     if (this.currentPage < this.totalPages) {
                         this.currentPage++;
-                        this.$nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); });
+                        $nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); });
                     }
                 },
                 prevPage() { 
                     if (this.currentPage > 1) {
                         this.currentPage--;
-                        this.$nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); });
+                        $nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); });
                     }
                 }
              }" 
-             x-init="this.$nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); })"
+             x-init="$nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); })"
              class="flex flex-col gap-10"
              wire:key="services-dynamic-content-{{ $activePillar }}">
 
@@ -74,7 +74,7 @@
                              data-aos="fade-up"
                              data-aos-delay="{{ ($index % 3) * 100 }}"
                              data-aos-anchor-placement="top-bottom"
-                             class="group flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.12)]">
+                             class="group scroll-animate flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.12)]" data-speed="0.06">
 
                         <div>
                             <!-- Contenedor de la Imagen Cinematográfica -->

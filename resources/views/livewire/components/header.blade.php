@@ -1,13 +1,14 @@
 <header x-data="{ mobileMenuOpen: false, scrolled: false }"
         x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 20 })"
         class="fixed inset-x-0 top-0 z-50 border-b transition-all duration-300"
-        :class="scrolled ? 'border-slate-800/80 bg-slate-950/90 backdrop-blur-xl shadow-lg shadow-slate-950/20' : 'border-transparent bg-slate-900/40 backdrop-blur-sm'">
+        :class="scrolled ? 'border-slate-800/80 bg-slate-950/90 backdrop-blur-md shadow-lg shadow-slate-950/20' : 'border-transparent bg-slate-900/40 backdrop-blur-sm'"
+        style="will-change: transform, background-color;">
     
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         
         <!-- Logo Principal -->
         <a href="#top" class="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded-xl transition-transform active:scale-95">
-            <img src="{{ asset('img/logo.png') }}" alt="Koru Center" class="h-14 w-auto object-contain brightness-110" />
+            <img src="{{ asset('img/logo.png') }}" alt="Koru Center" class="h-14 w-auto object-contain brightness-110" loading="lazy" decoding="async" fetchpriority="low" />
         </a>
 
         <!-- Navegación de Escritorio (Desktop) -->

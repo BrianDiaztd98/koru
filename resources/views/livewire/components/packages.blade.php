@@ -22,7 +22,7 @@
             @foreach($packages as $package)
                 <div wire:key="package-card-{{ $package['id'] ?? $loop->index }}"
                      x-data="{ expanded: false }" 
-                     class="group flex flex-col justify-between h-full rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" 
+                     class="group scroll-animate flex flex-col justify-between h-full rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" data-speed="0.06" 
                      data-aos="fade-up" 
                      data-aos-delay="{{ 100 + ($loop->index * 50) }}" 
                      data-aos-duration="600">
