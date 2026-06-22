@@ -1,15 +1,21 @@
 FROM php:8.4-apache
 
-# Instalar dependencias del sistema
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip unzip git
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg && docker-php-ext-install gd pdo pdo_mysql
+# Instalar dependencias del sistema y extensiones para PostgreSQL
+RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev libpq-dev zip unzip git
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_pgsql
 
-# Habilitar mod_rewrite de Apache para las rutas de Laravel
+# Habilitar mod_rewrite de Apache
 RUN a2enmod rewrite
 
-# Copiar el código y configurar permisos
+# Copiar el código
 COPY . /var/www/html
+
+# Configurar permisos
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Cambiar el document root de Apache a la carpeta public
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+
+# Comando de inicio: Migrar la base de datos y luego arrancar Apache
+CMD php artisan migrate --force && apache2-foreground
