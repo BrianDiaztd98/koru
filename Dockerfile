@@ -24,5 +24,9 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN npm install && npm run build
 
-# 6. Ejecutar migraciones y arrancar Apache
-CMD php artisan migrate --force && apache2-foreground
+# 6. Preparar y usar el script de inicio
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# 7. Usar el script como punto de entrada
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
