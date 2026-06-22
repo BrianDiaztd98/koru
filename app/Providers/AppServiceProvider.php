@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,11 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        \Illuminate\Support\Facades\Schema::defaultStringLength(191);
-
-        // Esta línea hará que las migraciones se ejecuten al iniciar la app
+        // Fuerza HTTPS en producción
         if ($this->app->environment('production')) {
-            \Illuminate\Support\Facades\Artisan::call('migrate --force');
+            URL::forceScheme('https');
         }
     }
 }
