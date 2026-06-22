@@ -23,3 +23,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 # 6. Ejecutar migraciones y arrancar Apache
 # Usamos un comando compuesto para asegurar que si falla la migración, no arranque el servidor
 CMD php artisan migrate --force && apache2-foreground
+
+# Asegurarnos de que el caché de configuración esté limpio
+RUN php artisan config:clear
+RUN php artisan cache:clear
