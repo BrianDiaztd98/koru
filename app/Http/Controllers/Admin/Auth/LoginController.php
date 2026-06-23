@@ -41,7 +41,7 @@ class LoginController extends Controller
                 ->onlyInput('email');
         }
 
-        return redirect()->intended(route('admin.management.index'));
+        return redirect()->route('admin.management.index');
     }
 
     public function destroy(Request $request)

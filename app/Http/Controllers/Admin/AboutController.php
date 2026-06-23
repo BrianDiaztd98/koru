@@ -12,7 +12,7 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $about = About::query()->first() ?? new About();
+        $about = About::query()->first() ?? new About;
 
         return view('admin.about.index', compact('about'));
     }
@@ -27,7 +27,7 @@ class AboutController extends Controller
                 ->with('info', 'About section already exists. You can only edit the existing record.');
         }
 
-        return view('admin.about.create', ['about' => new About()]);
+        return view('admin.about.create', ['about' => new About]);
     }
 
     public function store(AboutUpdateRequest $request): RedirectResponse
@@ -56,7 +56,7 @@ class AboutController extends Controller
         $about = About::query()->first();
 
         // Always pass an About instance to the view
-        $about = $about ?? new About();
+        $about = $about ?? new About;
 
         return view('admin.about.edit', compact('about'));
     }

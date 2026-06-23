@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Service;
-use Illuminate\Http\Request;
 
 class ManagementController extends Controller
 {

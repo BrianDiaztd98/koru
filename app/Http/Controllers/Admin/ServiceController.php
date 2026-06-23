@@ -10,16 +10,19 @@ use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $services = Service::query()
-            ->orderBy('category')
-            ->orderBy('name_en')
-            ->paginate(20);
-
         $categories = Service::categories();
+        $activeCategory = $request->query('category');
 
-        return view('admin.services.index', compact('services', 'categories'));
+        $query = Service::query();
+        if ($activeCategory) {
+            $query->where('category', $activeCategory);
+        }
+
+        $services = $query->orderBy('name_en')->paginate(20)->withQueryString();
+
+        return view('admin.services.index', compact('services', 'categories', 'activeCategory'));
     }
 
     public function create(Request $request)
@@ -39,9 +42,9 @@ class ServiceController extends Controller
         if ($request->hasFile('image_path')) {
             File::ensureDirectoryExists(public_path('img/services'));
             $file = $request->file('image_path');
-            $filename = Str::slug($validated['name_en']) . '-' . time() . '.' . $file->extension();
+            $filename = Str::slug($validated['name_en']).'-'.time().'.'.$file->extension();
             $file->move(public_path('img/services'), $filename);
-            $validated['image_path'] = 'img/services/' . $filename;
+            $validated['image_path'] = 'img/services/'.$filename;
         }
 
         Service::query()->create($validated);
@@ -76,9 +79,9 @@ class ServiceController extends Controller
         if ($request->hasFile('image_path')) {
             File::ensureDirectoryExists(public_path('img/services'));
             $file = $request->file('image_path');
-            $filename = Str::slug($validated['name_en']) . '-' . time() . '.' . $file->extension();
+            $filename = Str::slug($validated['name_en']).'-'.time().'.'.$file->extension();
             $file->move(public_path('img/services'), $filename);
-            $validated['image_path'] = 'img/services/' . $filename;
+            $validated['image_path'] = 'img/services/'.$filename;
         }
 
         $service->query()->update($validated);
@@ -119,6 +122,7 @@ class ServiceController extends Controller
             'medical_services' => 'Medical Services',
             'koru_at_home' => 'Koru At Home',
             'booster_shots' => 'Booster Shots',
+            'iv_therapy' => 'IV Therapy',
         ];
     }
 }

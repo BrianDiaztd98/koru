@@ -22,7 +22,12 @@
         @include('admin.partials.topbar', ['title' => 'About Management'])
 
         <!-- Contenedor Principal -->
-        <main class="mx-auto w-full max-w-6xl px-4 sm:px-6 py-10 flex-1">
+        <main class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 flex-1">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+
+                @include('admin.partials.sidebar', ['activeTarget' => 'about'])
+
+                <div class="lg:col-span-3">
 
             <!-- Alert System -->
             @if (session('success'))
@@ -147,6 +152,9 @@
                 </div>
             </div>
 
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>

@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
 class About extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'title',
         'philosophy',
@@ -35,16 +38,16 @@ class About extends Model
     public static function getAboutData(): array
     {
         $data = self::query()->first()?->toArray() ?? self::defaultData();
-        
+
         // Ensure image URLs are properly formatted
         foreach (['image_1', 'image_2', 'image_3'] as $imageField) {
-            if (isset($data[$imageField]) && $data[$imageField] && !str_starts_with($data[$imageField], 'http')) {
-                $data[$imageField] = str_starts_with($data[$imageField], 'img/') 
-                    ? asset($data[$imageField]) 
-                    : asset('storage/' . $data[$imageField]);
+            if (isset($data[$imageField]) && $data[$imageField] && ! str_starts_with($data[$imageField], 'http')) {
+                $data[$imageField] = str_starts_with($data[$imageField], 'img/')
+                    ? asset($data[$imageField])
+                    : asset('storage/'.$data[$imageField]);
             }
         }
-        
+
         return $data;
     }
 
@@ -62,16 +65,16 @@ class About extends Model
 
     public function getImage1Url(): string
     {
-        return $this->image_1 ? asset('storage/' . $this->image_1) : asset($this->image_1);
+        return $this->image_1 ? asset('storage/'.$this->image_1) : asset($this->image_1);
     }
 
     public function getImage2Url(): string
     {
-        return $this->image_2 ? asset('storage/' . $this->image_2) : asset($this->image_2);
+        return $this->image_2 ? asset('storage/'.$this->image_2) : asset($this->image_2);
     }
 
     public function getImage3Url(): string
     {
-        return $this->image_3 ? asset('storage/' . $this->image_3) : asset($this->image_3);
+        return $this->image_3 ? asset('storage/'.$this->image_3) : asset($this->image_3);
     }
 }

@@ -72,7 +72,13 @@
     <div class="relative z-10 min-h-screen flex flex-col">
         @include('admin.partials.topbar', ['title' => 'Edit Service'])
 
-        <main class="mx-auto w-full max-w-6xl px-4 sm:px-6 py-10 flex-1">
+        <!-- Contenedor Principal -->
+        <main class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 flex-1">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+
+                @include('admin.partials.sidebar', ['activeTarget' => $service->category ?? 'service-pillars'])
+
+                <div class="lg:col-span-3">
             
             <form action="{{ route('admin.services.update', $service) }}" method="POST">
                 @csrf
@@ -89,13 +95,19 @@
                                 </svg>
                             </div>
                             <div>
-                                <h2 class="text-xl font-bold text-white tracking-tight">Modify Service</h2>
+                                <h2 class="text-xl font-bold text-white tracking-tight">{{ $categories[$service->category] ?? 'Modify Service' }}</h2>
                                 <p class="text-xs text-slate-400 mt-0.5">You are currently altering the production properties of <span class="text-[#0EB3B9] font-semibold">{{ $service->name_en }}</span>.</p>
                             </div>
                         </div>
 
                         <div class="prose prose-invert max-w-none space-y-4">
-                            @include('admin.services._form')
+                            @if(($service->category ?? null) === 'booster_shots')
+                                @include('admin.services._form_booster_shots')
+                            @elseif(($service->category ?? null) === 'iv_therapy')
+                                @include('admin.services._form_iv_therapy')
+                            @else
+                                @include('admin.services._form')
+                            @endif
                         </div>
                     </div>
 
@@ -123,7 +135,7 @@
                                     Update Service
                                 </button>
                                 
-                                <a href="{{ route('admin.services.index') }}" 
+                                <a href="{{ isset($service) ? route('admin.services.index', ['category' => $service->category]) : route('admin.services.index') }}" 
                                    class="w-full inline-flex items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 px-5 py-3 text-xs font-semibold text-slate-400 backdrop-blur-sm transition-all duration-150 hover:bg-slate-900/60 hover:border-slate-700 hover:text-slate-200 active:scale-[0.98]">
                                     Cancel Changes
                                 </a>
@@ -138,7 +150,10 @@
 
                 </div>
             </form>
-            
+
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>

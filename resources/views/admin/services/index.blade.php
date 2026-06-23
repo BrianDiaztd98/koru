@@ -15,27 +15,28 @@
         <!-- Barra superior integrada -->
         @include('admin.partials.topbar', ['title' => 'Services'])
 
-        <!-- Barra de Herramientas / Acciones Superiores -->
-        <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pt-10">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-slate-900">
-                <div>
-                    <h2 class="text-lg font-bold text-white">Services Directory</h2>
-                    <p class="text-xs text-slate-400">Manage, edit, or configure live platform treatments and therapy structures.</p>
-                </div>
-                <div>
-                    <a href="{{ route('admin.services.create') }}" 
-                       class="inline-flex items-center justify-center rounded-xl bg-[#0EB3B9] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] active:scale-[0.98]">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
-                        </svg>
-                        Create Service
-                    </a>
-                </div>
-            </div>
-        </div>
+        <!-- Contenedor Principal -->
+        <main class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 flex-1">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
 
-        <!-- Contenido de Tabla Principal -->
-        <main class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-8 flex-1">
+                @include('admin.partials.sidebar', ['activeTarget' => $activeCategory ?? 'service-pillars'])
+
+                <div class="lg:col-span-3 space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-slate-900">
+                        <div>
+                            <h2 class="text-lg font-bold text-white">Services Directory</h2>
+                            <p class="text-xs text-slate-400">Manage, edit, or configure live platform treatments and therapy structures.</p>
+                        </div>
+                        <div>
+                            <a href="{{ isset($activeCategory) ? route('admin.services.create', ['category' => $activeCategory]) : route('admin.services.create') }}" 
+                               class="inline-flex items-center justify-center rounded-xl bg-[#0EB3B9] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] active:scale-[0.98]">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/>
+                                </svg>
+                                Create Service
+                            </a>
+                        </div>
+                    </div>
             
             <!-- Notificaciones Flash Estilizadas -->
             @if (session('success'))
@@ -144,6 +145,8 @@
             <!-- Paginación con margen consistente -->
             <div class="mt-8 dark-pagination">
                 {{ $services->links() }}
+            </div>
+                </div>
             </div>
         </main>
     </div>
