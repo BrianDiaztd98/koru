@@ -10,7 +10,7 @@ class LoginController extends Controller
     public function show()
     {
         if (auth()->check() && auth()->user()->is_admin) {
-            return redirect()->route('admin.services.index');
+            return redirect()->route('admin.management.index');
         }
 
         return view('admin.auth.login');
@@ -41,7 +41,7 @@ class LoginController extends Controller
                 ->onlyInput('email');
         }
 
-        return redirect()->intended(route('admin.services.index'));
+        return redirect()->intended(route('admin.management.index'));
     }
 
     public function destroy(Request $request)
