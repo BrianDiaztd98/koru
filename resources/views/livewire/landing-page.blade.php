@@ -9,6 +9,7 @@
         @include('livewire.components.hero-carousel', [
             'localizedSettings' => $localizedSettings,
         ])
+        @include('livewire.components.about-us')
         @include('livewire.components.service-pillars', [
             'pillarLabels' => $pillarLabels,
             'activePillar' => $activePillar,

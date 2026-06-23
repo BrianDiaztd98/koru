@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class ServiceController extends Controller
@@ -16,13 +17,16 @@ class ServiceController extends Controller
             ->orderBy('name_en')
             ->paginate(20);
 
-        return view('admin.services.index', compact('services'));
+        $categories = Service::categories();
+
+        return view('admin.services.index', compact('services', 'categories'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         return view('admin.services.create', [
-            'categories' => self::categories(),
+            'categories' => Service::categories(),
+            'defaultCategory' => $request->query('category', 'manual_therapy'),
         ]);
     }
 
@@ -31,6 +35,14 @@ class ServiceController extends Controller
         $validated = $this->validateServiceRequest($request);
         $validated['slug'] = Str::slug($validated['name_en']);
         $validated['active_status'] = $request->boolean('active_status');
+
+        if ($request->hasFile('image_path')) {
+            File::ensureDirectoryExists(public_path('img/services'));
+            $file = $request->file('image_path');
+            $filename = Str::slug($validated['name_en']) . '-' . time() . '.' . $file->extension();
+            $file->move(public_path('img/services'), $filename);
+            $validated['image_path'] = 'img/services/' . $filename;
+        }
 
         Service::query()->create($validated);
 
@@ -43,7 +55,7 @@ class ServiceController extends Controller
     {
         return view('admin.services.edit', [
             'service' => $service,
-            'categories' => self::categories(),
+            'categories' => Service::categories(),
         ]);
     }
 
@@ -51,7 +63,7 @@ class ServiceController extends Controller
     {
         return view('admin.services.edit', [
             'service' => $service,
-            'categories' => self::categories(),
+            'categories' => Service::categories(),
         ]);
     }
 
@@ -60,6 +72,14 @@ class ServiceController extends Controller
         $validated = $this->validateServiceRequest($request);
         $validated['slug'] = Str::slug($validated['name_en']);
         $validated['active_status'] = $request->boolean('active_status');
+
+        if ($request->hasFile('image_path')) {
+            File::ensureDirectoryExists(public_path('img/services'));
+            $file = $request->file('image_path');
+            $filename = Str::slug($validated['name_en']) . '-' . time() . '.' . $file->extension();
+            $file->move(public_path('img/services'), $filename);
+            $validated['image_path'] = 'img/services/' . $filename;
+        }
 
         $service->query()->update($validated);
 
@@ -86,8 +106,8 @@ class ServiceController extends Controller
             'description_es' => ['required', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
             'duration' => ['required', 'string', 'max:255'],
-            'image_path' => ['nullable', 'string', 'max:255'],
-            'category' => ['required', 'string', 'in:'.implode(',', array_keys(self::categories()))],
+            'image_path' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'category' => ['required', 'string', 'in:'.implode(',', array_keys(Service::categories()))],
         ]);
     }
 

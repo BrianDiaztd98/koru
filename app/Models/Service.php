@@ -23,4 +23,16 @@ class Service extends Model
         'price' => 'decimal:2',
         'active_status' => 'boolean',
     ];
+
+    public static function categories(): array
+    {
+        return [
+            'manual_therapy' => 'Massage Services',
+            'recovery_performance' => 'Therapy Services',
+            'medical_services' => 'Medical Services',
+            'koru_at_home' => 'Koru At Home',
+            'booster_shots' => 'Booster Shots',
+            'iv_therapy' => 'IV Therapy',
+        ];
+    }
 }

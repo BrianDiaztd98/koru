@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\About;
 use App\Models\Course;
 use App\Models\Service;
 use App\Models\SiteSetting;
@@ -48,6 +49,12 @@ class LandingPage extends Component
     protected function currentLocale(): string
     {
         return in_array(app()->getLocale(), ['en', 'es'], true) ? app()->getLocale() : 'en';
+    }
+
+    #[Computed]
+    public function getAboutDataProperty(): array
+    {
+        return About::getAboutData();
     }
 
     #[Computed]
@@ -127,6 +134,7 @@ class LandingPage extends Component
     public function getHeaderNavItemsProperty(): array
     {
         return [
+            ['label' => 'About', 'href' => '#about-us'],
             ['label' => 'Education', 'href' => '#education'],
             ['label' => 'Team', 'href' => '#team'],
             ['label' => 'Location', 'href' => '#location'],
@@ -265,6 +273,7 @@ class LandingPage extends Component
             'localizedSettings' => $this->localizedSettings,
             'activeCourses' => $this->activeCourses,
             'teamMembers' => $this->teamMembers,
+            'aboutData' => $this->aboutData,
         ]);
     }
 }

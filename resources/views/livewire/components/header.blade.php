@@ -72,8 +72,7 @@
                 @endforeach
             @else
                 <!-- Fallbacks estáticos si el arreglo no está listo en el backend -->
-                <a href="#education" @click="mobileMenuOpen = false" class="block rounded-xl px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-[#0EB3B9]">Education</a>
-                <a href="#team" @click="mobileMenuOpen = false" class="block rounded-xl px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-[#0EB3B9]">Team</a>
+                <a href="#about-us" @click="mobileMenuOpen = false" class="block rounded-xl px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-[#0EB3B9]">About</a>
                 <a href="#location" @click="mobileMenuOpen = false" class="block rounded-xl px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-[#0EB3B9]">Location</a>
             @endif
             
