@@ -11,11 +11,6 @@
             <img src="{{ asset('img/logo.png') }}" alt="Koru Center" class="h-14 w-auto object-contain brightness-110" loading="lazy" decoding="async" fetchpriority="low" />
         </a>
 
-        <!-- Mensaje de Bienvenida -->
-        <span class="hidden lg:inline-flex items-center rounded-full border border-slate-800 bg-slate-950/60 px-4 py-1.5 text-sm font-semibold text-[#0EB3B9] shadow-sm">
-            Bienvenido
-        </span>
-
         <!-- Navegación de Escritorio (Desktop) -->
         <nav class="hidden items-center gap-8 lg:flex">
             <a href="#services" class="text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-[#0EB3B9]">Services</a>
