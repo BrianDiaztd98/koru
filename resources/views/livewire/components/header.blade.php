@@ -13,8 +13,6 @@
 
         <!-- Navegación de Escritorio (Desktop) -->
         <nav class="hidden items-center gap-8 lg:flex">
-            <a href="#services" class="text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-[#0EB3B9]">Services</a>
-
             @foreach($headerNavItems ?? [] as $item)
                 <a href="{{ $item['href'] }}" class="text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-[#0EB3B9]">{{ $item['label'] }}</a>
             @endforeach
@@ -64,13 +62,6 @@
          class="border-t border-slate-800/80 bg-slate-950/95 backdrop-blur-xl lg:hidden">
         
         <div class="space-y-2 px-4 py-4 shadow-inner">
-            <!-- Mensaje de Bienvenida Móvil -->
-            <div class="flex items-center justify-center rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-2.5 text-sm font-semibold text-[#0EB3B9]">
-                Bienvenido
-            </div>
-
-            <a href="#services" @click="mobileMenuOpen = false" class="block rounded-xl px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-[#0EB3B9]">Services</a>
-            
             @if(isset($headerNavItems) && count($headerNavItems) > 0)
                 @foreach($headerNavItems as $item)
                     <a href="{{ $item['href'] }}" @click="mobileMenuOpen = false" class="block rounded-xl px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-[#0EB3B9]">{{ $item['label'] }}</a>

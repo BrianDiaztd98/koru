@@ -13,6 +13,7 @@
     @livewireStyles
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans antialiased">
+    @livewire(\App\Http\Livewire\Header::class)
     {{ $slot }}
 
     @livewireScripts

@@ -261,6 +261,12 @@ class LandingPage extends Component
         ];
     }
 
+    #[On('locale-changed')]
+    public function updateLocaleFromHeader(string $locale): void
+    {
+        $this->setLocale($locale);
+    }
+
     public function render()
     {
         return view('livewire.landing-page', [

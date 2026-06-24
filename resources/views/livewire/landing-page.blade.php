@@ -1,10 +1,4 @@
 <div class="min-h-screen bg-slate-50">
-    @include('livewire.components.header', [
-        'pillarLabels' => $pillarLabels,
-        'locale' => $locale,
-        'activePillar' => $activePillar,
-    ])
-
     <main class="overflow-hidden">
         @include('livewire.components.hero-carousel', [
             'localizedSettings' => $localizedSettings,
