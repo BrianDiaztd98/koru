@@ -5,16 +5,30 @@
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
+        @if(!($aboutData['has_real_data'] ?? false))
+            <div class="text-center py-20">
+                <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
+                    {{ $aboutData['title'] ?? 'About KORU' }}
+                </div>
+                <h2 class="mt-6 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+                    No active services found
+                </h2>
+                <p class="mt-4 max-w-2xl mx-auto text-sm leading-relaxed text-slate-400">
+                    Add contents under this specific pilar in your CMS dashboard to populate this category viewport.
+                </p>
+            </div>
+        @else
+
         <!-- Cabecera de la Sección (Integrada con AOS y control de Livewire) -->
-        <div class="mb-12 text-center" data-aos="fade-up" data-aos-duration="800" wire:ignore>
+        <div class="mb-12 text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" data-aos-easing="ease-out-cubic">
             <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
-                About KORU
+                {{ $aboutData['title'] ?? 'About KORU' }}
             </div>
             <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                Bridging the gap between recovery, movement, and education
+                {{ $aboutData['subtitle'] ?? 'Bridging the gap between recovery, movement, and education' }}
             </h2>
             <p class="mt-4 max-w-2xl mx-auto text-sm leading-relaxed text-slate-400">
-                Discover the philosophy and technical framework behind our specialized wellness and learning ecosystem.
+                {{ $aboutData['description'] ?? 'Discover the philosophy and technical framework behind our specialized wellness and learning ecosystem.' }}
             </p>
         </div>
 
@@ -22,9 +36,9 @@
         <div class="grid gap-12 lg:grid-cols-12 items-center" wire:key="about-content-wrapper">
             
             <!-- Columna Izquierda: Texto Dinámico consumido desde Base de Datos -->
-            <div class="lg:col-span-6 space-y-6" data-aos="fade-right" data-aos-duration="800">
+            <div class="lg:col-span-6 space-y-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200" data-aos-easing="ease-out-cubic">
                 <h3 class="text-xl font-bold text-white tracking-tight sm:text-2xl">
-                    Our Philosophy
+                    {{ $aboutData['title'] ?? 'About KORU' }}
                 </h3>
                 
                 <!-- El texto principal renderizado dinámicamente desde tu modelo de Laravel -->
@@ -43,14 +57,14 @@
                     <div class="group flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-950/30 backdrop-blur-sm p-5 transition-all duration-300 hover:border-[#0EB3B9]/20 hover:bg-slate-950/60">
                         <div class="flex items-center gap-3">
                             <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0EB3B9]/10 text-[#0EB3B9]">
-                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                                 </svg>
                             </div>
-                            <h4 class="text-sm font-bold text-white tracking-tight">Wellness & Therapy</h4>
+                            <h4 class="text-sm font-bold text-white tracking-tight">{{ $aboutData['feature_1_title'] ?? 'Wellness & Therapy' }}</h4>
                         </div>
                         <p class="mt-2.5 text-xs text-slate-400 leading-relaxed">
-                            Tailored operational architectures built for fluid content management and clean UI stability.
+                            {{ $aboutData['feature_1_description'] ?? 'Tailored operational architectures built for fluid content management and clean UI stability.' }}
                         </p>
                     </div>
 
@@ -58,14 +72,14 @@
                     <div class="group flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-950/30 backdrop-blur-sm p-5 transition-all duration-300 hover:border-[#0EB3B9]/20 hover:bg-slate-950/60">
                         <div class="flex items-center gap-3">
                             <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0EB3B9]/10 text-[#0EB3B9]">
-                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 3.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                                 </svg>
                             </div>
-                            <h4 class="text-sm font-bold text-white tracking-tight">Advanced Education</h4>
+                            <h4 class="text-sm font-bold text-white tracking-tight">{{ $aboutData['feature_2_title'] ?? 'Advanced Education' }}</h4>
                         </div>
                         <p class="mt-2.5 text-xs text-slate-400 leading-relaxed">
-                            Empowering specialists through interactive workshops and fully scalable learning data tracks.
+                            {{ $aboutData['feature_2_description'] ?? 'Empowering specialists through interactive workshops and fully scalable learning data tracks.' }}
                         </p>
                     </div>
 
@@ -73,7 +87,7 @@
             </div>
 
             <!-- Columna Derecha: Mosaico Asimétrico con Imágenes Limpias -->
-            <div class="lg:col-span-6 relative" data-aos="fade-left" data-aos-duration="800">
+            <div class="lg:col-span-6 relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400" data-aos-easing="ease-out-cubic">
                 <!-- Efecto Glow Destello Detrás del Mosaico -->
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#0E788D]/15 blur-[100px] rounded-full -z-10"></div>
                 
@@ -85,14 +99,14 @@
                         <!-- Imagen 1: Superior Izquierda -->
                         <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
                             <img class="object-cover w-full h-36 sm:h-44 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105" 
-                                 src="{{ asset('img/about/therapy.jpeg') }}" 
+                                 src="{{ $aboutData['image_1'] ?? asset('img/about/therapy.jpeg') }}" 
                                  alt="KORU Therapy Session">
                         </div>
                         
                         <!-- Imagen 2: Inferior Izquierda -->
                         <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
                             <img class="object-cover w-full h-36 sm:h-44 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105" 
-                                 src="{{ asset('img/about/massage.jpeg') }}" 
+                                 src="{{ $aboutData['image_2'] ?? asset('img/about/massage.jpeg') }}" 
                                  alt="KORU Team Collaboration">
                         </div>
                     </div>
@@ -102,7 +116,7 @@
                         <!-- Imagen 3: Principal Derecha -->
                         <div class="group relative overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 p-2 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30 shadow-[0_20px_50px_-20px_rgba(14,120,141,0.3)]">
                             <img class="object-cover w-full h-[304px] sm:h-[368px] rounded-2xl transition-all duration-500 scale-100 group-hover:scale-105" 
-                                 src="{{ asset('img/about/team.jpeg') }}" 
+                                 src="{{ $aboutData['image_3'] ?? asset('img/about/team.jpeg') }}" 
                                  alt="KORU Wellness Environment">
                             
                             <!-- Badge flotante sutil sobre la imagen principal -->
@@ -116,6 +130,7 @@
             </div>
 
         </div>
+        @endif
 
     </div>
 </section>

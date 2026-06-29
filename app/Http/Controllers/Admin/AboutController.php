@@ -14,7 +14,7 @@ class AboutController extends Controller
     {
         $about = About::query()->first() ?? new About;
 
-        return view('admin.about.index', compact('about'));
+        return view('livewire.admin.about.index', compact('about'));
     }
 
     public function create()
@@ -27,7 +27,7 @@ class AboutController extends Controller
                 ->with('info', 'About section already exists. You can only edit the existing record.');
         }
 
-        return view('admin.about.create', ['about' => new About]);
+        return view('livewire.admin.about.create', ['about' => new About]);
     }
 
     public function store(AboutUpdateRequest $request): RedirectResponse
@@ -58,7 +58,7 @@ class AboutController extends Controller
         // Always pass an About instance to the view
         $about = $about ?? new About;
 
-        return view('admin.about.edit', compact('about'));
+        return view('livewire.admin.about.edit', compact('about'));
     }
 
     public function update(AboutUpdateRequest $request): RedirectResponse

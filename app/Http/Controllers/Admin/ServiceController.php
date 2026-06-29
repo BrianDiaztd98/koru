@@ -22,14 +22,30 @@ class ServiceController extends Controller
 
         $services = $query->orderBy('name_en')->paginate(20)->withQueryString();
 
-        return view('admin.services.index', compact('services', 'categories', 'activeCategory'));
+        return view('livewire.admin.service-pillars.index', compact('services', 'categories', 'activeCategory'));
     }
 
     public function create(Request $request)
     {
-        return view('admin.services.create', [
+        $defaultCategory = $request->query('category', 'manual_therapy');
+
+        if ($defaultCategory === 'booster_shots') {
+            return view('livewire.admin.booster-shots.create', [
+                'categories' => Service::categories(),
+                'defaultCategory' => $defaultCategory,
+            ]);
+        }
+
+        if ($defaultCategory === 'iv_therapy') {
+            return view('livewire.admin.iv-therapy.create', [
+                'categories' => Service::categories(),
+                'defaultCategory' => $defaultCategory,
+            ]);
+        }
+
+        return view('livewire.admin.service-pillars.create', [
             'categories' => Service::categories(),
-            'defaultCategory' => $request->query('category', 'manual_therapy'),
+            'defaultCategory' => $defaultCategory,
         ]);
     }
 
@@ -56,7 +72,21 @@ class ServiceController extends Controller
 
     public function show(Service $service)
     {
-        return view('admin.services.edit', [
+        if ($service->category === 'booster_shots') {
+            return view('livewire.admin.booster-shots.edit', [
+                'service' => $service,
+                'categories' => Service::categories(),
+            ]);
+        }
+
+        if ($service->category === 'iv_therapy') {
+            return view('livewire.admin.iv-therapy.edit', [
+                'service' => $service,
+                'categories' => Service::categories(),
+            ]);
+        }
+
+        return view('livewire.admin.service-pillars.edit', [
             'service' => $service,
             'categories' => Service::categories(),
         ]);
@@ -64,7 +94,21 @@ class ServiceController extends Controller
 
     public function edit(Service $service)
     {
-        return view('admin.services.edit', [
+        if ($service->category === 'booster_shots') {
+            return view('livewire.admin.booster-shots.edit', [
+                'service' => $service,
+                'categories' => Service::categories(),
+            ]);
+        }
+
+        if ($service->category === 'iv_therapy') {
+            return view('livewire.admin.iv-therapy.edit', [
+                'service' => $service,
+                'categories' => Service::categories(),
+            ]);
+        }
+
+        return view('livewire.admin.service-pillars.edit', [
             'service' => $service,
             'categories' => Service::categories(),
         ]);

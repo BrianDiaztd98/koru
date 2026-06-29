@@ -65,9 +65,10 @@
                                         x-show="$refs.pkgDesc.scrollHeight > 60" 
                                         x-cloak
                                         type="button"
-                                        class="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] hover:text-[#0E788D] transition-colors focus:outline-none">
+                                        class="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] hover:text-[#0E788D] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded"
+                                        :aria-expanded="expanded.toString()">
                                     <span x-text="expanded ? 'Show Less' : 'Read More'"></span>
-                                    <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                     </svg>
                                 </button>
@@ -91,7 +92,7 @@
         <!-- Contenedor Legal / Políticas de los Paquetes -->
         <div class="mt-12 rounded-3xl border border-slate-800/80 bg-slate-950/30 p-6 sm:p-8 backdrop-blur-sm" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800" wire:ignore>
             <div class="flex items-center gap-2.5 mb-6 border-b border-slate-800/50 pb-3">
-                <svg class="h-4 w-4 text-[#0EB3B9]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <svg class="h-4 w-4 text-[#0EB3B9]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
                 <h3 class="text-sm font-bold uppercase tracking-wider text-white">Package Terms & Policies</h3>

@@ -54,9 +54,10 @@
                                         x-show="$refs['teamDesc' + {{ $loop->index }}].scrollHeight > 60" 
                                         x-cloak
                                         type="button"
-                                        class="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] hover:text-[#0E788D] transition-colors focus:outline-none">
+                                        class="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] hover:text-[#0E788D] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded"
+                                        :aria-expanded="expanded.toString()">
                                     <span x-text="expanded ? 'Show Less' : 'Read More'"></span>
-                                    <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                     </svg>
                                 </button>
@@ -69,6 +70,7 @@
                                 <a href="https://www.instagram.com/{{ ltrim($member['instagram'], '@') }}/" 
                                    target="_blank" 
                                    rel="noopener noreferrer" 
+                                   aria-label="View {{ $member['name'] }} on Instagram"
                                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-2.5 text-xs font-bold text-slate-200 shadow-sm transition-all duration-200 hover:bg-[#0EB3B9] hover:border-[#0EB3B9] hover:text-white hover:shadow-md active:scale-[0.98]">
                                     View Profile
                                 </a>
@@ -116,9 +118,10 @@
                                                 x-show="$refs['teamDescMob' + {{ $loop->index }}].scrollHeight > 54" 
                                                 x-cloak
                                                 type="button"
-                                                class="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] focus:outline-none">
+                                                class="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded"
+                                                :aria-expanded="expanded.toString()">
                                             <span x-text="expanded ? 'Show Less' : 'Read More'"></span>
-                                            <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                            <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                             </svg>
                                         </button>
@@ -130,6 +133,7 @@
                                         <a href="https://www.instagram.com/{{ ltrim($member['instagram'], '@') }}/" 
                                            target="_blank" 
                                            rel="noopener noreferrer" 
+                                           aria-label="View {{ $member['name'] }} on Instagram"
                                            class="inline-flex w-full items-center justify-center rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-2.5 text-xs font-bold text-slate-200 active:scale-[0.98] transition-transform duration-150">
                                             View Profile
                                         </a>

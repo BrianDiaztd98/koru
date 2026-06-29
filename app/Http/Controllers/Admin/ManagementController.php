@@ -10,7 +10,7 @@ class ManagementController extends Controller
 {
     public function index()
     {
-        $about = About::first();
+        $about = About::first() ?? new About;
         $categories = Service::categories();
         $serviceGroups = [
             'Service Pillars' => [
@@ -24,11 +24,12 @@ class ManagementController extends Controller
                 'iv_therapy',
             ],
         ];
-        $services = Service::query()
+        $services = collect(Service::query()
             ->orderBy('name_en')
             ->get()
-            ->groupBy('category');
+            ->groupBy('category'));
+        $activeTarget = request()->query('section', 'inicio');
 
-        return view('admin.manage.index', compact('about', 'categories', 'serviceGroups', 'services'));
+        return view('livewire.admin.admin-dashboard', compact('about', 'categories', 'serviceGroups', 'services', 'activeTarget'));
     }
 }

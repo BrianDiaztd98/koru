@@ -86,13 +86,13 @@
                             <!-- Beneficios Clínicos Estables -->
                             <div class="space-y-3 pt-6 border-t border-slate-800/80 mt-auto">
                                 <div class="flex items-center gap-3 text-xs font-medium text-slate-300">
-                                    <svg class="h-4 w-4 text-[#0EB3B9] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                    <svg class="h-4 w-4 text-[#0EB3B9] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                     100% Bioavailable Intramuscular Absorption
                                 </div>
                                 <div class="flex items-center gap-3 text-xs font-medium text-slate-300">
-                                    <svg class="h-4 w-4 text-[#0EB3B9] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                    <svg class="h-4 w-4 text-[#0EB3B9] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                     Administered in under 10 minutes
@@ -108,8 +108,8 @@
                        target="_blank" 
                        rel="noopener noreferrer" 
                        class="inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#0EB3B9] px-5 py-4 text-sm font-bold text-white shadow-lg shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] hover:shadow-xl active:scale-[0.99]">
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v12a2 2 0 002 2z" />
                         </svg>
                         Schedule This Injection
                     </a>
@@ -132,25 +132,26 @@
                                 x-transition:enter-start="opacity-0 scale-95"
                                 x-transition:enter-end="opacity-100 scale-100"
                                 type="button"
-                                class="text-left w-full relative flex items-center justify-between rounded-2xl border p-5 transition-all duration-300 focus:outline-none"
+                                class="text-left w-full relative flex items-center justify-between rounded-2xl border p-5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
                                 :class="activeShot === {{ $index }} 
                                         ? 'bg-slate-800/60 border-[#0EB3B9] shadow-md shadow-[#0EB3B9]/5' 
-                                        : 'bg-slate-950/20 border-slate-800/80 hover:bg-slate-800/30 hover:border-slate-700'">
+                                        : 'bg-slate-950/20 border-slate-800/80 hover:bg-slate-800/30 hover:border-slate-700'"
+                                :aria-pressed="activeShot === {{ $index }} ? 'true' : 'false'">
                             
                             <div class="flex items-center gap-4">
                                 <div class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors duration-300"
                                      :class="activeShot === {{ $index }} ? 'bg-[#0EB3B9] text-white' : 'bg-slate-800 text-slate-400'">
                                     
                                     @if(str_contains(strtolower($shot['title']), 'energy') || str_contains(strtolower($shot['title']), 'b12'))
-                                        <svg class="h-4 w-4 fill-none stroke-current" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <svg class="h-4 w-4 fill-none stroke-current" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                                         </svg>
                                     @elseif(str_contains(strtolower($shot['title']), 'immun') || str_contains(strtolower($shot['title']), 'defen'))
-                                        <svg class="h-4 w-4 fill-none stroke-current" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <svg class="h-4 w-4 fill-none stroke-current" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751A11.956 11.956 0 0112 2.714z" />
                                         </svg>
                                     @else
-                                        <svg class="h-4 w-4 fill-none stroke-current" stroke-width="2.2" viewBox="0 0 24 24">
+                                        <svg class="h-4 w-4 fill-none stroke-current" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 4.5l-15 15M6.75 6.75l.75-.75m.75 3.75l.75-.75m.75 3.75l.75-.75m3.75-3.75l.75-.75m-.75 5.25l3 3m-9-9l3 3M18 3l3 3" />
                                         </svg>
                                     @endif
@@ -172,7 +173,7 @@
                                 </span>
                                 <div class="transition-transform duration-300"
                                      :class="activeShot === {{ $index }} ? 'translate-x-0 text-[#0EB3B9]' : '-translate-x-1 text-slate-600'">
-                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                     </svg>
                                 </div>
@@ -192,8 +193,9 @@
                         <button @click="prevPage()" 
                                 :disabled="currentPage === 1"
                                 type="button"
-                                class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none">
-                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
+                                aria-label="Previous page">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                             </svg>
                         </button>
@@ -204,10 +206,12 @@
                                 <button @click="goToPage(page)"
                                         type="button"
                                         x-text="page"
-                                        class="inline-flex h-9 w-9 items-center justify-center rounded-xl text-xs font-bold transition-all duration-200 focus:outline-none"
+                                        class="inline-flex h-9 w-9 items-center justify-center rounded-xl text-xs font-bold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
                                         :class="currentPage === page 
                                                 ? 'bg-[#0EB3B9] text-white shadow-md shadow-[#0EB3B9]/10' 
-                                                : 'border border-slate-800 bg-slate-950/20 text-slate-400 hover:bg-slate-800 hover:text-slate-200'">
+                                                : 'border border-slate-800 bg-slate-950/20 text-slate-400 hover:bg-slate-800 hover:text-slate-200'"
+                                        :aria-label="'Page ' + page"
+                                        :aria-current="currentPage === page ? 'page' : 'false'">
                                 </button>
                             </template>
                         </div>
@@ -216,8 +220,9 @@
                         <button @click="nextPage()" 
                                 :disabled="currentPage === totalPages"
                                 type="button"
-                                class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none">
-                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
+                                aria-label="Next page">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                             </svg>
                         </button>

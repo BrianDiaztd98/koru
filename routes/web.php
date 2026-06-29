@@ -4,8 +4,8 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\ManagementController;
 use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Livewire\LandingPage;
 use App\Http\Middleware\AdminAccess;
+use App\Livewire\Components\LandingPage;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', LandingPage::class);

@@ -61,7 +61,7 @@
                         class="inline-flex items-center gap-3 rounded-xl bg-[#0EB3B9] px-6 py-3.5 text-sm font-bold text-white shadow-md transition-all duration-200 hover:bg-[#0E788D] hover:shadow-[#0EB3B9]/20 hover:shadow-lg active:scale-[0.98]" 
                         @click="$dispatch('open-video-modal', 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0')">
                     <span>Watch the tour</span>
-                    <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path d="M14.752 11.168l-5.197-3.023A1 1 0 008 9.003v5.994a1 1 0 001.555.832l5.197-3.023a1 1 0 000-1.664z"/>
                     </svg>
                 </button>
@@ -79,7 +79,10 @@
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
          class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 backdrop-blur-md px-4 py-6"
-         @click.self="closeVideo()">
+         @click.self="closeVideo()"
+         role="dialog"
+         aria-modal="true"
+         aria-label="Video modal">
         
         <!-- Contenedor del Reproductor Premium -->
         <div x-show="open"
@@ -94,9 +97,10 @@
             
             <!-- Botón de Cerrar Flotante Quirúrgico -->
             <button @click="closeVideo()" 
-                    class="absolute right-4 top-4 z-50 rounded-xl bg-slate-900/80 border border-slate-800 p-2.5 text-slate-400 transition-all hover:bg-slate-800 hover:text-white focus:outline-none backdrop-blur-sm">
+                    class="absolute right-4 top-4 z-50 rounded-xl bg-slate-900/80 border border-slate-800 p-2.5 text-slate-400 transition-all hover:bg-slate-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] backdrop-blur-sm"
+                    aria-label="Close video">
                 <span class="sr-only">Close video</span>
-                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>

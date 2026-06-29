@@ -16,17 +16,19 @@
                     Clinical services built for recovery, performance and wellness.
                 </h2>
                 <p class="mt-4 text-base text-slate-400">
-                    Explore Koru’s clinical massage, recovery technology, medical services, and at-home concierge care.
+                    Explore Koru's clinical massage, recovery technology, medical services, and at-home concierge care.
                 </p>
             </div>
 
             <!-- Tabs de Pilares Estilizados Tipo Consola -->
-            <div class="inline-flex flex-wrap gap-2 rounded-2xl border border-slate-800 bg-slate-950/40 p-1.5 backdrop-blur-md animate-fade-in" wire:key="services-tabs-row">
+            <div class="inline-flex flex-wrap gap-2 rounded-2xl border border-slate-800 bg-slate-950/40 p-1.5 backdrop-blur-md animate-fade-in" wire:key="services-tabs-row" role="tablist" aria-label="Service categories">
                 @foreach ($pillarLabels as $key => $pillar)
                     <button wire:click="setPillar('{{ $key }}')"
                             wire:key="pillar-tab-button-{{ $key }}" 
                             type="button"
-                            class="rounded-xl px-4 py-2.5 text-xs font-bold tracking-wide transition-all duration-200 focus:outline-none 
+                            role="tab"
+                            :aria-selected="'{{ $activePillar }}' === '{{ $key }}'"
+                            class="rounded-xl px-4 py-2.5 text-xs font-bold tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] 
                             @if ($activePillar === $key) bg-[#0EB3B9] text-white shadow-md shadow-[#0EB3B9]/20 
                             @else text-slate-400 hover:text-white hover:bg-slate-800/50 @endif">
                         {{ $pillar['title'] }}
@@ -108,9 +110,11 @@
                                     <button @click="expanded = !expanded" 
                                             x-show="true" 
                                             x-cloak
-                                            class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] hover:text-[#0E788D] transition-colors focus:outline-none">
+                                            type="button"
+                                            class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] hover:text-[#0E788D] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded"
+                                            :aria-expanded="expanded.toString()">
                                         <span x-text="expanded ? 'Show Less' : 'Read More'"></span>
-                                        <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                        <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                         </svg>
                                     </button>
@@ -123,7 +127,7 @@
                             <div class="flex items-center justify-between mb-4 pt-4 border-t border-slate-800/60">
                                 <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Duration</span>
                                 <span class="inline-flex items-center gap-1 text-xs font-medium text-slate-300">
-                                    <svg class="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <svg class="h-3.5 w-3.5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                     {{ $service['duration'] }}
@@ -139,7 +143,7 @@
                     <!-- Estado Vacío / Backup del CMS -->
                     <div class="col-span-full rounded-3xl border border-slate-800/80 bg-slate-950/20 p-12 text-center" wire:key="empty-state-{{ $activePillar }}">
                         <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800/50 text-slate-500 mb-4">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 01-2 2H6a2 2 0 01-2-2m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-4.172a2 2 0 00-1.414.586l-1.657 1.657a2 2 0 01-1.414.586H8.414a2 2 0 01-1.414-.586L5.343 15.586A2 2 0 003.929 15H3" />
                             </svg>
                         </div>
@@ -156,14 +160,14 @@
                 </span>
 
                 <div class="flex items-center gap-2">
-                    <button @click="prevPage()" :disabled="currentPage === 1" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none">
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <button @click="prevPage()" :disabled="currentPage === 1" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]" aria-label="Previous page">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
 
-                    <button @click="nextPage()" :disabled="currentPage === totalPages" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none">
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <button @click="nextPage()" :disabled="currentPage === totalPages" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]" aria-label="Next page">
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                         </svg>
                     </button>
