@@ -27,7 +27,7 @@
         <main class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 flex-1">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
 
-                <livewire:admin.admin-sidebar :dashboard="$dashboard ?? false" :activeTarget="$activeTarget ?? 'inicio'" />
+                <livewire:admin.admin-sidebar :activeTarget="$activeTarget ?? 'inicio'" />
 
                 <!-- CONTENEDOR DE PANELES -->
                 <section class="lg:col-span-3 space-y-6">
@@ -37,95 +37,6 @@
             </div>
         </main>
     </div>
-
-    <!-- Script Optimizado con Transiciones Clínicas -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const links = document.querySelectorAll('.sidebar-link');
-            let currentTarget = 'inicio';
-
-            function getPanels() {
-                return document.querySelectorAll('.panel');
-            }
-
-            function switchContext(target) {
-                currentTarget = target;
-                const panels = getPanels();
-
-                panels.forEach(panel => {
-                    if (panel.id === target) {
-                        panel.classList.remove('hidden');
-                        // Micro-retraso para disparar la animación de entrada de forma fluida
-                        setTimeout(() => {
-                            panel.classList.remove('opacity-0', 'scale-[0.99]');
-                            panel.classList.add('opacity-100', 'scale-100');
-                        }, 20);
-                    } else {
-                        panel.classList.add('hidden', 'opacity-0', 'scale-[0.99]');
-                        panel.classList.remove('opacity-100', 'scale-100');
-                    }
-                });
-
-                links.forEach(link => {
-                    const dot = link.querySelector('.opaque-dot');
-                    if (link.dataset.target === target) {
-                        link.setAttribute('aria-current', 'true');
-                        link.className =
-                            "w-full text-left px-3.5 py-2.5 rounded-xl font-semibold text-sm flex items-center justify-between border border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] transition-all duration-200 cursor-pointer sidebar-link";
-                        if (dot) dot.classList.remove('opacity-0');
-                    } else {
-                        link.setAttribute('aria-current', 'false');
-                        link.className =
-                            "w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 transition-all duration-200 cursor-pointer sidebar-link";
-                        if (dot) dot.classList.add('opacity-0');
-                    }
-                });
-            }
-
-            links.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    // Only intercept hash/dashboard links; let real navigation proceed when present
-                    if (link.getAttribute('href') && link.getAttribute('href').startsWith('#')) {
-                        e.preventDefault();
-                        switchContext(link.dataset.target);
-                    }
-                });
-            });
-
-            // Observar cambios en el DOM para detectar paneles lazy que se agregan después de la carga inicial
-            const observer = new MutationObserver((mutations) => {
-                mutations.forEach((mutation) => {
-                    mutation.addedNodes.forEach((node) => {
-                        if (node.nodeType === 1 && node.classList.contains('panel')) {
-                            // Aplicar el estado actual al panel recién agregado
-                            if (node.id === currentTarget) {
-                                node.classList.remove('hidden');
-                                setTimeout(() => {
-                                    node.classList.remove('opacity-0', 'scale-[0.99]');
-                                    node.classList.add('opacity-100', 'scale-100');
-                                }, 20);
-                            } else {
-                                node.classList.add('hidden', 'opacity-0', 'scale-[0.99]');
-                                node.classList.remove('opacity-100', 'scale-100');
-                            }
-                        }
-                    });
-                });
-            });
-
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-
-            // Forzar el estado inicial exacto
-            @if(isset($activeTarget))
-            switchContext('{{ $activeTarget }}');
-            @else
-            switchContext('inicio');
-            @endif
-        });
-    </script>
 
     @livewireScripts
 </body>

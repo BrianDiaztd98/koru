@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Http\Controllers\Admin\ManagementController;
-use App\Http\Controllers\Admin\ServiceController;
+use App\Livewire\Admin\ManagementPage;
+use App\Livewire\Admin\AboutPage;
+use App\Livewire\Admin\ServiceManager\ServiceManagerPage;
 use App\Http\Middleware\AdminAccess;
 use App\Livewire\Components\LandingPage;
 use Illuminate\Support\Facades\Route;
@@ -20,14 +20,16 @@ Route::post('admin/logout', [LoginController::class, 'destroy'])
     ->name('admin.logout');
 
 Route::middleware([AdminAccess::class])->prefix('admin')->name('admin.')->group(function () {
-    Route::resource('services', ServiceController::class);
-    Route::get('management', [ManagementController::class, 'index'])->name('management.index');
+    // Livewire SPA entry points for admin
+    Route::get('management', ManagementPage::class)->name('management.index');
 
-    // About section routes (singleton pattern)
-    Route::get('about', [AboutController::class, 'index'])->name('about.index');
-    Route::get('about/edit', [AboutController::class, 'edit'])->name('about.edit');
-    Route::get('about/create', [AboutController::class, 'create'])->name('about.create');
-    Route::post('about', [AboutController::class, 'store'])->name('about.store');
-    Route::put('about', [AboutController::class, 'update'])->name('about.update');
-    Route::delete('about', [AboutController::class, 'destroy'])->name('about.destroy');
+    // About page (SPA) - map GET routes used by tests/views to the Livewire component
+    Route::get('about', AboutPage::class)->name('about.index');
+    Route::get('about/edit', AboutPage::class)->name('about.edit');
+    Route::get('about/create', AboutPage::class)->name('about.create');
+
+    // Services SPA-managed via ServiceManagerPage. Provide GET routes for index/create/edit used by UI/tests.
+    Route::get('services', ServiceManagerPage::class)->name('services.index');
+    Route::get('services/create', ServiceManagerPage::class)->name('services.create');
+    Route::get('services/{service}/edit', ServiceManagerPage::class)->name('services.edit');
 });

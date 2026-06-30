@@ -6,14 +6,11 @@ use Livewire\Component;
 
 class AdminSidebar extends Component
 {
-    public bool $dashboard;
+    public string $activeTarget;
 
-    public ?string $activeTarget;
-
-    public function mount(bool $dashboard = false, ?string $activeTarget = null)
+    public function mount(string $activeTarget = 'inicio')
     {
-        $this->dashboard = $dashboard;
-        $this->activeTarget = $activeTarget ?? ($dashboard ? 'inicio' : null);
+        $this->activeTarget = $activeTarget;
     }
 
     public function render()

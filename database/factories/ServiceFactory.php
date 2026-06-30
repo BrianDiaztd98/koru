@@ -21,7 +21,7 @@ class ServiceFactory extends Factory
             'price' => fake()->randomFloat(2, 50, 300),
             'duration' => fake()->randomElement(['30 min', '45 min', '60 min', '90 min']),
             'image_path' => 'img/services/default.jpg',
-            'category' => fake()->randomElement(Service::categories()),
+            'category' => fake()->randomElement(array_keys(Service::categories())),
             'active_status' => true,
         ];
     }

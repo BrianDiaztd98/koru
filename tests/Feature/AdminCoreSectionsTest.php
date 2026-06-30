@@ -50,8 +50,9 @@ class AdminCoreSectionsTest extends TestCase
         $response->assertSee('Core Sections');
         $response->assertSee('Inicio');
         $response->assertSee('About Section');
-        $response->assertSee('Service Pillars');
-        $response->assertSee('Other Services');
+        $response->assertSee('Services');
+        $response->assertSee('Booster Shots');
+        $response->assertSee('IV Therapy');
     }
 
     public function test_about_index_shows_sidebar(): void
@@ -90,7 +91,7 @@ class AdminCoreSectionsTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Core Sections');
         $response->assertSee('Inicio');
-        $response->assertSee('Service Pillars');
+        $response->assertSee('Services');
     }
 
     public function test_services_create_shows_sidebar(): void
@@ -102,7 +103,7 @@ class AdminCoreSectionsTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Core Sections');
         $response->assertSee('Inicio');
-        $response->assertSee('Service Pillars');
+        $response->assertSee('Services');
     }
 
     public function test_services_edit_shows_sidebar(): void
@@ -115,6 +116,51 @@ class AdminCoreSectionsTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Core Sections');
         $response->assertSee('Inicio');
-        $response->assertSee('Service Pillars');
+        $response->assertSee('Services');
+    }
+
+    public function test_services_create_route_shows_modal_form(): void
+    {
+        $this->actingAsAdmin();
+
+        $response = $this->get(route('admin.services.create'));
+
+        $response->assertStatus(200);
+        $response->assertSee('Create Service');
+        $response->assertSee('Category');
+        $response->assertSee('All Services');
+    }
+
+    public function test_services_edit_route_shows_modal_form(): void
+    {
+        $this->actingAsAdmin();
+        $service = Service::factory()->create(['category' => 'iv_therapy']);
+
+        $response = $this->get(route('admin.services.edit', $service));
+
+        $response->assertStatus(200);
+        $response->assertSee('Edit Service');
+        $response->assertSee('This category does not use images.');
+    }
+
+    public function test_services_index_paginates_by_five_and_filters_by_category(): void
+    {
+        $this->actingAsAdmin();
+        $manualService = Service::factory()->create([
+            'category' => 'manual_therapy',
+            'name_en' => 'Manual therapy service',
+        ]);
+        Service::factory()->count(3)->create(['category' => 'iv_therapy']);
+
+        $response = $this->get(route('admin.services.index'));
+
+        $response->assertStatus(200);
+        $response->assertSee('Next');
+        $response->assertSee('All Services');
+
+        $filtered = $this->get(route('admin.services.index', ['filterCategory' => 'iv_therapy']));
+        $filtered->assertStatus(200);
+        $filtered->assertSee('IV Therapy');
+        $filtered->assertDontSee($manualService->name_en);
     }
 }

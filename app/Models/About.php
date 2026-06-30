@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
+use App\Services\AdminMediaService;
+
 class About extends Model
 {
     use HasFactory;
@@ -43,50 +45,21 @@ class About extends Model
 
     public static function getAboutData(): array
     {
-        $data = self::query()->first()?->toArray() ?? self::defaultData();
-
-        // Ensure image URLs are properly formatted
-        foreach (['image_1', 'image_2', 'image_3'] as $imageField) {
-            if (isset($data[$imageField]) && $data[$imageField] && ! str_starts_with($data[$imageField], 'http')) {
-                $data[$imageField] = str_starts_with($data[$imageField], 'img/')
-                    ? asset($data[$imageField])
-                    : asset('storage/'.$data[$imageField]);
-            }
-        }
-
-        return $data;
+        return self::query()->first()?->toArray() ?? [];
     }
 
-    public static function defaultData(): array
+    public function getImage1UrlAttribute(): ?string
     {
-        return [
-            'title' => 'About KORU',
-            'subtitle' => 'Bridging the gap between recovery, movement, and education',
-            'description' => 'Discover the philosophy and technical framework behind our specialized wellness and learning ecosystem.',
-            'philosophy' => 'Named after the Māori symbol for a new unfurling fern frond, Koru represents new life, growth, strength, and peace. We provide a clean, structured environment where movement and teaching are treated with clinical excellence.',
-            'vision' => 'Our mission is to deliver elite-level specialized support, ensuring every professional and individual can scale their performance and knowledge without traditional constraints.',
-            'feature_1_title' => 'Wellness & Therapy',
-            'feature_1_description' => 'Tailored operational architectures built for fluid content management and clean UI stability.',
-            'feature_2_title' => 'Advanced Education',
-            'feature_2_description' => 'Empowering specialists through interactive workshops and fully scalable learning data tracks.',
-            'image_1' => 'img/about/therapy.jpeg',
-            'image_2' => 'img/about/massage.jpeg',
-            'image_3' => 'img/about/team.jpeg',
-        ];
+        return AdminMediaService::resolveImageUrl($this->image_1);
     }
 
-    public function getImage1Url(): string
+    public function getImage2UrlAttribute(): ?string
     {
-        return $this->image_1 ? asset('storage/'.$this->image_1) : asset($this->image_1);
+        return AdminMediaService::resolveImageUrl($this->image_2);
     }
 
-    public function getImage2Url(): string
+    public function getImage3UrlAttribute(): ?string
     {
-        return $this->image_2 ? asset('storage/'.$this->image_2) : asset($this->image_2);
-    }
-
-    public function getImage3Url(): string
-    {
-        return $this->image_3 ? asset('storage/'.$this->image_3) : asset($this->image_3);
+        return AdminMediaService::resolveImageUrl($this->image_3);
     }
 }
