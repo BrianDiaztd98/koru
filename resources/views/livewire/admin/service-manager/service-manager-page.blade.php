@@ -1,9 +1,14 @@
 <div>
     <div class="lg:col-span-3 space-y-6">
+        <!-- Título de ubicación actual -->
+        <div class="mb-6">
+            <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">Services</p>
+            <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">Service Manager</h1>
+            <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Manage clinical and sports disciplines across the public system registries.</p>
+        </div>
+
         <div class="rounded-2xl border border-slate-800/80 bg-slate-900/40 p-6 shadow-xl">
             <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <h3 class="text-lg font-semibold">Services{{ $filterCategory !== 'all' ? ' — '.$categories[$filterCategory] : '' }}</h3>
-
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
                     <label class="flex items-center gap-2 text-sm text-slate-400">
                         <span>Category</span>

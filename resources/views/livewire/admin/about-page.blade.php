@@ -1,4 +1,11 @@
-<div class="lg:col-span-3" x-data="{ activeTab: 'copy' }">
+<div class="lg:col-span-3 space-y-6" x-data="{ activeTab: 'copy' }">
+    <!-- Título de ubicación actual -->
+    <div class="mb-6">
+        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">About Section</p>
+        <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">Edit Content</h1>
+        <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Configure core copywriting and media structures.</p>
+    </div>
+
     <form wire:submit.prevent="save" enctype="multipart/form-data" class="space-y-6">
         <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 items-start">
             
@@ -12,10 +19,6 @@
                             <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 3.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                             </svg>
-                        </div>
-                        <div>
-                            <h2 class="text-xl font-bold text-white tracking-tight">Edit About Section</h2>
-                            <p class="text-sm text-slate-400 mt-0.5">Configure core copywriting and media structures.</p>
                         </div>
                     </div>
 

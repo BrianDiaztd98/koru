@@ -1,8 +1,15 @@
 <div>
     <div class="lg:col-span-3 space-y-6">
+        <!-- Título de ubicación actual -->
+        <div class="mb-6">
+            <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">Packages</p>
+            <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">Package Manager</h1>
+            <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Manage therapeutic packages and terms for booking on the public portal.</p>
+        </div>
+
         <div class="rounded-2xl border border-slate-800/80 bg-slate-900/40 p-6 shadow-xl">
             <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <h3 class="text-lg font-semibold">Packages</h3>
+                <h3 class="text-lg font-semibold">Active Packages</h3>
 
                 <button type="button" wire:click="openCreateModal" class="inline-flex items-center gap-2 rounded-lg bg-[#0EB3B9] px-3 py-1 text-xs font-semibold text-white">New Package</button>
             </div>
@@ -68,7 +75,7 @@
 
         <div class="rounded-2xl border border-slate-800/80 bg-slate-900/40 p-6 shadow-xl">
             <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <h3 class="text-lg font-semibold">Package Terms & Policies</h3>
+                <h3 class="text-lg font-semibold">Terms & Policies</h3>
                 <button type="button" wire:click="openCreateTermModal" class="inline-flex items-center gap-2 rounded-lg bg-[#0EB3B9] px-3 py-1 text-xs font-semibold text-white">New Term</button>
             </div>
 

@@ -1,12 +1,15 @@
 <?php use Illuminate\Support\Str; ?>
 
 <div class="lg:col-span-3 space-y-6">
+    <!-- Título de ubicación actual -->
+    <div class="mb-6">
+        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">Team</p>
+        <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">Team Management</h1>
+        <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Manage the specialists shown in the Team section.</p>
+    </div>
+
     <div class="rounded-2xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 sm:p-8 shadow-2xl shadow-black/40">
         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-                <h2 class="text-xl font-bold text-white tracking-tight">Team Management</h2>
-                <p class="mt-1 text-sm text-slate-400">Manage the specialists shown in the Team section.</p>
-            </div>
             @unless($showForm)
                 <button type="button" wire:click="openCreateForm" class="inline-flex items-center justify-center rounded-xl bg-[#0EB3B9] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#0EB3B9]/10 transition hover:bg-[#0E788D]">
                     Add team member
