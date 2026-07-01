@@ -1,90 +1,76 @@
 <aside
-    class="lg:col-span-1 rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-xl p-5 shadow-xl shadow-black/20 space-y-6 sticky top-6">
-    <div>
-        <h3
-            class="text-xs font-bold uppercase tracking-widest text-[#0EB3B9] font-mono pb-2.5 border-b border-slate-800/50">
-            Core Sections</h3>
-        <nav class="space-y-3 mt-4">
-            <a href="{{ route('admin.management.index') }}"
-               data-section="inicio"
-               class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $activeTarget === 'inicio' ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
-               aria-current="{{ $activeTarget === 'inicio' ? 'true' : 'false' }}">
-                <span class="flex items-center gap-2.5">
-                    <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                    </svg>
-                    Inicio
-                </span>
-                <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ $activeTarget === 'inicio' ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
-            </a>
+    class="relative bg-slate-900/40 backdrop-blur-xl shadow-xl shadow-black/20 h-full p-4 flex flex-col overflow-hidden">
+    <button type="button"
+            @click="sidebarOpen = false"
+            class="lg:hidden absolute right-3 top-3 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-700 bg-slate-950/90 text-slate-300 transition hover:bg-slate-900/95 hover:text-white focus:outline-none"
+            aria-label="Cerrar menú">
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
 
-            <a href="{{ route('admin.about.index') }}"
-               data-section="about"
-               class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $activeTarget === 'about' ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
-               aria-current="{{ $activeTarget === 'about' ? 'true' : 'false' }}">
-                <span class="flex items-center gap-2.5">
-                    <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 3.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                    </svg>
-                    About Section
-                </span>
-                <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ $activeTarget === 'about' ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
-            </a>
+    <!-- Logo centrado -->
+    <div class="flex justify-center mb-4">
+        <a href="{{ route('admin.management.index') }}" 
+           class="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded-xl transition-transform active:scale-95"
+           aria-label="Koru CMS - Back to dashboard">
+            <img src="{{ asset('img/logo.png') }}" alt="Koru CMS" class="h-12 w-auto object-contain brightness-110" loading="lazy" decoding="async" fetchpriority="low" />
+        </a>
+    </div>
+
+    <div class="flex-1">
+        <h3
+            class="text-xs font-bold uppercase tracking-widest text-[#0EB3B9] font-mono pl-3
+             pb-2.5 border-b border-slate-800/50">
+            Core Sections
+        </h3>
+        <nav class="space-y-2.5 mt-3">
+            @foreach ($coreLinks as $link)
+                <a href="{{ route($link['route']) }}"
+                   data-section="{{ $link['section'] }}"
+                   class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $activeTarget === $link['section'] ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                   aria-current="{{ $activeTarget === $link['section'] ? 'true' : 'false' }}">
+                     <span class="flex items-center gap-2.5">
+                         <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                             {!! $link['icon'] !!}
+                         </svg>
+                         {{ $link['label'] }}
+                     </span>
+                     <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ $activeTarget === $link['section'] ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                </a>
+            @endforeach
 
             <div class="space-y-3">
-                <a href="{{ route('admin.services.index') }}"
-                   data-section="services"
-                   class="sidebar-link group relative w-full text-left px-3.5 py-3 rounded-2xl font-semibold text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $activeTarget === 'services' ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] translate-x-1' : 'border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
-                   aria-current="{{ $activeTarget === 'services' ? 'true' : 'false' }}">
-                    <span class="flex items-center gap-2.5">
-                        <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        Services
-                    </span>
-                    <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ $activeTarget === 'services' ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
-                </a>
-
-                <a href="{{ route('admin.client-outcomes.index') }}"
-                   data-section="client-outcomes"
-                   class="sidebar-link group relative w-full text-left px-3.5 py-3 rounded-2xl font-semibold text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $activeTarget === 'client-outcomes' ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] translate-x-1' : 'border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
-                   aria-current="{{ $activeTarget === 'client-outcomes' ? 'true' : 'false' }}">
-                    <span class="flex items-center gap-2.5">
-                        <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25M3 8.25l9 6 9-6M3 8.25l9 6 9-6" />
-                        </svg>
-                        Client Outcomes
-                    </span>
-                    <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ $activeTarget === 'client-outcomes' ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
-                </a>
-
-                <a href="{{ route('admin.team.index') }}"
-                   data-section="team"
-                   class="sidebar-link group relative w-full text-left px-3.5 py-3 rounded-2xl font-semibold text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $activeTarget === 'team' ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] translate-x-1' : 'border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
-                   aria-current="{{ $activeTarget === 'team' ? 'true' : 'false' }}">
-                    <span class="flex items-center gap-2.5">
-                        <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0" />
-                        </svg>
-                        Team
-                    </span>
-                    <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ $activeTarget === 'team' ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
-                </a>
-
-                <a href="{{ route('admin.packages.index') }}"
-                   data-section="packages"
-                   class="sidebar-link group relative w-full text-left px-3.5 py-3 rounded-2xl font-semibold text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $activeTarget === 'packages' ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] translate-x-1' : 'border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
-                   aria-current="{{ $activeTarget === 'packages' ? 'true' : 'false' }}">
-                    <span class="flex items-center gap-2.5">
-                        <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0 1.125.504 1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                        </svg>
-                        Packages
-                    </span>
-                    <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ $activeTarget === 'packages' ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
-                </a>
+                @foreach ($sectionLinks as $link)
+                    <a href="{{ route($link['route']) }}"
+                       data-section="{{ $link['section'] }}"
+                       class="sidebar-link group relative w-full text-left px-3.5 py-3 rounded-2xl font-semibold text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $activeTarget === $link['section'] ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] translate-x-1' : 'border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                       aria-current="{{ $activeTarget === $link['section'] ? 'true' : 'false' }}">
+                         <span class="flex items-center gap-2.5">
+                             <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                 {!! $link['icon'] !!}
+                             </svg>
+                             {{ $link['label'] }}
+                         </span>
+                         <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ $activeTarget === $link['section'] ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                    </a>
+                @endforeach
             </div>
         </nav>
     </div>
 
-    </aside>
+    <!-- Footer: Botón de logout -->
+    <div class="mt-2 pt-2 border-t border-slate-800/50 flex justify-center">
+        <form action="{{ route('admin.logout') }}" method="POST" class="inline-flex">
+            @csrf
+            <button type="submit" 
+                    title="Sign Out"
+                    class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/60 text-slate-400 transition-all duration-200 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400 active:scale-95 focus:outline-none">
+                <span class="sr-only">Logout</span>
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9"/>
+                </svg>
+            </button>
+        </form>
+    </div>
+</aside>

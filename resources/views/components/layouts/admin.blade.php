@@ -11,6 +11,7 @@
 </head>
 
 <body
+    x-data="{ sidebarOpen: false }"
     class="min-h-full bg-slate-950 text-slate-100 antialiased selection:bg-[#0EB3B9]/30 selection:text-white relative overflow-x-hidden">
 
     <!-- Luces ambientales de fondo estilo consola clínica -->
@@ -19,76 +20,43 @@
     </div>
     <div class="absolute top-40 -left-20 w-80 h-80 bg-[#0EB3B9]/5 rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="relative z-10 min-h-screen flex flex-col">
-        <!-- Barra superior integrada -->
-        <livewire:admin.admin-topbar :title="$title ?? 'Content Management'" />
+    <div class="relative z-10 min-h-screen" x-cloak @keydown.escape.window="sidebarOpen = false">
+        <div class="fixed inset-0 z-40 transition-opacity bg-slate-950/70 lg:hidden"
+             x-show="sidebarOpen"
+             x-transition.opacity
+             x-cloak
+             @click="sidebarOpen = false"></div>
 
-        <!-- Contenedor Principal -->
-        <main class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 flex-1">
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+        <div class="fixed inset-y-0 left-0 z-50 w-full transform transition duration-300 lg:fixed lg:translate-x-0 lg:w-72 lg:max-w-none lg:top-0 lg:left-0 lg:h-screen"
+             :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
+             x-cloak>
+            <livewire:admin.admin-sidebar />
+        </div>
 
-                <livewire:admin.admin-sidebar />
+        <div class="lg:pl-72">
+            <div class="lg:hidden border-b border-slate-800/70 bg-slate-950/90 px-4 py-3" x-show="!sidebarOpen" x-cloak>
+                <button type="button"
+                        @click="sidebarOpen = true"
+                        class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-900/90 px-3 py-2 text-sm font-semibold text-white shadow-sm shadow-black/20 transition hover:bg-slate-800">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    Abrir menú
+                </button>
+            </div>
 
+            <!-- Contenedor Principal -->
+            <main class="min-h-screen w-full max-w-7xl px-3 sm:px-4 lg:px-6 py-6">
                 <!-- CONTENEDOR DE PANELES -->
-                <section class="lg:col-span-3 space-y-6">
+                <section class="space-y-6">
                     {{ $slot }}
                 </section>
-
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
 
     @livewireScripts
 
-    <script>
-        (function() {
-            const routeNameMap = {
-                'admin.management.index': 'inicio',
-                'admin.about.index': 'about',
-                'admin.about.edit': 'about',
-                'admin.about.create': 'about',
-                'admin.services.index': 'services',
-                'admin.services.create': 'services',
-                'admin.services.edit': 'services',
-                'admin.packages.index': 'packages',
-                'admin.packages.create': 'packages',
-                'admin.packages.edit': 'packages',
-            };
-
-            function updateSidebar() {
-                const routeName = @json(Route::currentRouteName());
-                const activeTarget = routeNameMap[routeName] ?? 'inicio';
-
-                document.querySelectorAll('.sidebar-link').forEach(link => {
-                    const section = link.getAttribute('data-section');
-                    const isActive = section === activeTarget;
-                    const dot = link.querySelector('.rounded-full');
-
-                    if (isActive) {
-                        link.classList.add('translate-x-1');
-                        if (dot) {
-                            dot.classList.remove('bg-slate-600', 'scale-0');
-                            dot.classList.add('bg-[#0EB3B9]', 'scale-100');
-                        }
-                    } else {
-                        link.classList.remove('translate-x-1');
-                        if (dot) {
-                            dot.classList.remove('bg-[#0EB3B9]', 'scale-100');
-                            dot.classList.add('bg-slate-600', 'scale-0');
-                        }
-                    }
-                });
-            }
-
-            if (typeof Livewire !== 'undefined') {
-                Livewire.hook('request.finished', () => {
-                    updateSidebar();
-                });
-            }
-
-            document.addEventListener('DOMContentLoaded', updateSidebar);
-        })();
-    </script>
 </body>
 
 </html>
