@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Course;
+use App\Models\Package;
+use App\Models\PackageTerm;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Models\TeamMember;
@@ -19,12 +21,15 @@ class KoruContentSeeder extends Seeder
     {
         SiteSetting::query()->delete();
         Service::query()->delete();
+        Package::query()->delete();
         Course::query()->delete();
         TeamMember::query()->delete();
         Testimonial::query()->delete();
 
         $this->seedSiteSettings();
         $this->seedServices();
+        $this->seedPackages();
+        $this->seedPackageTerms();
         $this->seedCourses();
         $this->seedTeamMembers();
         $this->seedTestimonials();
@@ -272,6 +277,102 @@ class KoruContentSeeder extends Seeder
                 ['slug' => Str::slug($service['name_en'])],
                 $service,
             );
+        }
+    }
+
+    protected function seedPackages(): void
+    {
+        $packages = [
+            [
+                'slug' => 'basic',
+                'name_en' => 'Basic',
+                'name_es' => 'Básico',
+                'description_en' => 'Single session for targeted recovery or maintenance.',
+                'description_es' => 'Sesión única para recuperación dirigida o mantenimiento.',
+                'price' => 120.00,
+                'sessions' => 1,
+                'validity' => null,
+                'sort_order' => 1,
+                'active_status' => true,
+            ],
+            [
+                'slug' => 'standard',
+                'name_en' => 'Standard',
+                'name_es' => 'Estándar',
+                'description_en' => 'Perfect for consistent weekly care. Ideal for ongoing recovery and performance optimization.',
+                'description_es' => 'Perfecto para cuidado semanal constante. Ideal para recuperación continua y optimización del rendimiento.',
+                'price' => 500.00,
+                'sessions' => 5,
+                'validity' => 'Valid for 8 weeks',
+                'sort_order' => 2,
+                'active_status' => true,
+            ],
+            [
+                'slug' => 'advanced',
+                'name_en' => 'Advanced',
+                'name_es' => 'Avanzado',
+                'description_en' => 'Best value for intensive programs. Designed for athletes and clients with specific recovery goals.',
+                'description_es' => 'Mejor valor para programas intensivos. Diseñado para atletas y clientes con objetivos de recuperación específicos.',
+                'price' => 950.00,
+                'sessions' => 10,
+                'validity' => 'Valid for 12 weeks',
+                'sort_order' => 3,
+                'active_status' => true,
+            ],
+            [
+                'slug' => 'elite',
+                'name_en' => 'Elite',
+                'name_es' => 'Élite',
+                'description_en' => 'Premium package for maximum results. Includes priority scheduling and comprehensive recovery support.',
+                'description_es' => 'Paquete premium para resultados máximos. Incluye programación prioritaria y apoyo integral de recuperación.',
+                'price' => 1800.00,
+                'sessions' => 20,
+                'validity' => 'Valid for 25 weeks',
+                'sort_order' => 4,
+                'active_status' => true,
+            ],
+        ];
+
+        foreach ($packages as $package) {
+            Package::query()->updateOrCreate(
+                ['slug' => $package['slug']],
+                $package,
+            );
+        }
+    }
+
+    protected function seedPackageTerms(): void
+    {
+        $terms = [
+            [
+                'content' => 'Packages are engineered for structured, continuous use to ensure optimal therapeutic outcomes. Sessions may be requested and scheduled based on calendar availability within the active validity period.',
+                'sort_order' => 1,
+                'active_status' => true,
+            ],
+            [
+                'content' => 'Packages are non-cumulative across separate promotional periods and must be utilized fully within the specified timeframe.',
+                'sort_order' => 2,
+                'active_status' => true,
+            ],
+            [
+                'content' => 'Any unused sessions will automatically expire at the conclusion of the stated package validity period.',
+                'sort_order' => 3,
+                'active_status' => true,
+            ],
+            [
+                'content' => 'Packages are fully transferable to another individual with formal prior authorization written or sent by the original purchaser.',
+                'sort_order' => 4,
+                'active_status' => true,
+            ],
+            [
+                'content' => 'All active packages are bound to a usage agreement. To safeguard the consistency of our professional therapies, packages and completed services are strictly non-refundable.',
+                'sort_order' => 5,
+                'active_status' => true,
+            ],
+        ];
+
+        foreach ($terms as $term) {
+            PackageTerm::query()->create($term);
         }
     }
 

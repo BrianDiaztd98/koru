@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\LoginController;
-use App\Livewire\Admin\ManagementPage;
-use App\Livewire\Admin\AboutPage;
-use App\Livewire\Admin\ServiceManager\ServiceManagerPage;
 use App\Http\Middleware\AdminAccess;
+use App\Livewire\Admin\AboutPage;
+use App\Livewire\Admin\ManagementPage;
+use App\Livewire\Admin\PackageManager\PackageManagerPage;
+use App\Livewire\Admin\ServiceManager\ServiceManagerPage;
 use App\Livewire\Components\LandingPage;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,9 @@ Route::middleware([AdminAccess::class])->prefix('admin')->name('admin.')->group(
     Route::get('services', ServiceManagerPage::class)->name('services.index');
     Route::get('services/create', ServiceManagerPage::class)->name('services.create');
     Route::get('services/{service}/edit', ServiceManagerPage::class)->name('services.edit');
+
+    // Packages SPA-managed via PackageManagerPage.
+    Route::get('packages', PackageManagerPage::class)->name('packages.index');
+    Route::get('packages/create', PackageManagerPage::class)->name('packages.create');
+    Route::get('packages/{package}/edit', PackageManagerPage::class)->name('packages.edit');
 });

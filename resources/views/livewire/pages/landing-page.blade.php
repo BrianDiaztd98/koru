@@ -24,7 +24,7 @@
         <livewire:components.testimonials-showcase :testimonials="$this->testimonials" />
         
         {{-- OFERTA: Packages --}}
-        <livewire:components.packages :packages="$this->packages" />
+        <livewire:components.packages :packages="$this->packages" :terms="$this->packageTerms" />
         
         {{-- AUTORIDAD ADICIONAL: Team --}}
         <livewire:components.team :teamMembers="$this->teamMembers" />

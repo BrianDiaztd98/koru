@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\About;
+use App\Models\Package;
 use App\Models\Service;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -19,7 +20,7 @@ class ManagementPage extends Component
 
     public function mount(): void
     {
-        $this->about = About::query()->first() ?? new About();
+        $this->about = About::query()->first() ?? new About;
         $this->categories = Service::categories();
         $this->serviceGroups = [
             'Service Pillars' => [
@@ -64,12 +65,18 @@ class ManagementPage extends Component
         return array_sum(array_map('count', $this->services));
     }
 
+    public function getTotalPackagesCountProperty(): int
+    {
+        return Package::query()->count();
+    }
+
     public function render()
     {
         return view('livewire.admin.management', [
-                'categoryCounts' => $this->categoryCounts,
-                'totalServicesCount' => $this->totalServicesCount,
-            ])
+            'categoryCounts' => $this->categoryCounts,
+            'totalServicesCount' => $this->totalServicesCount,
+            'totalPackagesCount' => $this->totalPackagesCount,
+        ])
             ->layout('components.layouts.admin', [
                 'title' => 'Management Dashboard',
                 'activeTarget' => 'inicio',

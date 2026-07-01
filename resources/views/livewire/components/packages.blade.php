@@ -99,26 +99,33 @@
             </div>
             
             <ul class="space-y-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
-                <li class="flex items-start gap-3">
-                    <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
-                    <span>Packages are engineered for structured, continuous use to ensure optimal therapeutic outcomes. Sessions may be requested and scheduled based on calendar availability within the active validity period.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
-                    <span>Packages are non-cumulative across separate promotional periods and must be utilized fully within the specified timeframe.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
-                    <span>Any unused sessions will automatically expire at the conclusion of the stated package validity period.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
-                    <span>Packages are fully transferable to another individual with formal prior authorization written or sent by the original purchaser.</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
-                    <span>All active packages are bound to a usage agreement. To safeguard the consistency of our professional therapies, packages and completed services are strictly <strong class="text-white font-semibold underline decoration-[#0EB3B9]/40 underline-offset-2">non-refundable</strong>.</span>
-                </li>
+                @forelse($terms as $term)
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
+                        <span>{!! $term['content'] !!}</span>
+                    </li>
+                @empty
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
+                        <span>Packages are engineered for structured, continuous use to ensure optimal therapeutic outcomes. Sessions may be requested and scheduled based on calendar availability within the active validity period.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
+                        <span>Packages are non-cumulative across separate promotional periods and must be utilized fully within the specified timeframe.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
+                        <span>Any unused sessions will automatically expire at the conclusion of the stated package validity period.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
+                        <span>Packages are fully transferable to another individual with formal prior authorization written or sent by the original purchaser.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
+                        <span>All active packages are bound to a usage agreement. To safeguard the consistency of our professional therapies, packages and completed services are strictly <strong class="text-white font-semibold underline decoration-[#0EB3B9]/40 underline-offset-2">non-refundable</strong>.</span>
+                    </li>
+                @endforelse
             </ul>
         </div>
 

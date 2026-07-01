@@ -4,6 +4,8 @@ namespace App\Livewire\Components;
 
 use App\Models\About;
 use App\Models\Course;
+use App\Models\Package;
+use App\Models\PackageTerm;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Models\TeamMember;
@@ -158,36 +160,34 @@ class LandingPage extends Component
     {
         $locale = $this->locale;
 
-        return [
-            [
-                'name' => $this->t('Basic', 'Básico'),
-                'price' => 120,
-                'sessions' => 1,
-                'validity' => null,
-                'description' => $this->t('Single session for targeted recovery or maintenance.', 'Sesión única para recuperación dirigida o mantenimiento.'),
-            ],
-            [
-                'name' => $this->t('Standard', 'Estándar'),
-                'price' => 500,
-                'sessions' => 5,
-                'validity' => $this->t('Valid for 8 weeks', 'Válido por 8 semanas'),
-                'description' => $this->t('Perfect for consistent weekly care. Ideal for ongoing recovery and performance optimization.', 'Perfecto para cuidado semanal constante. Ideal para recuperación continua y optimización del rendimiento.'),
-            ],
-            [
-                'name' => $this->t('Advanced', 'Avanzado'),
-                'price' => 950,
-                'sessions' => 10,
-                'validity' => $this->t('Valid for 12 weeks', 'Válido por 12 semanas'),
-                'description' => $this->t('Best value for intensive programs. Designed for athletes and clients with specific recovery goals.', 'Mejor valor para programas intensivos. Diseñado para atletas y clientes con objetivos de recuperación específicos.'),
-            ],
-            [
-                'name' => $this->t('Elite', 'Élite'),
-                'price' => 1800,
-                'sessions' => 20,
-                'validity' => $this->t('Valid for 25 weeks', 'Válido por 25 semanas'),
-                'description' => $this->t('Premium package for maximum results. Includes priority scheduling and comprehensive recovery support.', 'Paquete premium para resultados máximos. Incluye programación prioritaria y apoyo integral de recuperación.'),
-            ],
-        ];
+        return Package::query()
+            ->where('active_status', true)
+            ->orderBy('sort_order')
+            ->get()
+            ->map(fn (Package $package) => [
+                'id' => $package->id,
+                'name' => $locale === 'es' ? $package->name_es : $package->name_en,
+                'price' => $package->price,
+                'sessions' => $package->sessions,
+                'validity' => $package->validity,
+                'description' => $locale === 'es' ? $package->description_es : $package->description_en,
+            ])
+            ->toArray();
+    }
+
+    #[Computed]
+    public function getPackageTermsProperty(): array
+    {
+        return PackageTerm::query()
+            ->where('active_status', true)
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get()
+            ->map(fn (PackageTerm $term) => [
+                'id' => $term->id,
+                'content' => $term->content,
+            ])
+            ->toArray();
     }
 
     #[Computed]

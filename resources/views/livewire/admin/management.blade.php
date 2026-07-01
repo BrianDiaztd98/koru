@@ -98,6 +98,21 @@
         </div>
 
         <div
+            class="rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 shadow-xl shadow-black/20 flex flex-col justify-between space-y-6">
+            <div>
+                <p class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">Package Count</p>
+                <div class="mt-4 flex items-baseline gap-2">
+                    <span class="text-4xl font-black text-white tracking-tight">{{ $totalPackagesCount }}</span>
+                    <span class="font-mono text-xs text-[#0EB3B9] uppercase font-bold tracking-widest">Active
+                        Plans</span>
+                </div>
+            </div>
+            <p class="text-sm leading-relaxed text-slate-400">
+                Therapeutic packages available for booking on the public portal.
+            </p>
+        </div>
+
+        <div
             class="rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 shadow-xl shadow-black/20 space-y-4">
             <p class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">Service Categories</p>
 
