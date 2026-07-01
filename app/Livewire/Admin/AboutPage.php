@@ -14,29 +14,51 @@ class AboutPage extends Component
 {
     use WithFileUploads;
 
-    public About $about;
+    public ?About $about = null;
 
     public ?TemporaryUploadedFile $image_1 = null;
     public ?TemporaryUploadedFile $image_2 = null;
     public ?TemporaryUploadedFile $image_3 = null;
 
+    public string $title = '';
+    public ?string $subtitle = '';
+    public string $description = '';
+    public string $philosophy = '';
+    public string $vision = '';
+    public ?string $feature_1_title = '';
+    public ?string $feature_1_description = '';
+    public ?string $feature_2_title = '';
+    public ?string $feature_2_description = '';
+
     public function mount(): void
     {
-        $this->about = About::query()->first() ?? new About();
+        $this->about = About::query()->first();
+
+        if ($this->about) {
+            $this->title = $this->about->title;
+            $this->subtitle = $this->about->subtitle;
+            $this->description = $this->about->description;
+            $this->philosophy = $this->about->philosophy;
+            $this->vision = $this->about->vision;
+            $this->feature_1_title = $this->about->feature_1_title;
+            $this->feature_1_description = $this->about->feature_1_description;
+            $this->feature_2_title = $this->about->feature_2_title;
+            $this->feature_2_description = $this->about->feature_2_description;
+        }
     }
 
     protected function rules(): array
     {
         return [
-            'about.title' => ['required', 'string', 'max:255'],
-            'about.subtitle' => ['nullable', 'string', 'max:255'],
-            'about.description' => ['nullable', 'string'],
-            'about.philosophy' => ['required', 'string'],
-            'about.vision' => ['required', 'string'],
-            'about.feature_1_title' => ['nullable', 'string', 'max:255'],
-            'about.feature_1_description' => ['nullable', 'string'],
-            'about.feature_2_title' => ['nullable', 'string', 'max:255'],
-            'about.feature_2_description' => ['nullable', 'string'],
+            'title' => ['required', 'string', 'max:255'],
+            'subtitle' => ['nullable', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'philosophy' => ['required', 'string'],
+            'vision' => ['required', 'string'],
+            'feature_1_title' => ['nullable', 'string', 'max:255'],
+            'feature_1_description' => ['nullable', 'string'],
+            'feature_2_title' => ['nullable', 'string', 'max:255'],
+            'feature_2_description' => ['nullable', 'string'],
             'image_1' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             'image_2' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             'image_3' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
@@ -45,25 +67,40 @@ class AboutPage extends Component
 
     public function save(): void
     {
-        $validated = Arr::get($this->validate(), 'about', []);
-        $this->handleUploadedImages($validated);
+        $validated = $this->validate();
 
-        if ($this->about->exists) {
-            $this->about->update($validated);
+        $data = Arr::only($validated, [
+            'title',
+            'subtitle',
+            'description',
+            'philosophy',
+            'vision',
+            'feature_1_title',
+            'feature_1_description',
+            'feature_2_title',
+            'feature_2_description',
+        ]);
+
+        $this->handleUploadedImages($data);
+
+        if ($this->about && $this->about->exists) {
+            $this->about->update($data);
         } else {
-            $this->about = About::query()->create($validated);
+            $this->about = About::query()->create($data);
         }
 
         session()->flash('success', 'About section saved successfully.');
         $this->mount();
     }
 
-    private function handleUploadedImages(array &$validated): void
+    private function handleUploadedImages(array &$data): void
     {
         foreach (['image_1', 'image_2', 'image_3'] as $field) {
             if ($this->{$field} instanceof TemporaryUploadedFile) {
-                AdminMediaService::deleteImage($this->about->{$field});
-                $validated[$field] = AdminMediaService::storeImage($this->{$field}, 'about');
+                if ($this->about && $this->about->exists) {
+                    AdminMediaService::deleteImage($this->about->{$field});
+                }
+                $data[$field] = AdminMediaService::storeImage($this->{$field}, 'about');
             }
         }
     }

@@ -4,8 +4,9 @@ namespace App\Livewire\Admin\ServiceManager;
 
 use App\Models\Service;
 use App\Services\AdminMediaService;
-use Illuminate\Support\Str;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
@@ -17,22 +18,33 @@ class ServiceManagerPage extends Component
     use WithPagination;
 
     public ?Service $service = null;
+
     public ?Service $serviceToDelete = null;
 
     public string $category = 'manual_therapy';
+
     public string $filterCategory = 'all';
+
     public int $perPage = 5;
 
     public string $name_en = '';
+
     public string $name_es = '';
+
     public string $description_en = '';
+
     public string $description_es = '';
+
     public string $duration = '';
+
     public string $price = '';
+
     public bool $active_status = true;
+
     public ?TemporaryUploadedFile $image_path = null;
 
     public array $categories = [];
+
     public array $imageCategories = [
         'manual_therapy',
         'recovery_performance',
@@ -41,12 +53,13 @@ class ServiceManagerPage extends Component
     ];
 
     public bool $showFormModal = false;
+
     public bool $showDeleteModal = false;
 
     protected string $paginationTheme = 'tailwind';
+
     protected array $queryString = [
-        'filterCategory' => ['except' => 'all', 'as' => 'filterCategory'],
-        'page' => ['except' => 1],
+        'filterCategory' => ['except' => 'all'],
     ];
 
     public bool $isEdit = false;
@@ -54,8 +67,7 @@ class ServiceManagerPage extends Component
     public function mount(?Service $service = null, ?string $category = null): void
     {
         $this->categories = Service::categories();
-        $this->filterCategory = request()->query('filterCategory', $category ?? 'all');
-        $this->category = $service ? $service->category : ($this->filterCategory === 'all' ? 'manual_therapy' : $this->filterCategory);
+        $this->category = $service ? $service->category : ($category ?? 'manual_therapy');
         $this->service = $service;
         $this->isEdit = $service !== null;
         $this->showFormModal = request()->routeIs('admin.services.create') || request()->routeIs('admin.services.edit');
@@ -91,6 +103,9 @@ class ServiceManagerPage extends Component
 
     public function updatingFilterCategory(): void
     {
+        if (app()->environment('local')) {
+            logger()->info('updatingFilterCategory', ['newValue' => $this->filterCategory]);
+        }
         $this->resetPage();
     }
 
@@ -210,6 +225,10 @@ class ServiceManagerPage extends Component
 
     private function loadServices(): LengthAwarePaginator
     {
+        if (app()->environment('local')) {
+            logger()->info('loadServices', ['filterCategory' => $this->filterCategory]);
+        }
+
         $query = Service::query();
 
         if ($this->filterCategory !== 'all') {
@@ -224,15 +243,15 @@ class ServiceManagerPage extends Component
         return in_array($this->category, $this->imageCategories, true);
     }
 
-    public function render(): \Illuminate\Contracts\View\View
+    public function render(): View
     {
-        if (request()->has('filterCategory')) {
-            $this->filterCategory = request()->query('filterCategory');
+        if (app()->environment('local')) {
+            logger()->info('ServiceManagerPage render', ['filterCategory' => $this->filterCategory]);
         }
 
         return view('livewire.admin.service-manager.service-manager-page', [
-                'services' => $this->loadServices(),
-            ])
+            'services' => $this->loadServices(),
+        ])
             ->layout('components.layouts.admin', [
                 'title' => 'Service Manager',
                 'activeTarget' => 'services',

@@ -7,7 +7,7 @@
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
                     <label class="flex items-center gap-2 text-sm text-slate-400">
                         <span>Category</span>
-                        <select wire:model="filterCategory" class="rounded bg-slate-950/60 px-3 py-2 text-sm">
+                        <select wire:model.live="filterCategory" wire:key="filter-category" class="rounded bg-slate-950/60 px-3 py-2 text-sm">
                             <option value="all">All Services</option>
                             @foreach($categories as $key => $label)
                                 <option value="{{ $key }}">{{ $label }}</option>
@@ -33,7 +33,7 @@
                     </thead>
                     <tbody class="divide-y divide-slate-800 text-slate-300">
                         @forelse($services as $service)
-                            <tr class="bg-slate-950/40">
+                            <tr wire:key="service-{{ $service->id }}" class="bg-slate-950/40">
                                 <td class="px-4 py-3">
                                     <div class="font-semibold">{{ $service->name_en }}</div>
                                     <div class="text-xs text-slate-500">{{ Str::limit($service->description_en, 80) }}</div>

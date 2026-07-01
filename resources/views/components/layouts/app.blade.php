@@ -12,9 +12,11 @@
     @vite(['resources/css/app.css'])
     @livewireStyles
 </head>
-<body class="bg-[#0b1329] text-slate-100 font-sans antialiased overflow-x-hidden min-h-screen">
+<body class="bg-[#0b1329] text-slate-100 antialiased overflow-x-hidden min-h-screen flex flex-col selection:bg-[#0EB3B9]/30 selection:text-[#0EB3B9]">
     
-    {{ $slot }}
+    <main class="flex-grow w-full">
+        {{ $slot }}
+    </main>
 
     @vite(['resources/js/app.js'])
     @livewireScripts

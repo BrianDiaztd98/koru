@@ -4,8 +4,8 @@
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: 'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
     
     --color-navy: #0E788D;
     --color-mint: #0EB3B9;
@@ -13,15 +13,56 @@
 
 @layer base {
     body {
-        @apply bg-white text-gray-900;
+        @apply bg-[#0b1329] text-slate-100 font-sans antialiased overflow-x-hidden min-h-screen;
     }
     
     [x-cloak] {
         display: none !important;
     }
+
+    /* 🌐 Scrollbar Global del Navegador (Look & Feel Koru) */
+    html::-webkit-scrollbar {
+        width: 6px;
+    }
+    html::-webkit-scrollbar-track {
+        background: #0b1329;
+    }
+    html::-webkit-scrollbar-thumb {
+        background: #1e293b; /* slate-800 */
+        border-radius: 9999px;
+    }
+    html:hover::-webkit-scrollbar-thumb {
+        background: rgba(14, 179, 185, 0.3); /* Mint con opacidad */
+    }
 }
 
 @layer utilities {
+    /* 🧬 Scrollbar Utilitario Ultra Fino para Paneles de Alta Densidad (Service Categories, Modales, etc.) */
+    .koru-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: #1e293b transparent;
+    }
+
+    .koru-scrollbar::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+    
+    .koru-scrollbar::-webkit-scrollbar-track {
+        background: rgba(2, 6, 23, 0.2); /* slate-950/20 */
+        border-radius: 9999px;
+    }
+    
+    .koru-scrollbar::-webkit-scrollbar-thumb {
+        background: #1e293b; /* slate-800 */
+        border-radius: 9999px;
+        border: 1px solid transparent;
+    }
+    
+    .koru-scrollbar:hover::-webkit-scrollbar-thumb {
+        background: rgba(14, 179, 185, 0.3) !important; /* Mint/30 */
+    }
+
     /* Professional animation easing */
     .animate-fade-in {
         animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -101,8 +142,6 @@
     }
     
     .parallax-bg {
-        /* Avoid background-attachment: fixed (expensive on scroll). Use scroll attachment and a subtle transform animation.
-           Heavy parallax removed to improve scroll performance across browsers. */
         background-attachment: scroll;
         animation: parallax 30s ease infinite;
         will-change: transform;

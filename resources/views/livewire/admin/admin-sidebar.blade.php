@@ -45,13 +45,4 @@
         </nav>
     </div>
 
-    <div
-        class="pt-4 border-t border-slate-800/50 flex gap-2.5 items-start text-[11px] text-slate-400 leading-relaxed">
-        <svg class="w-4 h-4 text-[#0EB3B9] shrink-0 mt-0.5" fill="none" stroke="currentColor"
-            stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M11.25 11.25l.041-.02a.75.75 0 111.063.852l-.708 2.836a.75.75 0 001.063.852l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-        </svg>
-        <span>Navigate native Livewire routes without page-wide DOM toggling or hash-based state.</span>
-    </div>
-</aside>
+    </aside>
