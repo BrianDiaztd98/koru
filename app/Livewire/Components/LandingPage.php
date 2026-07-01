@@ -315,29 +315,18 @@ class LandingPage extends Component
     #[Computed]
     public function getTestimonialsProperty(): array
     {
-        return [
-            [
-                'id' => 1,
-                'category' => 'lounge',
-                'title' => $this->t('Tour the recovery lounge', 'Recorrido por el lounge de recuperación'),
-                'description' => $this->t('View how our IV and recovery lounge creates a premium clinical environment.', 'Descubre cómo nuestro lounge de IV y recuperación crea un entorno clínico premium.'),
-                'video_path' => 'videos/testimonials/1.mp4',
-            ],
-            [
-                'id' => 2,
-                'category' => 'athlete',
-                'title' => $this->t('Athlete recovery in action', 'Recuperación de atletas en acción'),
-                'description' => $this->t('See how our protocols support athletes returning to training faster.', 'Observa cómo nuestros protocolos apoyan a los atletas a regresar al entrenamiento más rápido.'),
-                'video_path' => 'videos/testimonials/2.mp4',
-            ],
-            [
-                'id' => 3,
-                'category' => 'clinical',
-                'title' => $this->t('Clinical performance stories', 'Historias de rendimiento clínico'),
-                'description' => $this->t('Discover the clinical outcomes behind our premium care services.', 'Descubre los resultados clínicos detrás de nuestros servicios de atención premium.'),
-                'video_path' => 'videos/testimonials/3.mp4',
-            ],
-        ];
+        return \App\Models\Testimonial::query()
+            ->active()
+            ->orderBy('id')
+            ->get()
+            ->map(fn (\App\Models\Testimonial $testimonial) => [
+                'id' => $testimonial->id,
+                'category' => $testimonial->category ?? 'clinical',
+                'title' => $testimonial->title ?? $testimonial->author_name,
+                'description' => $testimonial->description ?? $testimonial->quote_en,
+                'video_path' => $testimonial->video_path ?? $testimonial->video_url,
+            ])
+            ->toArray();
     }
 
     #[On('locale-changed')]

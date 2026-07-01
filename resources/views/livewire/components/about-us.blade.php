@@ -6,15 +6,15 @@
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         @if(!($aboutData['has_real_data'] ?? false))
-            <div class="text-center py-20">
+            <div class="rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10">
                 <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
                     {{ $aboutData['title'] ?? 'About KORU' }}
                 </div>
-                <h2 class="mt-6 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
-                    No active services found
+                <h2 class="mt-6 text-xl font-semibold text-white">
+                    No about content available yet
                 </h2>
-                <p class="mt-4 max-w-2xl mx-auto text-sm leading-relaxed text-slate-400">
-                    Add contents under this specific pilar in your CMS dashboard to populate this category viewport.
+                <p class="mt-3 max-w-sm mx-auto text-sm leading-relaxed text-slate-400">
+                    This section is waiting for About KORU content.
                 </p>
             </div>
         @else

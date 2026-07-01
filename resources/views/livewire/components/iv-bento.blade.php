@@ -38,6 +38,14 @@
             </div>
         </div>
 
+        @if(empty($ivDrips))
+            <div class="rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10">
+                <h3 class="text-xl font-semibold text-white">No IV lounge content available yet</h3>
+                <p class="mt-3 max-w-sm mx-auto text-sm leading-relaxed text-slate-400">
+                    This section is waiting for IV treatment content.
+                </p>
+            </div>
+        @else
         <div class="grid gap-8 lg:grid-cols-12 items-stretch" 
              x-data="{ 
                 activeDrip: 0,
@@ -237,6 +245,7 @@
             </div>
 
         </div>
+        @endif
 
     </div>
 </section>

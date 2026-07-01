@@ -48,6 +48,14 @@
              }"
              x-init="$watch('currentPage', value => setFirstActiveInPage())">
             
+            @if(empty($boosterShots))
+                <div class="lg:col-span-12 rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10">
+                    <h3 class="text-xl font-semibold text-white">No quick therapy content available yet</h3>
+                    <p class="mt-3 max-w-sm mx-auto text-sm leading-relaxed text-slate-400">
+                        This section is waiting for Booster Shots content.
+                    </p>
+                </div>
+            @else
             <!-- PANEL IZQUIERDO: Tarjeta de Enfoque Clínico Dinámica -->
             <div class="lg:col-span-5 flex flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950/60 p-8 backdrop-blur-md relative overflow-hidden scroll-animate" data-speed="0.08"
                  data-aos="fade-right" 
@@ -230,6 +238,7 @@
                 </div>
 
             </div>
+            @endif
 
         </div>
 

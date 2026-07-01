@@ -17,6 +17,14 @@
             </p>
         </div>
 
+        @if(empty($teamMembers))
+            <div class="rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10">
+                <h3 class="text-xl font-semibold text-white">No team content available yet</h3>
+                <p class="mt-3 max-w-sm mx-auto text-sm leading-relaxed text-slate-400">
+                    This section is waiting for team member profiles.
+                </p>
+            </div>
+        @else
         <!-- VISTA ESCRITORIO / TABLET: Grid de Especialistas -->
         <div class="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6 py-6" wire:key="team-desktop-grid">
             @foreach($teamMembers as $member)
@@ -146,6 +154,7 @@
                 @endforeach
             </div>
         </div>
+        @endif
 
     </div>
 </section>

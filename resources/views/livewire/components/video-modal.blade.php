@@ -43,29 +43,20 @@
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- Bloque de Invitación Central (Call to Action) -->
-        <div class="rounded-[2.5rem] border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-10 text-center shadow-xl max-w-4xl mx-auto transition-all duration-300 hover:border-[#0EB3B9]/20">
+        <div class="rounded-[2.5rem] border border-dashed border-slate-700 bg-slate-950/40 backdrop-blur-sm p-10 text-center shadow-inner shadow-black/10 max-w-4xl mx-auto transition-all duration-300 hover:border-[#0EB3B9]/20">
             <div class="inline-flex items-center justify-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
                 Experience Koru
             </div>
             
-            <h2 class="mt-6 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                A new standard for massage, wellness, and recovery.
+            <h2 class="mt-6 text-xl font-semibold text-white">
+                No experience content available yet
             </h2>
             
-            <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-400">
-                Watch our clinic tour and discover how Koru blends clinical sports science with comfort-focused care.
+            <p class="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
+                This section is waiting for Experience Koru content.
             </p>
             
-            <div class="mt-8 flex justify-center">
-                <button type="button" 
-                        class="inline-flex items-center gap-3 rounded-xl bg-[#0EB3B9] px-6 py-3.5 text-sm font-bold text-white shadow-md transition-all duration-200 hover:bg-[#0E788D] hover:shadow-[#0EB3B9]/20 hover:shadow-lg active:scale-[0.98]" 
-                        @click="$dispatch('open-video-modal', 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0')">
-                    <span>Watch the tour</span>
-                    <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <path d="M14.752 11.168l-5.197-3.023A1 1 0 008 9.003v5.994a1 1 0 001.555.832l5.197-3.023a1 1 0 000-1.664z"/>
-                    </svg>
-                </button>
-            </div>
+
         </div>
     </div>
 

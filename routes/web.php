@@ -3,9 +3,11 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Middleware\AdminAccess;
 use App\Livewire\Admin\AboutPage;
+use App\Livewire\Admin\ClientOutcomesPage;
 use App\Livewire\Admin\ManagementPage;
 use App\Livewire\Admin\PackageManager\PackageManagerPage;
 use App\Livewire\Admin\ServiceManager\ServiceManagerPage;
+use App\Livewire\Admin\TeamMembersPage;
 use App\Livewire\Components\LandingPage;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,14 @@ Route::middleware([AdminAccess::class])->prefix('admin')->name('admin.')->group(
     Route::get('services', ServiceManagerPage::class)->name('services.index');
     Route::get('services/create', ServiceManagerPage::class)->name('services.create');
     Route::get('services/{service}/edit', ServiceManagerPage::class)->name('services.edit');
+
+    Route::get('client-outcomes', ClientOutcomesPage::class)->name('client-outcomes.index');
+    Route::get('client-outcomes/create', ClientOutcomesPage::class)->name('client-outcomes.create');
+    Route::get('client-outcomes/{testimonial}/edit', ClientOutcomesPage::class)->name('client-outcomes.edit');
+
+    Route::get('team', TeamMembersPage::class)->name('team.index');
+    Route::get('team/create', TeamMembersPage::class)->name('team.create');
+    Route::get('team/{teamMember}/edit', TeamMembersPage::class)->name('team.edit');
 
     // Packages SPA-managed via PackageManagerPage.
     Route::get('packages', PackageManagerPage::class)->name('packages.index');

@@ -466,42 +466,53 @@ class KoruContentSeeder extends Seeder
     {
         $testimonials = [
             [
-                'author_name' => 'Isabella R.',
-                'author_role' => 'Endurance Athlete - Coral Gables',
-                'quote_en' => '★★★★★ Koru gave me a concierge recovery plan after marathon training. The contrast protocols, compression, and IV support helped me feel human again within 48 hours.',
-                'quote_es' => '★★★★★ Koru me dio un plan de recuperación concierge después de entrenar para un maratón. Los protocolos de contraste, compresión y soporte IV me hicieron sentir recuperada en menos de 48 horas.',
-                'video_url' => null,
-                'image_path' => 'img/team/team1.png',
+                'id' => 1,
+                'author_name' => 'Koru Recovery Lounge',
+                'author_role' => 'Recovery Experience',
+                'quote_en' => 'Tour the recovery lounge',
+                'quote_es' => 'Recorrido por el lounge de recuperación',
+                'category' => 'lounge',
+                'title' => $this->t('Tour the recovery lounge', 'Recorrido por el lounge de recuperación'),
+                'description' => $this->t('View how our IV and recovery lounge creates a premium clinical environment.', 'Descubre cómo nuestro lounge de IV y recuperación crea un entorno clínico premium.'),
+                'video_path' => 'videos/testimonials/1.mp4',
                 'active_status' => true,
             ],
             [
-                'author_name' => 'Camila Torres',
-                'author_role' => 'Physical Therapist - Miami',
-                'quote_en' => '★★★★★ The recovery technology education at Koru is exactly what clinicians need: practical, premium, and immediately applicable with athletes.',
-                'quote_es' => '★★★★★ La formación en tecnologías de recuperación de Koru es justo lo que necesitan los clínicos: práctica, premium y aplicable de inmediato con atletas.',
-                'video_url' => 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0',
-                'image_path' => 'img/team/team2.png',
+                'id' => 2,
+                'author_name' => 'Koru Athlete Program',
+                'author_role' => 'Performance Recovery',
+                'quote_en' => 'Athlete recovery in action',
+                'quote_es' => 'Recuperación de atletas en acción',
+                'category' => 'athlete',
+                'title' => $this->t('Athlete recovery in action', 'Recuperación de atletas en acción'),
+                'description' => $this->t('See how our protocols support athletes returning to training faster.', 'Observa cómo nuestros protocolos apoyan a los atletas a regresar al entrenamiento más rápido.'),
+                'video_path' => 'videos/testimonials/2.mp4',
                 'active_status' => true,
             ],
             [
-                'author_name' => 'Daniel M.',
-                'author_role' => 'Soccer Parent - Virginia Gardens',
-                'quote_en' => '★★★★★ My son’s post-surgical rehab felt personalized from day one. The team combined clinical precision with the kind of care you expect from a premium Miami clinic.',
-                'quote_es' => '★★★★★ La rehabilitación postquirúrgica de mi hijo se sintió personalizada desde el primer día. El equipo combinó precisión clínica con el nivel de atención que esperas de una clínica premium en Miami.',
-                'video_url' => null,
-                'image_path' => 'img/team/team3.png',
+                'id' => 3,
+                'author_name' => 'Koru Clinical Team',
+                'author_role' => 'Clinical Outcomes',
+                'quote_en' => 'Clinical performance stories',
+                'quote_es' => 'Historias de rendimiento clínico',
+                'category' => 'clinical',
+                'title' => $this->t('Clinical performance stories', 'Historias de rendimiento clínico'),
+                'description' => $this->t('Discover the clinical outcomes behind our premium care services.', 'Descubre los resultados clínicos detrás de nuestros servicios de atención premium.'),
+                'video_path' => 'videos/testimonials/3.mp4',
                 'active_status' => true,
             ],
         ];
 
         foreach ($testimonials as $testimonial) {
             Testimonial::query()->updateOrCreate(
-                [
-                    'author_name' => $testimonial['author_name'],
-                    'author_role' => $testimonial['author_role'],
-                ],
+                ['id' => $testimonial['id']],
                 $testimonial,
             );
         }
+    }
+
+    protected function t(string $en, string $es): string
+    {
+        return app()->getLocale() === 'es' ? $es : $en;
     }
 }

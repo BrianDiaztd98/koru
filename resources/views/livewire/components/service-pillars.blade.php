@@ -141,14 +141,9 @@
                     </article>
                 @empty
                     <!-- Estado Vacío / Backup del CMS -->
-                    <div class="col-span-full rounded-3xl border border-slate-800/80 bg-slate-950/20 p-12 text-center" wire:key="empty-state-{{ $activePillar }}">
-                        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800/50 text-slate-500 mb-4">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0a2 2 0 01-2 2H6a2 2 0 01-2-2m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-4.172a2 2 0 00-1.414.586l-1.657 1.657a2 2 0 01-1.414.586H8.414a2 2 0 01-1.414-.586L5.343 15.586A2 2 0 003.929 15H3" />
-                            </svg>
-                        </div>
-                        <h4 class="text-sm font-bold text-slate-300">No active services found</h4>
-                        <p class="mt-2 text-xs text-slate-500 max-w-sm mx-auto">Add contents under this specific pilar in your CMS dashboard to populate this category viewport.</p>
+                    <div class="col-span-full rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10" wire:key="empty-state-{{ $activePillar }}">
+                        <h4 class="text-xl font-semibold text-white">No service pillars available yet</h4>
+                        <p class="mt-3 max-w-sm mx-auto text-sm leading-relaxed text-slate-400">This section is waiting for service pillar content.</p>
                     </div>
                 @endforelse
             </div>

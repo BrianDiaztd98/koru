@@ -45,6 +45,32 @@
                     <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ $activeTarget === 'services' ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                 </a>
 
+                <a href="{{ route('admin.client-outcomes.index') }}"
+                   data-section="client-outcomes"
+                   class="sidebar-link group relative w-full text-left px-3.5 py-3 rounded-2xl font-semibold text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $activeTarget === 'client-outcomes' ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] translate-x-1' : 'border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                   aria-current="{{ $activeTarget === 'client-outcomes' ? 'true' : 'false' }}">
+                    <span class="flex items-center gap-2.5">
+                        <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25M3 8.25l9 6 9-6M3 8.25l9 6 9-6" />
+                        </svg>
+                        Client Outcomes
+                    </span>
+                    <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ $activeTarget === 'client-outcomes' ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                </a>
+
+                <a href="{{ route('admin.team.index') }}"
+                   data-section="team"
+                   class="sidebar-link group relative w-full text-left px-3.5 py-3 rounded-2xl font-semibold text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $activeTarget === 'team' ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] translate-x-1' : 'border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                   aria-current="{{ $activeTarget === 'team' ? 'true' : 'false' }}">
+                    <span class="flex items-center gap-2.5">
+                        <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0" />
+                        </svg>
+                        Team
+                    </span>
+                    <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ $activeTarget === 'team' ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                </a>
+
                 <a href="{{ route('admin.packages.index') }}"
                    data-section="packages"
                    class="sidebar-link group relative w-full text-left px-3.5 py-3 rounded-2xl font-semibold text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $activeTarget === 'packages' ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] translate-x-1' : 'border-transparent bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
