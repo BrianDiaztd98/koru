@@ -175,8 +175,6 @@ class TeamMembersPage extends Component
         return view('livewire.admin.team-members-page', [
             'teamMembers' => TeamMember::query()->orderByDesc('id')->get(),
         ])
-            ->layout('components.layouts.admin', [
-                'title' => 'Team Management',
-            ]);
+            ->layout('components.layouts.admin');
     }
 }

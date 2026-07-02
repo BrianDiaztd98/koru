@@ -118,8 +118,6 @@ class AboutPage extends Component
     public function render(): View
     {
         return view('livewire.admin.about-page')
-            ->layout('components.layouts.admin', [
-                'title' => 'About Section',
-            ]);
+            ->layout('components.layouts.admin');
     }
 }

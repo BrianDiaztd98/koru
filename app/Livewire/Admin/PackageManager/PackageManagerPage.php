@@ -311,8 +311,6 @@ class PackageManagerPage extends Component
             'packages' => $this->loadPackages(),
             'terms' => $this->getTermsProperty(),
         ])
-            ->layout('components.layouts.admin', [
-                'title' => 'Package Manager',
-            ]);
+            ->layout('components.layouts.admin');
     }
 }

@@ -139,8 +139,6 @@ class ClientOutcomesPage extends Component
         return view('livewire.admin.client-outcomes-page', [
             'testimonials' => Testimonial::query()->orderByDesc('id')->get(),
         ])
-            ->layout('components.layouts.admin', [
-                'title' => 'Client Outcomes',
-            ]);
+            ->layout('components.layouts.admin');
     }
 }

@@ -252,8 +252,6 @@ class ServiceManagerPage extends Component
         return view('livewire.admin.service-manager.service-manager-page', [
             'services' => $this->loadServices(),
         ])
-            ->layout('components.layouts.admin', [
-                'title' => 'Service Manager',
-            ]);
+            ->layout('components.layouts.admin');
     }
 }

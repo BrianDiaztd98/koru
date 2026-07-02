@@ -31,14 +31,14 @@
 
     <!-- Sidebar -->
     <aside :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-        class="fixed left-0 top-0 z-40 w-full lg:w-64 h-screen transform lg:translate-x-0 transition-transform duration-300 ease-in-out border-r border-slate-800/80 bg-slate-950/95 backdrop-blur-xl shadow-xl shadow-black/20">
+           class="fixed left-0 top-0 z-40 w-full lg:w-72 h-screen transform lg:translate-x-0 transition-transform duration-300 ease-in-out border-r border-slate-800/80 bg-slate-950/95 backdrop-blur-xl shadow-xl shadow-black/20 overflow-hidden">
         <div class="flex flex-col h-full p-5">
             <livewire:admin.admin-sidebar />
         </div>
     </aside>
 
     <!-- Contenedor Principal -->
-    <main class="min-h-screen lg:ml-64 relative z-10">
+    <main class="min-h-screen lg:ml-72 relative z-10">
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
             <!-- Botón Hamburguesa (Mobile) -->
             <button @click="sidebarOpen = true" type="button"
@@ -51,9 +51,6 @@
                 </svg>
             </button>
 
-            @if (isset($title))
-                <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-8">{{ $title }}</h1>
-            @endif
             {{ $slot }}
         </div>
     </main>

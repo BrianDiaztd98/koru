@@ -77,8 +77,6 @@ class ManagementPage extends Component
             'totalServicesCount' => $this->totalServicesCount,
             'totalPackagesCount' => $this->totalPackagesCount,
         ])
-            ->layout('components.layouts.admin', [
-                'title' => 'Management Dashboard',
-            ]);
+            ->layout('components.layouts.admin');
     }
 }
