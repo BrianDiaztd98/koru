@@ -79,7 +79,6 @@ class ManagementPage extends Component
         ])
             ->layout('components.layouts.admin', [
                 'title' => 'Management Dashboard',
-                'activeTarget' => 'inicio',
             ]);
     }
 }
