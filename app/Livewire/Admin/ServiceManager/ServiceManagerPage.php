@@ -254,7 +254,6 @@ class ServiceManagerPage extends Component
         ])
             ->layout('components.layouts.admin', [
                 'title' => 'Service Manager',
-                'activeTarget' => 'services',
             ]);
     }
 }

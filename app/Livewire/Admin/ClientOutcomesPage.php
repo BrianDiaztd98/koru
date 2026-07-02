@@ -3,7 +3,6 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Testimonial;
-use App\Services\AdminMediaService;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\TemporaryUploadedFile;
@@ -142,7 +141,6 @@ class ClientOutcomesPage extends Component
         ])
             ->layout('components.layouts.admin', [
                 'title' => 'Client Outcomes',
-                'activeTarget' => 'client-outcomes',
             ]);
     }
 }

@@ -313,7 +313,6 @@ class PackageManagerPage extends Component
         ])
             ->layout('components.layouts.admin', [
                 'title' => 'Package Manager',
-                'activeTarget' => 'packages',
             ]);
     }
 }

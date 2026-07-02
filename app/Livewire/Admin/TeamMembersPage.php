@@ -177,7 +177,6 @@ class TeamMembersPage extends Component
         ])
             ->layout('components.layouts.admin', [
                 'title' => 'Team Management',
-                'activeTarget' => 'team',
             ]);
     }
 }

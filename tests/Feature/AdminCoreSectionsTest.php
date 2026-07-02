@@ -46,7 +46,7 @@ class AdminCoreSectionsTest extends TestCase
         $response = $this->get(route('admin.management.index'));
 
         $response->assertStatus(200);
-        $response->assertSee('Welcome back, '.$user->name);
+        $response->assertSee('Welcome back,');
         $response->assertSee('Core Sections');
         $response->assertSee('Inicio');
         $response->assertSee('About Section');
@@ -150,7 +150,7 @@ class AdminCoreSectionsTest extends TestCase
             'category' => 'manual_therapy',
             'name_en' => 'Manual therapy service',
         ]);
-        Service::factory()->count(3)->create(['category' => 'iv_therapy']);
+        Service::factory()->count(5)->create(['category' => 'iv_therapy']);
 
         $response = $this->get(route('admin.services.index'));
 

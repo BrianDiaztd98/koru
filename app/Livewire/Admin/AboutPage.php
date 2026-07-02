@@ -4,8 +4,8 @@ namespace App\Livewire\Admin;
 
 use App\Models\About;
 use App\Services\AdminMediaService;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
@@ -17,17 +17,27 @@ class AboutPage extends Component
     public ?About $about = null;
 
     public ?TemporaryUploadedFile $image_1 = null;
+
     public ?TemporaryUploadedFile $image_2 = null;
+
     public ?TemporaryUploadedFile $image_3 = null;
 
     public string $title = '';
+
     public ?string $subtitle = '';
+
     public string $description = '';
+
     public string $philosophy = '';
+
     public string $vision = '';
+
     public ?string $feature_1_title = '';
+
     public ?string $feature_1_description = '';
+
     public ?string $feature_2_title = '';
+
     public ?string $feature_2_description = '';
 
     public function mount(): void
@@ -105,12 +115,11 @@ class AboutPage extends Component
         }
     }
 
-    public function render(): \Illuminate\Contracts\View\View
+    public function render(): View
     {
         return view('livewire.admin.about-page')
             ->layout('components.layouts.admin', [
                 'title' => 'About Section',
-                'activeTarget' => 'about',
             ]);
     }
 }
