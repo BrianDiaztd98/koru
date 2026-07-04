@@ -4,6 +4,7 @@ namespace App\Livewire\Components;
 
 use App\Models\About;
 use App\Models\Course;
+use App\Models\LandingPageVisit;
 use App\Models\Package;
 use App\Models\PackageTerm;
 use App\Models\Service;
@@ -27,6 +28,12 @@ class LandingPage extends Component
         $this->locale = Session::get('locale', app()->getLocale() ?: 'en');
         $this->headerNavItems = $this->buildHeaderNavItems();
         App::setLocale($this->locale);
+
+        // Count each landing-page visit once per browser session so refreshes and F5 do not inflate the stats.
+        if (!session()->has('landing_page_viewed')) {
+            LandingPageVisit::create();
+            session()->put('landing_page_viewed', true);
+        }
     }
 
     public function updatedLocale(string $value): void

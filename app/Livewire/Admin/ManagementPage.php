@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Models\About;
+use App\Models\LandingPageVisit;
 use App\Models\Package;
 use App\Models\Service;
 use Illuminate\Support\Collection;
@@ -18,8 +19,11 @@ class ManagementPage extends Component
 
     protected array $serviceGroups;
 
+    public int $selectedYear;
+
     public function mount(): void
     {
+        $this->selectedYear = (int) request()->query('year', now()->year);
         $this->about = About::query()->first() ?? new About;
         $this->categories = Service::categories();
         $this->serviceGroups = [
@@ -70,12 +74,25 @@ class ManagementPage extends Component
         return Package::query()->count();
     }
 
+    public function getLandingPageVisitStatsProperty(): array
+    {
+        return [
+            'total' => LandingPageVisit::totalVisitsForYear($this->selectedYear),
+            'monthly' => LandingPageVisit::query()->monthlyStats($this->selectedYear),
+            'availableYears' => LandingPageVisit::availableYears()->isNotEmpty()
+                ? LandingPageVisit::availableYears()
+                : collect([(int) now()->year]),
+        ];
+    }
+
     public function render()
     {
         return view('livewire.admin.management', [
             'categoryCounts' => $this->categoryCounts,
             'totalServicesCount' => $this->totalServicesCount,
             'totalPackagesCount' => $this->totalPackagesCount,
+            'landingPageVisitStats' => $this->landingPageVisitStats,
+            'selectedYear' => $this->selectedYear,
         ])
             ->layout('components.layouts.admin');
     }
