@@ -10,11 +10,11 @@
         </div>
 
         @unless($showForm || $showTermForm)
-            <div class="rounded-2xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 sm:p-8 shadow-2xl shadow-black/40">
+            <div class="admin-card">
                 <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <h3 class="text-lg font-semibold text-white">Active Packages</h3>
 
-                    <button type="button" wire:click="openCreateForm" class="inline-flex items-center justify-center rounded-xl bg-[#0EB3B9] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#0EB3B9]/10 transition hover:bg-[#0E788D]">New Package</button>
+                    <button type="button" wire:click="openCreateForm" class="admin-btn-primary">New Package</button>
                 </div>
 
                 @if (session()->has('success'))
@@ -23,8 +23,8 @@
                     </div>
                 @endif
 
-                <div class="mt-6 overflow-hidden rounded-2xl border border-slate-800/70">
-                    <div class="grid grid-cols-[1.2fr_0.5fr_0.6fr_0.7fr_0.5fr] gap-4 border-b border-slate-800/70 bg-slate-950/60 px-4 py-3 text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+                <div class="admin-table-shell">
+                    <div class="admin-table-head grid-cols-[1.2fr_0.5fr_0.6fr_0.7fr_0.5fr]">
                         <span>Name</span>
                         <span>Sessions</span>
                         <span>Price</span>
@@ -32,7 +32,7 @@
                         <span class="text-right">Actions</span>
                     </div>
                     @forelse($packages as $package)
-                        <div class="grid grid-cols-[1.2fr_0.5fr_0.6fr_0.7fr_0.5fr] items-center gap-4 border-b border-slate-800/50 bg-slate-900/40 px-4 py-4 text-sm text-slate-300 last:border-b-0">
+                        <div class="admin-table-row grid-cols-[1.2fr_0.5fr_0.6fr_0.7fr_0.5fr]">
                             <div>
                                 <p class="font-semibold text-white">{{ $package->name_en }}</p>
                                 <p class="mt-1 text-xs text-slate-500">{{ $package->name_es }}</p>
@@ -44,12 +44,12 @@
                             <div class="font-mono text-white">${{ number_format($package->price, 2) }}</div>
                             <div class="text-slate-400">{{ $package->validity ?? '—' }}</div>
                             <div class="flex justify-end gap-2">
-                                <button type="button" wire:click="openEditForm({{ $package->id }})" class="rounded-lg border border-slate-700 bg-slate-950/70 px-3 py-2 text-xs font-semibold text-slate-300 hover:border-[#0EB3B9] hover:text-white">Edit</button>
-                                <button type="button" wire:click.prevent="confirmDelete({{ $package->id }})" class="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-xs font-semibold text-rose-300 hover:bg-rose-500/20">Delete</button>
+                                <button type="button" wire:click="openEditForm({{ $package->id }})" class="admin-btn-ghost">Edit</button>
+                                <button type="button" wire:click.prevent="confirmDelete({{ $package->id }})" class="admin-btn-danger">Delete</button>
                             </div>
                         </div>
                     @empty
-                        <div class="px-4 py-8 text-center text-sm text-slate-400">No packages found. Create your first package to get started.</div>
+                        <div class="admin-table-empty">No packages found. Create your first package to get started.</div>
                     @endforelse
                 </div>
 
@@ -58,58 +58,47 @@
                 </div>
             </div>
 
-            <div class="rounded-2xl border border-slate-800/80 bg-slate-900/40 p-6 shadow-xl">
-            <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <h3 class="text-lg font-semibold">Terms & Policies</h3>
-                <button type="button" wire:click="openCreateTermModal" class="inline-flex items-center gap-2 rounded-lg bg-[#0EB3B9] px-3 py-1 text-xs font-semibold text-white">New Term</button>
-            </div>
+            <div class="admin-card">
+                <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <h3 class="text-lg font-semibold text-white">Terms & Policies</h3>
+                    <button type="button" wire:click="openCreateTermModal" class="admin-btn-primary px-3 py-1.5">New Term</button>
+                </div>
 
-            <div class="mt-4 overflow-x-auto">
-                <table class="min-w-full divide-y divide-slate-700 text-sm">
-                    <thead class="bg-slate-950/80 text-slate-300">
-                        <tr>
-                            <th class="px-4 py-3 text-left font-semibold">Content</th>
-                            <th class="px-4 py-3 text-left font-semibold">Sort</th>
-                            <th class="px-4 py-3 text-left font-semibold">Status</th>
-                            <th class="px-4 py-3 text-right font-semibold">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-800 text-slate-300">
-                        @forelse($terms as $term)
-                            <tr wire:key="term-{{ $term['id'] }}" class="bg-slate-950/40">
-                                <td class="px-4 py-3">
-                                    <div class="text-slate-200">{{ Str::limit($term['content'], 120) }}</div>
-                                </td>
-                                <td class="px-4 py-3">{{ $term['sort_order'] }}</td>
-                                <td class="px-4 py-3">
-                                    @if($term['active_status'])
-                                        <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 text-xs font-semibold text-emerald-400">
-                                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-                                            Active
-                                        </span>
-                                    @else
-                                        <span class="inline-flex items-center gap-1.5 rounded-full bg-slate-800/60 border border-slate-700/60 px-2.5 py-1 text-xs font-semibold text-slate-400">
-                                            <span class="h-1.5 w-1.5 rounded-full bg-slate-500"></span>
-                                            Inactive
-                                        </span>
-                                    @endif
-                                </td>
-                                <td class="px-4 py-3 text-right">
-                                    <div class="inline-flex items-center gap-2">
-                                        <button type="button" wire:click="openEditTermModal({{ $term['id'] }})" class="text-xs text-slate-300 bg-slate-900/40 px-3 py-1.5 rounded-lg hover:bg-slate-900 transition-colors">Edit</button>
-                                        <button type="button" wire:click.prevent="confirmDeleteTerm({{ $term['id'] }})" class="text-xs text-red-400 hover:text-red-300 transition-colors">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="px-4 py-8 text-center text-slate-500">No terms found. Create your first term to get started.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                <div class="admin-table-shell mt-4">
+                    <div class="admin-table-head grid-cols-[1.7fr_0.35fr_0.45fr_0.45fr]">
+                        <span>Content</span>
+                        <span>Sort</span>
+                        <span>Status</span>
+                        <span class="text-right">Actions</span>
+                    </div>
+
+                    @forelse($terms as $term)
+                        <div wire:key="term-{{ $term['id'] }}" class="admin-table-row grid-cols-[1.7fr_0.35fr_0.45fr_0.45fr]">
+                            <div class="text-slate-200">{{ Str::limit($term['content'], 120) }}</div>
+                            <div class="text-slate-400">{{ $term['sort_order'] }}</div>
+                            <div>
+                                @if($term['active_status'])
+                                    <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-400">
+                                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                                        Active
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center gap-1.5 rounded-full border border-slate-700/60 bg-slate-800/60 px-2.5 py-1 text-xs font-semibold text-slate-400">
+                                        <span class="h-1.5 w-1.5 rounded-full bg-slate-500"></span>
+                                        Inactive
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="flex justify-end gap-2">
+                                <button type="button" wire:click="openEditTermModal({{ $term['id'] }})" class="admin-btn-ghost">Edit</button>
+                                <button type="button" wire:click.prevent="confirmDeleteTerm({{ $term['id'] }})" class="admin-btn-danger">Delete</button>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="admin-table-empty">No terms found. Create your first term to get started.</div>
+                    @endforelse
+                </div>
             </div>
-        </div>
         @endunless
     </div>
 
