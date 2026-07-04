@@ -55,11 +55,11 @@
                     <div class="grid gap-5 lg:grid-cols-2 pt-2">
                         <div class="p-4 rounded-xl border border-slate-800/60 bg-slate-950/20">
                             <label for="philosophy" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-[#0EB3B9]">Core Philosophy</label>
-                            <textarea wire:model="philosophy" id="philosophy" rows="3" class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 focus:border-[#0EB3B9] focus:ring-1 focus:ring-[#0EB3B9]/20 placeholder:text-slate-600" placeholder="Philosophy details...">{{ $philosophy }}</textarea>
+                            <textarea wire:model="philosophy" id="philosophy" rows="4" class="koru-scrollbar max-h-40 w-full overflow-y-auto rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 focus:border-[#0EB3B9] focus:ring-1 focus:ring-[#0EB3B9]/20 placeholder:text-slate-600" placeholder="Philosophy details...">{{ $philosophy }}</textarea>
                         </div>
                         <div class="p-4 rounded-xl border border-slate-800/60 bg-slate-950/20">
                             <label for="vision" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-[#0EB3B9]">System Vision</label>
-                            <textarea wire:model="vision" id="vision" rows="3" class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 focus:border-[#0EB3B9] focus:ring-1 focus:ring-[#0EB3B9]/20 placeholder:text-slate-600" placeholder="Vision declaration...">{{ $vision }}</textarea>
+                            <textarea wire:model="vision" id="vision" rows="4" class="koru-scrollbar max-h-40 w-full overflow-y-auto rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 focus:border-[#0EB3B9] focus:ring-1 focus:ring-[#0EB3B9]/20 placeholder:text-slate-600" placeholder="Vision declaration...">{{ $vision }}</textarea>
                         </div>
                     </div>
                 </div>
