@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Livewire\Admin\Auth\Login;
 use App\Models\About;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class AdminCoreSectionsTest extends TestCase
@@ -29,12 +31,22 @@ class AdminCoreSectionsTest extends TestCase
     {
         $user = $this->adminUser();
 
-        $response = $this->post('/admin/login', [
-            'email' => $user->email,
-            'password' => 'password',
-        ]);
+        Livewire::test(Login::class)
+            ->set('email', $user->email)
+            ->set('password', 'password')
+            ->call('login')
+            ->assertRedirect(route('admin.management.index'));
+    }
 
-        $response->assertRedirect(route('admin.management.index'));
+    public function test_admin_login_shows_error_with_invalid_credentials(): void
+    {
+        $user = $this->adminUser();
+
+        Livewire::test(Login::class)
+            ->set('email', $user->email)
+            ->set('password', 'wrong-password')
+            ->call('login')
+            ->assertSee('The provided credentials do not match an admin account.');
     }
 
     public function test_dashboard_shows_inicio_panel_by_default(): void
