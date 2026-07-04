@@ -47,4 +47,16 @@ class ServiceManagerLivewireTest extends TestCase
             ->assertSee('Massage 1')
             ->assertSee('Medical 1');
     }
+
+    public function test_creating_a_service_shows_the_inline_form_panel(): void
+    {
+        $user = $this->adminUser();
+
+        Livewire::test(ServiceManagerPage::class)
+            ->actingAs($user, 'web')
+            ->call('openCreateForm')
+            ->assertSet('showForm', true)
+            ->assertSee('Manage service details inline without modals.')
+            ->assertDontSee('fixed inset-0 z-50');
+    }
 }

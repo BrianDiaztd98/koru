@@ -52,7 +52,7 @@ class ServiceManagerPage extends Component
         'koru_at_home',
     ];
 
-    public bool $showFormModal = false;
+    public bool $showForm = false;
 
     public bool $showDeleteModal = false;
 
@@ -70,7 +70,7 @@ class ServiceManagerPage extends Component
         $this->category = $service ? $service->category : ($category ?? 'manual_therapy');
         $this->service = $service;
         $this->isEdit = $service !== null;
-        $this->showFormModal = request()->routeIs('admin.services.create') || request()->routeIs('admin.services.edit');
+        $this->showForm = request()->routeIs('admin.services.create') || request()->routeIs('admin.services.edit');
 
         if ($this->service) {
             $this->fill([
@@ -109,13 +109,13 @@ class ServiceManagerPage extends Component
         $this->resetPage();
     }
 
-    public function openCreateModal(): void
+    public function openCreateForm(): void
     {
         $this->resetForm();
-        $this->showFormModal = true;
+        $this->showForm = true;
     }
 
-    public function openEditModal(int $serviceId): void
+    public function openEditForm(int $serviceId): void
     {
         $service = Service::findOrFail($serviceId);
 
@@ -131,13 +131,32 @@ class ServiceManagerPage extends Component
             'active_status' => $service->active_status,
             'category' => $service->category,
         ]);
-        $this->showFormModal = true;
+        $this->showForm = true;
+    }
+
+    public function closeForm(): void
+    {
+        $this->resetForm();
+        $this->showForm = false;
+
+        if (request()->routeIs('admin.services.create') || request()->routeIs('admin.services.edit')) {
+            $this->redirectRoute('admin.services.index');
+        }
+    }
+
+    public function openCreateModal(): void
+    {
+        $this->openCreateForm();
+    }
+
+    public function openEditModal(int $serviceId): void
+    {
+        $this->openEditForm($serviceId);
     }
 
     public function closeFormModal(): void
     {
-        $this->resetForm();
-        $this->showFormModal = false;
+        $this->closeForm();
     }
 
     public function confirmDelete(int $serviceId): void
@@ -189,7 +208,7 @@ class ServiceManagerPage extends Component
             session()->flash('success', 'Service created successfully.');
         }
 
-        $this->closeFormModal();
+        $this->closeForm();
     }
 
     public function delete(Service $service): void

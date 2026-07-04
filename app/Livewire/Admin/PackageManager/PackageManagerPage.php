@@ -38,7 +38,7 @@ class PackageManagerPage extends Component
 
     public bool $active_status = true;
 
-    public bool $showFormModal = false;
+    public bool $showForm = false;
 
     public bool $showDeleteModal = false;
 
@@ -50,7 +50,7 @@ class PackageManagerPage extends Component
 
     public bool $term_active_status = true;
 
-    public bool $showTermModal = false;
+    public bool $showTermForm = false;
 
     protected string $paginationTheme = 'tailwind';
 
@@ -60,7 +60,7 @@ class PackageManagerPage extends Component
     {
         $this->package = $package;
         $this->isEdit = $package !== null;
-        $this->showFormModal = request()->routeIs('admin.packages.create') || request()->routeIs('admin.packages.edit');
+        $this->showForm = request()->routeIs('admin.packages.create') || request()->routeIs('admin.packages.edit');
 
         if ($this->package) {
             $this->fill([
@@ -92,14 +92,15 @@ class PackageManagerPage extends Component
         ];
     }
 
-    public function openCreateModal(): void
+    public function openCreateForm(): void
     {
         $this->resetForm();
-        $this->showFormModal = true;
+        $this->showForm = true;
+        $this->showTermForm = false;
         $this->sort_order = (Package::max('sort_order') ?? 0) + 1;
     }
 
-    public function openEditModal(int $packageId): void
+    public function openEditForm(int $packageId): void
     {
         $package = Package::findOrFail($packageId);
 
@@ -116,13 +117,33 @@ class PackageManagerPage extends Component
             'sort_order' => (int) $package->sort_order,
             'active_status' => (bool) $package->active_status,
         ]);
-        $this->showFormModal = true;
+        $this->showForm = true;
+        $this->showTermForm = false;
+    }
+
+    public function closeForm(): void
+    {
+        $this->resetForm();
+        $this->showForm = false;
+
+        if (request()->routeIs('admin.packages.create') || request()->routeIs('admin.packages.edit')) {
+            $this->redirectRoute('admin.packages.index');
+        }
+    }
+
+    public function openCreateModal(): void
+    {
+        $this->openCreateForm();
+    }
+
+    public function openEditModal(int $packageId): void
+    {
+        $this->openEditForm($packageId);
     }
 
     public function closeFormModal(): void
     {
-        $this->resetForm();
-        $this->showFormModal = false;
+        $this->closeForm();
     }
 
     public function confirmDelete(int $packageId): void
@@ -166,7 +187,7 @@ class PackageManagerPage extends Component
             session()->flash('success', 'Package created successfully.');
         }
 
-        $this->closeFormModal();
+        $this->closeForm();
     }
 
     private function generateUniqueSlug(string $nameEn): string
@@ -229,14 +250,15 @@ class PackageManagerPage extends Component
             ->toArray();
     }
 
-    public function openCreateTermModal(): void
+    public function openCreateTermForm(): void
     {
         $this->resetTermForm();
-        $this->showTermModal = true;
+        $this->showTermForm = true;
+        $this->showForm = false;
         $this->term_sort_order = (PackageTerm::max('sort_order') ?? 0) + 1;
     }
 
-    public function openEditTermModal(int $termId): void
+    public function openEditTermForm(int $termId): void
     {
         $term = PackageTerm::findOrFail($termId);
 
@@ -244,13 +266,29 @@ class PackageManagerPage extends Component
         $this->term_content = $term->content;
         $this->term_sort_order = (int) $term->sort_order;
         $this->term_active_status = (bool) $term->active_status;
-        $this->showTermModal = true;
+        $this->showTermForm = true;
+        $this->showForm = false;
+    }
+
+    public function closeTermForm(): void
+    {
+        $this->resetTermForm();
+        $this->showTermForm = false;
+    }
+
+    public function openCreateTermModal(): void
+    {
+        $this->openCreateTermForm();
+    }
+
+    public function openEditTermModal(int $termId): void
+    {
+        $this->openEditTermForm($termId);
     }
 
     public function closeTermModal(): void
     {
-        $this->resetTermForm();
-        $this->showTermModal = false;
+        $this->closeTermForm();
     }
 
     public function saveTerm(): void
@@ -275,7 +313,7 @@ class PackageManagerPage extends Component
             session()->flash('success', 'Package term created successfully.');
         }
 
-        $this->closeTermModal();
+        $this->closeTermForm();
     }
 
     public function confirmDeleteTerm(int $termId): void
