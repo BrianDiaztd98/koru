@@ -187,6 +187,7 @@ class LandingPage extends Component
     {
         return PackageTerm::query()
             ->where('active_status', true)
+            ->whereHas('packages', fn ($query) => $query->where('active_status', true))
             ->orderBy('sort_order')
             ->orderBy('id')
             ->get()

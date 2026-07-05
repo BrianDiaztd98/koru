@@ -22,6 +22,7 @@ class KoruContentSeeder extends Seeder
         SiteSetting::query()->delete();
         Service::query()->delete();
         Package::query()->delete();
+        PackageTerm::query()->delete();
         Course::query()->delete();
         TeamMember::query()->delete();
         Testimonial::query()->delete();
@@ -371,8 +372,17 @@ class KoruContentSeeder extends Seeder
             ],
         ];
 
+        $packages = Package::query()->get();
+
         foreach ($terms as $term) {
-            PackageTerm::query()->create($term);
+            $packageTerm = PackageTerm::query()->updateOrCreate(
+                ['sort_order' => $term['sort_order']],
+                $term
+            );
+
+            foreach ($packages as $package) {
+                $package->terms()->syncWithoutDetaching([$packageTerm->id => ['sort_order' => $packageTerm->sort_order]]);
+            }
         }
     }
 

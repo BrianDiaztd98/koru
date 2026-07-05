@@ -16,4 +16,13 @@ class PackageTerm extends Model
         'sort_order' => 'integer',
         'active_status' => 'boolean',
     ];
+
+    public function packages(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Package::class)
+            ->withPivot('sort_order')
+            ->withTimestamps()
+            ->orderByPivot('sort_order')
+            ->orderByPivot('created_at');
+    }
 }

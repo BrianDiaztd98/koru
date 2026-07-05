@@ -244,9 +244,18 @@ class PackageManagerPage extends Component
     public function getTermsProperty(): array
     {
         return PackageTerm::query()
+            ->where('active_status', true)
+            ->whereHas('packages', fn ($query) => $query->where('active_status', true))
             ->orderBy('sort_order')
             ->orderBy('id')
             ->get()
+            ->map(fn (PackageTerm $term) => [
+                'id' => $term->id,
+                'content' => $term->content,
+                'sort_order' => $term->sort_order,
+                'active_status' => $term->active_status,
+                'package_ids' => $term->packages()->pluck('packages.id')->all(),
+            ])
             ->toArray();
     }
 
