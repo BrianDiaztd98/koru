@@ -1,14 +1,13 @@
-<div class="w-full max-w-[360px] animate-fade-in">
+<div class="w-full max-w-sm login-container animate-fade-in">
     <div
-        class="relative rounded-2xl border border-slate-800/60 bg-slate-900/40 backdrop-blur-2xl p-6 sm:p-7 shadow-2xl shadow-black/40 overflow-hidden">
+        class="relative rounded-2xl border border-slate-800/60 bg-slate-900/40 backdrop-blur-2xl p-5 sm:p-6 shadow-2xl shadow-black/40 overflow-hidden mx-2 sm:mx-0 box-border">
 
         <div
             class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#0EB3B9]/60 to-transparent">
         </div>
-        <div class="absolute -top-20 -right-20 w-48 h-48 bg-[#0EB3B9]/[0.03] rounded-full blur-3xl pointer-events-none">
-        </div>
+        <div class="absolute -top-16 -right-16 w-40 h-40 bg-[#0EB3B9]/[0.03] rounded-full blur-3xl pointer-events-none"></div>
         <div
-            class="absolute -bottom-20 -left-20 w-48 h-48 bg-[#0E788D]/[0.03] rounded-full blur-3xl pointer-events-none">
+            class="absolute -bottom-16 -left-16 w-40 h-40 bg-[#0E788D]/[0.03] rounded-full blur-3xl pointer-events-none">
         </div>
 
         <div class="relative z-10">
