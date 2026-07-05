@@ -1,7 +1,6 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Alpine from 'alpinejs';
-import { initLandingPageVisitsChart } from './admin/landing-page-visits-chart.js';
 
 const prefersReducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -63,7 +62,6 @@ function bindVideoModal() {
 function onDocumentReady() {
     bindMobileMenu();
     bindVideoModal();
-    initLandingPageVisitsChart();
 
     if (document.querySelector('[data-aos]')) {
         initializeAOS();
@@ -78,7 +76,6 @@ function onDocumentReady() {
 }
 
 document.addEventListener('DOMContentLoaded', onDocumentReady);
-document.addEventListener('livewire:navigated', initLandingPageVisitsChart);
 
 // Scroll-linked animations: performant, rAF-driven transforms
 function initScrollLinkedAnimations() {
