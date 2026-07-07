@@ -18,6 +18,70 @@ function initializeAOS() {
     });
 }
 
+document.addEventListener('alpine:init', () => {
+    Alpine.data('heroCarousel', ({ totalSlides = 0 }) => ({
+        currentSlide: 0,
+        totalSlides,
+        autoPlay: true,
+        autoPlayTimer: null,
+        autoPlayResume: null,
+        reduceMotion: false,
+
+        init() {
+            this.reduceMotion = prefersReducedMotion();
+
+            if (this.totalSlides > 1 && !this.reduceMotion) {
+                this.startAutoPlay();
+            }
+
+            this.$nextTick(() => {
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            });
+        },
+
+        startAutoPlay() {
+            this.autoPlay = true;
+            this.autoPlayTimer = setInterval(() => {
+                if (this.autoPlay) {
+                    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                }
+            }, 6000);
+        },
+
+        pauseAutoPlay() {
+            this.autoPlay = false;
+            clearInterval(this.autoPlayTimer);
+            this.autoPlayTimer = null;
+            clearTimeout(this.autoPlayResume);
+            this.autoPlayResume = setTimeout(() => this.startAutoPlay(), 10000);
+        },
+
+        goTo(index) {
+            const count = this.totalSlides;
+            if (count === 0) {
+                return;
+            }
+            this.currentSlide = ((index % count) + count) % count;
+            this.pauseAutoPlay();
+        },
+
+        next() {
+            this.goTo(this.currentSlide + 1);
+        },
+
+        prev() {
+            this.goTo(this.currentSlide - 1);
+        },
+
+        destroy() {
+            clearInterval(this.autoPlayTimer);
+            clearTimeout(this.autoPlayResume);
+        },
+    }));
+});
+
 Alpine.start();
 
 function bindMobileMenu() {

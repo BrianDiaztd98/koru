@@ -12,6 +12,14 @@ class LandingPageVisitTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_landing_page_renders_a_skeleton_loader_placeholder_on_initial_load(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertOk();
+        $response->assertSee('landing-page-skeleton-loader');
+    }
+
     public function test_landing_page_visits_are_tracked_once_per_session_and_rendered_in_management_dashboard(): void
     {
         $admin = User::factory()->create(['is_admin' => true]);
