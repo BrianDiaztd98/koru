@@ -73,7 +73,11 @@
                         </svg>
                         <div>
                             <p class="text-xs text-slate-500 uppercase tracking-wider">Schedule</p>
-                            <p class="mt-0.5 text-xs font-medium text-slate-300">{{ $localizedSettings['hours'] ?? 'Thu-Tue: 8:00 AM - 8:00 PM (Wed: Closed)' }}</p>
+                            <div class="mt-1 space-y-1 text-xs font-medium text-slate-300">
+                                <p>Monday - Friday: 8:00 a.m. - 8:00 p.m.</p>
+                                <p>Saturdays: 9:00 a.m. - 3:00 p.m. (Appointment required)</p>
+                                <p>Sundays: 9:00 a.m. - 1:00 p.m. (Appointment &amp; 50% deposit required)</p>
+                            </div>
                         </div>
                     </div>
                 </div>
