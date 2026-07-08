@@ -56,7 +56,7 @@ class KoruContentSeeder extends Seeder
             'footer_disclaimer_es' => 'Opciones de seguro y pago privado disponibles. Citas solo con reserva.',
             'contact_email' => 'info@korucenter.com',
             'social_instagram' => 'https://instagram.com/korucenter',
-            'social_facebook' => 'https://facebook.com/korucenter',
+            'social_facebook' => 'https://www.facebook.com/profile.php?id=61587013239438',
             'footer_copyright_en' => '© '.date('Y').' Koru Center. All rights reserved.',
             'footer_copyright_es' => '© '.date('Y').' Koru Center. Todos los derechos reservados.',
         ];

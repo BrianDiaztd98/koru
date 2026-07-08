@@ -31,7 +31,7 @@
                             </a>
                         @endif
                         @if(!empty($localizedSettings['social_facebook']))
-                            <a href="{{ $localizedSettings['social_facebook'] }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-800/40 text-slate-400 transition hover:border-[#0EB3B9] hover:text-[#0EB3B9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]">
+                            <a href="{{ !empty($localizedSettings['social_facebook']) ? $localizedSettings['social_facebook'] : 'https://www.facebook.com/profile.php?id=61587013239438' }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-800/40 text-slate-400 transition hover:border-[#0EB3B9] hover:text-[#0EB3B9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]">
                                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                                 </svg>
