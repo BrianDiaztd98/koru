@@ -4,12 +4,12 @@
         <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#0EB3B9]/40 to-transparent"></div>
 
         <div class="relative z-10">
-            <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">Configuración de Abonos</p>
+            <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">Deposit Settings</p>
             <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">
-                Abonos por <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">día de la semana</span>
+                Deposits by <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">day of the week</span>
             </h1>
             <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">
-                Define el porcentaje de abono (pago inicial) que se aplica automáticamente a servicios y paquetes según el día de atención. Por defecto, los domingos aplican un 50 % de abono: el cliente paga la mitad al reservar y el resto en la cita.
+                Define the deposit percentage (initial payment) applied automatically to services and packages based on the service day. By default, Sundays apply a 50% deposit: the client pays half when booking and the rest at the appointment.
             </p>
         </div>
     </div>
@@ -25,8 +25,8 @@
 
     <form wire:submit.prevent="save" class="rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 sm:p-8 shadow-xl shadow-black/20 space-y-6">
         <div class="flex items-center justify-between">
-            <h2 class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">Abono por día</h2>
-            <span class="text-[11px] text-slate-500">Rango permitido: 0 % – 100 %</span>
+            <h2 class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">Deposit by day</h2>
+            <span class="text-[11px] text-slate-500">Allowed range: 0% – 100%</span>
         </div>
 
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -37,7 +37,7 @@
                         <label class="inline-flex items-center gap-2 cursor-pointer text-xs text-slate-400">
                             <input type="checkbox" wire:model="activeStatuses.{{ $dayOfWeek }}"
                                    class="rounded border-slate-700 bg-slate-900 text-[#0EB3B9] focus:ring-[#0EB3B9]" />
-                            Activo
+                            Active
                         </label>
                     </div>
 
@@ -62,7 +62,7 @@
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
-                Guardar ajustes
+                Save settings
             </button>
         </div>
     </form>

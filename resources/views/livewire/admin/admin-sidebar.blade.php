@@ -89,7 +89,9 @@
                     aria-current="{{ request()->routeIs('admin.packages.*') ? 'true' : 'false' }}">
                     <span class="flex items-center gap-2.5">
                         <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0 1.125.504 1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 7.5A2.25 2.25 0 017.5 5.25h9A2.25 2.25 0 0118.75 7.5v9A2.25 2.25 0 0116.5 18.75h-9A2.25 2.25 0 015.25 16.5v-9z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9.75h7.5" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 13.5h4.5" />
                         </svg>
                         Packages
                     </span>
@@ -101,9 +103,10 @@
                     aria-current="{{ request()->routeIs('admin.discounts.*') ? 'true' : 'false' }}">
                     <span class="flex items-center gap-2.5">
                         <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l-4.5 4.5m0 0l-4.5-4.5m4.5 4.5V3.75A1.5 1.5 0 015.25 2.25h13.5A1.5 1.5 0 0120.25 3.75v16.5M9 14.25l4.5-4.5m0 0l4.5 4.5M9 14.25L13.5 18.75M13.5 9.75L18 14.25" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v-1.5m0 0a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5zm0 0v1.5m0 0a2.25 2.25 0 110 4.5 2.25 2.25 0 010-4.5zm0 0v1.5m0 0h4.5m-4.5 0H7.5" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75a1.5 1.5 0 011.5-1.5h12a1.5 1.5 0 011.5 1.5v6a1.5 1.5 0 01-1.5 1.5h-12a1.5 1.5 0 01-1.5-1.5v-6z" />
                         </svg>
-                        Discounts
+                        Deposits
                     </span>
                     <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.discounts.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                 </a>

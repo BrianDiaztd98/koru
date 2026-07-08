@@ -38,7 +38,7 @@
                         <span>Name</span>
                         <span>Category</span>
                         <span>Price</span>
-                        <span>Discount</span>
+                        <span>Deposits</span>
                         <span>Duration</span>
                         <span class="text-right">Actions</span>
                     </div>
@@ -135,7 +135,7 @@
 
                 <div class="md:col-span-2 flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
                     <input id="service_discount_eligible" type="checkbox" wire:model.defer="discount_eligible" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#0EB3B9] focus:ring-[#0EB3B9]" />
-                    <label for="service_discount_eligible" class="text-sm text-slate-300">Eligible for day discounts</label>
+                    <label for="service_discount_eligible" class="text-sm text-slate-300">Eligible for deposits</label>
                 </div>
 
                 <div class="md:col-span-2 flex flex-wrap gap-3 pt-2">
