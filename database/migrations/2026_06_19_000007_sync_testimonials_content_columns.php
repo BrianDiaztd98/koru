@@ -25,10 +25,6 @@ return new class extends Migration
                 $table->text('quote_en');
             }
 
-            if (! Schema::hasColumn('testimonials', 'quote_es')) {
-                $table->text('quote_es');
-            }
-
             if (! Schema::hasColumn('testimonials', 'image_path')) {
                 $table->string('image_path')->nullable();
             }
@@ -36,7 +32,6 @@ return new class extends Migration
             $legacyColumns = array_filter([
                 'client_name',
                 'text_en',
-                'text_es',
                 'rating',
                 'is_video',
             ], fn ($column) => Schema::hasColumn('testimonials', $column));
@@ -57,7 +52,6 @@ return new class extends Migration
             $legacyColumns = array_filter([
                 'client_name',
                 'text_en',
-                'text_es',
                 'rating',
                 'is_video',
             ], fn ($column) => ! Schema::hasColumn('testimonials', $column));
@@ -65,7 +59,6 @@ return new class extends Migration
             if ($legacyColumns !== []) {
                 $table->string('client_name');
                 $table->text('text_en');
-                $table->text('text_es');
                 $table->integer('rating')->default(5);
                 $table->boolean('is_video')->default(false);
             }
@@ -74,7 +67,6 @@ return new class extends Migration
                 'author_name',
                 'author_role',
                 'quote_en',
-                'quote_es',
                 'image_path',
             ], fn ($column) => Schema::hasColumn('testimonials', $column));
 

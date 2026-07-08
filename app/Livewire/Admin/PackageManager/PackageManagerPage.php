@@ -22,11 +22,7 @@ class PackageManagerPage extends Component
 
     public string $name_en = '';
 
-    public string $name_es = '';
-
     public string $description_en = '';
-
-    public string $description_es = '';
 
     public string $price = '';
 
@@ -37,6 +33,7 @@ class PackageManagerPage extends Component
     public int $sort_order = 0;
 
     public bool $active_status = true;
+
     public bool $discount_eligible = false;
 
     public bool $showForm = false;
@@ -66,9 +63,7 @@ class PackageManagerPage extends Component
         if ($this->package) {
             $this->fill([
                 'name_en' => $package->name_en,
-                'name_es' => $package->name_es,
                 'description_en' => $package->description_en,
-                'description_es' => $package->description_es,
                 'price' => (string) $package->price,
                 'sessions' => (int) $package->sessions,
                 'validity' => $package->validity,
@@ -83,9 +78,7 @@ class PackageManagerPage extends Component
     {
         return [
             'name_en' => ['required', 'string', 'max:255'],
-            'name_es' => ['required', 'string', 'max:255'],
             'description_en' => ['nullable', 'string'],
-            'description_es' => ['nullable', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
             'sessions' => ['required', 'integer', 'min:1'],
             'validity' => ['nullable', 'string', 'max:255'],
@@ -111,9 +104,7 @@ class PackageManagerPage extends Component
         $this->isEdit = true;
         $this->fill([
             'name_en' => $package->name_en,
-            'name_es' => $package->name_es,
             'description_en' => $package->description_en,
-            'description_es' => $package->description_es,
             'price' => (string) $package->price,
             'sessions' => (int) $package->sessions,
             'validity' => $package->validity,
@@ -228,9 +219,7 @@ class PackageManagerPage extends Component
         $this->package = null;
         $this->isEdit = false;
         $this->name_en = '';
-        $this->name_es = '';
         $this->description_en = '';
-        $this->description_es = '';
         $this->price = '';
         $this->sessions = 1;
         $this->validity = null;

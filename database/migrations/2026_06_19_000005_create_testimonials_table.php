@@ -14,7 +14,6 @@ return new class extends Migration
                 $table->string('author_name');
                 $table->string('author_role')->nullable();
                 $table->text('quote_en');
-                $table->text('quote_es');
                 $table->string('video_url')->nullable();
                 $table->string('image_path')->nullable();
                 $table->boolean('active_status')->default(true);

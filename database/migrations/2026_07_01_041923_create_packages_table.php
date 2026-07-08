@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('name_en');
-            $table->string('name_es');
             $table->text('description_en')->nullable();
-            $table->text('description_es')->nullable();
             $table->decimal('price', 10, 2)->default(0);
             $table->unsignedInteger('sessions')->default(1);
             $table->string('validity')->nullable();

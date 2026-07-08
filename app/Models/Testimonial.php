@@ -16,7 +16,6 @@ class Testimonial extends Model
         'author_name',
         'author_role',
         'quote_en',
-        'quote_es',
         'active_status',
     ];
 

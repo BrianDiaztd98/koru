@@ -29,17 +29,14 @@ class ServiceManagerPage extends Component
 
     public string $name_en = '';
 
-    public string $name_es = '';
-
     public string $description_en = '';
-
-    public string $description_es = '';
 
     public string $duration = '';
 
     public string $price = '';
 
     public bool $active_status = true;
+
     public bool $discount_eligible = false;
 
     public ?TemporaryUploadedFile $image_path = null;
@@ -76,9 +73,7 @@ class ServiceManagerPage extends Component
         if ($this->service) {
             $this->fill([
                 'name_en' => $service->name_en,
-                'name_es' => $service->name_es,
                 'description_en' => $service->description_en,
-                'description_es' => $service->description_es,
                 'duration' => $service->duration,
                 'price' => (string) $service->price,
                 'active_status' => $service->active_status,
@@ -92,9 +87,7 @@ class ServiceManagerPage extends Component
     {
         return [
             'name_en' => ['required', 'string', 'max:255'],
-            'name_es' => ['required', 'string', 'max:255'],
             'description_en' => ['required', 'string'],
-            'description_es' => ['required', 'string'],
             'duration' => ['required', 'string', 'max:255'],
             'price' => ['required', 'numeric', 'min:0'],
             'category' => ['required', 'string', 'in:'.implode(',', array_keys($this->categories))],
@@ -126,9 +119,7 @@ class ServiceManagerPage extends Component
         $this->isEdit = true;
         $this->fill([
             'name_en' => $service->name_en,
-            'name_es' => $service->name_es,
             'description_en' => $service->description_en,
-            'description_es' => $service->description_es,
             'duration' => $service->duration,
             'price' => (string) $service->price,
             'active_status' => $service->active_status,
@@ -237,9 +228,7 @@ class ServiceManagerPage extends Component
         $this->service = null;
         $this->isEdit = false;
         $this->name_en = '';
-        $this->name_es = '';
         $this->description_en = '';
-        $this->description_es = '';
         $this->duration = '';
         $this->price = '';
         $this->active_status = true;

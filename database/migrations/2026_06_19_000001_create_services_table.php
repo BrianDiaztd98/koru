@@ -13,9 +13,7 @@ return new class extends Migration
                 $table->id();
                 $table->string('slug')->unique();
                 $table->string('name_en');
-                $table->string('name_es');
                 $table->text('description_en');
-                $table->text('description_es');
                 $table->decimal('price', 10, 2)->default(0);
                 $table->string('duration')->nullable();
                 $table->string('image_path')->nullable();

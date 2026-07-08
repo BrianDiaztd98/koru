@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Package extends Model
 {
@@ -12,9 +13,7 @@ class Package extends Model
     protected $fillable = [
         'slug',
         'name_en',
-        'name_es',
         'description_en',
-        'description_es',
         'price',
         'sessions',
         'validity',
@@ -31,7 +30,7 @@ class Package extends Model
         'discount_eligible' => 'boolean',
     ];
 
-    public function terms(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function terms(): BelongsToMany
     {
         return $this->belongsToMany(PackageTerm::class)
             ->withPivot('sort_order')

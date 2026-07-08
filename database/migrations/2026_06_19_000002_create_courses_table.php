@@ -12,9 +12,7 @@ return new class extends Migration
             Schema::create('courses', function (Blueprint $table) {
                 $table->id();
                 $table->string('title_en');
-                $table->string('title_es');
                 $table->text('description_en');
-                $table->text('description_es');
                 $table->integer('ce_credits')->default(0);
                 $table->date('date');
                 $table->decimal('price', 10, 2)->default(0);

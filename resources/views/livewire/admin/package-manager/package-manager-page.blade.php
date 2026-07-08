@@ -1,4 +1,4 @@
-<?php use Illuminate\Support\Str; ?>
+<?php ?>
 
 <div>
     <div class="lg:col-span-3 space-y-6">
@@ -36,7 +36,6 @@
                         <div class="admin-table-row grid-cols-[1.2fr_0.5fr_0.6fr_0.4fr_0.5fr_0.5fr]">
                             <div>
                                 <p class="font-semibold text-white">{{ $package->name_en }}</p>
-                                <p class="mt-1 text-xs text-slate-500">{{ $package->name_es }}</p>
                                 <p class="mt-1 text-xs text-slate-500">{{ Str::limit($package->description_en, 90) }}</p>
                             </div>
                             <div>
@@ -124,24 +123,14 @@
 
             <form wire:submit.prevent="save" class="mt-6 grid gap-5">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="flex flex-col gap-1.5">
+                    <div class="md:col-span-2 flex flex-col gap-1.5">
                         <label class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Name (EN)</label>
                         <input type="text" wire:model.defer="name_en" class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="e.g. Basic" />
                     </div>
-                    <div class="flex flex-col gap-1.5">
-                        <label class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Name (ES)</label>
-                        <input type="text" wire:model.defer="name_es" class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="e.g. Básico" />
+                    <div class="md:col-span-2 flex flex-col gap-1.5">
+                        <label class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Description (EN)</label>
+                        <textarea wire:model.defer="description_en" rows="3" class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Short description shown on the landing page..."></textarea>
                     </div>
-                </div>
-
-                <div class="flex flex-col gap-1.5">
-                    <label class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Description (EN)</label>
-                    <textarea wire:model.defer="description_en" rows="3" class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Short description shown on the landing page..."></textarea>
-                </div>
-
-                <div class="flex flex-col gap-1.5">
-                    <label class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Description (ES)</label>
-                    <textarea wire:model.defer="description_es" rows="3" class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Descripción corta mostrada en la página pública..."></textarea>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">

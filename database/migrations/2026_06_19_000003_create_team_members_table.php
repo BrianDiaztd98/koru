@@ -14,7 +14,6 @@ return new class extends Migration
                 $table->string('name');
                 $table->string('instagram_handle')->nullable();
                 $table->text('bio_en')->nullable();
-                $table->text('bio_es')->nullable();
                 $table->string('image_path')->nullable();
                 $table->boolean('active_status')->default(true);
                 $table->timestamps();

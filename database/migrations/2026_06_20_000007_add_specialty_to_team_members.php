@@ -9,15 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('team_members', function (Blueprint $table) {
-            $table->text('specialty_en')->nullable()->after('bio_es');
-            $table->text('specialty_es')->nullable()->after('specialty_en');
+            $table->text('specialty_en')->nullable()->after('bio_en');
         });
     }
 
     public function down(): void
     {
         Schema::table('team_members', function (Blueprint $table) {
-            $table->dropColumn(['specialty_en', 'specialty_es']);
+            $table->dropColumn(['specialty_en']);
         });
     }
 };

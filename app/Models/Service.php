@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
+use App\Services\AdminMediaService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-use App\Services\AdminMediaService;
 
 class Service extends Model
 {
@@ -14,9 +13,7 @@ class Service extends Model
     protected $fillable = [
         'slug',
         'name_en',
-        'name_es',
         'description_en',
-        'description_es',
         'price',
         'duration',
         'image_path',

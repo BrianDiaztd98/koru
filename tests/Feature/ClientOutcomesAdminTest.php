@@ -2,8 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
+use App\Livewire\Admin\ClientOutcomesPage;
+use App\Livewire\Components\TestimonialsShowcase;
 use App\Models\Testimonial;
+use App\Models\User;
+use Database\Seeders\KoruContentSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -33,7 +36,7 @@ class ClientOutcomesAdminTest extends TestCase
             'video_path' => 'videos/testimonials/'.$index.'.mp4',
         ])->all();
 
-        Livewire::test(\App\Livewire\Components\TestimonialsShowcase::class, ['testimonials' => $testimonials])
+        Livewire::test(TestimonialsShowcase::class, ['testimonials' => $testimonials])
             ->assertSee('Story 1')
             ->assertSee('Story 2')
             ->assertSee('Story 3')
@@ -43,7 +46,7 @@ class ClientOutcomesAdminTest extends TestCase
 
     public function test_koru_content_seeder_creates_client_outcomes_without_legacy_required_fields(): void
     {
-        $this->artisan('db:seed', ['--class' => \Database\Seeders\KoruContentSeeder::class])
+        $this->artisan('db:seed', ['--class' => KoruContentSeeder::class])
             ->assertExitCode(0);
 
         $this->assertDatabaseHas('testimonials', [
@@ -65,11 +68,10 @@ class ClientOutcomesAdminTest extends TestCase
             'author_name' => 'Original Author',
             'author_role' => 'Original Role',
             'quote_en' => 'Original quote EN',
-            'quote_es' => 'Original quote ES',
             'active_status' => true,
         ]);
 
-        Livewire::test(\App\Livewire\Admin\ClientOutcomesPage::class)
+        Livewire::test(ClientOutcomesPage::class)
             ->call('openEditForm', $testimonial->id)
             ->assertSet('testimonial.id', $testimonial->id)
             ->set('title', 'Updated outcome')

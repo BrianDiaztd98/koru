@@ -11,7 +11,7 @@
     @include('components.landing-page-skeleton')
 
     <div x-show="isLoaded" x-cloak>
-        <livewire:components.header :locale="$this->locale" :headerNavItems="$this->headerNavItems" />
+        <livewire:components.header :headerNavItems="$this->headerNavItems" />
 
         <main class="flex-1 overflow-x-hidden">
             {{-- HERO: LCP crítico, sin lazy --}}

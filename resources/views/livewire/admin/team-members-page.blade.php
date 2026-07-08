@@ -1,4 +1,4 @@
-<?php use Illuminate\Support\Str; ?>
+<?php ?>
 
 <div class="lg:col-span-3 space-y-6">
     <!-- Título de ubicación actual -->
@@ -34,9 +34,9 @@
                     <div class="admin-table-row grid-cols-[1.3fr_1fr_0.5fr]">
                         <div>
                             <p class="font-semibold text-white">{{ $member->name }}</p>
-                            <p class="mt-1 text-xs text-slate-500">{{ Str::limit($member->bio_en ?: $member->bio_es ?: '', 80) }}</p>
+                            <p class="mt-1 text-xs text-slate-500">{{ Str::limit($member->bio_en ?: '', 80) }}</p>
                         </div>
-                        <div class="text-slate-400">{{ $member->specialty_en ?: $member->specialty_es ?: '—' }}</div>
+                        <div class="text-slate-400">{{ $member->specialty_en ?: '—' }}</div>
                         <div class="flex justify-end gap-2">
                             <button type="button" wire:click="openEditForm({{ $member->id }})" class="admin-btn-ghost">Edit</button>
                             <button type="button" wire:click="confirmDelete({{ $member->id }})" class="admin-btn-danger">Delete</button>
@@ -57,9 +57,9 @@
                     <p class="text-sm text-slate-400">Manage team profiles inline without modals.</p>
                 </div>
                 <div class="flex items-center gap-3">
-                    <a href="{{ route('admin.team.index') }}" class="admin-btn-secondary">
+                    <button type="button" wire:click="closeForm" class="admin-btn-secondary">
                         Volver
-                    </a>
+                    </button>
                 </div>
             </div>
 
@@ -72,21 +72,13 @@
                     <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Instagram</label>
                     <input type="text" wire:model.defer="instagram_handle" class="admin-input" />
                 </div>
-                <div>
+                <div class="md:col-span-2">
                     <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Specialty (EN)</label>
                     <input type="text" wire:model.defer="specialty_en" class="admin-input" />
-                </div>
-                <div>
-                    <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Specialty (ES)</label>
-                    <input type="text" wire:model.defer="specialty_es" class="admin-input" />
                 </div>
                 <div class="md:col-span-2">
                     <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Bio (EN)</label>
                     <textarea wire:model.defer="bio_en" rows="3" class="admin-input"></textarea>
-                </div>
-                <div class="md:col-span-2">
-                    <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Bio (ES)</label>
-                    <textarea wire:model.defer="bio_es" rows="3" class="admin-input"></textarea>
                 </div>
                 <div>
                     <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Profile image</label>

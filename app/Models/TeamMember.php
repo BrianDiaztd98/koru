@@ -10,9 +10,7 @@ class TeamMember extends Model
         'name',
         'instagram_handle',
         'bio_en',
-        'bio_es',
         'specialty_en',
-        'specialty_es',
         'image_path',
         'active_status',
     ];

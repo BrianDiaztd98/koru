@@ -12,8 +12,6 @@ use App\Models\SiteSetting;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
 use App\Services\DiscountService;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -21,8 +19,6 @@ use Livewire\Component;
 #[Layout('components.layouts.app')]
 class LandingPage extends Component
 {
-    public string $locale = 'en';
-
     public array $headerNavItems = [];
 
     protected DiscountService $discountService;
@@ -30,9 +26,7 @@ class LandingPage extends Component
     public function mount(DiscountService $discountService): void
     {
         $this->discountService = $discountService;
-        $this->locale = Session::get('locale', app()->getLocale() ?: 'en');
         $this->headerNavItems = $this->buildHeaderNavItems();
-        App::setLocale($this->locale);
 
         // Count each landing-page visit once per browser session so refreshes and F5 do not inflate the stats.
         if (! session()->has('landing_page_viewed')) {
@@ -41,34 +35,14 @@ class LandingPage extends Component
         }
     }
 
-    public function updatedLocale(string $value): void
-    {
-        $this->setLocale($value);
-    }
-
-    public function setLocale(string $locale): void
-    {
-        $locale = in_array($locale, ['en', 'es'], true) ? $locale : 'en';
-        $this->locale = $locale;
-        Session::put('locale', $locale);
-        App::setLocale($locale);
-    }
-
-    protected function currentLocale(): string
-    {
-        return in_array(app()->getLocale(), ['en', 'es'], true) ? app()->getLocale() : 'en';
-    }
-
     protected function buildHeaderNavItems(): array
     {
-        $locale = $this->locale;
-
         return [
-            ['label' => $locale === 'es' ? 'Nosotros' : 'About', 'href' => '#about-us'],
-            ['label' => $locale === 'es' ? 'Servicios' : 'Services', 'href' => '#services'],
-            ['label' => $locale === 'es' ? 'Educación' : 'Education', 'href' => '#education'],
-            ['label' => $locale === 'es' ? 'Equipo' : 'Team', 'href' => '#team'],
-            ['label' => $locale === 'es' ? 'Ubicación' : 'Location', 'href' => '#location'],
+            ['label' => 'About', 'href' => '#about-us'],
+            ['label' => 'Services', 'href' => '#services'],
+            ['label' => 'Education', 'href' => '#education'],
+            ['label' => 'Team', 'href' => '#team'],
+            ['label' => 'Location', 'href' => '#location'],
         ];
     }
 
@@ -83,48 +57,43 @@ class LandingPage extends Component
         ];
     }
 
-    protected function t(string $en, string $es): string
-    {
-        return $this->locale === 'es' ? $es : $en;
-    }
-
     #[Computed]
     public function getHeroSlidesProperty(): array
     {
         return [
             [
                 'id' => 0,
-                'badge' => $this->t('Wellness & Performance', 'Bienestar y Rendimiento'),
-                'title_line_1' => $this->t('Relaxing Massage', 'Masaje Relajante'),
-                'title_line_2' => $this->t('Total Recovery', 'Recuperación Total'),
-                'description' => $this->t('Advanced therapeutic techniques designed to relieve muscle tension, reduce stress levels, and significantly improve joint mobility.', 'Técnicas terapéuticas avanzadas diseñadas para aliviar la tensión muscular, reducir los niveles de estrés y mejorar significativamente la movilidad articular.'),
-                'btn_primary_text' => $this->t('Book a Session', 'Reservar Sesión'),
+                'badge' => 'Wellness & Performance',
+                'title_line_1' => 'Relaxing Massage',
+                'title_line_2' => 'Total Recovery',
+                'description' => 'Advanced therapeutic techniques designed to relieve muscle tension, reduce stress levels, and significantly improve joint mobility.',
+                'btn_primary_text' => 'Book a Session',
                 'btn_primary_url' => 'https://wa.me/17867528054',
-                'btn_secondary_text' => $this->t('View Services', 'Ver Servicios'),
+                'btn_secondary_text' => 'View Services',
                 'btn_secondary_url' => '#services',
                 'image' => asset('img/carrucel/relaxing.jpg'),
             ],
             [
                 'id' => 1,
-                'badge' => $this->t('Advanced Recovery', 'Recuperación Avanzada'),
+                'badge' => 'Advanced Recovery',
                 'title_line_1' => 'Normatec',
-                'title_line_2' => $this->t('Technology', 'Tecnología'),
-                'description' => $this->t('Dynamic sequential compression bio-mechanisms to optimize blood flow, accelerate muscle clearance, and reduce inflammation effortlessly.', 'Mecanismos biomecánicos de compresión secuencial dinámica para optimizar el flujo sanguíneo, acelerar la eliminación muscular y reducir la inflamación sin esfuerzo.'),
-                'btn_primary_text' => $this->t('Book No Hands Session', 'Reservar Sesión No Hands'),
+                'title_line_2' => 'Technology',
+                'description' => 'Dynamic sequential compression bio-mechanisms to optimize blood flow, accelerate muscle clearance, and reduce inflammation effortlessly.',
+                'btn_primary_text' => 'Book No Hands Session',
                 'btn_primary_url' => 'https://wa.me/17867528054',
-                'btn_secondary_text' => $this->t('View Services', 'Ver Servicios'),
+                'btn_secondary_text' => 'View Services',
                 'btn_secondary_url' => '#services',
                 'image' => asset('img/carrucel/normatec.png'),
             ],
             [
                 'id' => 2,
-                'badge' => $this->t('Total Regeneration', 'Regeneración Total'),
-                'title_line_1' => $this->t('Super', 'Súper'),
-                'title_line_2' => $this->t('Recovery Protocol', 'Protocolo de Recuperación'),
-                'description' => $this->t('Synergistic red light therapy and cold plunge contrast routines engineered for deep cellular regeneration and elite performance.', 'Rutinas sinérgicas de terapia de luz roja y contraste de inmersión en frío diseñadas para la regeneración celular profunda y el rendimiento de élite.'),
-                'btn_primary_text' => $this->t('Book Super Recovery', 'Reservar Súper Recuperación'),
+                'badge' => 'Total Regeneration',
+                'title_line_1' => 'Super',
+                'title_line_2' => 'Recovery Protocol',
+                'description' => 'Synergistic red light therapy and cold plunge contrast routines engineered for deep cellular regeneration and elite performance.',
+                'btn_primary_text' => 'Book Super Recovery',
                 'btn_primary_url' => 'https://wa.me/17867528054',
-                'btn_secondary_text' => $this->t('View Services', 'Ver Servicios'),
+                'btn_secondary_text' => 'View Services',
                 'btn_secondary_url' => '#services',
                 'image' => asset('img/carrucel/luzroja.webp'),
             ],
@@ -152,8 +121,8 @@ class LandingPage extends Component
             ->map(fn ($group) => $group->map(fn (Service $service) => $this->buildPricedItem($service->price, $service->discount_eligible, [
                 'id' => $service->id,
                 'slug' => $service->slug,
-                'title' => $this->locale === 'es' ? $service->name_es : $service->name_en,
-                'description' => $this->locale === 'es' ? $service->description_es : $service->description_en,
+                'title' => $service->name_en,
+                'description' => $service->description_en,
                 'duration' => $service->duration,
                 'image' => $service->image_path ?: asset('img/carrucel/relaxing.jpg'),
             ]))->toArray())
@@ -170,26 +139,24 @@ class LandingPage extends Component
             ->get()
             ->map(fn (Service $service) => $this->buildPricedItem($service->price, $service->discount_eligible, [
                 'id' => $service->id,
-                'title' => $this->locale === 'es' ? $service->name_es : $service->name_en,
-                'description' => $this->locale === 'es' ? $service->description_es : $service->description_en,
+                'title' => $service->name_en,
+                'description' => $service->description_en,
             ]))->toArray();
     }
 
     #[Computed]
     public function getPackagesProperty(): array
     {
-        $locale = $this->locale;
-
         return Package::query()
             ->where('active_status', true)
             ->orderBy('sort_order')
             ->get()
             ->map(fn (Package $package) => $this->buildPricedItem($package->price, $package->discount_eligible, [
                 'id' => $package->id,
-                'name' => $locale === 'es' ? $package->name_es : $package->name_en,
+                'name' => $package->name_en,
                 'sessions' => $package->sessions,
                 'validity' => $package->validity,
-                'description' => $locale === 'es' ? $package->description_es : $package->description_en,
+                'description' => $package->description_en,
             ]))->toArray();
     }
 
@@ -219,8 +186,8 @@ class LandingPage extends Component
             ->get()
             ->map(fn (Service $service) => $this->buildPricedItem($service->price, $service->discount_eligible, [
                 'id' => $service->id,
-                'title' => $this->locale === 'es' ? $service->name_es : $service->name_en,
-                'description' => $this->locale === 'es' ? $service->description_es : $service->description_en,
+                'title' => $service->name_en,
+                'description' => $service->description_en,
                 'duration' => $service->duration,
                 'icon' => $this->resolveIvIcon($service),
             ]))->toArray();
@@ -249,8 +216,8 @@ class LandingPage extends Component
             ->get()
             ->map(fn (Course $course) => [
                 'id' => $course->id,
-                'title' => $this->locale === 'es' ? $course->title_es : $course->title_en,
-                'description' => $this->locale === 'es' ? $course->description_es : $course->description_en,
+                'title' => $course->title_en,
+                'description' => $course->description_en,
                 'ce_credits' => $course->ce_credits,
                 'date' => $course->date->format('M j, Y'),
                 'price' => number_format($course->price, 2),
@@ -286,8 +253,6 @@ class LandingPage extends Component
     #[Computed]
     public function getTeamMembersProperty(): array
     {
-        $locale = $this->locale;
-
         return TeamMember::query()
             ->where('active_status', true)
             ->orderBy('name')
@@ -296,8 +261,8 @@ class LandingPage extends Component
                 'id' => $member->id,
                 'name' => $member->name,
                 'instagram' => $member->instagram_handle,
-                'bio' => $locale === 'es' ? $member->bio_es : $member->bio_en,
-                'specialty' => $locale === 'es' ? $member->specialty_es ?? $member->bio_es : $member->specialty_en ?? $member->bio_en,
+                'bio' => $member->bio_en,
+                'specialty' => $member->specialty_en ?? $member->bio_en,
                 'image' => $member->image_path ?: asset('img/team/placeholder.png'),
             ])
             ->toArray();
@@ -312,44 +277,41 @@ class LandingPage extends Component
     #[Computed]
     public function getLocalizedSettingsProperty(): array
     {
-        $locale = $this->locale;
         $settings = $this->siteSettings;
 
         return [
-            'hero_headline' => $settings['hero_headline_'.$locale] ?? 'Pain free, better life',
-            'hero_subtitle' => $settings['hero_subtitle_'.$locale] ?? 'Center of excellence in recovery and sports performance.',
+            'hero_headline' => $settings['hero_headline_en'] ?? 'Pain free, better life',
+            'hero_subtitle' => $settings['hero_subtitle_en'] ?? 'Center of excellence in recovery and sports performance.',
             'phone' => $settings['phone'] ?? '+1 786-752-8054',
             'hours' => $settings['hours'] ?? 'Thu-Tue, 8am-8pm',
             'address' => $settings['address'] ?? '6405 NW 36th St, #100, Virginia Gardens FL 33166',
-            'footer_disclaimer' => $settings['footer_disclaimer_'.$locale] ?? 'Insurance & self-pay options available.',
+            'footer_disclaimer' => $settings['footer_disclaimer_en'] ?? 'Insurance & self-pay options available.',
             'contact_email' => $settings['contact_email'] ?? 'info@korucenter.com',
             'social_instagram' => $settings['social_instagram'] ?? '',
             'social_facebook' => $settings['social_facebook'] ?? '',
-            'footer_copyright' => $settings['footer_copyright_'.$locale] ?? '© '.date('Y').' Koru Center. All rights reserved.',
+            'footer_copyright' => $settings['footer_copyright_en'] ?? '© '.date('Y').' Koru Center. All rights reserved.',
         ];
     }
 
     #[Computed]
     public function getPillarLabelsProperty(): array
     {
-        $locale = $this->locale;
-
         return [
             'manual_therapy' => [
-                'title' => $locale === 'es' ? 'Masajes Terapéuticos' : 'Massage Services',
-                'summary' => $locale === 'es' ? 'Masaje clínico, prenatal, relajación profunda y recuperación manual.' : 'Clinical massage, prenatal care, deep relaxation, and manual recovery.',
+                'title' => 'Massage Services',
+                'summary' => 'Clinical massage, prenatal care, deep relaxation, and manual recovery.',
             ],
             'recovery_performance' => [
-                'title' => $locale === 'es' ? 'Terapia y Rendimiento' : 'Therapy Services',
-                'summary' => $locale === 'es' ? 'Evaluación, rehabilitación terapéutica y tecnología avanzada de recuperación.' : 'Assessment, therapeutic rehab, and advanced recovery technology.',
+                'title' => 'Therapy Services',
+                'summary' => 'Assessment, therapeutic rehab, and advanced recovery technology.',
             ],
             'medical_services' => [
-                'title' => $locale === 'es' ? 'Servicios Médicos' : 'Medical Services',
-                'summary' => $locale === 'es' ? 'Consultas médicas especializadas en metabolismo, endocrinología y valoración clínica.' : 'Specialized medical consultations in metabolism, endocrinology, and clinical assessment.',
+                'title' => 'Medical Services',
+                'summary' => 'Specialized medical consultations in metabolism, endocrinology, and clinical assessment.',
             ],
             'koru_at_home' => [
-                'title' => $locale === 'es' ? 'Koru en Casa' : 'Koru At Home',
-                'summary' => $locale === 'es' ? 'Masaje terapéutico y recuperación avanzada en la comodidad de tu hogar.' : 'Therapeutic massage and advanced recovery in the comfort of your home.',
+                'title' => 'Koru At Home',
+                'summary' => 'Therapeutic massage and advanced recovery in the comfort of your home.',
             ],
         ];
     }
@@ -369,12 +331,6 @@ class LandingPage extends Component
                 'video_path' => $testimonial->video_path ?? $testimonial->video_url,
             ])
             ->toArray();
-    }
-
-    #[On('locale-changed')]
-    public function updateLocaleFromHeader(string $locale): void
-    {
-        $this->setLocale($locale);
     }
 
     public function render()

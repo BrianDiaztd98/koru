@@ -39,9 +39,7 @@ class TeamAdminTest extends TestCase
             ->set('name', 'Dr. Maya Rivera')
             ->set('instagram_handle', '@maya')
             ->set('bio_en', 'Expert in recovery and mobility.')
-            ->set('bio_es', 'Experta en recuperación y movilidad.')
             ->set('specialty_en', 'Physical Therapy')
-            ->set('specialty_es', 'Fisioterapia')
             ->call('save')
             ->assertHasNoErrors();
 
@@ -49,9 +47,7 @@ class TeamAdminTest extends TestCase
             'name' => 'Dr. Maya Rivera',
             'instagram_handle' => '@maya',
             'bio_en' => 'Expert in recovery and mobility.',
-            'bio_es' => 'Experta en recuperación y movilidad.',
             'specialty_en' => 'Physical Therapy',
-            'specialty_es' => 'Fisioterapia',
             'active_status' => true,
         ]);
     }
@@ -64,9 +60,7 @@ class TeamAdminTest extends TestCase
             'name' => 'Original Name',
             'instagram_handle' => '@original',
             'bio_en' => 'Original bio.',
-            'bio_es' => 'Biografía original.',
             'specialty_en' => 'Original Specialty',
-            'specialty_es' => 'Especialidad original',
             'active_status' => true,
         ]);
 

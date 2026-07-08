@@ -102,7 +102,6 @@ class ClientOutcomesPage extends Component
         $validated['author_name'] = $validated['title'];
         $validated['author_role'] = 'Client Outcome';
         $validated['quote_en'] = $validated['description'];
-        $validated['quote_es'] = $validated['description'];
 
         if ($this->testimonial && $this->testimonial->exists) {
             $this->testimonial->update($validated);

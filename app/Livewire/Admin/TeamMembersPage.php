@@ -21,11 +21,7 @@ class TeamMembersPage extends Component
 
     public string $bio_en = '';
 
-    public string $bio_es = '';
-
     public string $specialty_en = '';
-
-    public string $specialty_es = '';
 
     public ?TemporaryUploadedFile $image_file = null;
 
@@ -50,9 +46,7 @@ class TeamMembersPage extends Component
                 'name' => $this->teamMember->name ?? '',
                 'instagram_handle' => $this->teamMember->instagram_handle ?? '',
                 'bio_en' => $this->teamMember->bio_en ?? '',
-                'bio_es' => $this->teamMember->bio_es ?? '',
                 'specialty_en' => $this->teamMember->specialty_en ?? '',
-                'specialty_es' => $this->teamMember->specialty_es ?? '',
                 'active_status' => (bool) $this->teamMember->active_status,
             ]);
         }
@@ -64,9 +58,7 @@ class TeamMembersPage extends Component
             'name' => ['required', 'string', 'max:255'],
             'instagram_handle' => ['nullable', 'string', 'max:255'],
             'bio_en' => ['nullable', 'string'],
-            'bio_es' => ['nullable', 'string'],
             'specialty_en' => ['nullable', 'string', 'max:255'],
-            'specialty_es' => ['nullable', 'string', 'max:255'],
             'image_file' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             'active_status' => ['boolean'],
         ];
@@ -87,9 +79,7 @@ class TeamMembersPage extends Component
             'name' => $teamMember->name ?? '',
             'instagram_handle' => $teamMember->instagram_handle ?? '',
             'bio_en' => $teamMember->bio_en ?? '',
-            'bio_es' => $teamMember->bio_es ?? '',
             'specialty_en' => $teamMember->specialty_en ?? '',
-            'specialty_es' => $teamMember->specialty_es ?? '',
             'active_status' => (bool) $teamMember->active_status,
         ]);
         $this->showForm = true;
@@ -162,9 +152,7 @@ class TeamMembersPage extends Component
         $this->name = '';
         $this->instagram_handle = '';
         $this->bio_en = '';
-        $this->bio_es = '';
         $this->specialty_en = '';
-        $this->specialty_es = '';
         $this->image_file = null;
         $this->active_status = true;
         $this->showForm = false;

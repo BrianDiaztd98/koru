@@ -1,4 +1,4 @@
-<?php use Illuminate\Support\Str; ?>
+<?php ?>
 
 <div>
     <div class="lg:col-span-3 space-y-6">
@@ -88,21 +88,13 @@
             </div>
 
             <form wire:submit.prevent="save" class="mt-6 grid gap-5 md:grid-cols-2">
-                <div>
+                <div class="md:col-span-2">
                     <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Name (EN)</label>
                     <input type="text" wire:model.defer="name_en" class="admin-input" />
-                </div>
-                <div>
-                    <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Name (ES)</label>
-                    <input type="text" wire:model.defer="name_es" class="admin-input" />
                 </div>
                 <div class="md:col-span-2">
                     <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Description (EN)</label>
                     <textarea wire:model.defer="description_en" rows="4" class="admin-input"></textarea>
-                </div>
-                <div class="md:col-span-2">
-                    <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Description (ES)</label>
-                    <textarea wire:model.defer="description_es" rows="4" class="admin-input"></textarea>
                 </div>
                 <div>
                     <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Duration</label>
@@ -112,7 +104,7 @@
                     <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Price</label>
                     <input type="number" wire:model.defer="price" step="0.01" min="0" class="admin-input" />
                 </div>
-                <div>
+                <div class="md:col-span-2">
                     <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">Category</label>
                     <select wire:model.defer="category" class="admin-select">
                         @foreach($categories as $key => $label)
