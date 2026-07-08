@@ -95,6 +95,11 @@
                                         <span class="text-2xl font-extrabold tracking-tight">{{ $drip['price'] }}</span>
                                         <span class="text-[10px] font-medium text-slate-400 uppercase tracking-wider ml-1">/ session</span>
                                     </div>
+                                    @if($drip['has_down_payment'])
+                                        <span class="text-xs uppercase tracking-wide text-emerald-300">
+                                            Pay {{ $drip['down_payment_percentage'] }}% today: ${{ $drip['down_payment'] }}, remaining ${{ $drip['remaining_balance'] }}
+                                        </span>
+                                    @endif
                                     <span class="inline-flex items-center gap-1.5 rounded-xl border border-slate-800 bg-slate-900/60 px-3 py-1.5 text-xs font-medium text-slate-300">
                                         <svg class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -186,7 +191,7 @@
                             <div class="flex items-center gap-4">
                                 <span class="text-sm font-bold font-mono transition-colors"
                                       :class="activeDrip === {{ $index }} ? 'text-[#0EB3B9]' : 'text-slate-400'">
-                                    ${{ $drip['price'] }}
+                                                                        ${{ $drip['price'] }}
                                 </span>
                                 <div class="transition-transform duration-300"
                                      :class="activeDrip === {{ $index }} ? 'translate-x-0 text-[#0EB3B9]' : '-translate-x-1 text-slate-600'">

@@ -10,6 +10,8 @@ use App\Models\PackageTerm;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Models\TeamMember;
+use App\Models\Testimonial;
+use App\Services\DiscountService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Computed;
@@ -23,14 +25,17 @@ class LandingPage extends Component
 
     public array $headerNavItems = [];
 
-    public function mount(): void
+    protected DiscountService $discountService;
+
+    public function mount(DiscountService $discountService): void
     {
+        $this->discountService = $discountService;
         $this->locale = Session::get('locale', app()->getLocale() ?: 'en');
         $this->headerNavItems = $this->buildHeaderNavItems();
         App::setLocale($this->locale);
 
         // Count each landing-page visit once per browser session so refreshes and F5 do not inflate the stats.
-        if (!session()->has('landing_page_viewed')) {
+        if (! session()->has('landing_page_viewed')) {
             LandingPageVisit::create();
             session()->put('landing_page_viewed', true);
         }
@@ -64,6 +69,17 @@ class LandingPage extends Component
             ['label' => $locale === 'es' ? 'Educación' : 'Education', 'href' => '#education'],
             ['label' => $locale === 'es' ? 'Equipo' : 'Team', 'href' => '#team'],
             ['label' => $locale === 'es' ? 'Ubicación' : 'Location', 'href' => '#location'],
+        ];
+    }
+
+    #[Computed]
+    public function getDailyDiscountMetadataProperty(): array
+    {
+        $percentage = $this->discountService->percentageForDay();
+
+        return [
+            'percentage' => $percentage,
+            'has_discount' => $percentage > 0,
         ];
     }
 
@@ -133,15 +149,14 @@ class LandingPage extends Component
             ->orderBy('name_en')
             ->get()
             ->groupBy('category')
-            ->map(fn ($group) => $group->map(fn (Service $service) => [
+            ->map(fn ($group) => $group->map(fn (Service $service) => $this->buildPricedItem($service->price, $service->discount_eligible, [
                 'id' => $service->id,
                 'slug' => $service->slug,
                 'title' => $this->locale === 'es' ? $service->name_es : $service->name_en,
                 'description' => $this->locale === 'es' ? $service->description_es : $service->description_en,
-                'price' => number_format($service->price, 2),
                 'duration' => $service->duration,
                 'image' => $service->image_path ?: asset('img/carrucel/relaxing.jpg'),
-            ])->toArray())
+            ]))->toArray())
             ->toArray();
     }
 
@@ -153,13 +168,11 @@ class LandingPage extends Component
             ->where('category', 'booster_shots')
             ->orderBy('name_en')
             ->get()
-            ->map(fn (Service $service) => [
+            ->map(fn (Service $service) => $this->buildPricedItem($service->price, $service->discount_eligible, [
                 'id' => $service->id,
                 'title' => $this->locale === 'es' ? $service->name_es : $service->name_en,
                 'description' => $this->locale === 'es' ? $service->description_es : $service->description_en,
-                'price' => number_format($service->price, 2),
-            ])
-            ->toArray();
+            ]))->toArray();
     }
 
     #[Computed]
@@ -171,15 +184,13 @@ class LandingPage extends Component
             ->where('active_status', true)
             ->orderBy('sort_order')
             ->get()
-            ->map(fn (Package $package) => [
+            ->map(fn (Package $package) => $this->buildPricedItem($package->price, $package->discount_eligible, [
                 'id' => $package->id,
                 'name' => $locale === 'es' ? $package->name_es : $package->name_en,
-                'price' => $package->price,
                 'sessions' => $package->sessions,
                 'validity' => $package->validity,
                 'description' => $locale === 'es' ? $package->description_es : $package->description_en,
-            ])
-            ->toArray();
+            ]))->toArray();
     }
 
     #[Computed]
@@ -206,15 +217,13 @@ class LandingPage extends Component
             ->where('category', 'iv_therapy')
             ->orderBy('name_en')
             ->get()
-            ->map(fn (Service $service) => [
+            ->map(fn (Service $service) => $this->buildPricedItem($service->price, $service->discount_eligible, [
                 'id' => $service->id,
                 'title' => $this->locale === 'es' ? $service->name_es : $service->name_en,
                 'description' => $this->locale === 'es' ? $service->description_es : $service->description_en,
                 'duration' => $service->duration,
-                'price' => number_format($service->price, 2),
                 'icon' => $this->resolveIvIcon($service),
-            ])
-            ->toArray();
+            ]))->toArray();
     }
 
     protected function resolveIvIcon(Service $service): string
@@ -247,6 +256,31 @@ class LandingPage extends Component
                 'price' => number_format($course->price, 2),
             ])
             ->toArray();
+    }
+
+    protected function formatPrice(float|string|null $price): string
+    {
+        return number_format((float) ($price ?? 0), 2);
+    }
+
+    protected function buildPricedItem(float|string|null $price, bool $discountEligible, array $data = []): array
+    {
+        $percentage = $discountEligible ? $this->discountService->percentageForDay() : 0;
+        $downPayment = $discountEligible ? $this->discountService->discountAmount($price) : 0;
+        $hasDownPayment = $discountEligible && $percentage > 0;
+
+        return array_merge($data, [
+            'price' => $this->formatPrice($price),
+            'down_payment' => $this->formatPrice($downPayment),
+            'remaining_balance' => $this->formatPrice(max(0, (float) $price - $downPayment)),
+            'down_payment_percentage' => $percentage,
+            'has_down_payment' => $hasDownPayment,
+            'discount_eligible' => $discountEligible,
+            // backward compatibility for any remaining templates using old keys
+            'discounted_price' => $this->formatPrice($downPayment),
+            'discount_percentage' => $percentage,
+            'has_discount' => $hasDownPayment,
+        ]);
     }
 
     #[Computed]
@@ -323,11 +357,11 @@ class LandingPage extends Component
     #[Computed]
     public function getTestimonialsProperty(): array
     {
-        return \App\Models\Testimonial::query()
+        return Testimonial::query()
             ->active()
             ->orderBy('id')
             ->get()
-            ->map(fn (\App\Models\Testimonial $testimonial) => [
+            ->map(fn (Testimonial $testimonial) => [
                 'id' => $testimonial->id,
                 'category' => $testimonial->category ?? 'clinical',
                 'title' => $testimonial->title ?? $testimonial->author_name,

@@ -23,6 +23,7 @@ class ServiceFactory extends Factory
             'image_path' => 'img/services/default.jpg',
             'category' => fake()->randomElement(array_keys(Service::categories())),
             'active_status' => true,
+            'discount_eligible' => false,
         ];
     }
 }

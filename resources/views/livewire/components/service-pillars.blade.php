@@ -102,6 +102,14 @@
                                     {{ $service['title'] }}
                                 </h3>
 
+                                @if(!empty($service['has_down_payment']) && $service['has_down_payment'])
+                                    <div class="mt-3">
+                                        <span class="inline-flex items-center gap-2 rounded-md bg-emerald-300/10 px-3 py-1 text-sm font-semibold text-emerald-300">
+                                            Pay {{ $service['down_payment_percentage'] }}% today: ${{ $service['down_payment'] }}, remaining ${{ $service['remaining_balance'] }}
+                                        </span>
+                                    </div>
+                                @endif
+
                                 <div class="relative">
                                     <p class="text-xs sm:text-sm leading-relaxed text-slate-400 transition-all duration-300" :class="{ 'line-clamp-3': !expanded }" x-ref="svcDesc">
                                         {{ $service['description'] }}

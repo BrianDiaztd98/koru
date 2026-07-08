@@ -37,6 +37,7 @@ class PackageManagerPage extends Component
     public int $sort_order = 0;
 
     public bool $active_status = true;
+    public bool $discount_eligible = false;
 
     public bool $showForm = false;
 
@@ -73,6 +74,7 @@ class PackageManagerPage extends Component
                 'validity' => $package->validity,
                 'sort_order' => (int) $package->sort_order,
                 'active_status' => (bool) $package->active_status,
+                'discount_eligible' => (bool) $package->discount_eligible,
             ]);
         }
     }
@@ -89,6 +91,7 @@ class PackageManagerPage extends Component
             'validity' => ['nullable', 'string', 'max:255'],
             'sort_order' => ['required', 'integer', 'min:0'],
             'active_status' => ['boolean'],
+            'discount_eligible' => ['boolean'],
         ];
     }
 
@@ -116,6 +119,7 @@ class PackageManagerPage extends Component
             'validity' => $package->validity,
             'sort_order' => (int) $package->sort_order,
             'active_status' => (bool) $package->active_status,
+            'discount_eligible' => (bool) $package->discount_eligible,
         ]);
         $this->showForm = true;
         $this->showTermForm = false;
@@ -170,6 +174,7 @@ class PackageManagerPage extends Component
         $validated = $this->validate();
         $validated['slug'] = $this->generateUniqueSlug($validated['name_en']);
         $validated['active_status'] = $this->active_status;
+        $validated['discount_eligible'] = $this->discount_eligible;
 
         if (! $this->isEdit) {
             $maxSort = Package::max('sort_order') ?? 0;
@@ -231,6 +236,7 @@ class PackageManagerPage extends Component
         $this->validity = null;
         $this->sort_order = 0;
         $this->active_status = true;
+        $this->discount_eligible = false;
     }
 
     private function loadPackages(): LengthAwarePaginator

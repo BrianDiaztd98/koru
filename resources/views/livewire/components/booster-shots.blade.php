@@ -76,9 +76,16 @@
                                 <!-- Badge de Precio de Lujo -->
                                 <div class="inline-flex items-baseline gap-1 rounded-xl bg-[#0EB3B9]/10 px-4 py-2 text-[#0EB3B9]">
                                     <span class="text-xs font-medium">$</span>
-                                    <span class="text-2xl font-extrabold tracking-tight">{{ $shot['price'] }}</span>
+                                    <span class="text-2xl font-extrabold tracking-tight">
+                                        {{ $shot['price'] }}
+                                    </span>
                                     <span class="text-[10px] uppercase tracking-wider text-slate-400 ml-1">/ Per Shot</span>
                                 </div>
+                                @if($shot['has_down_payment'])
+                                    <div class="mt-2 text-xs uppercase tracking-wide text-emerald-300">
+                                        Pay {{ $shot['down_payment_percentage'] }}% today: ${{ $shot['down_payment'] }}, remaining ${{ $shot['remaining_balance'] }}
+                                    </div>
+                                @endif
 
                                 <!-- Título Grande Destacado -->
                                 <h3 class="text-2xl font-bold text-white tracking-tight">

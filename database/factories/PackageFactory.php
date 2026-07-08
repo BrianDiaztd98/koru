@@ -22,6 +22,7 @@ class PackageFactory extends Factory
             'validity' => fake()->optional()->randomElement(['Valid for 4 weeks', 'Valid for 8 weeks', 'Valid for 12 weeks', 'Valid for 25 weeks']),
             'sort_order' => 0,
             'active_status' => true,
+            'discount_eligible' => false,
         ];
     }
 }

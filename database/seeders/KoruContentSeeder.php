@@ -274,6 +274,9 @@ class KoruContentSeeder extends Seeder
         ];
 
         foreach ($services as $service) {
+            // Ensure seeded services are eligible for day discounts by default
+            $service = array_merge($service, ['discount_eligible' => true]);
+
             Service::query()->updateOrCreate(
                 ['slug' => Str::slug($service['name_en'])],
                 $service,
@@ -335,6 +338,9 @@ class KoruContentSeeder extends Seeder
         ];
 
         foreach ($packages as $package) {
+            // Ensure seeded packages are eligible for day discounts by default
+            $package = array_merge($package, ['discount_eligible' => true]);
+
             Package::query()->updateOrCreate(
                 ['slug' => $package['slug']],
                 $package,

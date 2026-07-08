@@ -40,6 +40,7 @@ class ServiceManagerPage extends Component
     public string $price = '';
 
     public bool $active_status = true;
+    public bool $discount_eligible = false;
 
     public ?TemporaryUploadedFile $image_path = null;
 
@@ -82,6 +83,7 @@ class ServiceManagerPage extends Component
                 'price' => (string) $service->price,
                 'active_status' => $service->active_status,
                 'category' => $service->category,
+                'discount_eligible' => (bool) $service->discount_eligible,
             ]);
         }
     }
@@ -98,6 +100,7 @@ class ServiceManagerPage extends Component
             'category' => ['required', 'string', 'in:'.implode(',', array_keys($this->categories))],
             'image_path' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'active_status' => ['boolean'],
+            'discount_eligible' => ['boolean'],
         ];
     }
 
@@ -130,6 +133,7 @@ class ServiceManagerPage extends Component
             'price' => (string) $service->price,
             'active_status' => $service->active_status,
             'category' => $service->category,
+            'discount_eligible' => (bool) $service->discount_eligible,
         ]);
         $this->showForm = true;
     }
@@ -185,6 +189,7 @@ class ServiceManagerPage extends Component
         $validated['slug'] = Str::slug($validated['name_en']);
         $validated['category'] = $this->category;
         $validated['active_status'] = $this->active_status;
+        $validated['discount_eligible'] = $this->discount_eligible;
 
         if ($this->isImageCategory()) {
             if ($this->image_path instanceof TemporaryUploadedFile) {
@@ -240,6 +245,7 @@ class ServiceManagerPage extends Component
         $this->active_status = true;
         $this->image_path = null;
         $this->category = $this->filterCategory === 'all' ? 'manual_therapy' : $this->filterCategory;
+        $this->discount_eligible = false;
     }
 
     private function loadServices(): LengthAwarePaginator

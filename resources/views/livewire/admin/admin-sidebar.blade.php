@@ -85,8 +85,8 @@
                 </a>
 
                 <a href="{{ route('admin.packages.index') }}"
-                   class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.packages.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
-                   aria-current="{{ request()->routeIs('admin.packages.*') ? 'true' : 'false' }}">
+                    class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.packages.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                    aria-current="{{ request()->routeIs('admin.packages.*') ? 'true' : 'false' }}">
                     <span class="flex items-center gap-2.5">
                         <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0 1.125.504 1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
@@ -94,6 +94,18 @@
                         Packages
                     </span>
                     <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.packages.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                </a>
+
+                <a href="{{ route('admin.discounts.index') }}"
+                    class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.discounts.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                    aria-current="{{ request()->routeIs('admin.discounts.*') ? 'true' : 'false' }}">
+                    <span class="flex items-center gap-2.5">
+                        <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 14.25l-4.5 4.5m0 0l-4.5-4.5m4.5 4.5V3.75A1.5 1.5 0 015.25 2.25h13.5A1.5 1.5 0 0120.25 3.75v16.5M9 14.25l4.5-4.5m0 0l4.5 4.5M9 14.25L13.5 18.75M13.5 9.75L18 14.25" />
+                        </svg>
+                        Discounts
+                    </span>
+                    <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.discounts.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                 </a>
             </nav>
         </div>

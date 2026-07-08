@@ -5,6 +5,7 @@ use App\Http\Middleware\AdminAccess;
 use App\Livewire\Admin\AboutPage;
 use App\Livewire\Admin\Auth\Login;
 use App\Livewire\Admin\ClientOutcomesPage;
+use App\Livewire\Admin\DiscountSettingsPage;
 use App\Livewire\Admin\ManagementPage;
 use App\Livewire\Admin\PackageManager\PackageManagerPage;
 use App\Livewire\Admin\ServiceManager\ServiceManagerPage;
@@ -48,4 +49,7 @@ Route::middleware([AdminAccess::class])->prefix('admin')->name('admin.')->group(
     Route::get('packages', PackageManagerPage::class)->name('packages.index');
     Route::get('packages/create', PackageManagerPage::class)->name('packages.create');
     Route::get('packages/{package}/edit', PackageManagerPage::class)->name('packages.edit');
+
+    // Day-based discount configuration.
+    Route::get('discounts', DiscountSettingsPage::class)->name('discounts.index');
 });

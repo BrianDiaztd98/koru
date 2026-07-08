@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             AboutSeeder::class,
             KoruContentSeeder::class,
+            DayDiscountSettingSeeder::class,
         ]);
     }
 }

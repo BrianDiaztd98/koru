@@ -22,11 +22,13 @@ class Service extends Model
         'image_path',
         'category',
         'active_status',
+        'discount_eligible',
     ];
 
     protected $casts = [
         'price' => 'decimal:2',
         'active_status' => 'boolean',
+        'discount_eligible' => 'boolean',
     ];
 
     public static function categories(): array

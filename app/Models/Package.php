@@ -20,6 +20,7 @@ class Package extends Model
         'validity',
         'sort_order',
         'active_status',
+        'discount_eligible',
     ];
 
     protected $casts = [
@@ -27,6 +28,7 @@ class Package extends Model
         'sessions' => 'integer',
         'sort_order' => 'integer',
         'active_status' => 'boolean',
+        'discount_eligible' => 'boolean',
     ];
 
     public function terms(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

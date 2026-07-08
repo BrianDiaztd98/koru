@@ -34,21 +34,29 @@
                 @endif
 
                 <div class="admin-table-shell">
-                    <div class="admin-table-head grid-cols-[1.2fr_0.8fr_0.6fr_0.6fr_0.4fr]">
+                    <div class="admin-table-head grid-cols-[1.2fr_0.8fr_0.6fr_0.4fr_0.6fr_0.4fr]">
                         <span>Name</span>
                         <span>Category</span>
                         <span>Price</span>
+                        <span>Discount</span>
                         <span>Duration</span>
                         <span class="text-right">Actions</span>
                     </div>
                     @forelse($services as $service)
-                        <div class="admin-table-row grid-cols-[1.2fr_0.8fr_0.6fr_0.6fr_0.4fr]">
+                        <div class="admin-table-row grid-cols-[1.2fr_0.8fr_0.6fr_0.4fr_0.6fr_0.4fr]">
                             <div>
                                 <p class="font-semibold text-white">{{ $service->name_en }}</p>
                                 <p class="mt-1 text-xs text-slate-500">{{ Str::limit($service->description_en, 80) }}</p>
                             </div>
                             <div class="text-slate-400">{{ $service->category_label }}</div>
                             <div class="font-mono text-white">${{ number_format($service->price, 2) }}</div>
+                            <div>
+                                @if($service->discount_eligible)
+                                    <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-400">Eligible</span>
+                                @else
+                                    <span class="inline-flex items-center gap-1.5 rounded-full border border-slate-700/60 bg-slate-800/60 px-2.5 py-1 text-xs font-semibold text-slate-400">—</span>
+                                @endif
+                            </div>
                             <div>{{ $service->duration }}</div>
                             <div class="flex justify-end gap-2">
                                 <button type="button" wire:click="openEditForm({{ $service->id }})" class="admin-btn-ghost">Edit</button>
@@ -123,6 +131,11 @@
                 <div class="md:col-span-2 flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
                     <input id="service_active_status" type="checkbox" wire:model.defer="active_status" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#0EB3B9] focus:ring-[#0EB3B9]" />
                     <label for="service_active_status" class="text-sm text-slate-300">Publish this service</label>
+                </div>
+
+                <div class="md:col-span-2 flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
+                    <input id="service_discount_eligible" type="checkbox" wire:model.defer="discount_eligible" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#0EB3B9] focus:ring-[#0EB3B9]" />
+                    <label for="service_discount_eligible" class="text-sm text-slate-300">Eligible for day discounts</label>
                 </div>
 
                 <div class="md:col-span-2 flex flex-wrap gap-3 pt-2">

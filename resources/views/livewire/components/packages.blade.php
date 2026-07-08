@@ -42,11 +42,18 @@
                         </h3>
                         
                         <!-- Contenedor de Precio Metódico -->
-                        <div class="mt-4 flex items-baseline gap-1.5">
-                            <span class="text-3xl font-extrabold text-white font-mono tracking-tight">
-                                ${{ number_format($package['price']) }}
-                            </span>
+                        <div class="mt-4 flex flex-col gap-2">
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-3xl font-extrabold text-white font-mono tracking-tight">
+                                    ${{ $package['price'] }}
+                                </span>
+                            </div>
                             <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Total</span>
+                            @if($package['has_down_payment'])
+                                <span class="text-xs font-semibold uppercase tracking-wide text-emerald-300">
+                                    Pay {{ $package['down_payment_percentage'] }}% today: ${{ $package['down_payment'] }}, remaining ${{ $package['remaining_balance'] }}
+                                </span>
+                            @endif
                         </div>
                         
                         <!-- Badges Informativos -->

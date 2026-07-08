@@ -2,6 +2,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Alpine from 'alpinejs';
 
+window.Alpine = Alpine;
+
 const prefersReducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function initializeAOS() {
@@ -82,7 +84,9 @@ document.addEventListener('alpine:init', () => {
     }));
 });
 
-Alpine.start();
+window.addEventListener('DOMContentLoaded', () => {
+    Alpine.start();
+});
 
 function bindMobileMenu() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
