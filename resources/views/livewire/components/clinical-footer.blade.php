@@ -66,37 +66,16 @@
                         <span class="font-medium group-hover:underline decoration-green-500">Chat on WhatsApp</span>
                     </a>
 
-                    <div class="flex items-start gap-3 border-t border-slate-800/60 pt-3 text-slate-400">
-                        <svg class="mt-0.5 h-4 w-4 shrink-0 text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <circle cx="12" cy="12" r="9" />
-                            <polyline points="12 6 12 12 16 14" />
-                        </svg>
-                        <div>
-                            <p class="text-xs text-slate-500 uppercase tracking-wider">Schedule</p>
-                            <div class="mt-1 space-y-1 text-xs font-medium text-slate-300">
-                                <p>Monday - Friday: 8:00 a.m. - 8:00 p.m.</p>
-                                <p>Saturdays: 9:00 a.m. - 3:00 p.m. (Appointment required)</p>
-                                <p>Sundays: 9:00 a.m. - 1:00 p.m. (Appointment &amp; 50% deposit required)</p>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 
             <div class="space-y-4">
-                <div>
-                    <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Insurance Plans</h3>
-                    <p class="mt-2 text-xs leading-5 text-slate-400">We accept major Florida health plans and self-pay alternatives.</p>
-                </div>
-                <div class="grid grid-cols-1 gap-2 border-t border-slate-800/60 pt-3">
-                    @foreach(['Aetna', 'Florida Blue / BCBS', 'Cigna', 'UnitedHealthcare'] as $plan)
-                        <div class="flex items-center gap-2 rounded-lg bg-slate-800/30 px-3 py-1.5 text-xs text-slate-300 border border-slate-800/50">
-                            <svg class="h-3.5 w-3.5 text-[#0EB3B9]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                            <span class="font-medium text-white">{{ $plan }}</span>
-                        </div>
-                    @endforeach
+                <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Schedule</h3>
+                <div class="mt-3 space-y-2 text-xs font-medium text-slate-300">
+                    <p>Monday - Friday: 8:00 a.m. - 8:00 p.m.</p>
+                    <p>Saturdays: 9:00 a.m. - 3:00 p.m. (Appointment required)</p>
+                    <p>Sundays: 9:00 a.m. - 1:00 p.m. (Appointment &amp; 50% deposit required)</p>
                 </div>
             </div>
 
