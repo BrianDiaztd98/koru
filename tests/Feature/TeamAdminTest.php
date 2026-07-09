@@ -78,4 +78,21 @@ class TeamAdminTest extends TestCase
             'bio_en' => 'Updated bio.',
         ]);
     }
+
+    public function test_instagram_handle_requires_valid_format(): void
+    {
+        $this->actingAsAdmin();
+
+        Livewire::test(TeamMembersPage::class)
+            ->set('name', 'Dr. Maya Rivera')
+            ->set('instagram_handle', 'invalid handle!!')
+            ->call('save')
+            ->assertHasErrors(['instagram_handle']);
+
+        Livewire::test(TeamMembersPage::class)
+            ->set('name', 'Dr. Maya Rivera')
+            ->set('instagram_handle', '@maya.rivera')
+            ->call('save')
+            ->assertHasNoErrors();
+    }
 }

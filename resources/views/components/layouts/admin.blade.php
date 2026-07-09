@@ -4,11 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- 1. Evitar que los motores de búsqueda indexen el panel administrativo -->
+    <meta name="robots" content="noindex, nofollow">
+    
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
     <title>{{ $title ?? 'Content Management — Koru CMS' }}</title>
+    
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
+    
+    <!-- El x-cloak evita que los elementos de Alpine parpadeen al cargar -->
     <style>
         [x-cloak] {
             display: none !important;
@@ -16,13 +23,12 @@
     </style>
 </head>
 
+<!-- 2. Cambiamos la estructura a flex para que si hay poco contenido, el footer o fondo no se corten -->
 <body x-data="{ sidebarOpen: false }"
-    class="min-h-full bg-slate-950 text-slate-100 antialiased selection:bg-[#0EB3B9]/30 selection:text-white relative overflow-x-hidden">
+    class="min-h-full bg-slate-950 text-slate-100 antialiased selection:bg-[#0EB3B9]/30 selection:text-white relative flex flex-col lg:flex-row">
 
     <!-- Luces ambientales de fondo estilo consola clínica -->
-    <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(14,179,185,0.06)_0%,_transparent_40%)] pointer-events-none">
-    </div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(14,179,185,0.06)_0%,_transparent_40%)] pointer-events-none"></div>
     <div class="absolute top-40 -left-20 w-80 h-80 bg-[#0EB3B9]/5 rounded-full blur-3xl pointer-events-none"></div>
 
     <!-- Overlay (Mobile) -->
@@ -37,8 +43,8 @@
         </div>
     </aside>
 
-    <!-- Contenedor Principal -->
-    <main class="min-h-screen lg:ml-72 relative z-10">
+    <!-- Contenedor Principal (Cambiado min-h-screen por flex-1 para mejor consistencia de altura) -->
+    <main class="flex-1 lg:ml-72 relative z-10 w-full">
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
             <!-- Botón Hamburguesa (Mobile) -->
             <button @click="sidebarOpen = true" type="button"

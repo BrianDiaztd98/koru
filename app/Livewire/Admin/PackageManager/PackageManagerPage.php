@@ -79,7 +79,7 @@ class PackageManagerPage extends Component
         return [
             'name_en' => ['required', 'string', 'max:255'],
             'description_en' => ['nullable', 'string'],
-            'price' => ['required', 'numeric', 'min:0'],
+            'price' => ['required', 'numeric', 'min:0', 'max:99999999.99'],
             'sessions' => ['required', 'integer', 'min:1'],
             'validity' => ['nullable', 'string', 'max:255'],
             'sort_order' => ['required', 'integer', 'min:0'],

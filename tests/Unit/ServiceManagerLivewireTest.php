@@ -26,9 +26,9 @@ class ServiceManagerLivewireTest extends TestCase
         Service::factory()->create(['category' => 'manual_therapy', 'name_en' => 'Massage 2']);
         Service::factory()->create(['category' => 'medical_services', 'name_en' => 'Medical 1']);
 
-        Livewire::test(ServiceManagerPage::class)
-            ->actingAs($user, 'web')
-            ->set('filterCategory', 'manual_therapy')
+        $test = Livewire::test(ServiceManagerPage::class);
+        $test->actingAs($user, 'web');
+        $test->set('filterCategory', 'manual_therapy')
             ->assertSee('Massage 1')
             ->assertSee('Massage 2')
             ->assertDontSee('Medical 1');
@@ -41,9 +41,9 @@ class ServiceManagerLivewireTest extends TestCase
         Service::factory()->create(['category' => 'manual_therapy', 'name_en' => 'Massage 1']);
         Service::factory()->create(['category' => 'medical_services', 'name_en' => 'Medical 1']);
 
-        Livewire::test(ServiceManagerPage::class)
-            ->actingAs($user, 'web')
-            ->set('filterCategory', 'all')
+        $test = Livewire::test(ServiceManagerPage::class);
+        $test->actingAs($user, 'web');
+        $test->set('filterCategory', 'all')
             ->assertSee('Massage 1')
             ->assertSee('Medical 1');
     }
@@ -52,11 +52,36 @@ class ServiceManagerLivewireTest extends TestCase
     {
         $user = $this->adminUser();
 
-        Livewire::test(ServiceManagerPage::class)
-            ->actingAs($user, 'web')
-            ->call('openCreateForm')
+        $test = Livewire::test(ServiceManagerPage::class);
+        $test->actingAs($user, 'web');
+        $test->call('openCreateForm')
             ->assertSet('showForm', true)
             ->assertSee('Manage service details inline without modals.')
             ->assertDontSee('fixed inset-0 z-50');
+    }
+
+    public function test_service_price_rejects_values_above_decimal_limit(): void
+    {
+        $user = $this->adminUser();
+
+        $test = Livewire::test(ServiceManagerPage::class);
+        $test->actingAs($user, 'web');
+        $test->set('name_en', 'Overflow Service')
+            ->set('description_en', 'Too expensive')
+            ->set('duration', '60 min')
+            ->set('price', '999999999')
+            ->set('category', 'manual_therapy')
+            ->call('save')
+            ->assertHasErrors(['price']);
+
+        $valid = Livewire::test(ServiceManagerPage::class);
+        $valid->actingAs($user, 'web');
+        $valid->set('name_en', 'Valid Service')
+            ->set('description_en', 'Reasonable price')
+            ->set('duration', '60 min')
+            ->set('price', '149.99')
+            ->set('category', 'manual_therapy')
+            ->call('save')
+            ->assertHasNoErrors();
     }
 }

@@ -44,7 +44,7 @@
                             <div class="font-mono text-white">${{ number_format($package->price, 2) }}</div>
                             <div>
                                 @if($package->discount_eligible)
-                                    <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-400">Eligible</span>
+                                    <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-400">Active</span>
                                 @else
                                     <span class="inline-flex items-center gap-1.5 rounded-full border border-slate-700/60 bg-slate-800/60 px-2.5 py-1 text-xs font-semibold text-slate-400">—</span>
                                 @endif
@@ -167,7 +167,7 @@
 
                 <div class="flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
                     <input id="package_discount_eligible" type="checkbox" wire:model.defer="discount_eligible" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#0EB3B9] focus:ring-[#0EB3B9]" />
-                    <label for="package_discount_eligible" class="text-sm text-slate-300">Eligible for deposits</label>
+                    <label for="package_discount_eligible" class="text-sm text-slate-300">Active for deposits</label>
                 </div>
 
                 <div class="flex flex-wrap gap-3 pt-2">

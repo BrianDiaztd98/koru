@@ -56,7 +56,7 @@ class TeamMembersPage extends Component
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'instagram_handle' => ['nullable', 'string', 'max:255'],
+            'instagram_handle' => ['nullable', 'string', 'max:255', 'regex:/^@?[A-Za-z0-9._]{1,30}$/'],
             'bio_en' => ['nullable', 'string'],
             'specialty_en' => ['nullable', 'string', 'max:255'],
             'image_file' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],

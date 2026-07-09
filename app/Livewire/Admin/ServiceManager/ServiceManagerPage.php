@@ -89,7 +89,7 @@ class ServiceManagerPage extends Component
             'name_en' => ['required', 'string', 'max:255'],
             'description_en' => ['required', 'string'],
             'duration' => ['required', 'string', 'max:255'],
-            'price' => ['required', 'numeric', 'min:0'],
+            'price' => ['required', 'numeric', 'min:0', 'max:99999999.99'],
             'category' => ['required', 'string', 'in:'.implode(',', array_keys($this->categories))],
             'image_path' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'active_status' => ['boolean'],

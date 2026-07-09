@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Livewire\Admin\PackageManager\PackageManagerPage;
 use App\Models\Package;
 use App\Models\PackageTerm;
+use Database\Seeders\KoruContentSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -21,7 +22,7 @@ class PackageManagerPageTest extends TestCase
             'active_status' => false,
         ]);
 
-        $this->artisan('db:seed', ['--class' => \Database\Seeders\KoruContentSeeder::class])
+        $this->artisan('db:seed', ['--class' => KoruContentSeeder::class])
             ->assertExitCode(0);
 
         $this->assertDatabaseMissing('package_terms', [
@@ -75,5 +76,22 @@ class PackageManagerPageTest extends TestCase
         $package->terms()->syncWithoutDetaching([$term->id]);
 
         $this->assertTrue($package->terms()->whereKey($term->id)->exists());
+    }
+
+    public function test_package_price_rejects_values_above_decimal_limit(): void
+    {
+        Livewire::test(PackageManagerPage::class)
+            ->set('name_en', 'Overflow Package')
+            ->set('price', '999999999')
+            ->set('sessions', 1)
+            ->call('save')
+            ->assertHasErrors(['price']);
+
+        Livewire::test(PackageManagerPage::class)
+            ->set('name_en', 'Valid Package')
+            ->set('price', '199.99')
+            ->set('sessions', 1)
+            ->call('save')
+            ->assertHasNoErrors();
     }
 }

@@ -1,8 +1,5 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Alpine from 'alpinejs';
-
-window.Alpine = Alpine;
 
 const prefersReducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -21,7 +18,7 @@ function initializeAOS() {
 }
 
 document.addEventListener('alpine:init', () => {
-    Alpine.data('heroCarousel', ({ totalSlides = 0 }) => ({
+    window.Alpine.data('heroCarousel', ({ totalSlides = 0 }) => ({
         currentSlide: 0,
         totalSlides,
         autoPlay: true,
@@ -85,7 +82,9 @@ document.addEventListener('alpine:init', () => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-    Alpine.start();
+    if (typeof AOS !== 'undefined') {
+        AOS.refresh();
+    }
 });
 
 function bindMobileMenu() {
@@ -128,9 +127,6 @@ function bindVideoModal() {
 
 // initialize after DOM ready and once AOS has had a chance to paint
 function onDocumentReady() {
-    bindMobileMenu();
-    bindVideoModal();
-
     if (document.querySelector('[data-aos]')) {
         initializeAOS();
     }
@@ -140,6 +136,8 @@ function onDocumentReady() {
         console.info('User prefers reduced motion: disabling non-essential animations');
     }
 
+    bindMobileMenu();
+    bindVideoModal();
     initScrollLinkedAnimations();
 }
 

@@ -8,11 +8,13 @@
 
     <!-- SEO: Meta Descripción Obligatoria -->
     <meta name="description"
-        content="{{ $metaDescription ?? 'Medical center management platform for specialized care, supply inventory, and medical history.' }}">
+        content="{{ $metaDescription ?? 'Advanced medical center management platform for specialized care, clinical history records, and healthcare supply inventory.' }}">
 
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon_bgvoid.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
 
-    <title>{{ $title ?? 'Koru Center - Massage, Rehabilitation & Sport Performance' }}</title>
+    <!-- El título por defecto ahora es más corporativo y claro para el mercado de salud en USA -->
+    <meta name="title" content="{{ $title ?? 'Koru Center | Clinical Management & Medical Supply Platform' }}">
+    <title>{{ $title ?? 'Koru Center | Clinical Management & Medical Supply Platform' }}</title>
 
     <!-- Rendimiento: Cargar scripts juntos para optimizar HTTP/2 en Vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
