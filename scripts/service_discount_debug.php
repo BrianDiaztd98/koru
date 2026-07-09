@@ -1,11 +1,13 @@
 <?php
-require __DIR__ . '/../vendor/autoload.php';
-$app = require __DIR__ . '/../bootstrap/app.php';
-$kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+
+require __DIR__.'/../vendor/autoload.php';
+$app = require __DIR__.'/../bootstrap/app.php';
+$kernel = $app->make(Kernel::class);
 $kernel->bootstrap();
 
 use App\Models\Service;
 use App\Services\DiscountService;
+use Illuminate\Contracts\Console\Kernel;
 
 $id = $argv[1] ?? 3;
 $s = Service::find($id);

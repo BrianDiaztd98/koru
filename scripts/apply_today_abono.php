@@ -1,12 +1,14 @@
 <?php
-require __DIR__ . '/../vendor/autoload.php';
-$app = require __DIR__ . '/../bootstrap/app.php';
-$kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+
+require __DIR__.'/../vendor/autoload.php';
+$app = require __DIR__.'/../bootstrap/app.php';
+$kernel = $app->make(Kernel::class);
 $kernel->bootstrap();
 
 use App\Models\DayDiscountSetting;
 use App\Services\DiscountService;
 use Carbon\Carbon;
+use Illuminate\Contracts\Console\Kernel;
 
 $today = Carbon::now();
 $day = $today->dayOfWeek;

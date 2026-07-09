@@ -4,6 +4,7 @@ namespace App\Livewire\Components;
 
 use App\Models\About;
 use App\Models\Course;
+use App\Models\HeroSlide;
 use App\Models\LandingPageVisit;
 use App\Models\Package;
 use App\Models\PackageTerm;
@@ -60,44 +61,23 @@ class LandingPage extends Component
     #[Computed]
     public function getHeroSlidesProperty(): array
     {
-        return [
-            [
-                'id' => 0,
-                'badge' => 'Wellness & Performance',
-                'title_line_1' => 'Relaxing Massage',
-                'title_line_2' => 'Total Recovery',
-                'description' => 'Advanced therapeutic techniques designed to relieve muscle tension, reduce stress levels, and significantly improve joint mobility.',
-                'btn_primary_text' => 'Book a Session',
-                'btn_primary_url' => 'https://wa.me/17867528054',
-                'btn_secondary_text' => 'View Services',
-                'btn_secondary_url' => '#services',
-                'image' => asset('img/carrucel/relaxing.jpg'),
-            ],
-            [
-                'id' => 1,
-                'badge' => 'Advanced Recovery',
-                'title_line_1' => 'Normatec',
-                'title_line_2' => 'Technology',
-                'description' => 'Dynamic sequential compression bio-mechanisms to optimize blood flow, accelerate muscle clearance, and reduce inflammation effortlessly.',
-                'btn_primary_text' => 'Book No Hands Session',
-                'btn_primary_url' => 'https://wa.me/17867528054',
-                'btn_secondary_text' => 'View Services',
-                'btn_secondary_url' => '#services',
-                'image' => asset('img/carrucel/normatec.png'),
-            ],
-            [
-                'id' => 2,
-                'badge' => 'Total Regeneration',
-                'title_line_1' => 'Super',
-                'title_line_2' => 'Recovery Protocol',
-                'description' => 'Synergistic red light therapy and cold plunge contrast routines engineered for deep cellular regeneration and elite performance.',
-                'btn_primary_text' => 'Book Super Recovery',
-                'btn_primary_url' => 'https://wa.me/17867528054',
-                'btn_secondary_text' => 'View Services',
-                'btn_secondary_url' => '#services',
-                'image' => asset('img/carrucel/luzroja.webp'),
-            ],
-        ];
+        return HeroSlide::query()
+            ->active()
+            ->ordered()
+            ->get()
+            ->map(fn (HeroSlide $slide) => [
+                'id' => $slide->id,
+                'badge' => $slide->badge,
+                'title_line_1' => $slide->title_line_1,
+                'title_line_2' => $slide->title_line_2,
+                'description' => $slide->description,
+                'btn_primary_text' => $slide->btn_primary_text,
+                'btn_primary_url' => $slide->btn_primary_url,
+                'btn_secondary_text' => $slide->btn_secondary_text,
+                'btn_secondary_url' => $slide->btn_secondary_url,
+                'image' => $slide->image_url ?: asset('img/carrucel/relaxing.jpg'),
+            ])
+            ->toArray();
     }
 
     #[Computed]

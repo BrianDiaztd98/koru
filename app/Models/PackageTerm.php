@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class PackageTerm extends Model
 {
@@ -17,7 +18,7 @@ class PackageTerm extends Model
         'active_status' => 'boolean',
     ];
 
-    public function packages(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function packages(): BelongsToMany
     {
         return $this->belongsToMany(Package::class)
             ->withPivot('sort_order')

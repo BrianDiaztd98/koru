@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             AboutSeeder::class,
             KoruContentSeeder::class,
             DayDiscountSettingSeeder::class,
+            HeroSlideSeeder::class,
         ]);
     }
 }

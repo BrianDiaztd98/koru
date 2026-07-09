@@ -6,6 +6,7 @@ use App\Livewire\Admin\AboutPage;
 use App\Livewire\Admin\Auth\Login;
 use App\Livewire\Admin\ClientOutcomesPage;
 use App\Livewire\Admin\DiscountSettingsPage;
+use App\Livewire\Admin\HeroCarouselManagerPage;
 use App\Livewire\Admin\ManagementPage;
 use App\Livewire\Admin\PackageManager\PackageManagerPage;
 use App\Livewire\Admin\ServiceManager\ServiceManagerPage;
@@ -52,4 +53,7 @@ Route::middleware([AdminAccess::class])->prefix('admin')->name('admin.')->group(
 
     // Day-based discount configuration.
     Route::get('discounts', DiscountSettingsPage::class)->name('discounts.index');
+
+    // Hero carousel management.
+    Route::get('hero-carousel', HeroCarouselManagerPage::class)->name('hero-carousel.index');
 });

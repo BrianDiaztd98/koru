@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
+use App\Services\AdminMediaService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-
-use App\Services\AdminMediaService;
 
 class About extends Model
 {

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Livewire\Admin\AboutPage;
 use App\Models\About;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -21,12 +22,12 @@ class AboutPageSimpleTest extends TestCase
             'title' => 'Test Title',
         ]);
 
-        $test = Livewire::test(\App\Livewire\Admin\AboutPage::class);
-        
+        $test = Livewire::test(AboutPage::class);
+
         if ($test === null) {
             $this->fail('Livewire::test returned null');
         }
-        
+
         $test->assertSee('Test Title');
     }
 }
