@@ -22,9 +22,9 @@ class AboutFactory extends Factory
             'feature_1_description' => fake()->paragraph(),
             'feature_2_title' => fake()->sentence(3),
             'feature_2_description' => fake()->paragraph(),
-            'image_1' => 'img/about/therapy.jpeg',
-            'image_2' => 'img/about/massage.jpeg',
-            'image_3' => 'img/about/team.jpeg',
+            'image_1' => 'img/about/therapy.webp',
+            'image_2' => 'img/about/massage.webp',
+            'image_3' => 'img/about/team.webp',
         ];
     }
 }

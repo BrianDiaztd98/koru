@@ -78,7 +78,7 @@ class LandingPage extends Component
                 'btn_primary_url' => $slide->btn_primary_url,
                 'btn_secondary_text' => $slide->btn_secondary_text,
                 'btn_secondary_url' => $slide->btn_secondary_url,
-                'image' => $slide->image_url ?: asset('img/carrucel/relaxing.jpg'),
+                'image' => $slide->image_url ?: asset('img/carrucel/relaxing.webp'),
             ])
             ->toArray();
     }
@@ -107,7 +107,7 @@ class LandingPage extends Component
                 'title' => $service->name_en,
                 'description' => $service->description_en,
                 'duration' => $service->duration,
-                'image' => $service->image_path ?: asset('img/carrucel/relaxing.jpg'),
+                'image' => $service->image_path ?: asset('img/carrucel/relaxing.webp'),
             ]))->toArray())
             ->toArray();
     }
