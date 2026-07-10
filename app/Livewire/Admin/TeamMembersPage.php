@@ -160,7 +160,7 @@ class TeamMembersPage extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.team-members-page', [
+        return view('livewire.admin.team-members-manager.team-members-manager-page', [
             'teamMembers' => TeamMember::query()->orderByDesc('id')->get(),
         ])
             ->layout('components.layouts.admin');

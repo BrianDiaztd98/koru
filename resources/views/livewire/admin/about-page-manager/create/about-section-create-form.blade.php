@@ -1,9 +1,9 @@
-<div class="lg:col-span-3 space-y-6" x-data="{ activeTab: 'copy' }">
-    <!-- Título de ubicación actual -->
-    <div class="mb-6">
-        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">About Section</p>
-        <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">Edit Content</h1>
-        <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Configure core copywriting and media structures.</p>
+<div class="admin-form-panel">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h3 class="text-lg font-semibold text-white">Create About Section</h3>
+            <p class="text-sm text-slate-400">Configure core copywriting and media structures.</p>
+        </div>
     </div>
 
     <form wire:submit.prevent="save" enctype="multipart/form-data" class="space-y-6">
@@ -49,7 +49,7 @@
 
                     <div>
                         <label for="description" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Corporate Description</label>
-                            <textarea wire:model="description" id="description" rows="4" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600" placeholder="Primary narrative content...">{{ $description }}</textarea>
+                        <textarea wire:model="description" id="description" rows="4" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600" placeholder="Primary narrative content...">{{ $description }}</textarea>
                     </div>
 
                     <div class="grid gap-5 lg:grid-cols-2 pt-2">
@@ -105,8 +105,6 @@
                             <div class="w-full aspect-[4/3] rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden relative group">
                                 @if ($image_1 && method_exists($image_1, 'temporaryUrl'))
                                     <img src="{{ $image_1->temporaryUrl() }}" class="object-cover w-full h-full">
-                                @elseif ($about?->image_1)
-                                    <img src="{{ $about->image_1_url }}" alt="Image 1" class="object-cover w-full h-full" />
                                 @else
                                     <span class="text-xs font-mono text-slate-600 group-hover:text-[#0EB3B9] transition-colors">IMG_01_EMPTY</span>
                                 @endif
@@ -121,8 +119,6 @@
                             <div class="w-full aspect-[4/3] rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden relative group">
                                 @if ($image_2 && method_exists($image_2, 'temporaryUrl'))
                                     <img src="{{ $image_2->temporaryUrl() }}" class="object-cover w-full h-full">
-                                @elseif ($about?->image_2)
-                                    <img src="{{ $about->image_2_url }}" alt="Image 2" class="object-cover w-full h-full" />
                                 @else
                                     <span class="text-xs font-mono text-slate-600 group-hover:text-[#0EB3B9] transition-colors">IMG_02_EMPTY</span>
                                 @endif
@@ -137,8 +133,6 @@
                             <div class="w-full aspect-[4/3] rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden relative group">
                                 @if ($image_3 && method_exists($image_3, 'temporaryUrl'))
                                     <img src="{{ $image_3->temporaryUrl() }}" class="object-cover w-full h-full">
-                                @elseif ($about?->image_3)
-                                    <img src="{{ $about->image_3_url }}" alt="Image 3" class="object-cover w-full h-full" />
                                 @else
                                     <span class="text-xs font-mono text-slate-600 group-hover:text-[#0EB3B9] transition-colors">IMG_03_EMPTY</span>
                                 @endif
@@ -165,13 +159,13 @@
                         <div class="flex justify-between items-center">
                             <span class="font-medium">Created:</span>
                             <span class="text-slate-300 font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-800/80">
-                                {{ $about?->created_at?->format('Y-m-d') ?? 'Unsaved' }}
+                                Unsaved
                             </span>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="font-medium">Last Update:</span>
                             <span class="text-slate-300 font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-800/80">
-                                {{ $about?->updated_at?->format('H:i') ?? 'N/A' }}
+                                N/A
                             </span>
                         </div>
                     </div>
@@ -182,7 +176,7 @@
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182" />
                             </svg>
-                            {{ $about?->id ? 'Commit Changes' : 'Publish Core' }}
+                            Publish Core
                         </button>
 
                         <a href="{{ route('admin.management.index') }}" 

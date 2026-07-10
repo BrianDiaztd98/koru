@@ -77,7 +77,7 @@ class DiscountSettingsPage extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.discount-settings-page', [
+        return view('livewire.admin.discount-settings-manager.discount-settings-manager-page', [
             'days' => DayDiscountSetting::days(),
             'dayLabels' => DayDiscountSetting::dayLabelsEs(),
         ])

@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             AdminUserSeeder::class,
-            AboutSeeder::class,
+            /* AboutSeeder::class,
             KoruContentSeeder::class,
             DayDiscountSettingSeeder::class,
-            HeroSlideSeeder::class,
+            HeroSlideSeeder::class, */
         ]);
     }
 }

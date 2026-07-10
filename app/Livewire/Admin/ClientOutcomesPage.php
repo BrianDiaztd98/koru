@@ -14,6 +14,8 @@ class ClientOutcomesPage extends Component
 
     public ?Testimonial $testimonial = null;
 
+    public ?Testimonial $testimonialToDelete = null;
+
     public string $title = '';
 
     public string $description = '';
@@ -27,6 +29,8 @@ class ClientOutcomesPage extends Component
     public bool $active_status = true;
 
     public bool $showForm = false;
+
+    public bool $showDeleteModal = false;
 
     public bool $isEdit = false;
 
@@ -90,6 +94,25 @@ class ClientOutcomesPage extends Component
         }
     }
 
+    public function confirmDelete(int $testimonialId): void
+    {
+        $this->testimonialToDelete = Testimonial::findOrFail($testimonialId);
+        $this->showDeleteModal = true;
+    }
+
+    public function deleteConfirmed(): void
+    {
+        if (! $this->testimonialToDelete) {
+            return;
+        }
+
+        $this->testimonialToDelete->delete();
+        $this->testimonialToDelete = null;
+        $this->showDeleteModal = false;
+
+        session()->flash('success', 'Client outcome removed.');
+    }
+
     public function save(): void
     {
         $validated = $this->validate();
@@ -114,13 +137,6 @@ class ClientOutcomesPage extends Component
         $this->closeForm();
     }
 
-    public function delete(int $testimonialId): void
-    {
-        $testimonial = Testimonial::findOrFail($testimonialId);
-        $testimonial->delete();
-        session()->flash('success', 'Client outcome removed.');
-    }
-
     public function resetForm(): void
     {
         $this->testimonial = null;
@@ -135,7 +151,7 @@ class ClientOutcomesPage extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.client-outcomes-page', [
+        return view('livewire.admin.client-outcome-manager.client-outcome-manager-page', [
             'testimonials' => Testimonial::query()->orderByDesc('id')->get(),
         ])
             ->layout('components.layouts.admin');

@@ -40,6 +40,8 @@ class AboutPage extends Component
 
     public ?string $feature_2_description = '';
 
+    public bool $showDeleteModal = false;
+
     public function mount(): void
     {
         $this->about = About::query()->first();
@@ -75,6 +77,30 @@ class AboutPage extends Component
         ];
     }
 
+    public function confirmDelete(): void
+    {
+        $this->showDeleteModal = true;
+    }
+
+    public function deleteConfirmed(): void
+    {
+        if (! $this->about) {
+            return;
+        }
+
+        foreach (['image_1', 'image_2', 'image_3'] as $field) {
+            if ($this->about->{$field}) {
+                AdminMediaService::deleteImage($this->about->{$field});
+            }
+        }
+
+        $this->about->delete();
+        $this->about = null;
+        $this->showDeleteModal = false;
+
+        session()->flash('success', 'About section deleted successfully.');
+    }
+
     public function save(): void
     {
         $validated = $this->validate();
@@ -95,11 +121,12 @@ class AboutPage extends Component
 
         if ($this->about && $this->about->exists) {
             $this->about->update($data);
+            session()->flash('success', 'About section updated successfully.');
         } else {
             $this->about = About::query()->create($data);
+            session()->flash('success', 'About section created successfully.');
         }
 
-        session()->flash('success', 'About section saved successfully.');
         $this->mount();
     }
 
@@ -117,7 +144,7 @@ class AboutPage extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.about-page')
+        return view('livewire.admin.about-page-manager.about-page-manager-page')
             ->layout('components.layouts.admin');
     }
 }
