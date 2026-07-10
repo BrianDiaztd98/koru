@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\TeamMembersManager;
 
 use App\Models\TeamMember;
 use App\Services\AdminMediaService;
@@ -9,7 +9,7 @@ use Livewire\Component;
 use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
-class TeamMembersPage extends Component
+class TeamMembersManager extends Component
 {
     use WithFileUploads;
 
@@ -55,10 +55,10 @@ class TeamMembersPage extends Component
     protected function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'instagram_handle' => ['nullable', 'string', 'max:255', 'regex:/^@?[A-Za-z0-9._]{1,30}$/'],
-            'bio_en' => ['nullable', 'string'],
-            'specialty_en' => ['nullable', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:100'],
+            'instagram_handle' => ['nullable', 'string', 'max:50', 'regex:/^@?[A-Za-z0-9._]{1,30}$/'],
+            'bio_en' => ['nullable', 'string', 'max:1000'],
+            'specialty_en' => ['nullable', 'string', 'max:100'],
             'image_file' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             'active_status' => ['boolean'],
         ];

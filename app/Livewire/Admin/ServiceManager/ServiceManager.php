@@ -12,7 +12,7 @@ use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
-class ServiceManagerPage extends Component
+class ServiceManager extends Component
 {
     use WithFileUploads;
     use WithPagination;
@@ -86,12 +86,12 @@ class ServiceManagerPage extends Component
     protected function rules(): array
     {
         return [
-            'name_en' => ['required', 'string', 'max:255'],
-            'description_en' => ['required', 'string'],
-            'duration' => ['required', 'string', 'max:255'],
-            'price' => ['required', 'numeric', 'min:0', 'max:99999999.99'],
+            'name_en' => ['required', 'string', 'max:120'],
+            'description_en' => ['required', 'string', 'max:3000'],
+            'duration' => ['required', 'string', 'max:50'],
+            'price' => ['required', 'numeric', 'min:0', 'max:999999.99'],
             'category' => ['required', 'string', 'in:'.implode(',', array_keys($this->categories))],
-            'image_path' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'image_path' => ['nullable', 'image', 'max:4096', 'mimes:jpg,jpeg,png,webp'],
             'active_status' => ['boolean'],
             'discount_eligible' => ['boolean'],
         ];

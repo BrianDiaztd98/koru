@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class PackageManagerPage extends Component
+class PackageManager extends Component
 {
     use WithPagination;
 
@@ -77,11 +77,11 @@ class PackageManagerPage extends Component
     protected function rules(): array
     {
         return [
-            'name_en' => ['required', 'string', 'max:255'],
-            'description_en' => ['nullable', 'string'],
-            'price' => ['required', 'numeric', 'min:0', 'max:99999999.99'],
-            'sessions' => ['required', 'integer', 'min:1'],
-            'validity' => ['nullable', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:100'],
+            'description_en' => ['nullable', 'string', 'max:2000'],
+            'price' => ['required', 'numeric', 'min:0', 'max:999999.99'],
+            'sessions' => ['required', 'integer', 'min:1', 'max:100'],
+            'validity' => ['nullable', 'string', 'max:100'],
             'sort_order' => ['required', 'integer', 'min:0'],
             'active_status' => ['boolean'],
             'discount_eligible' => ['boolean'],
@@ -298,7 +298,7 @@ class PackageManagerPage extends Component
     public function saveTerm(): void
     {
         $validated = $this->validate([
-            'term_content' => ['required', 'string'],
+            'term_content' => ['required', 'string', 'max:5000'],
             'term_sort_order' => ['required', 'integer', 'min:0'],
             'term_active_status' => ['boolean'],
         ]);

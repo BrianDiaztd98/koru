@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\AboutPageManager;
 
 use App\Models\About;
 use App\Services\AdminMediaService;
@@ -10,7 +10,7 @@ use Livewire\Component;
 use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
-class AboutPage extends Component
+class AboutPageManager extends Component
 {
     use WithFileUploads;
 
@@ -62,15 +62,15 @@ class AboutPage extends Component
     protected function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:255'],
-            'subtitle' => ['nullable', 'string', 'max:255'],
-            'description' => ['nullable', 'string'],
-            'philosophy' => ['required', 'string'],
-            'vision' => ['required', 'string'],
-            'feature_1_title' => ['nullable', 'string', 'max:255'],
-            'feature_1_description' => ['nullable', 'string'],
-            'feature_2_title' => ['nullable', 'string', 'max:255'],
-            'feature_2_description' => ['nullable', 'string'],
+            'title' => ['required', 'string', 'max:100'],
+            'subtitle' => ['nullable', 'string', 'max:150'],
+            'description' => ['nullable', 'string', 'max:2000'],
+            'philosophy' => ['required', 'string', 'max:2000'],
+            'vision' => ['required', 'string', 'max:2000'],
+            'feature_1_title' => ['nullable', 'string', 'max:80'],
+            'feature_1_description' => ['nullable', 'string', 'max:500'],
+            'feature_2_title' => ['nullable', 'string', 'max:80'],
+            'feature_2_description' => ['nullable', 'string', 'max:500'],
             'image_1' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             'image_2' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             'image_3' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],

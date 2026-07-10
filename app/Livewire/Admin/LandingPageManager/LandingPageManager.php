@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\LandingPageManager;
 
 use App\Models\About;
 use App\Models\LandingPageVisit;
@@ -9,7 +9,7 @@ use App\Models\Service;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
-class ManagementPage extends Component
+class LandingPageManager extends Component
 {
     public About $about;
 

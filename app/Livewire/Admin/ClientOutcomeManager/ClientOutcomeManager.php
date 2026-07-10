@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\ClientOutcomeManager;
 
 use App\Models\Testimonial;
 use Illuminate\Contracts\View\View;
@@ -8,7 +8,7 @@ use Livewire\Component;
 use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
-class ClientOutcomesPage extends Component
+class ClientOutcomeManager extends Component
 {
     use WithFileUploads;
 
@@ -54,11 +54,11 @@ class ClientOutcomesPage extends Component
     protected function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
+            'title' => ['required', 'string', 'max:100'],
+            'description' => ['required', 'string', 'max:2000'],
             'category' => ['required', 'string', 'in:lounge,athlete,clinical'],
             'video_path' => ['nullable', 'string', 'max:255'],
-            'video_file' => ['nullable', 'file', 'mimes:mp4,webm,mov,avi', 'max:10240'],
+            'video_file' => ['nullable', 'file', 'mimes:mp4,webm,mov,avi', 'max:51200'],
             'active_status' => ['boolean'],
         ];
     }

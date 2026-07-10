@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\HeroCarouselManager;
 
 use App\Models\HeroSlide;
 use App\Models\Service;
@@ -10,7 +10,7 @@ use Livewire\Component;
 use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
-class HeroCarouselManagerPage extends Component
+class HeroCarouselManager extends Component
 {
     use WithFileUploads;
 
@@ -69,14 +69,14 @@ class HeroCarouselManagerPage extends Component
     protected function rules(): array
     {
         return [
-            'badge' => ['required', 'string', 'max:255'],
-            'title_line_1' => ['required', 'string', 'max:255'],
-            'title_line_2' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
-            'btn_primary_text' => ['required', 'string', 'max:255'],
-            'btn_primary_url' => ['required', 'string', 'max:2048'],
-            'btn_secondary_text' => ['nullable', 'string', 'max:255'],
-            'btn_secondary_url' => ['nullable', 'string', 'max:2048'],
+            'badge' => ['required', 'string', 'max:50'],
+            'title_line_1' => ['required', 'string', 'max:100'],
+            'title_line_2' => ['required', 'string', 'max:100'],
+            'description' => ['required', 'string', 'max:500'],
+            'btn_primary_text' => ['required', 'string', 'max:50'],
+            'btn_primary_url' => ['required', 'string', 'max:2048', 'url'],
+            'btn_secondary_text' => ['nullable', 'string', 'max:50'],
+            'btn_secondary_url' => ['nullable', 'string', 'max:2048', 'url'],
             'image_path' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
             'service_id' => ['nullable', 'exists:services,id'],
             'sort_order' => ['required', 'integer', 'min:0'],

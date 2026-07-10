@@ -1,4 +1,22 @@
-<div class="admin-form-panel">
+<div class="admin-form-panel" x-data="{ 
+    charCounts: {
+        description: 0,
+        philosophy: 0,
+        vision: 0,
+        feature_1_description: 0,
+        feature_2_description: 0
+    },
+    maxLengths: {
+        description: 2000,
+        philosophy: 2000,
+        vision: 2000,
+        feature_1_description: 500,
+        feature_2_description: 500
+    },
+    updateCount(field) {
+        this.charCounts[field] = this.$refs[field]?.value?.length || 0;
+    }
+}">
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
             <h3 class="text-lg font-semibold text-white">Create About Section</h3>
@@ -38,28 +56,55 @@
                 <div x-show="activeTab === 'copy'" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2" class="space-y-5">
                     <div class="grid gap-5 lg:grid-cols-2">
                         <div>
-                            <label for="title" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Title</label>
-                            <input wire:model="title" id="title" type="text" value="{{ $title }}" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600" placeholder="Main header title" />
+                            <label for="title" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1">
+                                Title <span class="text-rose-400">(*)</span>
+                            </label>
+                            <input wire:model="title" id="title" type="text" value="{{ $title }}" maxlength="100" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600" placeholder="Main header title (max 100 chars)" />
+                            @error('title') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                         </div>
                         <div>
-                            <label for="subtitle" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Subtitle</label>
-                            <input wire:model="subtitle" id="subtitle" type="text" value="{{ $subtitle }}" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600" placeholder="Optional sub-heading" />
+                            <label for="subtitle" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1">
+                                Subtitle <span class="text-slate-500">(Opcional)</span>
+                            </label>
+                            <input wire:model="subtitle" id="subtitle" type="text" value="{{ $subtitle }}" maxlength="150" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600" placeholder="Optional sub-heading (max 150 chars)" />
+                            @error('subtitle') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                         </div>
                     </div>
 
                     <div>
-                        <label for="description" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Corporate Description</label>
-                        <textarea wire:model="description" id="description" rows="4" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600" placeholder="Primary narrative content...">{{ $description }}</textarea>
+                        <label for="description" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1">
+                            Corporate Description <span class="text-slate-500">(Opcional)</span>
+                        </label>
+                        <textarea wire:model="description" id="description" rows="4" x-ref="description" @input="updateCount('description')" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600" placeholder="Primary narrative content... (max 2000 chars)">{{ $description }}</textarea>
+                        <div class="mt-1.5 flex justify-between text-xs">
+                            <span class="text-slate-500">Optional field</span>
+                            <span class="font-mono text-slate-400" x-text="charCounts.description + ' / ' + maxLengths.description"></span>
+                        </div>
+                        @error('description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                     </div>
 
                     <div class="grid gap-5 lg:grid-cols-2 pt-2">
                         <div class="p-4 rounded-xl border border-slate-800/60 bg-slate-950/20">
-                            <label for="philosophy" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-[#0EB3B9]">Core Philosophy</label>
-                            <textarea wire:model="philosophy" id="philosophy" rows="4" class="koru-scrollbar max-h-40 w-full overflow-y-auto rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 focus:border-[#0EB3B9] focus:ring-1 focus:ring-[#0EB3B9]/20 placeholder:text-slate-600" placeholder="Philosophy details...">{{ $philosophy }}</textarea>
+                            <label for="philosophy" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-[#0EB3B9] flex items-center gap-1">
+                                Core Philosophy <span class="text-rose-400">(*)</span>
+                            </label>
+                            <textarea wire:model="philosophy" id="philosophy" rows="4" x-ref="philosophy" @input="updateCount('philosophy')" class="koru-scrollbar max-h-40 w-full overflow-y-auto rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 focus:border-[#0EB3B9] focus:ring-1 focus:ring-[#0EB3B9]/20 placeholder:text-slate-600" placeholder="Philosophy details... (max 2000 chars)">{{ $philosophy }}</textarea>
+                            <div class="mt-1.5 flex justify-between text-xs">
+                                <span class="text-slate-500">Required</span>
+                                <span class="font-mono text-slate-400" x-text="charCounts.philosophy + ' / ' + maxLengths.philosophy"></span>
+                            </div>
+                            @error('philosophy') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                         </div>
                         <div class="p-4 rounded-xl border border-slate-800/60 bg-slate-950/20">
-                            <label for="vision" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-[#0EB3B9]">System Vision</label>
-                            <textarea wire:model="vision" id="vision" rows="4" class="koru-scrollbar max-h-40 w-full overflow-y-auto rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 focus:border-[#0EB3B9] focus:ring-1 focus:ring-[#0EB3B9]/20 placeholder:text-slate-600" placeholder="Vision declaration...">{{ $vision }}</textarea>
+                            <label for="vision" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-[#0EB3B9] flex items-center gap-1">
+                                System Vision <span class="text-rose-400">(*)</span>
+                            </label>
+                            <textarea wire:model="vision" id="vision" rows="4" x-ref="vision" @input="updateCount('vision')" class="koru-scrollbar max-h-40 w-full overflow-y-auto rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 focus:border-[#0EB3B9] focus:ring-1 focus:ring-[#0EB3B9]/20 placeholder:text-slate-600" placeholder="Vision declaration... (max 2000 chars)">{{ $vision }}</textarea>
+                            <div class="mt-1.5 flex justify-between text-xs">
+                                <span class="text-slate-500">Required</span>
+                                <span class="font-mono text-slate-400" x-text="charCounts.vision + ' / ' + maxLengths.vision"></span>
+                            </div>
+                            @error('vision') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                         </div>
                     </div>
                 </div>
@@ -71,12 +116,22 @@
                         </div>
                         <div class="grid gap-4">
                             <div>
-                                <label for="feature_1_title" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">Feature 1 Title</label>
-                                <input wire:model="feature_1_title" id="feature_1_title" type="text" value="{{ $feature_1_title }}" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Feature name" />
+                                <label for="feature_1_title" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1">
+                                    Feature 1 Title <span class="text-slate-500">(Opcional)</span>
+                                </label>
+                                <input wire:model="feature_1_title" id="feature_1_title" type="text" value="{{ $feature_1_title }}" maxlength="80" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Feature name (max 80 chars)" />
+                                @error('feature_1_title') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="feature_1_description" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">Feature 1 Description</label>
-                                <textarea wire:model="feature_1_description" id="feature_1_description" rows="2" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Short explanation...">{{ $feature_1_description }}</textarea>
+                                <label for="feature_1_description" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1">
+                                    Feature 1 Description <span class="text-slate-500">(Opcional)</span>
+                                </label>
+                                <textarea wire:model="feature_1_description" id="feature_1_description" rows="2" x-ref="feature_1_description" @input="updateCount('feature_1_description')" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Short explanation... (max 500 chars)">{{ $feature_1_description }}</textarea>
+                                <div class="mt-1.5 flex justify-between text-xs">
+                                    <span class="text-slate-500">Optional</span>
+                                    <span class="font-mono text-slate-400" x-text="charCounts.feature_1_description + ' / ' + maxLengths.feature_1_description"></span>
+                                </div>
+                                @error('feature_1_description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                             </div>
                         </div>
                     </div>
@@ -87,12 +142,22 @@
                         </div>
                         <div class="grid gap-4">
                             <div>
-                                <label for="feature_2_title" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">Feature 2 Title</label>
-                                <input wire:model="feature_2_title" id="feature_2_title" type="text" value="{{ $feature_2_title }}" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Feature name" />
+                                <label for="feature_2_title" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1">
+                                    Feature 2 Title <span class="text-slate-500">(Opcional)</span>
+                                </label>
+                                <input wire:model="feature_2_title" id="feature_2_title" type="text" value="{{ $feature_2_title }}" maxlength="80" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Feature name (max 80 chars)" />
+                                @error('feature_2_title') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="feature_2_description" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">Feature 2 Description</label>
-                                <textarea wire:model="feature_2_description" id="feature_2_description" rows="2" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Short explanation...">{{ $feature_2_description }}</textarea>
+                                <label for="feature_2_description" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1">
+                                    Feature 2 Description <span class="text-slate-500">(Opcional)</span>
+                                </label>
+                                <textarea wire:model="feature_2_description" id="feature_2_description" rows="2" x-ref="feature_2_description" @input="updateCount('feature_2_description')" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Short explanation... (max 500 chars)">{{ $feature_2_description }}</textarea>
+                                <div class="mt-1.5 flex justify-between text-xs">
+                                    <span class="text-slate-500">Optional</span>
+                                    <span class="font-mono text-slate-400" x-text="charCounts.feature_2_description + ' / ' + maxLengths.feature_2_description"></span>
+                                </div>
+                                @error('feature_2_description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                             </div>
                         </div>
                     </div>
@@ -110,8 +175,12 @@
                                 @endif
                             </div>
                             <div class="w-full">
-                                <label class="block font-mono text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Upload Slot A</label>
+                                <label class="block font-mono text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                                    Upload Slot A <span class="text-slate-500">(Opcional)</span>
+                                </label>
                                 <input wire:model="image_1" type="file" accept="image/*" class="w-full text-[11px] text-slate-500 file:mr-2 file:rounded-md file:border-0 file:bg-[#0EB3B9]/10 file:px-2.5 file:py-1 file:font-mono file:text-[10px] file:font-bold file:text-[#0EB3B9] cursor-pointer" />
+                                <p class="mt-1 text-[10px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
+                                @error('image_1') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                             </div>
                         </div>
 
@@ -124,8 +193,12 @@
                                 @endif
                             </div>
                             <div class="w-full">
-                                <label class="block font-mono text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Upload Slot B</label>
+                                <label class="block font-mono text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                                    Upload Slot B <span class="text-slate-500">(Opcional)</span>
+                                </label>
                                 <input wire:model="image_2" type="file" accept="image/*" class="w-full text-[11px] text-slate-500 file:mr-2 file:rounded-md file:border-0 file:bg-[#0EB3B9]/10 file:px-2.5 file:py-1 file:font-mono file:text-[10px] file:font-bold file:text-[#0EB3B9] cursor-pointer" />
+                                <p class="mt-1 text-[10px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
+                                @error('image_2') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                             </div>
                         </div>
 
@@ -138,8 +211,12 @@
                                 @endif
                             </div>
                             <div class="w-full">
-                                <label class="block font-mono text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Upload Slot C</label>
+                                <label class="block font-mono text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                                    Upload Slot C <span class="text-slate-500">(Opcional)</span>
+                                </label>
                                 <input wire:model="image_3" type="file" accept="image/*" class="w-full text-[11px] text-slate-500 file:mr-2 file:rounded-md file:border-0 file:bg-[#0EB3B9]/10 file:px-2.5 file:py-1 file:font-mono file:text-[10px] file:font-bold file:text-[#0EB3B9] cursor-pointer" />
+                                <p class="mt-1 text-[10px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
+                                @error('image_3') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
                             </div>
                         </div>
 

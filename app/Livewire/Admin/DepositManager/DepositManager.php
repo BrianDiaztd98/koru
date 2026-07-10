@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Admin;
+namespace App\Livewire\Admin\DepositManager;
 
 use App\Models\DayDiscountSetting;
 use Illuminate\Contracts\View\View;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
-class DiscountSettingsPage extends Component
+class DepositManager extends Component
 {
     /** @var array<int, string> Porcentaje por día (clave = day_of_week 0-6). */
     public array $percentages = [];
