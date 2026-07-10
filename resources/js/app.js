@@ -1,19 +1,39 @@
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import sal from 'sal.js';
+import 'sal.js/dist/sal.css';
 
 const prefersReducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function initializeAOS() {
-    AOS.init({
-        duration: 800,
-        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+// Keep a reference so we can re-scan dynamically added [data-sal] elements.
+let salInstance = null;
+
+function initializeSal() {
+    // When reduced motion is preferred, SAL is initialized in "disabled" mode so it
+    // adds `sal-disabled` to <body>, which makes every [data-sal] element visible.
+    salInstance = sal({
+        threshold: 0.15,
         once: true,
-        offset: 120,
-        delay: 0,
-        anchorPlacement: 'top-bottom',
-        debounceDelay: 50,
-        throttleDelay: 99,
-        disable: prefersReducedMotion(),
+        disabled: prefersReducedMotion(),
+    });
+}
+
+// SAL builds its IntersectionObserver only once. Livewire re-renders the Service Pillars
+// cards on every tab switch (the container uses a dynamic wire:key), producing brand new
+// [data-sal] nodes that the original observer never watches. Without re-scanning, those
+// cards stay at opacity:0 and the tabs appear broken. `sal().update()` re-observes any
+// [data-sal] element that has not been animated yet.
+function registerLivewireSalSync() {
+    if (!window.Livewire) {
+        return;
+    }
+
+    window.Livewire.hook('morphed', ({ component }) => {
+        if (component?.name !== 'components.service-pillars') {
+            return;
+        }
+
+        if (salInstance && typeof salInstance.update === 'function') {
+            salInstance.update();
+        }
     });
 }
 
@@ -32,12 +52,6 @@ document.addEventListener('alpine:init', () => {
             if (this.totalSlides > 1 && !this.reduceMotion) {
                 this.startAutoPlay();
             }
-
-            this.$nextTick(() => {
-                if (typeof AOS !== 'undefined') {
-                    AOS.refresh();
-                }
-            });
         },
 
         startAutoPlay() {
@@ -81,12 +95,6 @@ document.addEventListener('alpine:init', () => {
     }));
 });
 
-window.addEventListener('DOMContentLoaded', () => {
-    if (typeof AOS !== 'undefined') {
-        AOS.refresh();
-    }
-});
-
 function bindMobileMenu() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -125,20 +133,22 @@ function bindVideoModal() {
     });
 }
 
-// initialize after DOM ready and once AOS has had a chance to paint
+// initialize after DOM ready
 function onDocumentReady() {
-    if (document.querySelector('[data-aos]')) {
-        initializeAOS();
-    }
-
-    if (prefersReducedMotion() && AOS && AOS.refresh) {
-        AOS.refresh();
-        console.info('User prefers reduced motion: disabling non-essential animations');
+    if (document.querySelector('[data-sal]')) {
+        initializeSal();
     }
 
     bindMobileMenu();
     bindVideoModal();
     initScrollLinkedAnimations();
+
+    // Livewire may already be booted (script order), otherwise wait for its init event.
+    if (window.Livewire) {
+        registerLivewireSalSync();
+    } else {
+        document.addEventListener('livewire:init', registerLivewireSalSync, { once: true });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', onDocumentReady);

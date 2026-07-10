@@ -19,8 +19,8 @@
             </div>
         @else
 
-        <!-- Cabecera de la Sección (Integrada con AOS y control de Livewire) -->
-        <div class="mb-12 text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" data-aos-easing="ease-out-cubic">
+        <!-- Cabecera de la Sección (Integrada con Sal.js y control de Livewire) -->
+        <div class="mb-12 text-center" data-sal="fade" data-sal-duration="800" data-sal-delay="0" data-sal-easing="ease-out-cubic">
             <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
                 {{ $aboutData['title'] ?? 'About KORU' }}
             </div>
@@ -36,7 +36,7 @@
         <div class="grid gap-12 lg:grid-cols-12 items-center" wire:key="about-content-wrapper">
             
             <!-- Columna Izquierda: Texto Dinámico consumido desde Base de Datos -->
-            <div class="lg:col-span-6 space-y-6" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200" data-aos-easing="ease-out-cubic">
+            <div class="lg:col-span-6 space-y-6" data-sal="slide-right" data-sal-duration="1000" data-sal-delay="200" data-sal-easing="ease-out-cubic">
                 <h3 class="text-xl font-bold text-white tracking-tight sm:text-2xl">
                     {{ $aboutData['title'] ?? 'About KORU' }}
                 </h3>
@@ -87,7 +87,7 @@
             </div>
 
             <!-- Columna Derecha: Mosaico Asimétrico con Imágenes Limpias -->
-            <div class="lg:col-span-6 relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400" data-aos-easing="ease-out-cubic">
+            <div class="lg:col-span-6 relative" data-sal="slide-left" data-sal-duration="1000" data-sal-delay="400" data-sal-easing="ease-out-cubic">
                 <!-- Efecto Glow Destello Detrás del Mosaico -->
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#0E788D]/15 blur-[100px] rounded-full -z-10"></div>
                 

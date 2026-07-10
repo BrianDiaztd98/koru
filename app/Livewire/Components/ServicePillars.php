@@ -2,18 +2,16 @@
 
 namespace App\Livewire\Components;
 
-use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ServicePillars extends Component
 {
     public array $pillarLabels = [];
 
-    public string $activePillar = 'recovery_performance';
+    public string $activePillar = 'manual_therapy';
 
     public array $servicesByPillar = [];
 
-    #[On('set-pillar')]
     public function setPillar(string $pillar): void
     {
         if (array_key_exists($pillar, $this->pillarLabels)) {

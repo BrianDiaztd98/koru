@@ -7,7 +7,7 @@
         
         <!-- Cabecera de la Sección (Protegida con wire:ignore si usas AOS en el sitio) -->
         <!-- CAMBIO: Reducido el mb-16 a mb-12 para compactar el espacio entre el título y las tarjetas -->
-        <div class="mb-12 text-center" data-aos="fade-up" data-aos-duration="800" wire:ignore>
+        <div class="mb-12 text-center" data-sal="fade" data-sal-duration="800" wire:ignore>
             <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
                 Professional CE
             </div>
@@ -23,9 +23,9 @@
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch" wire:key="education-courses-grid">
             @forelse($activeCourses as $index => $course)
                 <article wire:key="course-card-{{ $course['id'] ?? $index }}"
-                         data-aos="fade-up"
-                         data-aos-delay="{{ 100 + ($loop->index * 50) }}"
-                         data-aos-duration="600"
+                         data-sal="slide-up"
+                         data-sal-delay="{{ 100 + ($loop->index * 100) }}"
+                         data-sal-duration="700"
                          class="group scroll-animate flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" data-speed="0.06">
                     
                     <!-- Bloque de Contenido Superior Proporcional -->
@@ -74,8 +74,8 @@
                 <!-- Estado Vacío Semántico y Controlado con Estética de Alta Gama -->
                 <div class="col-span-full rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10" 
                      wire:key="education-empty-state"
-                     data-aos="fade-up"
-                     data-aos-duration="600">
+                     data-sal="fade"
+                     data-sal-duration="600">
                     <h4 class="text-xl font-semibold text-white">No professional CE content available yet</h4>
                     <p class="mt-3 max-w-sm mx-auto text-sm leading-relaxed text-slate-400">
                         This section is waiting for education content.

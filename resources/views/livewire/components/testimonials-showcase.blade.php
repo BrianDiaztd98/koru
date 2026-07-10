@@ -2,7 +2,7 @@
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div class="mb-16 text-center" data-aos="fade-up" data-aos-duration="800" wire:ignore>
+        <div class="mb-16 text-center" data-sal="fade" data-sal-duration="800" wire:ignore>
             <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
                 Client Outcomes
             </div>
@@ -25,9 +25,9 @@
             <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3 items-stretch" wire:key="testimonials-video-grid">
                 @foreach($visibleTestimonials as $index => $testimonial)
                     <article wire:key="testimonial-card-{{ $testimonial['id'] ?? $index }}"
-                             data-aos="fade-up"
-                             data-aos-delay="{{ 100 + ($loop->index * 50) }}"
-                             data-aos-duration="600"
+                             data-sal="slide-up"
+                             data-sal-delay="{{ 100 + ($loop->index * 100) }}"
+                             data-sal-duration="700"
                              class="group relative flex min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)] scroll-animate" data-speed="0.06">
 
                         <div class="flex-1 flex flex-col">

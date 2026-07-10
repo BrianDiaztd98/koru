@@ -8,7 +8,7 @@
         <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between mb-16" wire:key="services-header-container">
             
             <!-- Bloque de Título con protección de renderizado -->
-            <div class="max-w-xl" data-aos="fade-right" data-aos-duration="800" data-aos-anchor-placement="top-bottom" wire:ignore>
+            <div class="max-w-xl" data-sal="slide-right" data-sal-duration="800" data-sal-anchor-placement="top-bottom" wire:ignore>
                 <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
                     Service Pillars
                 </div>
@@ -38,30 +38,27 @@
         </div>
 
         <!-- Contenedor Dinámico con Paginación Reactiva (Alpine.js) -->
-        <div x-data="{
-                currentPage: 1,
-                perPage: 3,
-                totalServices: {{ count($servicesByPillar[$activePillar] ?? []) }},
-                get totalPages() { return Math.ceil(this.totalServices / this.perPage) },
-                isInPage(index) {
-                    return index >= (this.currentPage - 1) * this.perPage && index < this.currentPage * this.perPage;
-                },
-                nextPage() { 
-                    if (this.currentPage < this.totalPages) {
-                        this.currentPage++;
-                        $nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); });
+        <div wire:key="services-dynamic-content-{{ $activePillar }}">
+            <div x-data="{
+                    currentPage: 1,
+                    perPage: 3,
+                    totalServices: {{ count($servicesByPillar[$activePillar] ?? []) }},
+                    get totalPages() { return Math.ceil(this.totalServices / this.perPage) },
+                    isInPage(index) {
+                        return index >= (this.currentPage - 1) * this.perPage && index < this.currentPage * this.perPage;
+                    },
+                    nextPage() { 
+                        if (this.currentPage < this.totalPages) {
+                            this.currentPage++;
+                        }
+                    },
+                    prevPage() { 
+                        if (this.currentPage > 1) {
+                            this.currentPage--;
+                        }
                     }
-                },
-                prevPage() { 
-                    if (this.currentPage > 1) {
-                        this.currentPage--;
-                        $nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); });
-                    }
-                }
-             }" 
-             x-init="$nextTick(() => { if(typeof AOS !== 'undefined') AOS.refresh(); })"
-             class="flex flex-col gap-10"
-             wire:key="services-dynamic-content-{{ $activePillar }}">
+                 }" 
+                 class="flex flex-col gap-10">
 
             <!-- Grid de Tarjetas de Servicios -->
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch" wire:key="services-grid-{{ $activePillar }}">
@@ -73,9 +70,10 @@
                              x-transition:enter="transition ease-out duration-300"
                              x-transition:enter-start="opacity-0 translate-y-4 scale-[0.98]"
                              x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-                             data-aos="fade-up"
-                             data-aos-delay="{{ ($index % 3) * 100 }}"
-                             data-aos-anchor-placement="top-bottom"
+                             data-sal="slide-up"
+                             data-sal-delay="{{ ($index % 3) * 100 }}"
+                             data-sal-duration="700"
+                             data-sal-anchor-placement="top-bottom"
                              class="group scroll-animate flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.12)]" data-speed="0.06">
 
                         <div>
@@ -179,5 +177,6 @@
 
         </div>
 
+        </div>
     </div>
 </section>

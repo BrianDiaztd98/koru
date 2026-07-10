@@ -40,7 +40,7 @@
 
                             <!-- Contenido Interno del Slide -->
                             <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pt-20">
-                                <div class="max-w-2xl w-full scroll-animate" data-speed="0.12" data-aos="fade-right" data-aos-duration="1000">
+                                <div class="max-w-2xl w-full scroll-animate" data-speed="0.12" data-sal="slide-up" data-sal-duration="1000" data-sal-easing="ease-out-bounce">
 
                                     <span class="inline-flex items-center rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9] mb-6 font-mono">
                                         {{ $slide['badge'] }}

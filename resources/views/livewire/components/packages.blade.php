@@ -5,7 +5,7 @@
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <!-- Cabecera Centralizada -->
-        <div class="text-center mb-16" data-aos="fade-up" data-aos-duration="800" wire:ignore>
+        <div class="text-center mb-16" data-sal="fade" data-sal-duration="800" wire:ignore>
             <div class="inline-flex items-center justify-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
                 Packages
             </div>
@@ -31,9 +31,9 @@
                 <div wire:key="package-card-{{ $package['id'] ?? $loop->index }}"
                      x-data="{ expanded: false }" 
                      class="group scroll-animate flex flex-col justify-between h-full rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" data-speed="0.06" 
-                     data-aos="fade-up" 
-                     data-aos-delay="{{ 100 + ($loop->index * 50) }}" 
-                     data-aos-duration="600">
+                     data-sal="slide-up" 
+                     data-sal-delay="{{ 100 + ($loop->index * 100) }}" 
+                     data-sal-duration="700">
                     
                     <!-- Contenido Superior de la Tarjeta -->
                     <div class="flex-1 flex flex-col">
@@ -106,7 +106,7 @@
         @endif
 
         <!-- Contenedor Legal / Políticas de los Paquetes -->
-        <div class="mt-12 rounded-3xl border border-slate-800/80 bg-slate-950/30 p-6 sm:p-8 backdrop-blur-sm" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800" wire:ignore>
+        <div class="mt-12 rounded-3xl border border-slate-800/80 bg-slate-950/30 p-6 sm:p-8 backdrop-blur-sm" data-sal="fade" data-sal-delay="300" data-sal-duration="800" wire:ignore>
             <div class="flex items-center gap-2.5 mb-6 border-b border-slate-800/50 pb-3">
                 <svg class="h-4 w-4 text-[#0EB3B9]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

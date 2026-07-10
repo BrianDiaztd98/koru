@@ -5,7 +5,7 @@
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <!-- Cabecera Minimalista -->
-        <div class="mb-16 max-w-3xl" data-aos="fade-up" data-aos-duration="800" wire:ignore>
+        <div class="mb-16 max-w-3xl" data-sal="fade" data-sal-duration="800" wire:ignore>
             <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
                 Quick Therapy
             </div>
@@ -58,9 +58,9 @@
             @else
             <!-- PANEL IZQUIERDO: Tarjeta de Enfoque Clínico Dinámica -->
             <div class="lg:col-span-5 flex flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950/60 p-8 backdrop-blur-md relative overflow-hidden scroll-animate" data-speed="0.08"
-                 data-aos="fade-right" 
-                 data-aos-duration="800"
-                 data-aos-anchor-placement="top-bottom">
+                 data-sal="slide-right" 
+                 data-sal-duration="800"
+                 data-sal-anchor-placement="top-bottom">
                 <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#0EB3B9]/10 blur-3xl"></div>
                 
                 <div class="relative z-10 flex-1 flex flex-col justify-between min-h-[340px] sm:min-h-[290px]">
@@ -133,9 +133,9 @@
 
             <!-- PANEL DERECHO: Selector de Menú con Listado Paginado -->
             <div class="lg:col-span-7 flex flex-col justify-between scroll-animate" data-speed="0.06"
-                 data-aos="fade-left" 
-                 data-aos-duration="800"
-                 data-aos-anchor-placement="top-bottom">
+                 data-sal="slide-left" 
+                 data-sal-duration="800"
+                 data-sal-anchor-placement="top-bottom">
                 
                 <!-- Lista de Contenido -->
                 <div class="flex flex-col gap-3 min-h-[340px]">
