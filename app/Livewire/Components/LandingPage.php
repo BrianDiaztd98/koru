@@ -30,9 +30,12 @@ class LandingPage extends Component
         $this->headerNavItems = $this->buildHeaderNavItems();
 
         // Count each landing-page visit once per browser session so refreshes and F5 do not inflate the stats.
-        if (! session()->has('landing_page_viewed')) {
-            LandingPageVisit::create();
-            session()->put('landing_page_viewed', true);
+        // Skip tracking for authenticated admin users to avoid polluting production stats during testing.
+        if (! auth()->check() || ! auth()->user()->is_admin) {
+            if (! session()->has('landing_page_viewed')) {
+                LandingPageVisit::create();
+                session()->put('landing_page_viewed', true);
+            }
         }
     }
 
