@@ -6,8 +6,8 @@
         <button @click="sidebarOpen = false"
                 type="button"
                 class="inline-flex items-center justify-center rounded-xl border border-slate-800 bg-slate-950/60 p-2 text-slate-400 hover:text-white hover:border-[#0EB3B9]/40 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
-                aria-label="Cerrar menú">
-            <span class="sr-only">Cerrar menú</span>
+                aria-label="Close menu">
+            <span class="sr-only">Close menu</span>
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -37,7 +37,7 @@
                         <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
-                        Inicio
+Home
                     </span>
                     <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.management.index') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                 </a>
@@ -198,13 +198,13 @@
         <form action="{{ route('admin.logout') }}" method="POST" class="inline-flex w-full">
             @csrf
             <button type="submit"
-                    title="Cerrar Sesión"
+                    title="Logout"
                     class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-2.5 text-sm font-medium text-slate-400 transition-all duration-200 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400 active:scale-95 focus:outline-none">
                 <span class="sr-only">Logout</span>
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9"/>
                 </svg>
-                Cerrar Sesión
+Logout
             </button>
         </form>
     </div>
