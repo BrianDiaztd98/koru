@@ -1,19 +1,16 @@
-<div class="flex min-h-screen flex-col bg-[#0b1329]" x-data="{ isLoaded: false }" x-init="setTimeout(() => { isLoaded = true }, 350)">
+<div class="flex min-h-screen flex-col bg-[#0b1329]" x-data="{ isLoaded: true }">
     @push('head')
         @php
             $firstHero = $this->heroSlides[0]['image'] ?? null;
         @endphp
         @if($firstHero)
-            <link rel="preload" as="image" href="{{ $firstHero }}">
+            <link rel="preload" as="image" href="{{ $firstHero }}" fetchpriority="high">
         @endif
     @endpush
 
-    @include('components.landing-page-skeleton')
+    <livewire:components.header :headerNavItems="$this->headerNavItems" />
 
-    <div x-show="isLoaded" x-cloak>
-        <livewire:components.header :headerNavItems="$this->headerNavItems" />
-
-        <main class="flex-1 overflow-x-hidden">
+    <main class="flex-1 overflow-x-hidden">
             {{-- HERO: LCP crítico, sin lazy --}}
             <livewire:components.hero-carousel :slides="$this->heroSlides" />
 
@@ -32,23 +29,22 @@
             {{-- SOLUCIÓN COMPLEMENTARIA: Booster Shots --}}
             <livewire:components.booster-shots :boosterShots="$this->boosterShots" />
 
-            {{-- PRUEBA SOCIAL: Testimonials --}}
-            <livewire:components.testimonials-showcase :testimonials="$this->testimonials" />
+            {{-- PRUEBA SOCIAL: Testimonials (LAZY) --}}
+            <livewire:components.testimonials-showcase :testimonials="$this->testimonials" wire:lazy />
 
-            {{-- OFERTA: Packages --}}
-            <livewire:components.packages :packages="$this->packages" :terms="$this->packageTerms" />
+            {{-- OFERTA: Packages (LAZY) --}}
+            <livewire:components.packages :packages="$this->packages" :terms="$this->packageTerms" wire:lazy />
 
-            {{-- AUTORIDAD ADICIONAL: Team --}}
-            <livewire:components.team :teamMembers="$this->teamMembers" />
+            {{-- AUTORIDAD ADICIONAL: Team (LAZY) --}}
+            <livewire:components.team :teamMembers="$this->teamMembers" wire:lazy />
 
-            {{-- EDUCACIÓN: Education Board --}}
-            <livewire:components.education-board :activeCourses="$this->activeCourses" />
+            {{-- EDUCACIÓN: Education Board (LAZY) --}}
+            <livewire:components.education-board :activeCourses="$this->activeCourses" wire:lazy />
 
-            {{-- CIERRE EMOCIONAL: Video Modal --}}
-            <livewire:components.video-modal />
+            {{-- CIERRE EMOCIONAL: Video Modal (LAZY) --}}
+            <livewire:components.video-modal wire:lazy />
 
-            {{-- FOOTER: Contacto y cierre --}}
-            <livewire:components.clinical-footer :localizedSettings="$this->localizedSettings" />
+            {{-- FOOTER: Contacto y cierre (LAZY) --}}
+            <livewire:components.clinical-footer :localizedSettings="$this->localizedSettings" wire:lazy />
         </main>
     </div>
-</div>

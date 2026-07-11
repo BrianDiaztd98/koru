@@ -1,5 +1,5 @@
 <section class="relative bg-slate-900 py-24 overflow-hidden" 
-    wire:ignore
+    wire:lazy.1s
     x-data="{ 
         open: false, 
         activeVideoUrl: '', 

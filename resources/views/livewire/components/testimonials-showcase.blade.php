@@ -1,4 +1,4 @@
-<section id="testimonials" class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
+<section id="testimonials" class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24" wire:lazy.1s>
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

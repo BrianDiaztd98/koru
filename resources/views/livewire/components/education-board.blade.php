@@ -1,5 +1,5 @@
 <!-- CAMBIO: Se cambió py-24 por pt-20 pb-24 para reducir el espacio de transición superior -->
-<section id="education" class="relative pt-20 pb-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
+<section id="education" class="relative pt-20 pb-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24" wire:lazy.1s>
     <!-- Luces ambientales de fondo clínicas con gradiente ascendente inverso -->
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
 

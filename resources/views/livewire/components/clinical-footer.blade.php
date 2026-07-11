@@ -1,4 +1,4 @@
-<footer id="location" class="relative overflow-hidden bg-slate-900 text-slate-300">
+<footer id="location" class="relative overflow-hidden bg-slate-900 text-slate-300" wire:lazy.1s>
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
