@@ -12,7 +12,7 @@
     <title>{{ $title ?? 'Admin Login — Koru CMS' }}</title>
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
     
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/admin.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
 

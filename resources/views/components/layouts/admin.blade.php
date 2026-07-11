@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
     <title>{{ $title ?? 'Content Management — Koru CMS' }}</title>
     
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/admin.css', 'resources/js/app.js'])
     @livewireStyles
     
     <!-- El x-cloak evita que los elementos de Alpine parpadeen al cargar -->

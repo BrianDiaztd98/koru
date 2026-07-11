@@ -17,8 +17,8 @@
     <title>{{ $title ?? 'Koru Center | Clinical Management & Medical Supply Platform' }}</title>
 
     <!-- Rendimiento: Cargar scripts juntos para optimizar HTTP/2 en Vite -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('head')
 </head>
 
