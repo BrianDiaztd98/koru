@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Middleware\AdminAccess;
 use App\Livewire\Admin\AboutPageManager\AboutPageManager;
+use App\Livewire\Admin\Auth\ForgotPassword;
 use App\Livewire\Admin\Auth\Login;
+use App\Livewire\Admin\Auth\ResetPassword;
 use App\Livewire\Admin\ClientOutcomeManager\ClientOutcomeManager;
 use App\Livewire\Admin\DepositManager\DepositManager;
 use App\Livewire\Admin\HeroCarouselManager\HeroCarouselManager;
@@ -18,6 +20,8 @@ Route::get('/', LandingPage::class);
 
 Route::middleware(['guest'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('login', Login::class)->name('login');
+    Route::get('password/forgot', ForgotPassword::class)->name('password.request');
+    Route::get('password/reset/{token}', ResetPassword::class)->name('password.reset');
 });
 
 Route::post('admin/logout', [LoginController::class, 'destroy'])

@@ -20,35 +20,38 @@
             </div>
 
             <div class="mb-6">
-                <h1 class="text-xl font-black text-white tracking-tight leading-tight">Administrator Access</h1>
-                <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">Sign in to authorize your management session.
-                </p>
+                <h1 class="text-xl font-black text-white tracking-tight leading-tight">New password</h1>
+                <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">Set a secure password for your administrative
+                    account.</p>
             </div>
 
-            @if ($errors->has(''))
-                <div class="mb-5 rounded-xl border border-rose-500/20 bg-rose-500/[0.07] p-3 text-xs text-rose-400 font-medium flex items-start gap-2.5 animate-fade-in">
-                    <svg class="h-4 w-4 shrink-0 text-rose-400 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+            @if (session('status'))
+                <div
+                    class="mb-5 rounded-xl border border-[#0EB3B9]/20 bg-[#0EB3B9]/[0.07] p-3 text-xs text-[#0EB3B9] font-medium flex items-start gap-2.5 animate-fade-in">
+                    <svg class="h-4 w-4 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span class="leading-relaxed">{{ $errors->first('') }}</span>
+                    <span class="leading-relaxed">{{ session('status') }}</span>
                 </div>
             @endif
 
-            <form wire:submit="login" class="space-y-4">
+            <form wire:submit="resetPassword" class="space-y-4">
                 <div>
                     <label for="email"
-                        class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Identity /
-                        Email</label>
+                        class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Email
+                        address</label>
                     <div class="relative group">
                         <div
                             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500 transition-colors group-focus-within:text-[#0EB3B9]">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                             </svg>
                         </div>
-                        <input id="email" wire:model="email" type="email" required autofocus
+                        <input id="email" wire:model="email" type="email" required
                             class="w-full rounded-lg border border-slate-800/80 bg-slate-950/60 pl-9 pr-3 py-2.5 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600"
                             placeholder="admin@koru.center">
                     </div>
@@ -66,8 +69,8 @@
 
                 <div>
                     <label for="password"
-                        class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Security
-                        Code</label>
+                        class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">New
+                        password</label>
                     <div class="relative group">
                         <div
                             class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500 transition-colors group-focus-within:text-[#0EB3B9]">
@@ -93,28 +96,42 @@
                     @enderror
                 </div>
 
-                <div class="flex items-center justify-between py-0.5">
-                    <div class="flex items-center gap-2">
-                        <input id="remember" wire:model="remember" type="checkbox"
-                            class="h-3.5 w-3.5 rounded border-slate-700 bg-slate-950/80 text-[#0EB3B9] focus:ring-[#0EB3B9]/20 focus:ring-offset-slate-900 cursor-pointer transition-all">
-                        <label for="remember"
-                            class="text-[11px] text-slate-400 cursor-pointer select-none hover:text-slate-300 transition-colors">Maintain
-                            Session</label>
+                <div>
+                    <label for="password_confirmation"
+                        class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Confirm
+                        password</label>
+                    <div class="relative group">
+                        <div
+                            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500 transition-colors group-focus-within:text-[#0EB3B9]">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <input id="password_confirmation" wire:model="password_confirmation" type="password" required
+                            class="w-full rounded-lg border border-slate-800/80 bg-slate-950/60 pl-9 pr-3 py-2.5 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600"
+                            placeholder="••••••••">
                     </div>
-
-                    <a href="{{ route('admin.password.request') }}"
-                        class="text-[11px] text-slate-400 hover:text-[#0EB3B9] transition-colors font-medium focus:outline-none focus:underline">
-                        Forgot your password?
-                    </a>
+                    @error('password_confirmation')
+                        <span class="flex items-center gap-1 text-rose-400 font-mono text-[10px] mt-1.5 pl-0.5">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                            </svg>
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="pt-1">
                     <button type="submit" wire:loading.attr="disabled"
                         class="group relative w-full h-[40px] inline-flex items-center justify-center rounded-lg bg-[#0EB3B9] px-4 text-sm font-semibold text-white shadow-md shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] hover:shadow-[#0EB3B9]/20 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[#0EB3B9] focus:ring-offset-2 focus:ring-offset-slate-900 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100">
 
-                        <!-- Estado Normal: Se oculta limpiamente al cargar -->
-                        <span wire:loading.remove wire:target="login" class="flex items-center justify-center gap-1.5">
-                            Initialize Session
+                        <span wire:loading.remove wire:target="resetPassword"
+                            class="flex items-center justify-center gap-1.5">
+                            Reset password
                             <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
                                 fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -122,8 +139,7 @@
                             </svg>
                         </span>
 
-                        <!-- Estado de Carga: Fuerza el modo flex para alinear horizontalmente el spinner y el texto -->
-                        <span wire:loading.flex wire:target="login"
+                        <span wire:loading.flex wire:target="resetPassword"
                             class="hidden items-center justify-center gap-2 font-mono text-[10px] uppercase tracking-wider">
                             <svg class="animate-spin h-3.5 w-3.5 text-white shrink-0" fill="none"
                                 viewBox="0 0 24 24">
@@ -133,17 +149,21 @@
                                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                 </path>
                             </svg>
-                            <span>Authenticating...</span>
+                            <span>Saving...</span>
                         </span>
 
                     </button>
                 </div>
             </form>
 
-            <div class="mt-5 pt-4 border-t border-slate-800/50">
-                <p class="text-[10px] text-slate-500 text-center font-mono">
-                    Protected by Koru CMS Security Layer
-                </p>
+            <div class="mt-5 pt-4 border-t border-slate-800/50 flex items-center justify-center">
+                <a href="{{ route('admin.login') }}"
+                    class="inline-flex items-center gap-1.5 text-[11px] text-slate-400 hover:text-[#0EB3B9] transition-colors font-medium">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                    </svg>
+                    Back to login
+                </a>
             </div>
         </div>
     </div>
