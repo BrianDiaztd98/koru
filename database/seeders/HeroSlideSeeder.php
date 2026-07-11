@@ -52,7 +52,10 @@ class HeroSlideSeeder extends Seeder
         ];
 
         foreach ($slides as $slide) {
-            HeroSlide::query()->create($slide);
+            HeroSlide::query()->updateOrCreate(
+                ['sort_order' => $slide['sort_order']],
+                $slide
+            );
         }
     }
 }
