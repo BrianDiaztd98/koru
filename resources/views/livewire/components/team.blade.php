@@ -37,7 +37,7 @@
                     
                     <!-- Contenedor de Imagen Estilizado -->
                     <div class="aspect-[3/4] w-full overflow-hidden bg-slate-950 relative border-b border-slate-800/60">
-                        <img src="{{ $member['image'] }}" alt="{{ $member['name'] }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+                        <img src="{{ $member['image'] }}" alt="{{ $member['name'] }}" width="600" height="800" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
                     </div>
                     
@@ -105,7 +105,7 @@
                             
                             <!-- Imagen Móvil -->
                             <div class="aspect-[3/4] w-full overflow-hidden bg-slate-950 relative border-b border-slate-800/60">
-                                <img src="{{ $member['image'] }}" alt="{{ $member['name'] }}" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                <img src="{{ $member['image'] }}" alt="{{ $member['name'] }}" width="600" height="800" class="w-full h-full object-cover" loading="lazy" decoding="async">
                                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
                             </div>
                             

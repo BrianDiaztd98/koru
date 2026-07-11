@@ -79,7 +79,7 @@
                         <div>
                             <!-- Contenedor de la Imagen Cinematográfica -->
                             <div class="relative aspect-[16/10] overflow-hidden bg-slate-950 border-b border-slate-800/60">
-                                <img src="{{ $service['image'] }}" alt="{{ $service['title'] }}" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+                                <img src="{{ $service['image'] }}" alt="{{ $service['title'] }}" width="800" height="500" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
                                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
 
                                 <!-- Badge de Precio Flotante Moderno -->

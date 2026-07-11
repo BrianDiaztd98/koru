@@ -120,7 +120,7 @@
                                 class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
                                 <img class="object-cover w-full h-36 sm:h-44 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
                                     src="{{ $aboutData['image_1'] ?? asset('img/about/therapy.webp') }}"
-                                    alt="KORU Therapy Session" loading="lazy" decoding="async">
+                                    alt="KORU Therapy Session" width="400" height="280" loading="lazy" decoding="async" fetchpriority="high">
                             </div>
 
                             <!-- Imagen 2: Inferior Izquierda -->
@@ -128,7 +128,7 @@
                                 class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
                                 <img class="object-cover w-full h-36 sm:h-44 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
                                     src="{{ $aboutData['image_2'] ?? asset('img/about/massage.webp') }}"
-                                    alt="KORU Team Collaboration" loading="lazy" decoding="async">
+                                    alt="KORU Team Collaboration" width="400" height="280" loading="lazy" decoding="async" fetchpriority="high">
                             </div>
                         </div>
 
@@ -139,7 +139,7 @@
                                 class="group relative overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 p-2 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30 shadow-[0_20px_50px_-20px_rgba(14,120,141,0.3)]">
                                 <img class="object-cover w-full h-[304px] sm:h-[368px] rounded-2xl transition-all duration-500 scale-100 group-hover:scale-105"
                                     src="{{ $aboutData['image_3'] ?? asset('img/about/team.webp') }}"
-                                    alt="KORU Wellness Environment" loading="lazy" decoding="async">
+                                    alt="KORU Wellness Environment" width="800" height="500" loading="lazy" decoding="async" fetchpriority="high">
                             </div>
                         </div>
 

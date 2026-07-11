@@ -30,6 +30,8 @@
                                  loading="{{ $loop->first ? 'eager' : 'lazy' }}"
                                  decoding="async"
                                  fetchpriority="{{ $loop->first ? 'high' : 'low' }}"
+                                 width="1920"
+                                 height="1080"
                                  class="absolute inset-0 h-full w-full object-cover transition-transform duration-[6000ms] ease-out {{ $loop->first ? 'scale-100' : 'scale-105' }}"
                                  :class="currentSlide === {{ $loop->index }} ? 'scale-100' : 'scale-105'"
                                  style="will-change: transform; backface-visibility: hidden;">
