@@ -6,7 +6,7 @@ use App\Models\TeamMember;
 use App\Services\AdminMediaService;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
-use Livewire\TemporaryUploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
 class TeamMembersManager extends Component

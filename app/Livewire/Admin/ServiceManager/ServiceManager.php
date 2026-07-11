@@ -8,7 +8,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Livewire\Component;
-use Livewire\TemporaryUploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
@@ -176,6 +176,14 @@ class ServiceManager extends Component
 
     public function save(): void
     {
+        logger()->info('ServiceManager::save called', [
+            'image_path_type' => gettype($this->image_path),
+            'image_path_class' => $this->image_path ? get_class($this->image_path) : 'null',
+            'image_path_instanceof' => $this->image_path instanceof TemporaryUploadedFile,
+            'category' => $this->category,
+            'isImageCategory' => $this->isImageCategory(),
+        ]);
+
         $validated = $this->validate();
         $validated['slug'] = Str::slug($validated['name_en']);
         $validated['category'] = $this->category;

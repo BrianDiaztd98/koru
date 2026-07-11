@@ -7,7 +7,7 @@ use App\Models\Service;
 use App\Services\AdminMediaService;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
-use Livewire\TemporaryUploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
 class HeroCarouselManager extends Component

@@ -12,6 +12,7 @@ use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
+use App\Services\AdminMediaService;
 use App\Services\DiscountService;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
@@ -107,7 +108,7 @@ class LandingPage extends Component
                 'title' => $service->name_en,
                 'description' => $service->description_en,
                 'duration' => $service->duration,
-                'image' => $service->image_path ?: asset('img/carrucel/relaxing.webp'),
+                'image' => AdminMediaService::resolveImageUrl($service->image_path) ?: asset('img/carrucel/relaxing.webp'),
             ]))->toArray())
             ->toArray();
     }
@@ -246,7 +247,7 @@ class LandingPage extends Component
                 'instagram' => $member->instagram_handle,
                 'bio' => $member->bio_en,
                 'specialty' => $member->specialty_en ?? $member->bio_en,
-                'image' => $member->image_path ?: asset('img/team/placeholder.png'),
+                'image' => AdminMediaService::resolveImageUrl($member->image_path) ?: asset('img/team/placeholder.png'),
             ])
             ->toArray();
     }

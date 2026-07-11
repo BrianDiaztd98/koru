@@ -5,7 +5,7 @@ namespace App\Livewire\Admin\ClientOutcomeManager;
 use App\Models\Testimonial;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
-use Livewire\TemporaryUploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
 class ClientOutcomeManager extends Component
