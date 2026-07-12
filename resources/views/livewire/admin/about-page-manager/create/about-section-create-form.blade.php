@@ -60,14 +60,14 @@
                                 Title <span class="text-rose-400">(*)</span>
                             </label>
                             <input wire:model="title" id="title" type="text" value="{{ $title }}" maxlength="100" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600" placeholder="Main header title (max 100 chars)" />
-                            @error('title') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                            @error('title') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                         </div>
                         <div>
                             <label for="subtitle" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1">
                                 Subtitle <span class="text-slate-500">(Opcional)</span>
                             </label>
                             <input wire:model="subtitle" id="subtitle" type="text" value="{{ $subtitle }}" maxlength="150" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600" placeholder="Optional sub-heading (max 150 chars)" />
-                            @error('subtitle') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                            @error('subtitle') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                         </div>
                     </div>
 
@@ -80,7 +80,7 @@
                             <span class="text-slate-500">Optional field</span>
                             <span class="font-mono text-slate-400" x-text="charCounts.description + ' / ' + maxLengths.description"></span>
                         </div>
-                        @error('description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                        @error('description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="grid gap-5 lg:grid-cols-2 pt-2">
@@ -93,7 +93,7 @@
                                 <span class="text-slate-500">Required</span>
                                 <span class="font-mono text-slate-400" x-text="charCounts.philosophy + ' / ' + maxLengths.philosophy"></span>
                             </div>
-                            @error('philosophy') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                            @error('philosophy') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                         </div>
                         <div class="p-4 rounded-xl border border-slate-800/60 bg-slate-950/20">
                             <label for="vision" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-[#0EB3B9] flex items-center gap-1">
@@ -104,7 +104,7 @@
                                 <span class="text-slate-500">Required</span>
                                 <span class="font-mono text-slate-400" x-text="charCounts.vision + ' / ' + maxLengths.vision"></span>
                             </div>
-                            @error('vision') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                            @error('vision') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                                     Feature 1 Title <span class="text-slate-500">(Opcional)</span>
                                 </label>
                                 <input wire:model="feature_1_title" id="feature_1_title" type="text" value="{{ $feature_1_title }}" maxlength="80" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Feature name (max 80 chars)" />
-                                @error('feature_1_title') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                                @error('feature_1_title') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="feature_1_description" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1">
@@ -131,7 +131,7 @@
                                     <span class="text-slate-500">Optional</span>
                                     <span class="font-mono text-slate-400" x-text="charCounts.feature_1_description + ' / ' + maxLengths.feature_1_description"></span>
                                 </div>
-                                @error('feature_1_description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                                @error('feature_1_description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                                     Feature 2 Title <span class="text-slate-500">(Opcional)</span>
                                 </label>
                                 <input wire:model="feature_2_title" id="feature_2_title" type="text" value="{{ $feature_2_title }}" maxlength="80" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Feature name (max 80 chars)" />
-                                @error('feature_2_title') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                                @error('feature_2_title') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="feature_2_description" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1">
@@ -157,7 +157,7 @@
                                     <span class="text-slate-500">Optional</span>
                                     <span class="font-mono text-slate-400" x-text="charCounts.feature_2_description + ' / ' + maxLengths.feature_2_description"></span>
                                 </div>
-                                @error('feature_2_description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                                @error('feature_2_description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                                 </label>
                                 <input wire:model="image_1" type="file" accept="image/*" class="w-full text-[11px] text-slate-500 file:mr-2 file:rounded-md file:border-0 file:bg-[#0EB3B9]/10 file:px-2.5 file:py-1 file:font-mono file:text-[10px] file:font-bold file:text-[#0EB3B9] cursor-pointer" />
                                 <p class="mt-1 text-[10px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
-                                @error('image_1') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                                @error('image_1') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                             </div>
                         </div>
 
@@ -198,7 +198,7 @@
                                 </label>
                                 <input wire:model="image_2" type="file" accept="image/*" class="w-full text-[11px] text-slate-500 file:mr-2 file:rounded-md file:border-0 file:bg-[#0EB3B9]/10 file:px-2.5 file:py-1 file:font-mono file:text-[10px] file:font-bold file:text-[#0EB3B9] cursor-pointer" />
                                 <p class="mt-1 text-[10px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
-                                @error('image_2') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                                @error('image_2') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                             </div>
                         </div>
 
@@ -216,7 +216,7 @@
                                 </label>
                                 <input wire:model="image_3" type="file" accept="image/*" class="w-full text-[11px] text-slate-500 file:mr-2 file:rounded-md file:border-0 file:bg-[#0EB3B9]/10 file:px-2.5 file:py-1 file:font-mono file:text-[10px] file:font-bold file:text-[#0EB3B9] cursor-pointer" />
                                 <p class="mt-1 text-[10px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
-                                @error('image_3') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                                @error('image_3') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                             </div>
                         </div>
 
@@ -267,3 +267,6 @@
         </div>
     </form>
 </div>
+
+
+

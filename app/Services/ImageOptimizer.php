@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class ImageOptimizer
@@ -11,7 +12,7 @@ class ImageOptimizer
      */
     private const SUPPORTED_MIME_TYPES = [
         'image/jpeg' => 'imagecreatefromjpeg',
-        'image/png'  => 'imagecreatefrompng',
+        'image/png' => 'imagecreatefrompng',
         'image/webp' => 'imagecreatefromwebp',
     ];
 
@@ -19,9 +20,9 @@ class ImageOptimizer
      * Optimize an uploaded image: resize if needed, convert to WebP, clean up original.
      *
      * @param  string  $absolutePath  Absolute path to the stored image file
-     * @param  int     $maxWidth      Maximum width in pixels (default: 1200)
-     * @param  int     $quality       WebP quality 0-100 (default: 75)
-     * @return string                 The new WebP filename (relative to storage disk root)
+     * @param  int  $maxWidth  Maximum width in pixels (default: 1200)
+     * @param  int  $quality  WebP quality 0-100 (default: 75)
+     * @return string The new WebP filename (relative to storage disk root)
      */
     public static function optimize(string $absolutePath, int $maxWidth = 1200, int $quality = 75): string
     {
@@ -44,12 +45,12 @@ class ImageOptimizer
             return basename($absolutePath);
         }
 
-        $originalWidth  = imagesx($source);
+        $originalWidth = imagesx($source);
         $originalHeight = imagesy($source);
 
         // Resize proportionally if wider than maxWidth
         if ($originalWidth > $maxWidth) {
-            $newWidth  = $maxWidth;
+            $newWidth = $maxWidth;
             $newHeight = (int) round($originalHeight * ($maxWidth / $originalWidth));
 
             $resized = imagescale($source, $newWidth, $newHeight, IMG_BICUBIC);
@@ -63,9 +64,9 @@ class ImageOptimizer
 
         // Prepare output path: same directory, same basename, .webp extension
         $directory = dirname($absolutePath);
-        $basename  = pathinfo($absolutePath, PATHINFO_FILENAME);
+        $basename = pathinfo($absolutePath, PATHINFO_FILENAME);
         $newFilename = "{$basename}.webp";
-        $newPath     = $directory . DIRECTORY_SEPARATOR . $newFilename;
+        $newPath = $directory.DIRECTORY_SEPARATOR.$newFilename;
 
         // Save as WebP
         $saved = imagewebp($source, $newPath, $quality);
@@ -98,14 +99,11 @@ class ImageOptimizer
     /**
      * Optimize an UploadedFile directly (convenience method for Livewire).
      *
-     * @param  \Illuminate\Http\UploadedFile  $file
-     * @param  string                         $directory  Storage directory (e.g., 'services', 'packages')
-     * @param  int                            $maxWidth
-     * @param  int                            $quality
-     * @return string  The stored WebP path relative to storage disk (e.g., 'services/abc123.webp')
+     * @param  string  $directory  Storage directory (e.g., 'services', 'packages')
+     * @return string The stored WebP path relative to storage disk (e.g., 'services/abc123.webp')
      */
     public static function optimizeUploadedFile(
-        \Illuminate\Http\UploadedFile $file,
+        UploadedFile $file,
         string $directory,
         int $maxWidth = 1200,
         int $quality = 75
@@ -118,6 +116,6 @@ class ImageOptimizer
         $optimizedFilename = self::optimize($absolutePath, $maxWidth, $quality);
 
         // Return the new relative path
-        return $directory . '/' . $optimizedFilename;
+        return $directory.'/'.$optimizedFilename;
     }
 }

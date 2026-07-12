@@ -26,7 +26,8 @@
 
             <nav x-data="{
                 comercialOpen: {{ request()->routeIs('admin.services.*') || request()->routeIs('admin.packages.*') || request()->routeIs('admin.discounts.*') ? 'true' : 'false' }},
-                contenidoOpen: {{ request()->routeIs('admin.hero-carousel.*') || request()->routeIs('admin.about.*') || request()->routeIs('admin.team.*') || request()->routeIs('admin.client-outcomes.*') ? 'true' : 'false' }}
+                contenidoOpen: {{ request()->routeIs('admin.hero-carousel.*') || request()->routeIs('admin.about.*') || request()->routeIs('admin.team.*') || request()->routeIs('admin.client-outcomes.*') ? 'true' : 'false' }},
+                adminOpen: {{ request()->routeIs('admin.users.*') ? 'true' : 'false' }}
             }" class="space-y-3 mt-4">
 
                 <!-- ENLACE RAÍZ: Inicio -->
@@ -37,7 +38,7 @@
                         <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
-Home
+                        Home
                     </span>
                     <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.management.index') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                 </a>
@@ -178,6 +179,40 @@ Home
                     </div>
                 </div>
 
+                <!-- DROPDOWN 3: ADMINISTRATION -->
+                <div class="group">
+                    <button type="button"
+                            @click="adminOpen = !adminOpen"
+                            class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.users.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                            aria-expanded="{{ request()->routeIs('admin.users.*') ? 'true' : 'false' }}"
+                            aria-controls="admin-submenu">
+                        <span class="flex items-center gap-2.5">
+                            <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110 text-[#0EB3B9]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                            Administration
+                        </span>
+                        <svg class="w-4 h-4 shrink-0 text-slate-500 transition-transform duration-300 ease-out" :class="{ 'rotate-180 text-[#0EB3B9]': adminOpen }" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div id="admin-submenu" x-show="adminOpen" x-collapse x-cloak class="border-l border-slate-800/60 ml-5 mt-1 space-y-1">
+                        <!-- User Management -->
+                        <a href="{{ route('admin.users.index') }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.users.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           aria-current="{{ request()->routeIs('admin.users.*') ? 'true' : 'false' }}">
+                            <span class="flex items-center gap-2">
+                                <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                                User Management
+                            </span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.users.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                        </a>
+                    </div>
+                </div>
+
             </nav>
         </div>
     </div>
@@ -204,8 +239,10 @@ Home
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9"/>
                 </svg>
-Logout
+                Logout
             </button>
         </form>
     </div>
 </div>
+
+

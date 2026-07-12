@@ -37,7 +37,7 @@
                     Sort Order <span class="text-rose-400">(*)</span>
                 </label>
                 <input type="number" wire:model.defer="term_sort_order" min="0" class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="0" />
-                @error('term_sort_order') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                @error('term_sort_order') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
             </div>
             <div class="flex flex-col gap-1.5">
                 <label class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
@@ -56,3 +56,6 @@
         </div>
     </form>
 </div>
+
+
+

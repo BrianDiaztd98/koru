@@ -33,7 +33,7 @@ class AdminCoreSectionsTest extends TestCase
 
         Livewire::test(Login::class)
             ->set('email', $user->email)
-            ->set('password', 'password')
+            ->set('password', 'Password123!')
             ->call('login')
             ->assertRedirect(route('admin.management.index'));
     }
@@ -140,7 +140,7 @@ class AdminCoreSectionsTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Create Service');
         $response->assertSee('Category');
-        $response->assertSee('All Services');
+        $response->assertSee('Name (EN)');
     }
 
     public function test_services_edit_route_shows_modal_form(): void

@@ -38,16 +38,7 @@
                     <!-- Branding -->
                     <tr>
                         <td align="left" style="padding-bottom: 32px;">
-                            <table border="0" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td style="padding-right: 10px;">
-                                        <img src="{{ url('img/logo.png') }}" alt="Koru Center" width="32" height="32" style="display: block; border: 0; border-radius: 8px;" />
-                                    </td>
-                                    <td style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.02em; color: #f9fafb;" class="text-primary">
-                                        Koru Center
-                                    </td>
-                                </tr>
-                            </table>
+                            <img src="{{ url('img/logo.png') }}" alt="Koru Center" width="120" height="120" style="display: block; border: 0; border-radius: 12px;" />
                         </td>
                     </tr>
 

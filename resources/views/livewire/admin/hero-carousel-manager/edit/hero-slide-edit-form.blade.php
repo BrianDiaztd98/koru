@@ -25,7 +25,7 @@
                 Badge <span class="text-rose-400">(*)</span>
             </label>
             <input type="text" wire:model.defer="badge" maxlength="50" class="admin-input font-mono" placeholder="DATA_TAG (max 50 chars)" />
-            @error('badge') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('badge') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
 
         <div>
@@ -33,7 +33,7 @@
                 Title Line 1 <span class="text-rose-400">(*)</span>
             </label>
             <input type="text" wire:model.defer="title_line_1" maxlength="100" class="admin-input" placeholder="Primary line text... (max 100 chars)" />
-            @error('title_line_1') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('title_line_1') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
 
         <div>
@@ -41,7 +41,7 @@
                 Title Line 2 <span class="text-rose-400">(*)</span>
             </label>
             <input type="text" wire:model.defer="title_line_2" maxlength="100" class="admin-input" placeholder="Secondary line text... (max 100 chars)" />
-            @error('title_line_2') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('title_line_2') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
 
         <div class="md:col-span-2">
@@ -53,7 +53,7 @@
                 <span class="text-slate-500">Required</span>
                 <span class="font-mono text-slate-400" x-text="charCounts.description + ' / ' + maxLengths.description"></span>
             </div>
-            @error('description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
 
         <div>
@@ -61,7 +61,7 @@
                 Primary Button Text <span class="text-rose-400">(*)</span>
             </label>
             <input type="text" wire:model.defer="btn_primary_text" maxlength="50" class="admin-input" placeholder="e.g. Contactar por WhatsApp (max 50 chars)" />
-            @error('btn_primary_text') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('btn_primary_text') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
 
         <div>
@@ -69,7 +69,7 @@
                 Primary Button URL <span class="text-rose-400">(*)</span>
             </label>
             <input type="url" wire:model.defer="btn_primary_url" maxlength="2048" class="admin-input font-mono" placeholder="https://wa.me/..." />
-            @error('btn_primary_url') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('btn_primary_url') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
 
         <div class="md:col-span-2">
@@ -77,7 +77,7 @@
                 Secondary Button Text <span class="text-slate-500">(Opcional)</span>
             </label>
             <input type="text" wire:model.defer="btn_secondary_text" maxlength="50" class="admin-input" placeholder="e.g. Ver más información (max 50 chars)" />
-            @error('btn_secondary_text') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('btn_secondary_text') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
 
         <div class="md:col-span-2">
@@ -85,7 +85,7 @@
                 Secondary Button URL <span class="text-slate-500">(Opcional)</span>
             </label>
             <input type="url" wire:model.defer="btn_secondary_url" maxlength="2048" class="admin-input font-mono" placeholder="https://example.com or /contacto" />
-            @error('btn_secondary_url') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('btn_secondary_url') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
 
         <div class="md:col-span-2">
@@ -97,7 +97,7 @@
                     <option value="{{ $service['id'] }}">{{ $service['label'] }}</option>
                 @endforeach
             </select>
-            @error('service_id') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('service_id') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
 
         <div class="md:col-span-2 flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
@@ -114,7 +114,7 @@
                 <input type="file" wire:model="image_path" accept="image/jpeg,image/png,image/webp" 
                        class="w-full text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-[#0EB3B9]/10 file:px-3 file:py-2 file:text-xs file:font-bold file:uppercase file:tracking-wide file:text-[#0EB3B9] file:hover:bg-[#0EB3B9]/20 file:cursor-pointer font-mono" />
                 <p class="mt-1 text-[11px] text-slate-600">JPG, PNG, WebP • Max 4MB</p>
-                @error('image_path') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                @error('image_path') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
             </div>
         </div>
 
@@ -134,3 +134,6 @@
         </div>
     </form>
 </div>
+
+
+

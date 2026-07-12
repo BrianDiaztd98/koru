@@ -25,7 +25,7 @@
                 Name (EN) <span class="text-rose-400">(*)</span>
             </label>
             <input type="text" wire:model.defer="name_en" maxlength="100" class="admin-input" placeholder="e.g. Manual Therapy (max 100 chars)" />
-            @error('name_en') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('name_en') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
         <div class="md:col-span-2">
             <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
@@ -36,14 +36,14 @@
                 <span class="text-slate-500">Required</span>
                 <span class="font-mono text-slate-400" x-text="charCounts.description_en + ' / ' + maxLengths.description_en"></span>
             </div>
-            @error('description_en') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('description_en') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
         <div>
             <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
                 Duration <span class="text-rose-400">(*)</span>
             </label>
             <input type="text" wire:model.defer="duration" maxlength="50" class="admin-input" placeholder="e.g. 60 min (max 50 chars)" />
-            @error('duration') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('duration') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
         <div>
             <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
@@ -53,7 +53,7 @@
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">$</span>
                 <input type="number" wire:model.defer="price" step="0.01" min="0" max="999999.99" class="w-full rounded-xl border border-slate-800 bg-slate-900/70 pl-7 pr-3 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="0.00" />
             </div>
-            @error('price') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('price') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
         <div class="md:col-span-2">
             <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
@@ -64,7 +64,7 @@
                     <option value="{{ $key }}">{{ $label }}</option>
                 @endforeach
             </select>
-            @error('category') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+            @error('category') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
         <div class="md:col-span-2">
             <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
@@ -73,7 +73,7 @@
             @if($this->isImageCategory())
                 <input type="file" wire:model="image_path" accept="image/jpeg,image/png,image/webp" class="w-full text-sm text-slate-400 file:mr-3 file:rounded-md file:border-0 file:bg-[#0EB3B9]/10 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-[#0EB3B9]" />
                 <p class="mt-1 text-[11px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
-                @error('image_path') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                @error('image_path') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
             @else
                 <div class="rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3 text-sm text-slate-400">This category does not use images.</div>
             @endif
@@ -94,3 +94,6 @@
         </div>
     </form>
 </div>
+
+
+

@@ -16,9 +16,12 @@ class AdminUserSeeder extends Seeder
         User::query()->updateOrCreate(
             ['email' => 'dessingertd@gmail.com'],
             [
-                'name' => 'Dessinger Admin',
-                'password' => Hash::make('12345678'),
+                'primer_nombre' => 'Dessinger',
+                'segundo_nombre' => 'Admin',
+                'password' => Hash::make('AdminPass123!'),
                 'is_admin' => true,
+                'role' => 'admin',
+                'status' => 'activo',
                 'email_verified_at' => now(),
             ],
         );

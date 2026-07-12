@@ -168,3 +168,6 @@
         @include('livewire.admin.hero-carousel-manager.delete.hero-slide-delete-modal')
     @endif
 </div>
+
+
+

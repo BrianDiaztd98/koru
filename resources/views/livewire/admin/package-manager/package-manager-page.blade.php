@@ -133,3 +133,6 @@
         @include('livewire.admin.package-manager.delete.package-term-delete-modal')
     @endif
 </div>
+
+
+

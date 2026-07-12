@@ -13,6 +13,7 @@ use App\Livewire\Admin\LandingPageManager\LandingPageManager;
 use App\Livewire\Admin\PackageManager\PackageManager;
 use App\Livewire\Admin\ServiceManager\ServiceManager;
 use App\Livewire\Admin\TeamMembersManager\TeamMembersManager;
+use App\Livewire\Admin\UserManager\UserManager;
 use App\Livewire\Components\LandingPage;
 use Illuminate\Support\Facades\Route;
 
@@ -60,4 +61,9 @@ Route::middleware([AdminAccess::class])->prefix('admin')->name('admin.')->group(
 
     // Hero carousel management.
     Route::get('hero-carousel', HeroCarouselManager::class)->name('hero-carousel.index');
+
+    // User Management
+    Route::get('users', UserManager::class)->name('users.index');
+    Route::get('users/create', UserManager::class)->name('users.create');
+    Route::get('users/{user}/edit', UserManager::class)->name('users.edit');
 });

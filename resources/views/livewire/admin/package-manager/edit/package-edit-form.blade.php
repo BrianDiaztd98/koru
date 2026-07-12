@@ -26,7 +26,7 @@
                     Name (EN) <span class="text-rose-400">(*)</span>
                 </label>
                 <input type="text" wire:model.defer="name_en" maxlength="100" class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="e.g. Basic (max 100 chars)" />
-                @error('name_en') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                @error('name_en') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
             </div>
             <div class="md:col-span-2 flex flex-col gap-1.5">
                 <label class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
@@ -37,7 +37,7 @@
                     <span class="text-slate-500">Optional</span>
                     <span class="font-mono text-slate-400" x-text="charCounts.description_en + ' / ' + maxLengths.description_en"></span>
                 </div>
-                @error('description_en') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                @error('description_en') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
             </div>
         </div>
 
@@ -50,21 +50,21 @@
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">$</span>
                     <input type="number" wire:model.defer="price" step="0.01" min="0" max="999999.99" class="w-full rounded-xl border border-slate-800 bg-slate-900/70 pl-7 pr-3 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="0.00" />
                 </div>
-                @error('price') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                @error('price') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
             </div>
             <div class="flex flex-col gap-1.5">
                 <label class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
                     Sessions <span class="text-rose-400">(*)</span>
                 </label>
                 <input type="number" wire:model.defer="sessions" min="1" max="100" class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="1" />
-                @error('sessions') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                @error('sessions') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
             </div>
             <div class="flex flex-col gap-1.5">
                 <label class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
                     Validity <span class="text-slate-500">(Opcional)</span>
                 </label>
                 <input type="text" wire:model.defer="validity" maxlength="100" class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="e.g. Valid for 8 weeks (max 100 chars)" />
-                @error('validity') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                @error('validity') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
             </div>
         </div>
 
@@ -74,7 +74,7 @@
                     Sort Order <span class="text-rose-400">(*)</span>
                 </label>
                 <input type="number" wire:model.defer="sort_order" min="0" class="rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="0" />
-                @error('sort_order') <span class="mt-1.5 block text-xs text-rose-400 font-mono">⚡ {{ $message }}</span> @enderror
+                @error('sort_order') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
             </div>
             <div class="flex flex-col gap-1.5">
                 <label class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
@@ -98,3 +98,6 @@
         </div>
     </form>
 </div>
+
+
+
