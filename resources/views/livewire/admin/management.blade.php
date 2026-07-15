@@ -168,15 +168,6 @@
                         data-chart-values='@json(collect($landingPageVisitStats['monthly'])->pluck('visits')->all())'
                     ></canvas>
                 </div>
-
-                <div class="mt-4 flex flex-wrap gap-2">
-                    @foreach ($landingPageVisitStats['monthly'] as $monthStats)
-                        <div class="rounded-full border border-slate-800/70 bg-slate-900/70 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-                            <span class="text-slate-200">{{ $monthStats['label'] }}</span>
-                            <span class="ml-1 font-mono text-white">{{ $monthStats['visits'] }}</span>
-                        </div>
-                    @endforeach
-                </div>
             </div>
         </div>
 

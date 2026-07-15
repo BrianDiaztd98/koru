@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Middleware\AdminAccess;
+use App\Http\Middleware\TrackLandingPageVisit;
 use App\Livewire\Admin\AboutPageManager\AboutPageManager;
 use App\Livewire\Admin\Auth\ForgotPassword;
 use App\Livewire\Admin\Auth\Login;
@@ -17,7 +18,7 @@ use App\Livewire\Admin\UserManager\UserManager;
 use App\Livewire\Components\LandingPage;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', LandingPage::class);
+Route::get('/', LandingPage::class)->middleware(TrackLandingPageVisit::class);
 
 Route::middleware(['guest'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('login', Login::class)->name('login');

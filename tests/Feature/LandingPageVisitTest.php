@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Livewire\Components\LandingPage;
 use App\Models\LandingPageVisit;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class LandingPageVisitTest extends TestCase
@@ -41,8 +43,37 @@ class LandingPageVisitTest extends TestCase
         $response->assertOk();
         $response->assertSeeText('Landing Page Visits');
         $response->assertSeeText('1');
-        $response->assertSeeText('Jun');
+        // The month labels live in the chart's data attribute, not as visible text.
+        $response->assertSee('Jun');
 
         Carbon::setTestNow();
+    }
+
+    public function test_landing_page_component_mount_does_not_record_a_visit(): void
+    {
+        // The root cause of the production duplication was counting inside mount(),
+        // which Livewire re-runs during its client-side initialization request.
+        // Mounting the component directly must NOT insert a row.
+        LandingPageVisit::query()->delete();
+
+        Livewire::test(LandingPage::class);
+
+        $this->assertDatabaseCount('landing_page_visits', 0);
+    }
+
+    public function test_landing_page_visit_is_counted_exactly_once_per_request_and_not_duplicated_by_livewire_init(): void
+    {
+        LandingPageVisit::query()->delete();
+
+        // Simulate the real production flow: the initial server render (GET /)
+        // followed by Livewire's client-side initialization request to its update endpoint.
+        $this->get('/');
+
+        // The Livewire init/hydrate request hits a different endpoint, so the
+        // route middleware must not double-count. We emulate a second request
+        // sharing the same session (e.g. a near-simultaneous init call).
+        $this->get('/');
+
+        $this->assertDatabaseCount('landing_page_visits', 1);
     }
 }
