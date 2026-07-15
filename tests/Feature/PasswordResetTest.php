@@ -97,6 +97,54 @@ class PasswordResetTest extends TestCase
         $this->assertDatabaseMissing('password_reset_tokens', ['email' => 'admin@koru.center']);
     }
 
+    public function test_reset_password_rejects_weak_password(): void
+    {
+        $user = User::factory()->admin()->create(['email' => 'admin@koru.center']);
+        $token = Password::createToken($user);
+
+        Livewire::test(ResetPassword::class, ['token' => $token])
+            ->set('email', 'admin@koru.center')
+            ->set('password', 'Ab1!')
+            ->set('password_confirmation', 'Ab1!')
+            ->call('resetPassword')
+            ->assertHasErrors('password');
+    }
+
+    public function test_reset_password_rejects_password_without_complexity(): void
+    {
+        $user = User::factory()->admin()->create(['email' => 'admin@koru.center']);
+        $token = Password::createToken($user);
+
+        // Long enough but missing uppercase, numbers and symbols.
+        Livewire::test(ResetPassword::class, ['token' => $token])
+            ->set('email', 'admin@koru.center')
+            ->set('password', 'passwordpassword')
+            ->set('password_confirmation', 'passwordpassword')
+            ->call('resetPassword')
+            ->assertHasErrors('password');
+
+        // Has lowercase, numbers and symbol but no uppercase.
+        Livewire::test(ResetPassword::class, ['token' => $token])
+            ->set('email', 'admin@koru.center')
+            ->set('password', 'secret123!')
+            ->set('password_confirmation', 'secret123!')
+            ->call('resetPassword')
+            ->assertHasErrors('password');
+    }
+
+    public function test_reset_password_rejects_non_matching_confirmation(): void
+    {
+        $user = User::factory()->admin()->create(['email' => 'admin@koru.center']);
+        $token = Password::createToken($user);
+
+        Livewire::test(ResetPassword::class, ['token' => $token])
+            ->set('email', 'admin@koru.center')
+            ->set('password', 'N3wS3cret!')
+            ->set('password_confirmation', 'Different1!')
+            ->call('resetPassword')
+            ->assertHasErrors('password');
+    }
+
     public function test_reset_password_rejects_invalid_token(): void
     {
         $user = User::factory()->admin()->create(['email' => 'admin@koru.center']);

@@ -67,7 +67,7 @@
                     @enderror
                 </div>
 
-                <div>
+                <div x-data="passwordStrength()">
                     <label for="password"
                         class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">New
                         password</label>
@@ -82,8 +82,101 @@
                         </div>
                         <input id="password" wire:model="password" type="password" required
                             class="w-full rounded-lg border border-slate-800/80 bg-slate-950/60 pl-9 pr-3 py-2.5 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600"
-                            placeholder="••••••••">
+                            placeholder="Min 8 chars, upper, lower, number & symbol">
                     </div>
+
+                    {{-- Password complexity indicator --}}
+                    <div class="mt-3 space-y-2" x-show="password.length > 0" x-cloak x-transition>
+                        <div class="flex items-center gap-2">
+                            <div class="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                                <div x-ref="strengthBar"
+                                    class="h-full transition-all duration-300 ease-out rounded-full"
+                                    :class="{
+                                        'w-1/4 bg-rose-500': strength === 1,
+                                        'w-2/4 bg-amber-500': strength === 2,
+                                        'w-3/4 bg-lime-500': strength === 3,
+                                        'w-full bg-emerald-500': strength === 4
+                                    }"
+                                    style="width: 0%"></div>
+                            </div>
+                            <span x-ref="strengthText" class="text-xs font-mono text-slate-500 w-24">Weak</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 text-[11px]">
+                            <div class="flex items-center gap-1.5" :class="{ 'text-emerald-400': checks.includes('length'), 'text-slate-500': !checks.includes('length') }">
+                                <svg class="h-3.5 w-3.5 shrink-0" :class="{ 'text-emerald-400': checks.includes('length'), 'text-slate-500': !checks.includes('length') }" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span :class="{ 'text-emerald-400': checks.includes('length'), 'text-slate-400': !checks.includes('length') }">Min 8 characters</span>
+                            </div>
+                            <div class="flex items-center gap-1.5" :class="{ 'text-emerald-400': checks.includes('lower'), 'text-slate-500': !checks.includes('lower') }">
+                                <svg class="h-3.5 w-3.5 shrink-0" :class="{ 'text-emerald-400': checks.includes('lower'), 'text-slate-500': !checks.includes('lower') }" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span :class="{ 'text-emerald-400': checks.includes('lower'), 'text-slate-400': !checks.includes('lower') }">Lowercase</span>
+                            </div>
+                            <div class="flex items-center gap-1.5" :class="{ 'text-emerald-400': checks.includes('upper'), 'text-slate-500': !checks.includes('upper') }">
+                                <svg class="h-3.5 w-3.5 shrink-0" :class="{ 'text-emerald-400': checks.includes('upper'), 'text-slate-500': !checks.includes('upper') }" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span :class="{ 'text-emerald-400': checks.includes('upper'), 'text-slate-400': !checks.includes('upper') }">Uppercase</span>
+                            </div>
+                            <div class="flex items-center gap-1.5" :class="{ 'text-emerald-400': checks.includes('number'), 'text-slate-500': !checks.includes('number') }">
+                                <svg class="h-3.5 w-3.5 shrink-0" :class="{ 'text-emerald-400': checks.includes('number'), 'text-slate-500': !checks.includes('number') }" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span :class="{ 'text-emerald-400': checks.includes('number'), 'text-slate-400': !checks.includes('number') }">Number</span>
+                            </div>
+                            <div class="flex items-center gap-1.5" :class="{ 'text-emerald-400': checks.includes('symbol'), 'text-slate-500': !checks.includes('symbol') }">
+                                <svg class="h-3.5 w-3.5 shrink-0" :class="{ 'text-emerald-400': checks.includes('symbol'), 'text-slate-500': !checks.includes('symbol') }" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span :class="{ 'text-emerald-400': checks.includes('symbol'), 'text-slate-400': !checks.includes('symbol') }">Special char</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function passwordStrength() {
+        return {
+            password: '',
+            strength: 0,
+            checks: [],
+            strengthLabels: ['Very Weak', 'Weak', 'Fair', 'Strong', 'Very Strong'],
+
+            init() {
+                this.$watch('password', (value) => {
+                    this.password = value;
+                    this.calculateStrength();
+                });
+            },
+
+            calculateStrength() {
+                const pwd = this.password;
+                this.checks = [];
+
+                if (!pwd) {
+                    this.strength = 0;
+                    return;
+                }
+
+                if (pwd.length >= 8) this.checks.push('length');
+                if (/[a-z]/.test(pwd)) this.checks.push('lower');
+                if (/[A-Z]/.test(pwd)) this.checks.push('upper');
+                if (/[0-9]/.test(pwd)) this.checks.push('number');
+                if (/[^A-Za-z0-9]/.test(pwd)) this.checks.push('symbol');
+
+                const checkCount = this.checks.length;
+                if (checkCount <= 1) this.strength = 1;
+                else if (checkCount === 2) this.strength = 2;
+                else if (checkCount === 3) this.strength = 3;
+                else this.strength = 4;
+
+                this.$nextTick(() => {
+                    if (this.$refs.strengthBar) {
+                        const widths = ['0%', '25%', '50%', '75%', '100%'];
+                        this.$refs.strengthBar.style.width = widths[this.strength] || '0%';
+                    }
+                    if (this.$refs.strengthText) {
+                        this.$refs.strengthText.textContent = this.strengthLabels[this.strength] || 'Weak';
+                    }
+                });
+            }
+        }
+    }
+</script>
+
+
                     @error('password')
                         <span class="flex items-center gap-1 text-rose-400 font-mono text-[10px] mt-1.5 pl-0.5">
                             <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5"

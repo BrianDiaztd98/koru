@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Validation\Rules\Password as PasswordRule;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -37,7 +36,7 @@ class ResetPassword extends Component
         return [
             'token' => ['required'],
             'email' => ['required', 'email', 'max:255'],
-            'password' => ['required', 'string', PasswordRule::defaults(), 'confirmed'],
+            'password' => User::passwordRules(),
             'password_confirmation' => ['required', 'string'],
         ];
     }
