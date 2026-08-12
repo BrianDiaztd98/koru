@@ -12,7 +12,7 @@ class ServicePillarsTest extends TestCase
         'manual_therapy' => ['title' => 'Massage Services', 'summary' => 'Clinical massage.'],
         'recovery_performance' => ['title' => 'Therapy Services', 'summary' => 'Recovery tech.'],
         'medical_services' => ['title' => 'Medical Services', 'summary' => 'Medical.'],
-        'koru_at_home' => ['title' => 'Koru At Home', 'summary' => 'At home.'],
+        'koru_at_home' => ['title' => 'KORU At Home', 'summary' => 'At home.'],
     ];
 
     private array $servicesByPillar = [

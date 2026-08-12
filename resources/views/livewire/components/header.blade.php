@@ -5,8 +5,8 @@
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
         
         <!-- Logo Principal -->
-        <a href="#about-us" class="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded-xl transition-transform active:scale-95" aria-label="Koru Center - Back to top">
-            <img src="{{ asset('img/logo.png') }}" alt="Koru Center" width="144" height="56" class="h-14 w-auto object-contain brightness-110" loading="eager" decoding="async" fetchpriority="high" />
+        <a href="#about-us" class="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded-xl transition-transform active:scale-95" aria-label="KORU Center - Back to top">
+            <img src="{{ asset('img/logo.png') }}" alt="KORU Center" width="144" height="56" class="h-14 w-auto object-contain brightness-110" loading="eager" decoding="async" fetchpriority="high" />
         </a>
 
         <!-- Navegación de Escritorio (Desktop) -->

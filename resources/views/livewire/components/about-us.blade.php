@@ -49,7 +49,7 @@
 
                     <!-- El texto principal renderizado dinámicamente desde tu modelo de Laravel -->
                     <p class="text-sm leading-relaxed text-slate-400">
-                        {{ $aboutData['philosophy'] ?? 'Named after the Māori symbol for a new unfurling fern frond, Koru represents new life, growth, strength, and peace. We provide a clean, structured environment where movement and teaching are treated with clinical excellence.' }}
+                        {{ $aboutData['philosophy'] ?? 'Named after the Māori symbol for a new unfurling fern frond, KORU represents new life, growth, strength, and peace. We provide a clean, structured environment where movement and teaching are treated with clinical excellence.' }}
                     </p>
 
                     <p class="text-sm leading-relaxed text-slate-400">

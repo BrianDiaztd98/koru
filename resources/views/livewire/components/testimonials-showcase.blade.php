@@ -7,7 +7,7 @@
                 Client Outcomes
             </div>
             <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                Real recovery stories from Koru Center members
+                Real recovery stories from KORU Center members
             </h2>
             <p class="mt-4 max-w-2xl mx-auto text-sm leading-relaxed text-slate-400">
                 From pain relief to athletic comeback, every client story is designed to inspire next-level care.

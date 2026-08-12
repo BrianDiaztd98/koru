@@ -10,7 +10,7 @@
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
-    <title>{{ $title ?? 'Content Management — Koru CMS' }}</title>
+    <title>{{ $title ?? 'Content Management — KORU CMS' }}</title>
     
     @vite(['resources/css/admin.css', 'resources/js/app.js'])
     @livewireStyles

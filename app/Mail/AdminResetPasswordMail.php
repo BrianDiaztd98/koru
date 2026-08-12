@@ -23,7 +23,7 @@ class AdminResetPasswordMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         $envelope = new Envelope(
-            subject: 'Restablece tu contraseña — Koru Center',
+            subject: 'Restablece tu contraseña — KORU Center',
         );
 
         if ($this->toEmail) {

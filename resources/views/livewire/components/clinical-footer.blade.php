@@ -13,7 +13,7 @@
                             <path d="M2 12l10 5 10-5" />
                         </svg>
                     </div>
-                    <h2 class="text-xl font-bold tracking-tight text-white">Koru Center</h2>
+                    <h2 class="text-xl font-bold tracking-tight text-white">KORU Center</h2>
                 </div>
                 <p class="text-sm leading-6 text-slate-400">
                     Clinical massage, recovery technology, medical services, and at-home concierge care in Virginia Gardens, Miami.
@@ -110,7 +110,7 @@
     <div class="relative border-t border-slate-800 bg-slate-950/40">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p class="text-center text-xs text-slate-500 sm:text-left">
-                {{ $localizedSettings['footer_copyright'] ?? '© '.date('Y').' Koru Center. All rights reserved.' }}
+                {{ $localizedSettings['footer_copyright'] ?? '© '.date('Y').' KORU Center. All rights reserved.' }}
             </p>
             <div class="flex gap-4 text-[11px] text-slate-500">
                 <a href="#" class="hover:text-slate-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded">Privacy Policy</a>

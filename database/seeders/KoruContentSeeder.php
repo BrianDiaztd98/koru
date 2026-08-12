@@ -54,7 +54,7 @@ class KoruContentSeeder extends Seeder
             'contact_email' => 'info@korucenter.com',
             'social_instagram' => 'https://instagram.com/korucenter',
             'social_facebook' => 'https://www.facebook.com/profile.php?id=61587013239438',
-            'footer_copyright_en' => '© '.date('Y').' Koru Center. All rights reserved.',
+            'footer_copyright_en' => '© '.date('Y').' KORU Center. All rights reserved.',
         ];
 
         foreach ($settings as $key => $value) {
@@ -421,7 +421,7 @@ class KoruContentSeeder extends Seeder
         $testimonials = [
             [
                 'id' => 1,
-                'author_name' => 'Koru Recovery Lounge',
+                'author_name' => 'KORU Recovery Lounge',
                 'author_role' => 'Recovery Experience',
                 'quote_en' => 'Tour the recovery lounge',
                 'category' => 'lounge',
@@ -432,7 +432,7 @@ class KoruContentSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'author_name' => 'Koru Athlete Program',
+                'author_name' => 'KORU Athlete Program',
                 'author_role' => 'Performance Recovery',
                 'quote_en' => 'Athlete recovery in action',
                 'category' => 'athlete',
@@ -443,7 +443,7 @@ class KoruContentSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'author_name' => 'Koru Clinical Team',
+                'author_name' => 'KORU Clinical Team',
                 'author_role' => 'Clinical Outcomes',
                 'quote_en' => 'Clinical performance stories',
                 'category' => 'clinical',

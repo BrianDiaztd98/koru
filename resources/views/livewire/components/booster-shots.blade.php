@@ -1,5 +1,5 @@
 <section id="booster-shots" class="relative pt-24 pb-12 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24" wire:lazy.1s>
-    <!-- Fondo premium con sutil gradiente corporativo para Koru -->
+    <!-- Fondo premium con sutil gradiente corporativo para KORU -->
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_var(--tw-gradient-stops))] from-[#0E788D]/15 via-slate-900 to-slate-900"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

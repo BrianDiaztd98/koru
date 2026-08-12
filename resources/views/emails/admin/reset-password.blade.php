@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="color-scheme" content="dark">
     <meta name="supported-color-schemes" content="dark">
-    <title>Reset your password — Koru Center</title>
+    <title>Reset your password — KORU Center</title>
     <style type="text/css">
         body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
         table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse !important; }
@@ -38,7 +38,7 @@
                     <!-- Branding -->
                     <tr>
                         <td align="left" style="padding-bottom: 32px;">
-                            <img src="{{ url('img/logo.png') }}" alt="Koru Center" width="120" height="120" style="display: block; border: 0; border-radius: 12px;" />
+                            <img src="{{ url('img/logo.png') }}" alt="KORU Center" width="120" height="120" style="display: block; border: 0; border-radius: 12px;" />
                         </td>
                     </tr>
 
@@ -118,7 +118,7 @@
                                 <tr>
                                     <td class="border-line" style="border-top: 1px solid #1f2937; padding-top: 16px;">
                                         <p class="text-muted" style="color: #4b5563; font-size: 11px; margin: 0; font-family: ui-monospace, SFMono-Regular, monospace; text-transform: uppercase; letter-spacing: 0.05em;">
-                                            Automated message sent by Koru Core Security Dev.
+                                            Automated message sent by KORU Core Security Dev.
                                         </p>
                                         <p style="margin: 8px 0 0 0; padding: 0;">
                                             <a href="{{ config('app.url') }}" style="color: #6b7280; font-size: 12px; text-decoration: none; margin-right: 16px;">Platform</a>

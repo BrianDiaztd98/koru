@@ -162,7 +162,7 @@ class PasswordResetTest extends TestCase
         Notification::fake();
 
         $user = User::factory()->admin()->create([
-            'name' => 'Dr. Koru',
+            'name' => 'Dr. KORU',
             'email' => 'admin@koru.center',
         ]);
 
@@ -174,7 +174,7 @@ class PasswordResetTest extends TestCase
             // The username must appear explicitly in the email.
             $rendered = $mail->render();
 
-            return str_contains($rendered, 'Dr. Koru');
+            return str_contains($rendered, 'Dr. KORU');
         });
     }
 }

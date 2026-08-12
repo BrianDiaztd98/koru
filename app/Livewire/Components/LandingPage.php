@@ -263,7 +263,7 @@ class LandingPage extends Component
             'contact_email' => $settings['contact_email'] ?? 'info@korucenter.com',
             'social_instagram' => $settings['social_instagram'] ?? '',
             'social_facebook' => $settings['social_facebook'] ?? '',
-            'footer_copyright' => $settings['footer_copyright_en'] ?? '© '.date('Y').' Koru Center. All rights reserved.',
+            'footer_copyright' => $settings['footer_copyright_en'] ?? '© '.date('Y').' KORU Center. All rights reserved.',
         ];
     }
 
@@ -284,7 +284,7 @@ class LandingPage extends Component
                 'summary' => 'Specialized medical consultations in metabolism, endocrinology, and clinical assessment.',
             ],
             'koru_at_home' => [
-                'title' => 'Koru At Home',
+                'title' => 'KORU At Home',
                 'summary' => 'Therapeutic massage and advanced recovery in the comfort of your home.',
             ],
         ];

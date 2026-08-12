@@ -16,7 +16,7 @@
                     Clinical services built for recovery, performance and wellness.
                 </h2>
                 <p class="mt-4 text-base text-slate-400">
-                    Explore Koru's clinical massage, recovery technology, medical services, and at-home concierge care.
+                    Explore KORU's clinical massage, recovery technology, medical services, and at-home concierge care.
                 </p>
             </div>
 

@@ -94,7 +94,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Send the password reset notification using the Koru-branded mail.
+     * Send the password reset notification using the KORU-branded mail.
      */
     public function sendPasswordResetNotification($token): void
     {

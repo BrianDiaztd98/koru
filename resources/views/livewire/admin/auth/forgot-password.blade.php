@@ -15,7 +15,7 @@
                 <span
                     class="inline-flex items-center gap-1.5 rounded-full bg-[#0EB3B9]/10 border border-[#0EB3B9]/20 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#0EB3B9] font-mono">
                     <span class="h-1.5 w-1.5 rounded-full bg-[#0EB3B9] animate-pulse"></span>
-                    Koru Core v1.0
+                    KORU Core v1.0
                 </span>
             </div>
 

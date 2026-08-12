@@ -5,7 +5,7 @@
                  wire:ignore
                  x-data="heroCarousel({ totalSlides: {{ count($slides) }} })"
                  aria-roledescription="carousel"
-                 aria-label="Koru Center highlights">
+                  aria-label="KORU Center highlights">
 
             <div class="relative h-screen max-h-[85vh] min-h-[680px] sm:min-h-[750px]">
 

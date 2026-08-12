@@ -34,7 +34,7 @@ class Service extends Model
             'manual_therapy' => 'Massage Services',
             'recovery_performance' => 'Therapy Services',
             'medical_services' => 'Medical Services',
-            'koru_at_home' => 'Koru At Home',
+            'koru_at_home' => 'KORU At Home',
             'booster_shots' => 'Booster Shots',
             'iv_therapy' => 'IV Therapy',
         ];

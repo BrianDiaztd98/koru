@@ -9,7 +9,7 @@
     <!-- 1. Seguridad: Evitar que indexen la página de login en buscadores -->
     <meta name="robots" content="noindex, nofollow">
     
-    <title>{{ $title ?? 'Admin Login — Koru CMS' }}</title>
+    <title>{{ $title ?? 'Admin Login — KORU CMS' }}</title>
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
     
     @vite(['resources/css/admin.css', 'resources/js/app.js'])

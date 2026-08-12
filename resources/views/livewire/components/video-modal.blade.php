@@ -45,7 +45,7 @@
         <!-- Bloque de Invitación Central (Call to Action) -->
         <div class="rounded-[2.5rem] border border-dashed border-slate-700 bg-slate-950/40 backdrop-blur-sm p-10 text-center shadow-inner shadow-black/10 max-w-4xl mx-auto transition-all duration-300 hover:border-[#0EB3B9]/20">
             <div class="inline-flex items-center justify-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
-                Experience Koru
+                Experience KORU
             </div>
             
             <h2 class="mt-6 text-xl font-semibold text-white">
@@ -53,7 +53,7 @@
             </h2>
             
             <p class="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
-                This section is waiting for Experience Koru content.
+                This section is waiting for Experience KORU content.
             </p>
             
 
@@ -115,7 +115,7 @@
                             <div class="w-full" :class="isPortrait ? 'aspect-[9/16]' : 'aspect-video'">
                                 <iframe x-bind:src="activeVideoUrl" 
                                         class="w-full h-full bg-slate-950 block" 
-                                        title="Koru Center video" 
+                                        title="KORU Center video" 
                                         frameborder="0" 
                                         allowfullscreen 
                                         allow="autoplay; encrypted-media"></iframe>

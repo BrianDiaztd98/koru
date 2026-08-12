@@ -20,7 +20,7 @@
         display: none !important;
     }
 
-    /* 🌐 Scrollbar Global del Navegador (Look & Feel Koru) */
+    /* 🌐 Scrollbar Global del Navegador (Look & Feel KORU) */
     html::-webkit-scrollbar {
         width: 6px;
     }
