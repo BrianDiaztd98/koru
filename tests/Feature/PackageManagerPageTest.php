@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Livewire\Admin\PackageManager\PackageManagerPage;
+use App\Livewire\Admin\PackageManager\PackageManager;
 use App\Models\Package;
 use App\Models\PackageTerm;
 use Database\Seeders\KoruContentSeeder;
@@ -54,7 +54,7 @@ class PackageManagerPageTest extends TestCase
         $package->terms()->syncWithoutDetaching([$activeTerm->id => ['sort_order' => 1]]);
         $package->terms()->syncWithoutDetaching([$inactiveTerm->id => ['sort_order' => 2]]);
 
-        Livewire::test(PackageManagerPage::class)
+        Livewire::test(PackageManager::class)
             ->assertViewHas('terms', function (array $terms): bool {
                 $contents = array_column($terms, 'content');
 
@@ -80,14 +80,14 @@ class PackageManagerPageTest extends TestCase
 
     public function test_package_price_rejects_values_above_decimal_limit(): void
     {
-        Livewire::test(PackageManagerPage::class)
+        Livewire::test(PackageManager::class)
             ->set('name_en', 'Overflow Package')
             ->set('price', '999999999')
             ->set('sessions', 1)
             ->call('save')
             ->assertHasErrors(['price']);
 
-        Livewire::test(PackageManagerPage::class)
+        Livewire::test(PackageManager::class)
             ->set('name_en', 'Valid Package')
             ->set('price', '199.99')
             ->set('sessions', 1)

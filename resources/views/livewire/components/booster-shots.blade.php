@@ -21,10 +21,14 @@
         <div class="grid gap-8 lg:grid-cols-12 items-stretch" 
              x-data="{ 
                 activeShot: 0,
+                shots: @js($boosterShots),
                 currentPage: 1,
                 perPage: 4,
                 totalShots: {{ count($boosterShots) }},
                 get totalPages() { return Math.ceil(this.totalShots / this.perPage) },
+                get activeShotData() {
+                    return this.shots[this.activeShot] ?? null;
+                },
                 isInPage(index) {
                     return index >= (this.currentPage - 1) * this.perPage && index < this.currentPage * this.perPage;
                 },
@@ -119,7 +123,7 @@
 
                 <!-- Botón de Acción Principal -->
                 <div class="mt-8 relative z-10">
-                    <a href="https://wa.me/17867528054" 
+                          <a :href="activeShotData?.whatsapp_url || 'https://wa.me/17867528054'" 
                        target="_blank" 
                        rel="noopener noreferrer" 
                        class="inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#0EB3B9] px-5 py-4 text-sm font-bold text-white shadow-lg shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] hover:shadow-xl active:scale-[0.99]">

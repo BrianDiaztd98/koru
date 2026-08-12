@@ -49,10 +49,14 @@
         <div class="grid gap-8 lg:grid-cols-12 items-stretch" 
              x-data="{ 
                 activeDrip: 0,
+                drips: @js($ivDrips),
                 currentPage: 1,
                 perPage: 4,
                 totalDrips: {{ count($ivDrips) }},
                 get totalPages() { return Math.ceil(this.totalDrips / this.perPage) },
+                get activeDripData() {
+                    return this.drips[this.activeDrip] ?? null;
+                },
                 isInPage(index) {
                     return index >= (this.currentPage - 1) * this.perPage && index < this.currentPage * this.perPage;
                 },
@@ -132,7 +136,7 @@
                 </div>
 
                 <div class="mt-8 relative z-10">
-                    <a href="https://wa.me/17867528054" 
+                          <a :href="activeDripData?.whatsapp_url || 'https://wa.me/17867528054'" 
                        target="_blank" 
                        rel="noopener noreferrer" 
                        class="inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#0EB3B9] px-5 py-4 text-sm font-bold text-white shadow-lg shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] hover:shadow-xl active:scale-[0.99]">

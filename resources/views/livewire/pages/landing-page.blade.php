@@ -8,7 +8,10 @@
         @endif
     @endpush
 
-    <livewire:components.header :headerNavItems="$this->headerNavItems" />
+    <livewire:components.header
+        :headerNavItems="$this->headerNavItems"
+        :whatsappBookingUrl="$this->generalAppointmentWhatsappUrl"
+    />
 
     <main class="flex-1 overflow-x-hidden">
             {{-- HERO: LCP crítico, sin lazy --}}

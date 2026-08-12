@@ -3,10 +3,13 @@
 namespace Tests\Unit;
 
 use App\Models\HeroSlide;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class HeroSlideTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_hero_slide_has_fillable_attributes(): void
     {
         $slide = new HeroSlide([

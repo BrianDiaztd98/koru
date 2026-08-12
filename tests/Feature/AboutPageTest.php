@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Livewire\Admin\AboutPage;
+use App\Livewire\Admin\AboutPageManager\AboutPageManager;
 use App\Models\About;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -76,7 +76,7 @@ class AboutPageTest extends TestCase
 
         $this->actingAs($user, 'web');
 
-        $component = Livewire::test(AboutPage::class);
+        $component = Livewire::test(AboutPageManager::class);
 
         $component->assertSee('Original Title');
 

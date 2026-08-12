@@ -16,7 +16,7 @@
             @endforeach
 
             <!-- Botón de Conversión CTA -->
-            <a href="https://wa.me/17867528054" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-xl bg-[#0EB3B9] px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] hover:shadow-lg hover:shadow-[#0EB3B9]/20 active:scale-[0.98]">
+            <a href="{{ $whatsappBookingUrl ?? 'https://wa.me/17867528054' }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-xl bg-[#0EB3B9] px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] hover:shadow-lg hover:shadow-[#0EB3B9]/20 active:scale-[0.98]">
                 Book Appointment
             </a>
         </nav>
@@ -64,7 +64,7 @@
             @endif
             
             <!-- Botón CTA Móvil -->
-            <a href="https://wa.me/17867528054" target="_blank" rel="noopener noreferrer" class="block rounded-xl bg-[#0EB3B9] px-4 py-3 text-center text-sm font-bold text-white shadow-md transition hover:bg-[#0E788D]">
+            <a href="{{ $whatsappBookingUrl ?? 'https://wa.me/17867528054' }}" target="_blank" rel="noopener noreferrer" class="block rounded-xl bg-[#0EB3B9] px-4 py-3 text-center text-sm font-bold text-white shadow-md transition hover:bg-[#0E788D]">
                 Book Appointment
             </a>
         </div>

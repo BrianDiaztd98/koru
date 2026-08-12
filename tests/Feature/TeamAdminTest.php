@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Livewire\Admin\TeamMembersPage;
+use App\Livewire\Admin\TeamMembersManager\TeamMembersManager;
 use App\Models\TeamMember;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -35,7 +35,7 @@ class TeamAdminTest extends TestCase
     {
         $this->actingAsAdmin();
 
-        Livewire::test(TeamMembersPage::class)
+        Livewire::test(TeamMembersManager::class)
             ->set('name', 'Dr. Maya Rivera')
             ->set('instagram_handle', '@maya')
             ->set('bio_en', 'Expert in recovery and mobility.')
@@ -64,7 +64,7 @@ class TeamAdminTest extends TestCase
             'active_status' => true,
         ]);
 
-        Livewire::test(TeamMembersPage::class)
+        Livewire::test(TeamMembersManager::class)
             ->call('openEditForm', $teamMember->id)
             ->assertSet('teamMember.id', $teamMember->id)
             ->set('name', 'Updated Name')
@@ -83,13 +83,13 @@ class TeamAdminTest extends TestCase
     {
         $this->actingAsAdmin();
 
-        Livewire::test(TeamMembersPage::class)
+        Livewire::test(TeamMembersManager::class)
             ->set('name', 'Dr. Maya Rivera')
             ->set('instagram_handle', 'invalid handle!!')
             ->call('save')
             ->assertHasErrors(['instagram_handle']);
 
-        Livewire::test(TeamMembersPage::class)
+        Livewire::test(TeamMembersManager::class)
             ->set('name', 'Dr. Maya Rivera')
             ->set('instagram_handle', '@maya.rivera')
             ->call('save')

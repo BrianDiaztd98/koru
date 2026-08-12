@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Livewire\Admin\ClientOutcomesPage;
+use App\Livewire\Admin\ClientOutcomeManager\ClientOutcomeManager;
 use App\Livewire\Components\TestimonialsShowcase;
 use App\Models\Testimonial;
 use App\Models\User;
@@ -71,7 +71,7 @@ class ClientOutcomesAdminTest extends TestCase
             'active_status' => true,
         ]);
 
-        Livewire::test(ClientOutcomesPage::class)
+        Livewire::test(ClientOutcomeManager::class)
             ->call('openEditForm', $testimonial->id)
             ->assertSet('testimonial.id', $testimonial->id)
             ->set('title', 'Updated outcome')

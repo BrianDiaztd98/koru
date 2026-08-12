@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Livewire\Admin\ServiceManager\ServiceManagerPage;
+use App\Livewire\Admin\ServiceManager\ServiceManager;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -26,7 +26,7 @@ class ServiceManagerLivewireTest extends TestCase
         Service::factory()->create(['category' => 'manual_therapy', 'name_en' => 'Massage 2']);
         Service::factory()->create(['category' => 'medical_services', 'name_en' => 'Medical 1']);
 
-        $test = Livewire::test(ServiceManagerPage::class);
+        $test = Livewire::test(ServiceManager::class);
         $test->actingAs($user, 'web');
         $test->set('filterCategory', 'manual_therapy')
             ->assertSee('Massage 1')
@@ -41,7 +41,7 @@ class ServiceManagerLivewireTest extends TestCase
         Service::factory()->create(['category' => 'manual_therapy', 'name_en' => 'Massage 1']);
         Service::factory()->create(['category' => 'medical_services', 'name_en' => 'Medical 1']);
 
-        $test = Livewire::test(ServiceManagerPage::class);
+        $test = Livewire::test(ServiceManager::class);
         $test->actingAs($user, 'web');
         $test->set('filterCategory', 'all')
             ->assertSee('Massage 1')
@@ -52,11 +52,11 @@ class ServiceManagerLivewireTest extends TestCase
     {
         $user = $this->adminUser();
 
-        $test = Livewire::test(ServiceManagerPage::class);
+        $test = Livewire::test(ServiceManager::class);
         $test->actingAs($user, 'web');
         $test->call('openCreateForm')
             ->assertSet('showForm', true)
-            ->assertSee('Manage service details inline without modals.')
+            ->assertSee('Manage clinical and sports disciplines across the public system registries.')
             ->assertDontSee('fixed inset-0 z-50');
     }
 
@@ -64,7 +64,7 @@ class ServiceManagerLivewireTest extends TestCase
     {
         $user = $this->adminUser();
 
-        $test = Livewire::test(ServiceManagerPage::class);
+        $test = Livewire::test(ServiceManager::class);
         $test->actingAs($user, 'web');
         $test->set('name_en', 'Overflow Service')
             ->set('description_en', 'Too expensive')
@@ -74,7 +74,7 @@ class ServiceManagerLivewireTest extends TestCase
             ->call('save')
             ->assertHasErrors(['price']);
 
-        $valid = Livewire::test(ServiceManagerPage::class);
+        $valid = Livewire::test(ServiceManager::class);
         $valid->actingAs($user, 'web');
         $valid->set('name_en', 'Valid Service')
             ->set('description_en', 'Reasonable price')

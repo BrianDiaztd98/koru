@@ -93,7 +93,7 @@
 
                     <!-- Botón de Acción Inferior Fijo -->
                     <div class="mt-8 pt-4 border-t border-slate-800/60">
-                        <a href="https://wa.me/17867528054" 
+                                <a href="{{ $package['whatsapp_url'] ?? 'https://wa.me/17867528054' }}" 
                            target="_blank" 
                            rel="noopener noreferrer"
                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-3 text-xs font-bold text-slate-200 shadow-sm transition-all duration-200 hover:bg-[#0EB3B9] hover:border-[#0EB3B9] hover:text-white hover:shadow-md active:scale-[0.98]">

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Livewire\Admin\DiscountSettingsPage;
+use App\Livewire\Admin\DepositManager\DepositManager;
 use App\Models\DayDiscountSetting;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -28,8 +28,8 @@ class DiscountSettingsPageTest extends TestCase
         $response = $this->get(route('admin.discounts.index'));
 
         $response->assertStatus(200);
-        $response->assertSee('Abonos por');
-        $response->assertSee('Discounts');
+        $response->assertSee('Deposit Settings');
+        $response->assertSee('Deposits by');
     }
 
     public function test_discounts_index_shows_all_week_days(): void
@@ -47,7 +47,7 @@ class DiscountSettingsPageTest extends TestCase
     {
         $this->actingAsAdmin();
 
-        Livewire::test(DiscountSettingsPage::class)
+        Livewire::test(DepositManager::class)
             ->set('percentages.0', '50')
             ->set('activeStatuses.0', true)
             ->set('percentages.1', '20')
@@ -71,7 +71,7 @@ class DiscountSettingsPageTest extends TestCase
     {
         $this->actingAsAdmin();
 
-        Livewire::test(DiscountSettingsPage::class)
+        Livewire::test(DepositManager::class)
             ->set('percentages.0', '150')
             ->call('save')
             ->assertHasErrors('percentages.0');
@@ -83,7 +83,7 @@ class DiscountSettingsPageTest extends TestCase
 
         $this->actingAsAdmin();
 
-        Livewire::test(DiscountSettingsPage::class)
+        Livewire::test(DepositManager::class)
             ->assertSet('percentages.0', '50.00')
             ->assertSet('activeStatuses.0', true);
     }
@@ -92,7 +92,7 @@ class DiscountSettingsPageTest extends TestCase
     {
         $this->actingAsAdmin();
 
-        Livewire::test(DiscountSettingsPage::class)
+        Livewire::test(DepositManager::class)
             ->assertSet('activeStatuses.1', false)
             ->assertSet('activeStatuses.2', false)
             ->assertSet('activeStatuses.3', false)

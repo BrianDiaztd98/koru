@@ -20,6 +20,8 @@ use Livewire\Component;
 #[Layout('components.layouts.app')]
 class LandingPage extends Component
 {
+    protected const WHATSAPP_BASE_URL = 'https://wa.me/17867528054';
+
     public array $headerNavItems = [];
 
     protected DiscountService $discountService;
@@ -92,14 +94,24 @@ class LandingPage extends Component
             ->orderBy('name_en')
             ->get()
             ->groupBy('category')
-            ->map(fn ($group) => $group->map(fn (Service $service) => $this->buildPricedItem($service->price, $service->discount_eligible, [
-                'id' => $service->id,
-                'slug' => $service->slug,
-                'title' => $service->name_en,
-                'description' => $service->description_en,
-                'duration' => $service->duration,
-                'image' => AdminMediaService::resolveImageUrl($service->image_path) ?: asset('img/carrucel/relaxing.webp'),
-            ]))->toArray())
+            ->map(fn ($group) => $group->map(function (Service $service): array {
+                $serviceData = $this->buildPricedItem($service->price, $service->discount_eligible, [
+                    'id' => $service->id,
+                    'slug' => $service->slug,
+                    'title' => $service->name_en,
+                    'description' => $service->description_en,
+                    'duration' => $service->duration,
+                    'image' => AdminMediaService::resolveImageUrl($service->image_path) ?: asset('img/carrucel/relaxing.webp'),
+                ]);
+
+                $serviceData['whatsapp_url'] = $this->buildServiceInquiryWhatsappUrl(
+                    title: $serviceData['title'],
+                    price: $serviceData['price'],
+                    duration: $serviceData['duration']
+                );
+
+                return $serviceData;
+            })->toArray())
             ->toArray();
     }
 
@@ -111,11 +123,21 @@ class LandingPage extends Component
             ->where('category', 'booster_shots')
             ->orderBy('name_en')
             ->get()
-            ->map(fn (Service $service) => $this->buildPricedItem($service->price, $service->discount_eligible, [
-                'id' => $service->id,
-                'title' => $service->name_en,
-                'description' => $service->description_en,
-            ]))->toArray();
+            ->map(function (Service $service): array {
+                $shotData = $this->buildPricedItem($service->price, $service->discount_eligible, [
+                    'id' => $service->id,
+                    'title' => $service->name_en,
+                    'description' => $service->description_en,
+                ]);
+
+                $shotData['whatsapp_url'] = $this->buildServiceInquiryWhatsappUrl(
+                    title: $shotData['title'],
+                    price: $shotData['price'],
+                    serviceType: 'booster shot'
+                );
+
+                return $shotData;
+            })->toArray();
     }
 
     #[Computed]
@@ -125,13 +147,19 @@ class LandingPage extends Component
             ->where('active_status', true)
             ->orderBy('sort_order')
             ->get()
-            ->map(fn (Package $package) => $this->buildPricedItem($package->price, $package->discount_eligible, [
-                'id' => $package->id,
-                'name' => $package->name_en,
-                'sessions' => $package->sessions,
-                'validity' => $package->validity,
-                'description' => $package->description_en,
-            ]))->toArray();
+            ->map(function (Package $package): array {
+                $packageData = $this->buildPricedItem($package->price, $package->discount_eligible, [
+                    'id' => $package->id,
+                    'name' => $package->name_en,
+                    'sessions' => $package->sessions,
+                    'validity' => $package->validity,
+                    'description' => $package->description_en,
+                ]);
+
+                $packageData['whatsapp_url'] = $this->buildPackageInquiryWhatsappUrl($packageData);
+
+                return $packageData;
+            })->toArray();
     }
 
     #[Computed]
@@ -158,13 +186,24 @@ class LandingPage extends Component
             ->where('category', 'iv_therapy')
             ->orderBy('name_en')
             ->get()
-            ->map(fn (Service $service) => $this->buildPricedItem($service->price, $service->discount_eligible, [
-                'id' => $service->id,
-                'title' => $service->name_en,
-                'description' => $service->description_en,
-                'duration' => $service->duration,
-                'icon' => $this->resolveIvIcon($service),
-            ]))->toArray();
+            ->map(function (Service $service): array {
+                $dripData = $this->buildPricedItem($service->price, $service->discount_eligible, [
+                    'id' => $service->id,
+                    'title' => $service->name_en,
+                    'description' => $service->description_en,
+                    'duration' => $service->duration,
+                    'icon' => $this->resolveIvIcon($service),
+                ]);
+
+                $dripData['whatsapp_url'] = $this->buildServiceInquiryWhatsappUrl(
+                    title: $dripData['title'],
+                    price: $dripData['price'],
+                    duration: $dripData['duration'],
+                    serviceType: 'IV therapy'
+                );
+
+                return $dripData;
+            })->toArray();
     }
 
     protected function resolveIvIcon(Service $service): string
@@ -188,15 +227,27 @@ class LandingPage extends Component
             ->orderBy('date')
             ->limit(6)
             ->get()
-            ->map(fn (Course $course) => [
-                'id' => $course->id,
-                'title' => $course->title_en,
-                'description' => $course->description_en,
-                'ce_credits' => $course->ce_credits,
-                'date' => $course->date->format('M j, Y'),
-                'price' => number_format($course->price, 2),
-            ])
+            ->map(function (Course $course): array {
+                $courseData = [
+                    'id' => $course->id,
+                    'title' => $course->title_en,
+                    'description' => $course->description_en,
+                    'ce_credits' => $course->ce_credits,
+                    'date' => $course->date->format('M j, Y'),
+                    'price' => number_format($course->price, 2),
+                ];
+
+                $courseData['whatsapp_url'] = $this->buildCourseInquiryWhatsappUrl($courseData);
+
+                return $courseData;
+            })
             ->toArray();
+    }
+
+    #[Computed]
+    public function getGeneralAppointmentWhatsappUrlProperty(): string
+    {
+        return $this->buildWhatsappUrl('Hello, I would like to schedule an appointment. Please share availability and booking details.');
     }
 
     protected function formatPrice(float|string|null $price): string
@@ -222,6 +273,55 @@ class LandingPage extends Component
             'discount_percentage' => $percentage,
             'has_discount' => $hasDownPayment,
         ]);
+    }
+
+    protected function buildWhatsappUrl(string $message): string
+    {
+        return self::WHATSAPP_BASE_URL.'?text='.rawurlencode($message);
+    }
+
+    protected function buildServiceInquiryWhatsappUrl(
+        string $title,
+        string $price,
+        ?string $duration = null,
+        ?string $serviceType = null
+    ): string {
+        $typeSuffix = $serviceType ? ' '.$serviceType : ' service';
+        $message = "Hello, I would like more information about the {$title}{$typeSuffix}. Price: USD {$price}.";
+
+        if (! empty($duration)) {
+            $message .= " Duration: {$duration}.";
+        }
+
+        $message .= ' Please share availability and the next steps to book.';
+
+        return $this->buildWhatsappUrl($message);
+    }
+
+    /**
+     * @param  array{name:string,price:string,sessions:int,validity:?string}  $packageData
+     */
+    protected function buildPackageInquiryWhatsappUrl(array $packageData): string
+    {
+        $message = "Hello, I would like to book the {$packageData['name']} package. Total price: USD {$packageData['price']}. Sessions: {$packageData['sessions']}.";
+
+        if (! empty($packageData['validity'])) {
+            $message .= " Validity: {$packageData['validity']}.";
+        }
+
+        $message .= ' Please share availability and booking details.';
+
+        return $this->buildWhatsappUrl($message);
+    }
+
+    /**
+     * @param  array{title:string,price:string,date:string,ce_credits:mixed}  $courseData
+     */
+    protected function buildCourseInquiryWhatsappUrl(array $courseData): string
+    {
+        $message = "Hello, I would like to register for {$courseData['title']}. Investment: USD {$courseData['price']}. Date: {$courseData['date']}. CE Credits: {$courseData['ce_credits']}. Please share registration details.";
+
+        return $this->buildWhatsappUrl($message);
     }
 
     #[Computed]
