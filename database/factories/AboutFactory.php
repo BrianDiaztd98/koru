@@ -18,6 +18,7 @@ class AboutFactory extends Factory
             'description' => fake()->paragraph(),
             'philosophy' => fake()->paragraph(),
             'vision' => fake()->paragraph(),
+            'mission' => fake()->paragraph(),
             'feature_1_title' => fake()->sentence(3),
             'feature_1_description' => fake()->paragraph(),
             'feature_2_title' => fake()->sentence(3),
@@ -25,6 +26,7 @@ class AboutFactory extends Factory
             'image_1' => 'img/about/therapy.webp',
             'image_2' => 'img/about/massage.webp',
             'image_3' => 'img/about/team.webp',
+            'image_4' => 'img/services/relaxingMen.webp',
         ];
     }
 }

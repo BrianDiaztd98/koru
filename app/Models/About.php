@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Services\AdminMediaService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
 
 class About extends Model
@@ -17,6 +18,7 @@ class About extends Model
         'description',
         'philosophy',
         'vision',
+        'mission',
         'feature_1_title',
         'feature_1_description',
         'feature_2_title',
@@ -24,6 +26,7 @@ class About extends Model
         'image_1',
         'image_2',
         'image_3',
+        'image_4',
     ];
 
     protected $casts = [
@@ -44,7 +47,23 @@ class About extends Model
 
     public static function getAboutData(): array
     {
-        return self::query()->first()?->toArray() ?? [];
+        $about = self::query()->with('glanceItems')->first();
+
+        if (! $about) {
+            return [];
+        }
+
+        $data = $about->toArray();
+        $data['glance_items'] = $about->glanceItems
+            ->sortBy('order')
+            ->map(fn (AboutGlanceItem $item) => [
+                'title' => $item->title,
+                'description' => $item->description,
+            ])
+            ->values()
+            ->toArray();
+
+        return $data;
     }
 
     public function getImage1UrlAttribute(): ?string
@@ -60,5 +79,15 @@ class About extends Model
     public function getImage3UrlAttribute(): ?string
     {
         return AdminMediaService::resolveImageUrl($this->image_3);
+    }
+
+    public function getImage4UrlAttribute(): ?string
+    {
+        return AdminMediaService::resolveImageUrl($this->image_4);
+    }
+
+    public function glanceItems(): HasMany
+    {
+        return $this->hasMany(AboutGlanceItem::class);
     }
 }

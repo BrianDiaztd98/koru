@@ -3,15 +3,13 @@
         description: 0,
         philosophy: 0,
         vision: 0,
-        feature_1_description: 0,
-        feature_2_description: 0
+        mission: 0,
     },
     maxLengths: {
         description: 2000,
         philosophy: 2000,
         vision: 2000,
-        feature_1_description: 500,
-        feature_2_description: 500
+        mission: 2000,
     },
     updateCount(field) {
         this.charCounts[field] = this.$refs[field]?.value?.length || 0;
@@ -19,7 +17,7 @@
 }">
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-            <h3 class="text-lg font-semibold text-white">Create About Section</h3>
+            <h3 class="text-lg font-semibold text-white">{{ $about?->id ? 'Edit Content' : 'Create Content' }}</h3>
             <p class="text-sm text-slate-400">Configure core copywriting and media structures.</p>
         </div>
     </div>
@@ -44,8 +42,8 @@
                         <button type="button" @click="activeTab = 'copy'" :class="activeTab === 'copy' ? 'bg-[#0EB3B9]/10 text-[#0EB3B9] border-slate-700/50' : 'text-slate-400 border-transparent'" class="px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-lg border transition-all duration-150">
                             Copy
                         </button>
-                        <button type="button" @click="activeTab = 'features'" :class="activeTab === 'features' ? 'bg-[#0EB3B9]/10 text-[#0EB3B9] border-slate-700/50' : 'text-slate-400 border-transparent'" class="px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-lg border transition-all duration-150">
-                            Features
+                        <button type="button" @click="activeTab = 'glance'" :class="activeTab === 'glance' ? 'bg-[#0EB3B9]/10 text-[#0EB3B9] border-slate-700/50' : 'text-slate-400 border-transparent'" class="px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-lg border transition-all duration-150">
+                            At a Glance
                         </button>
                         <button type="button" @click="activeTab = 'media'" :class="activeTab === 'media' ? 'bg-[#0EB3B9]/10 text-[#0EB3B9] border-slate-700/50' : 'text-slate-400 border-transparent'" class="px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-lg border transition-all duration-150">
                             Media
@@ -97,9 +95,9 @@
                         </div>
                         <div class="p-4 rounded-xl border border-slate-800/60 bg-slate-950/20">
                             <label for="vision" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-[#0EB3B9] flex items-center gap-1">
-                                System Vision <span class="text-rose-400">(*)</span>
+                                Misión / Visión <span class="text-rose-400">(*)</span>
                             </label>
-                            <textarea wire:model="vision" id="vision" rows="4" x-ref="vision" @input="updateCount('vision')" class="koru-scrollbar max-h-40 w-full overflow-y-auto rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 focus:border-[#0EB3B9] focus:ring-1 focus:ring-[#0EB3B9]/20 placeholder:text-slate-600" placeholder="Vision declaration... (max 2000 chars)">{{ $vision }}</textarea>
+                            <textarea wire:model="vision" id="vision" rows="4" x-ref="vision" @input="updateCount('vision')" class="koru-scrollbar max-h-40 w-full overflow-y-auto rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 focus:border-[#0EB3B9] focus:ring-1 focus:ring-[#0EB3B9]/20 placeholder:text-slate-600" placeholder="Misión y visión... (max 2000 chars)">{{ $vision }}</textarea>
                             <div class="mt-1.5 flex justify-between text-xs">
                                 <span class="text-slate-500">Required</span>
                                 <span class="font-mono text-slate-400" x-text="charCounts.vision + ' / ' + maxLengths.vision"></span>
@@ -107,69 +105,68 @@
                             @error('vision') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                         </div>
                     </div>
+
+                    <div class="p-4 rounded-xl border border-slate-800/60 bg-slate-950/20">
+                        <label for="mission" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-400 mb-2 text-[#0EB3B9] flex items-center gap-1">
+                            Mission Statement <span class="text-slate-500">(Opcional)</span>
+                        </label>
+                        <textarea wire:model="mission" id="mission" rows="4" x-ref="mission" @input="updateCount('mission')" class="koru-scrollbar max-h-40 w-full overflow-y-auto rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-200 outline-none transition-all duration-200 focus:border-[#0EB3B9] focus:ring-1 focus:ring-[#0EB3B9]/20 placeholder:text-slate-600" placeholder="Mission statement... (max 2000 chars)">{{ $mission }}</textarea>
+                        <div class="mt-1.5 flex justify-between text-xs">
+                            <span class="text-slate-500">Optional</span>
+                            <span class="font-mono text-slate-400" x-text="charCounts.mission + ' / ' + maxLengths.mission"></span>
+                        </div>
+                        @error('mission') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
+                    </div>
                 </div>
 
-                <div x-show="activeTab === 'features'" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2" class="space-y-6">
+                <div x-show="activeTab === 'glance'" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2" class="space-y-6">
                     <div class="p-5 rounded-xl border border-slate-800/80 bg-slate-950/30 space-y-4">
-                        <div class="flex items-center gap-2 text-xs font-mono font-bold text-[#0EB3B9] uppercase tracking-widest">
-                            <span class="h-1.5 w-1.5 rounded-full bg-[#0EB3B9]"></span> Feature Module 01
-                        </div>
-                        <div class="grid gap-4">
-                            <div>
-                                <label for="feature_1_title" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1">
-                                    Feature 1 Title <span class="text-slate-500">(Opcional)</span>
-                                </label>
-                                <input wire:model="feature_1_title" id="feature_1_title" type="text" value="{{ $feature_1_title }}" maxlength="80" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Feature name (max 80 chars)" />
-                                @error('feature_1_title') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2 text-xs font-mono font-bold text-[#0EB3B9] uppercase tracking-widest">
+                                <span class="h-1.5 w-1.5 rounded-full bg-[#0EB3B9]"></span> KORU at a Glance
                             </div>
-                            <div>
-                                <label for="feature_1_description" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1">
-                                    Feature 1 Description <span class="text-slate-500">(Opcional)</span>
-                                </label>
-                                <textarea wire:model="feature_1_description" id="feature_1_description" rows="2" x-ref="feature_1_description" @input="updateCount('feature_1_description')" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Short explanation... (max 500 chars)">{{ $feature_1_description }}</textarea>
-                                <div class="mt-1.5 flex justify-between text-xs">
-                                    <span class="text-slate-500">Optional</span>
-                                    <span class="font-mono text-slate-400" x-text="charCounts.feature_1_description + ' / ' + maxLengths.feature_1_description"></span>
-                                </div>
-                                @error('feature_1_description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
-                            </div>
+                            <button type="button" wire:click="addGlanceItem" class="inline-flex items-center gap-1.5 rounded-lg border border-[#0EB3B9]/30 bg-[#0EB3B9]/10 px-3 py-1.5 text-xs font-mono font-bold text-[#0EB3B9] transition hover:bg-[#0EB3B9]/20">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                                Add Item
+                            </button>
                         </div>
-                    </div>
 
-                    <div class="p-5 rounded-xl border border-slate-800/80 bg-slate-950/30 space-y-4">
-                        <div class="flex items-center gap-2 text-xs font-mono font-bold text-[#0EB3B9] uppercase tracking-widest">
-                            <span class="h-1.5 w-1.5 rounded-full bg-[#0EB3B9]"></span> Feature Module 02
-                        </div>
-                        <div class="grid gap-4">
-                            <div>
-                                <label for="feature_2_title" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1">
-                                    Feature 2 Title <span class="text-slate-500">(Opcional)</span>
-                                </label>
-                                <input wire:model="feature_2_title" id="feature_2_title" type="text" value="{{ $feature_2_title }}" maxlength="80" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Feature name (max 80 chars)" />
-                                @error('feature_2_title') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="feature_2_description" class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1">
-                                    Feature 2 Description <span class="text-slate-500">(Opcional)</span>
-                                </label>
-                                <textarea wire:model="feature_2_description" id="feature_2_description" rows="2" x-ref="feature_2_description" @input="updateCount('feature_2_description')" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Short explanation... (max 500 chars)">{{ $feature_2_description }}</textarea>
-                                <div class="mt-1.5 flex justify-between text-xs">
-                                    <span class="text-slate-500">Optional</span>
-                                    <span class="font-mono text-slate-400" x-text="charCounts.feature_2_description + ' / ' + maxLengths.feature_2_description"></span>
+                        <div class="space-y-4">
+                            @foreach($glanceItems as $index => $item)
+                                <div class="p-4 rounded-xl border border-slate-800/60 bg-slate-950/20 space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider">Item #{{ $index + 1 }}</span>
+                                        @if(count($glanceItems) > 1)
+                                            <button type="button" wire:click="removeGlanceItem({{ $index }})" class="text-rose-400 hover:text-rose-300 transition">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/></svg>
+                                            </button>
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <label class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">Title</label>
+                                        <input wire:model="glanceItems.{{ $index }}.title" type="text" maxlength="80" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Item title (max 80 chars)" />
+                                        @error("glanceItems.{{ $index }}.title") <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
+                                    </div>
+                                    <div>
+                                        <label class="block font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">Description</label>
+                                        <textarea wire:model="glanceItems.{{ $index }}.description" rows="2" class="w-full rounded-xl border border-slate-800 bg-slate-950/40 px-4 py-2.5 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="Short explanation... (max 500 chars)"></textarea>
+                                        @error("glanceItems.{{ $index }}.description") <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
+                                    </div>
                                 </div>
-                                @error('feature_2_description') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
 
-                <div x-show="activeTab === 'media'" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2" class="space-y-6">
+                <div x-show="activeTab === 'media'" x-cloak class="space-y-6">
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                         
                         <div class="p-4 rounded-xl border border-slate-800 bg-slate-950/40 flex flex-col justify-between items-center text-center space-y-3">
                             <div class="w-full aspect-[4/3] rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden relative group">
                                 @if ($image_1 && method_exists($image_1, 'temporaryUrl'))
-                                    <img src="{{ $image_1->temporaryUrl() }}" class="object-cover w-full h-full">
+                                    <img src="{{ $image_1->temporaryUrl() }}" class="object-cover w-full h-full" loading="lazy" decoding="async" fetchpriority="low">
+                                @elseif($about?->image_1)
+                                    <img src="{{ asset($about->image_1) }}" class="object-cover w-full h-full" loading="lazy" decoding="async" fetchpriority="low">
                                 @else
                                     <span class="text-xs font-mono text-slate-600 group-hover:text-[#0EB3B9] transition-colors">IMG_01_EMPTY</span>
                                 @endif
@@ -187,7 +184,9 @@
                         <div class="p-4 rounded-xl border border-slate-800 bg-slate-950/40 flex flex-col justify-between items-center text-center space-y-3">
                             <div class="w-full aspect-[4/3] rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden relative group">
                                 @if ($image_2 && method_exists($image_2, 'temporaryUrl'))
-                                    <img src="{{ $image_2->temporaryUrl() }}" class="object-cover w-full h-full">
+                                    <img src="{{ $image_2->temporaryUrl() }}" class="object-cover w-full h-full" loading="lazy" decoding="async" fetchpriority="low">
+                                @elseif($about?->image_2)
+                                    <img src="{{ asset($about->image_2) }}" class="object-cover w-full h-full" loading="lazy" decoding="async" fetchpriority="low">
                                 @else
                                     <span class="text-xs font-mono text-slate-600 group-hover:text-[#0EB3B9] transition-colors">IMG_02_EMPTY</span>
                                 @endif
@@ -205,7 +204,9 @@
                         <div class="p-4 rounded-xl border border-slate-800 bg-slate-950/40 flex flex-col justify-between items-center text-center space-y-3">
                             <div class="w-full aspect-[4/3] rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden relative group">
                                 @if ($image_3 && method_exists($image_3, 'temporaryUrl'))
-                                    <img src="{{ $image_3->temporaryUrl() }}" class="object-cover w-full h-full">
+                                    <img src="{{ $image_3->temporaryUrl() }}" class="object-cover w-full h-full" loading="lazy" decoding="async" fetchpriority="low">
+                                @elseif($about?->image_3)
+                                    <img src="{{ asset($about->image_3) }}" class="object-cover w-full h-full" loading="lazy" decoding="async" fetchpriority="low">
                                 @else
                                     <span class="text-xs font-mono text-slate-600 group-hover:text-[#0EB3B9] transition-colors">IMG_03_EMPTY</span>
                                 @endif
@@ -217,6 +218,26 @@
                                 <input wire:model="image_3" type="file" accept="image/*" class="w-full text-[11px] text-slate-500 file:mr-2 file:rounded-md file:border-0 file:bg-[#0EB3B9]/10 file:px-2.5 file:py-1 file:font-mono file:text-[10px] file:font-bold file:text-[#0EB3B9] cursor-pointer" />
                                 <p class="mt-1 text-[10px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
                                 @error('image_3') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-800 bg-slate-950/40 flex flex-col justify-between items-center text-center space-y-3">
+                            <div class="w-full aspect-[4/3] rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center overflow-hidden relative group">
+                                @if ($image_4 && method_exists($image_4, 'temporaryUrl'))
+                                    <img src="{{ $image_4->temporaryUrl() }}" class="object-cover w-full h-full" loading="lazy" decoding="async" fetchpriority="low">
+                                @elseif($about?->image_4)
+                                    <img src="{{ asset($about->image_4) }}" class="object-cover w-full h-full" loading="lazy" decoding="async" fetchpriority="low">
+                                @else
+                                    <span class="text-xs font-mono text-slate-600 group-hover:text-[#0EB3B9] transition-colors">IMG_04_EMPTY</span>
+                                @endif
+                            </div>
+                            <div class="w-full">
+                                <label class="block font-mono text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 flex items-center gap-1">
+                                    Upload Slot D <span class="text-slate-500">(Opcional)</span>
+                                </label>
+                                <input wire:model="image_4" type="file" accept="image/*" class="w-full text-[11px] text-slate-500 file:mr-2 file:rounded-md file:border-0 file:bg-[#0EB3B9]/10 file:px-2.5 file:py-1 file:font-mono file:text-[10px] file:font-bold file:text-[#0EB3B9] cursor-pointer" />
+                                <p class="mt-1 text-[10px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
+                                @error('image_4') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
                             </div>
                         </div>
 
@@ -236,13 +257,13 @@
                         <div class="flex justify-between items-center">
                             <span class="font-medium">Created:</span>
                             <span class="text-slate-300 font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-800/80">
-                                Unsaved
+                                {{ $about?->created_at?->diffForHumans() ?? 'Unsaved' }}
                             </span>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="font-medium">Last Update:</span>
                             <span class="text-slate-300 font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-800/80">
-                                N/A
+                                {{ $about?->updated_at?->diffForHumans() ?? 'N/A' }}
                             </span>
                         </div>
                     </div>
@@ -267,6 +288,4 @@
         </div>
     </form>
 </div>
-
-
 

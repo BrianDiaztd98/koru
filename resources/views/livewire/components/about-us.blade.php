@@ -66,30 +66,26 @@
                     <div class="border-t border-slate-800/80 pt-6" wire:key="about-koru-at-a-glance">
                         <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0EB3B9]">KORU at a glance</p>
                         <div class="mt-4 grid gap-x-6 gap-y-5 sm:grid-cols-2">
-                            <article class="border-l border-[#0EB3B9]/50 pl-3">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">Who we are</h4>
-                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">A wellness, recovery, therapy, and professional education center built around practical support and clinical standards.</p>
-                            </article>
-                            <article class="border-l border-[#0EB3B9]/50 pl-3">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">What we do</h4>
-                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">Clinical massage, recovery technologies, IV Therapy, Booster Shots, KORU at Home, and continuing education.</p>
-                            </article>
-                            <article class="border-l border-[#0EB3B9]/50 pl-3">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">Who we serve</h4>
-                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">Individuals seeking relief and wellness, active people focused on recovery, and professionals seeking education.</p>
-                            </article>
-                            <article class="border-l border-[#0EB3B9]/50 pl-3">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">How we work</h4>
-                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">Attentive service, structured protocols, specialized techniques, and clear communication.</p>
-                            </article>
-                            <article class="border-l border-[#0EB3B9]/50 pl-3">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">What sets us apart</h4>
-                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">We bring wellness, recovery, clinical care, and education together in one organized environment.</p>
-                            </article>
-                            <article class="border-l border-[#0EB3B9]/50 pl-3">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">What KORU represents</h4>
-                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">New life, growth, strength, peace, and the possibility of moving forward with purpose.</p>
-                            </article>
+                            @php
+                                $glanceItems = $aboutData['glance_items'] ?? [];
+                                if (empty($glanceItems)) {
+                                    $glanceItems = [
+                                        ['title' => 'Who we are', 'description' => 'A wellness, recovery, therapy, and professional education center built around practical support and clinical standards.'],
+                                        ['title' => 'What we do', 'description' => 'Clinical massage, recovery technologies, IV Therapy, Booster Shots, KORU at Home, and continuing education.'],
+                                        ['title' => 'Who we serve', 'description' => 'Individuals seeking relief and wellness, active people focused on recovery, and professionals seeking education.'],
+                                        ['title' => 'How we work', 'description' => 'Attentive service, structured protocols, specialized techniques, and clear communication.'],
+                                        ['title' => 'What sets us apart', 'description' => 'We bring wellness, recovery, clinical care, and education together in one organized environment.'],
+                                        ['title' => 'What KORU represents', 'description' => 'New life, growth, strength, peace, and the possibility of moving forward with purpose.'],
+                                    ];
+                                }
+                            @endphp
+
+                            @foreach($glanceItems as $item)
+                                <article class="border-l border-[#0EB3B9]/50 pl-3">
+                                    <h4 class="text-xs font-bold uppercase tracking-wider text-white">{{ $item['title'] }}</h4>
+                                    <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">{{ $item['description'] }}</p>
+                                </article>
+                            @endforeach
                         </div>
                     </div>
 

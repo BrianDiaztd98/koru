@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Livewire\Admin\AboutPageManager\AboutPageManager;
 use App\Models\About;
+use App\Models\AboutGlanceItem;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
@@ -36,10 +37,15 @@ class AboutPageTest extends TestCase
             'description' => 'Test Description',
             'philosophy' => 'Test Philosophy',
             'vision' => 'Test Vision',
-            'feature_1_title' => 'Feature 1',
-            'feature_1_description' => 'Feature 1 Desc',
-            'feature_2_title' => 'Feature 2',
-            'feature_2_description' => 'Feature 2 Desc',
+            'mission' => 'Test Mission',
+            'image_4' => 'img/services/relaxingMen.webp',
+        ]);
+
+        AboutGlanceItem::factory()->create([
+            'about_id' => $about->id,
+            'order' => 1,
+            'title' => 'Glance Title',
+            'description' => 'Glance Description',
         ]);
 
         $response = $this->get(route('admin.about.index'));
@@ -50,10 +56,9 @@ class AboutPageTest extends TestCase
         $response->assertSee('Test Description');
         $response->assertSee('Test Philosophy');
         $response->assertSee('Test Vision');
-        $response->assertSee('Feature 1');
-        $response->assertSee('Feature 1 Desc');
-        $response->assertSee('Feature 2');
-        $response->assertSee('Feature 2 Desc');
+        $response->assertSee('Test Mission');
+        $response->assertSee('Glance Title');
+        $response->assertSee('Glance Description');
     }
 
     public function test_about_page_creates_record_when_none_exists(): void
@@ -85,10 +90,9 @@ class AboutPageTest extends TestCase
             ->set('description', 'Updated Description')
             ->set('philosophy', 'Updated Philosophy')
             ->set('vision', 'Updated Vision')
-            ->set('feature_1_title', 'Updated Feature 1')
-            ->set('feature_1_description', 'Updated Feature 1 Desc')
-            ->set('feature_2_title', 'Updated Feature 2')
-            ->set('feature_2_description', 'Updated Feature 2 Desc');
+            ->set('mission', 'Updated Mission')
+            ->set('glanceItems.0.title', 'New Glance Title')
+            ->set('glanceItems.0.description', 'New Glance Description');
 
         $component->call('save');
 
@@ -96,6 +100,41 @@ class AboutPageTest extends TestCase
             'id' => $about->id,
             'title' => 'Updated Title',
             'subtitle' => 'Updated Subtitle',
+            'mission' => 'Updated Mission',
+        ]);
+
+        $this->assertDatabaseHas('about_glance_items', [
+            'about_id' => $about->id,
+            'title' => 'New Glance Title',
+            'description' => 'New Glance Description',
+        ]);
+    }
+
+    public function test_about_page_syncs_glance_items(): void
+    {
+        $user = $this->actingAsAdmin();
+
+        $about = About::factory()->create();
+
+        $this->actingAs($user, 'web');
+
+        $component = Livewire::test(AboutPageManager::class);
+
+        $component->set('glanceItems', [
+            ['id' => null, 'order' => 1, 'title' => 'Item 1', 'description' => 'Desc 1'],
+            ['id' => null, 'order' => 2, 'title' => 'Item 2', 'description' => 'Desc 2'],
+        ])->call('save');
+
+        $this->assertDatabaseCount('about_glance_items', 2);
+        $this->assertDatabaseHas('about_glance_items', [
+            'about_id' => $about->id,
+            'title' => 'Item 1',
+            'order' => 1,
+        ]);
+        $this->assertDatabaseHas('about_glance_items', [
+            'about_id' => $about->id,
+            'title' => 'Item 2',
+            'order' => 2,
         ]);
     }
 }
