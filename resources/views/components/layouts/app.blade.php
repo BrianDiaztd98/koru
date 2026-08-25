@@ -6,23 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Preconnect para fuentes y assets críticos -->
+    <!-- Preconnect para fuentes y assets crticos -->
     <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
     <link rel="preconnect" href="{{ asset('') }}" crossorigin>
 
-    <!-- SEO: Meta Descripción Obligatoria -->
+    <!-- SEO: Meta Descripcin Obligatoria -->
     <meta name="description"
         content="{{ $metaDescription ?? 'Advanced medical center management platform for specialized care, clinical history records, and healthcare supply inventory.' }}">
 
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
 
-    <!-- El título por defecto ahora es más corporativo y claro para el mercado de salud en USA -->
+    <!-- El ttulo por defecto ahora es ms corporativo y claro para el mercado de salud en USA -->
     <meta name="title" content="{{ $title ?? 'KORU Center | Clinical Management & Medical Supply Platform' }}">
     <title>{{ $title ?? 'KORU Center | Clinical Management & Medical Supply Platform' }}</title>
 
     <!-- Rendimiento: Cargar scripts juntos para optimizar HTTP/2 en Vite -->
     @livewireStyles
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @if (app()->environment('production'))
+        <style>{!! Vite::content('resources/css/app.css') !!}</style>
+        @vite(['resources/js/app.js'])
+    @else
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endif
     @stack('head')
 </head>
 

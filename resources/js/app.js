@@ -1,5 +1,4 @@
 import sal from 'sal.js';
-import 'sal.js/dist/sal.css';
 
 const prefersReducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
