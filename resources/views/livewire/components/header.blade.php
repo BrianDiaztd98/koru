@@ -15,9 +15,9 @@
                 <a href="{{ $item['href'] }}" class="text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-[#0EB3B9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded">{{ $item['label'] }}</a>
             @endforeach
 
-            <!-- Botón de Conversión CTA -->
+            <!-- Contacto principal, subordinado a la presentación institucional -->
             <a href="{{ $whatsappBookingUrl ?? 'https://wa.me/17867528054' }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-xl bg-[#0EB3B9] px-5 py-2.5 text-sm font-bold text-white shadow-md shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] hover:shadow-lg hover:shadow-[#0EB3B9]/20 active:scale-[0.98]">
-                Book Appointment
+                Contact KORU
             </a>
         </nav>
 
@@ -63,9 +63,9 @@
                 <a href="#location" @click="mobileMenuOpen = false" class="block rounded-xl px-4 py-3 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-[#0EB3B9]">Location</a>
             @endif
             
-            <!-- Botón CTA Móvil -->
+            <!-- Contacto principal móvil -->
             <a href="{{ $whatsappBookingUrl ?? 'https://wa.me/17867528054' }}" target="_blank" rel="noopener noreferrer" class="block rounded-xl bg-[#0EB3B9] px-4 py-3 text-center text-sm font-bold text-white shadow-md transition hover:bg-[#0E788D]">
-                Book Appointment
+                Contact KORU
             </a>
         </div>
     </div>

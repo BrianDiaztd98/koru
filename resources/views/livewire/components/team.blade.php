@@ -12,7 +12,7 @@
             <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4">
                 Meet Our Specialists
             </h2>
-            <p class="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed text-justify">
                 Certified professionals committed to your recovery, performance, and long-term wellness.
             </p>
         </div>
@@ -54,7 +54,7 @@
                         <!-- Bloque Explicativo Expandible Único -->
                         <div class="relative flex-grow flex flex-col justify-between">
                             <div>
-                                <p class="text-xs sm:text-sm leading-relaxed text-slate-400 transition-all duration-300" 
+                                <p class="text-xs sm:text-sm leading-relaxed text-slate-400 transition-all duration-300 text-justify" 
                                    :class="{ 'line-clamp-3': !expanded }" 
                                    x-ref="teamDesc{{ $loop->index }}">{{ $member['specialty'] }}</p>
                                 
@@ -121,7 +121,7 @@
                                 
                                 <div class="relative flex-grow flex flex-col justify-between">
                                     <div>
-                                        <p class="text-xs leading-relaxed text-slate-400 transition-all duration-300" 
+                                        <p class="text-xs leading-relaxed text-slate-400 transition-all duration-300 text-justify" 
                                            :class="{ 'line-clamp-3': !expanded }" 
                                            x-ref="teamDescMob{{ $loop->index }}">{{ $member['specialty'] }}</p>
                                         

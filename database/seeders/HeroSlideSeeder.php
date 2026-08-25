@@ -11,13 +11,13 @@ class HeroSlideSeeder extends Seeder
     {
         $slides = [
             [
-                'badge' => 'Wellness & Performance',
-                'title_line_1' => 'Relaxing Massage',
-                'title_line_2' => 'Total Recovery',
-                'description' => 'Advanced therapeutic techniques designed to relieve muscle tension, reduce stress levels, and significantly improve joint mobility.',
-                'btn_primary_text' => 'Book a Session',
-                'btn_primary_url' => 'https://wa.me/17867528054',
-                'btn_secondary_text' => 'View Services',
+                'badge' => 'PAIN FREE, BETTER LIFE.',
+                'title_line_1' => 'Wellness, Recovery',
+                'title_line_2' => '& Education',
+                'description' => 'KORU Center brings together clinical care, recovery therapies, wellness services, and continuing education in a structured environment designed to help people move better, recover stronger, and live well.',
+                'btn_primary_text' => 'Learn About KORU',
+                'btn_primary_url' => '#about-us',
+                'btn_secondary_text' => 'Explore Services',
                 'btn_secondary_url' => '#services',
                 'image_path' => 'img/carrucel/relaxing.webp',
                 'sort_order' => 0,

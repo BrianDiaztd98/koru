@@ -19,9 +19,17 @@
             </p>
         </div>
 
+        @if(empty($activeCourses))
+            <div class="rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10" data-sal="fade" data-sal-duration="600">
+                <h4 class="text-xl font-semibold text-white">Próximamente. Cursos en construcción.</h4>
+                <p class="mt-3 max-w-md mx-auto text-sm leading-relaxed text-slate-400 text-justify">
+                    Estamos preparando nuevas ediciones para profesionales. La información y la inscripción se publicarán cuando el programa esté listo.
+                </p>
+            </div>
+        @else
         <!-- Grid de Cursos / Workshops -->
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-stretch" wire:key="education-courses-grid">
-            @forelse($activeCourses as $index => $course)
+            @foreach($activeCourses as $index => $course)
                 <article wire:key="course-card-{{ $course['id'] ?? $index }}"
                          data-sal="slide-up"
                          data-sal-delay="{{ 100 + ($loop->index * 100) }}"
@@ -48,7 +56,7 @@
                             {{ $course['title'] }}
                         </h3>
                         
-                        <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-400 line-clamp-4 flex-1">
+                        <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-400 text-justify flex-1">
                             {{ $course['description'] }}
                         </p>
                     </div>
@@ -61,27 +69,19 @@
                                 <span class="text-xl font-bold text-white font-mono tracking-tight">${{ number_format($course['price']) }}</span>
                             </div>
                             
-                                     <a href="{{ $course['whatsapp_url'] ?? 'https://wa.me/17867528054' }}" 
-                               target="_blank" 
-                               rel="noopener noreferrer" 
+                                      <a href="#ce-enrollment" 
                                class="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-2.5 text-xs font-bold text-slate-200 shadow-sm transition-all duration-200 hover:bg-[#0EB3B9] hover:border-[#0EB3B9] hover:text-white hover:shadow-md active:scale-[0.98]">
-                                Register Now
+                                  Register on website
                             </a>
                         </div>
                     </div>
                 </article>
-            @empty
-                <!-- Estado Vacío Semántico y Controlado con Estética de Alta Gama -->
-                <div class="col-span-full rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10" 
-                     wire:key="education-empty-state"
-                     data-sal="fade"
-                     data-sal-duration="600">
-                    <h4 class="text-xl font-semibold text-white">No professional CE content available yet</h4>
-                    <p class="mt-3 max-w-sm mx-auto text-sm leading-relaxed text-slate-400">
-                        This section is waiting for education content.
-                    </p>
-                </div>
-            @endforelse
+            @endforeach
         </div>
+
+        <div id="ce-enrollment" class="mt-10">
+            <livewire:components.course-enrollment-form :courses="$activeCourses" />
+        </div>
+        @endif
     </div>
 </section>

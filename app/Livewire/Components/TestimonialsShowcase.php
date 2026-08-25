@@ -2,7 +2,8 @@
 
 namespace App\Livewire\Components;
 
-use App\Models\Testimonial;
+use App\Models\GoogleReview;
+use App\Services\AdminMediaService;
 use Livewire\Component;
 
 class TestimonialsShowcase extends Component
@@ -21,16 +22,19 @@ class TestimonialsShowcase extends Component
             return;
         }
 
-        $this->testimonials = Testimonial::query()
+        $this->testimonials = GoogleReview::query()
             ->active()
+            ->orderBy('sort_order')
             ->orderBy('id')
             ->get()
-            ->map(fn (Testimonial $testimonial) => [
-                'id' => $testimonial->id,
-                'category' => $testimonial->category ?? 'clinical',
-                'title' => $testimonial->title ?? $testimonial->author_name,
-                'description' => $testimonial->description ?? $testimonial->quote_en,
-                'video_path' => $testimonial->video_path ?? $testimonial->video_url,
+            ->map(fn (GoogleReview $review) => [
+                'id' => $review->id,
+                'category' => 'google',
+                'title' => $review->author_name,
+                'author_role' => $review->author_role,
+                'description' => $review->content,
+                'rating' => $review->rating,
+                'image_path' => AdminMediaService::resolveImageUrl($review->image_path),
             ])
             ->toArray();
     }

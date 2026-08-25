@@ -9,6 +9,8 @@ use App\Livewire\Admin\Auth\Login;
 use App\Livewire\Admin\Auth\ResetPassword;
 use App\Livewire\Admin\ClientOutcomeManager\ClientOutcomeManager;
 use App\Livewire\Admin\DepositManager\DepositManager;
+use App\Livewire\Admin\EducationBoardManager\EducationBoardManager;
+use App\Livewire\Admin\GoogleReviewManager\GoogleReviewManager;
 use App\Livewire\Admin\HeroCarouselManager\HeroCarouselManager;
 use App\Livewire\Admin\LandingPageManager\LandingPageManager;
 use App\Livewire\Admin\PackageManager\PackageManager;
@@ -43,6 +45,14 @@ Route::middleware([AdminAccess::class])->prefix('admin')->name('admin.')->group(
     Route::get('services', ServiceManager::class)->name('services.index');
     Route::get('services/create', ServiceManager::class)->name('services.create');
     Route::get('services/{service}/edit', ServiceManager::class)->name('services.edit');
+
+    Route::get('google-reviews', GoogleReviewManager::class)->name('google-reviews.index');
+    Route::get('google-reviews/create', GoogleReviewManager::class)->name('google-reviews.create');
+    Route::get('google-reviews/{googleReview}/edit', GoogleReviewManager::class)->name('google-reviews.edit');
+
+    Route::get('education', EducationBoardManager::class)->name('education.index');
+    Route::get('education/create', EducationBoardManager::class)->name('education.create');
+    Route::get('education/{course}/edit', EducationBoardManager::class)->name('education.edit');
 
     Route::get('client-outcomes', ClientOutcomeManager::class)->name('client-outcomes.index');
     Route::get('client-outcomes/create', ClientOutcomeManager::class)->name('client-outcomes.create');

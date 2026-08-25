@@ -4,13 +4,13 @@
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mb-16 text-center" data-sal="fade" data-sal-duration="800" wire:ignore>
             <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
-                Client Outcomes
+                Google Reviews
             </div>
             <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                Real recovery stories from KORU Center members
+                Real experiences from our community
             </h2>
             <p class="mt-4 max-w-2xl mx-auto text-sm leading-relaxed text-slate-400">
-                From pain relief to athletic comeback, every client story is designed to inspire next-level care.
+                Trusted by patients seeking wellness, recovery, and performance support in a caring clinical environment.
             </p>
         </div>
 
@@ -31,8 +31,10 @@
                              class="group relative flex min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)] scroll-animate" data-speed="0.06">
 
                         <div class="flex-1 flex flex-col">
-                            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-900 border border-slate-800 text-[#0EB3B9] shadow-sm group-hover:bg-[#0EB3B9]/10 group-hover:border-[#0EB3B9]/30 transition-all duration-300">
-                                @if(($testimonial['category'] ?? '') === 'lounge')
+                            <div class="mb-6 flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 text-[#0EB3B9] shadow-sm group-hover:bg-[#0EB3B9]/10 group-hover:border-[#0EB3B9]/30 transition-all duration-300">
+                                @if(!empty($testimonial['image_path']))
+                                    <img src="{{ $testimonial['image_path'] }}" alt="{{ $testimonial['title'] }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
+                                @elseif(($testimonial['category'] ?? '') === 'lounge')
                                     <svg class="h-5 w-5 fill-current transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                         <path d="M10 8.5v7.5l6-3.75-6-3.75Z" />
                                     </svg>
@@ -51,17 +53,19 @@
                             <h3 class="text-xl font-bold text-white tracking-tight group-hover:text-[#0EB3B9] transition-colors duration-200">
                                 {{ $testimonial['title'] }}
                             </h3>
+                            @if(!empty($testimonial['author_role']))
+                                <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-[#0EB3B9]">
+                                    {{ $testimonial['author_role'] }}
+                                </p>
+                            @endif
+                            @if(isset($testimonial['rating']))
+                                <p class="mt-3 text-sm tracking-wide text-amber-300" aria-label="{{ $testimonial['rating'] }} out of 5 stars">
+                                    {{ str_repeat('★', (int) $testimonial['rating']) }}
+                                </p>
+                            @endif
                             <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-400 flex-1 line-clamp-4">
                                 {{ $testimonial['description'] }}
                             </p>
-                        </div>
-
-                        <div class="mt-8 pt-4 border-t border-slate-800/60">
-                            <button type="button"
-                                    class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-2.5 text-xs font-bold text-slate-200 shadow-sm transition-all duration-200 hover:bg-[#0EB3B9] hover:border-[#0EB3B9] hover:text-white hover:shadow-md active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
-                                    @click="$dispatch('open-video-modal', '{{ asset($testimonial['video_path']) }}')">
-                                Watch preview
-                            </button>
                         </div>
                     </article>
                 @endforeach

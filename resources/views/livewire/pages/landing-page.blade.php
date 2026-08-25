@@ -26,11 +26,8 @@
                 :servicesByPillar="$this->servicesByPillar"
             />
 
-            {{-- SOLUCIÓN PRINCIPAL: IV Bento --}}
-            <livewire:components.iv-bento :ivDrips="$this->ivDrips" />
-
-            {{-- SOLUCIÓN COMPLEMENTARIA: Booster Shots --}}
-            <livewire:components.booster-shots :boosterShots="$this->boosterShots" />
+            {{-- SOLUCIÓN PRINCIPAL: IV Therapy unificado --}}
+            <livewire:components.iv-therapy :ivDrips="$this->ivDrips" :boosterShots="$this->boosterShots" />
 
             {{-- PRUEBA SOCIAL: Testimonials (LAZY) --}}
             <livewire:components.testimonials-showcase :testimonials="$this->testimonials" wire:lazy />
@@ -43,9 +40,6 @@
 
             {{-- EDUCACIÓN: Education Board (LAZY) --}}
             <livewire:components.education-board :activeCourses="$this->activeCourses" wire:lazy />
-
-            {{-- CIERRE EMOCIONAL: Video Modal (LAZY) --}}
-            <livewire:components.video-modal wire:lazy />
 
             {{-- FOOTER: Contacto y cierre (LAZY) --}}
             <livewire:components.clinical-footer :localizedSettings="$this->localizedSettings" wire:lazy />

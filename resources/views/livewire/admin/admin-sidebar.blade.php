@@ -24,10 +24,16 @@
                 Core Sections
             </h3>
 
+            @php
+                $isCommercialRoute = request()->routeIs('admin.services.*') || request()->routeIs('admin.packages.*') || request()->routeIs('admin.discounts.*');
+                $isContentRoute = request()->routeIs('admin.hero-carousel.*') || request()->routeIs('admin.about.*') || request()->routeIs('admin.team.*') || request()->routeIs('admin.client-outcomes.*') || request()->routeIs('admin.google-reviews.*') || request()->routeIs('admin.education.*');
+                $isAdministrationRoute = request()->routeIs('admin.users.*');
+            @endphp
+
             <nav x-data="{
-                comercialOpen: {{ request()->routeIs('admin.services.*') || request()->routeIs('admin.packages.*') || request()->routeIs('admin.discounts.*') ? 'true' : 'false' }},
-                contenidoOpen: {{ request()->routeIs('admin.hero-carousel.*') || request()->routeIs('admin.about.*') || request()->routeIs('admin.team.*') || request()->routeIs('admin.client-outcomes.*') ? 'true' : 'false' }},
-                adminOpen: {{ request()->routeIs('admin.users.*') ? 'true' : 'false' }}
+                comercialOpen: {{ $isCommercialRoute ? 'true' : 'false' }},
+                contenidoOpen: {{ $isContentRoute ? 'true' : 'false' }},
+                adminOpen: {{ $isAdministrationRoute ? 'true' : 'false' }}
             }" class="space-y-3 mt-4">
 
                 <!-- ENLACE RAÍZ: Inicio -->
@@ -110,8 +116,8 @@
                 <div class="group">
                     <button type="button"
                             @click="contenidoOpen = !contenidoOpen"
-                            class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ (request()->routeIs('admin.hero-carousel.*') || request()->routeIs('admin.about.*') || request()->routeIs('admin.team.*') || request()->routeIs('admin.client-outcomes.*')) ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
-                            aria-expanded="{{ request()->routeIs('admin.hero-carousel.*') || request()->routeIs('admin.about.*') || request()->routeIs('admin.team.*') || request()->routeIs('admin.client-outcomes.*') ? 'true' : 'false' }}"
+                            class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $isContentRoute ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                            aria-expanded="{{ $isContentRoute ? 'true' : 'false' }}"
                             aria-controls="contenido-submenu">
                         <span class="flex items-center gap-2.5">
                             <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110 text-[#0EB3B9]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -176,6 +182,32 @@
                             </span>
                             <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.client-outcomes.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                         </a>
+
+                        <!-- Google Reviews -->
+                        <a href="{{ route('admin.google-reviews.index') }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.google-reviews.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           aria-current="{{ request()->routeIs('admin.google-reviews.*') ? 'true' : 'false' }}">
+                            <span class="flex items-center gap-2">
+                                <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 17.5l-5.2 2.7 1-5.9-4.2-4.1 5.9-.9L12 3.5l2.6 5.8 5.9.9-4.2 4.1 1 5.9-5.3-2.7z" />
+                                </svg>
+                                Google Reviews
+                            </span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.google-reviews.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                        </a>
+
+                        <!-- CE Courses -->
+                        <a href="{{ route('admin.education.index') }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.education.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           aria-current="{{ request()->routeIs('admin.education.*') ? 'true' : 'false' }}">
+                            <span class="flex items-center gap-2">
+                                <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6.75A2.75 2.75 0 016.75 4h10.5A2.75 2.75 0 0120 6.75v10.5A2.75 2.75 0 0117.25 20H6.75A2.75 2.75 0 014 17.25V6.75zm4.5 0v10.5m5.25-10.5v10.5" />
+                                </svg>
+                                CE Courses
+                            </span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.education.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                        </a>
                     </div>
                 </div>
 
@@ -183,8 +215,8 @@
                 <div class="group">
                     <button type="button"
                             @click="adminOpen = !adminOpen"
-                            class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.users.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
-                            aria-expanded="{{ request()->routeIs('admin.users.*') ? 'true' : 'false' }}"
+                            class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $isAdministrationRoute ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                            aria-expanded="{{ $isAdministrationRoute ? 'true' : 'false' }}"
                             aria-controls="admin-submenu">
                         <span class="flex items-center gap-2.5">
                             <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110 text-[#0EB3B9]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

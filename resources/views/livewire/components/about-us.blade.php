@@ -1,5 +1,5 @@
 <!-- CAMBIO: Se mantiene la estructura exacta de espaciado pt-20 pb-24 para consistencia de transiciones -->
-<section id="about-us" class="relative pt-20 pb-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24" wire:lazy.1s>
+<section id="about-us" class="relative pt-20 pb-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
     <!-- Luces ambientales de fondo clínicas con gradiente ascendente inverso idéntico al sitio -->
     <div
         class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900">
@@ -32,8 +32,11 @@
                 <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                     {{ $aboutData['subtitle'] ?? 'Bridging the gap between recovery, movement, and education' }}
                 </h2>
-                <p class="mt-4 max-w-2xl mx-auto text-sm leading-relaxed text-slate-400">
+                <p class="mt-4 max-w-2xl mx-auto text-sm leading-relaxed text-slate-400 text-justify">
                     {{ $aboutData['description'] ?? 'Discover the philosophy and technical framework behind our specialized wellness and learning ecosystem.' }}
+                </p>
+                <p class="mt-6 text-sm font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">
+                    PAIN FREE, BETTER LIFE.
                 </p>
             </div>
 
@@ -48,61 +51,51 @@
                     </h3>
 
                     <!-- El texto principal renderizado dinámicamente desde tu modelo de Laravel -->
-                    <p class="text-sm leading-relaxed text-slate-400">
+                    <p class="text-sm leading-relaxed text-slate-400 text-justify">
                         {{ $aboutData['philosophy'] ?? 'Named after the Māori symbol for a new unfurling fern frond, KORU represents new life, growth, strength, and peace. We provide a clean, structured environment where movement and teaching are treated with clinical excellence.' }}
                     </p>
 
-                    <p class="text-sm leading-relaxed text-slate-400">
+                    <p class="text-sm leading-relaxed text-slate-400 text-justify">
                         {{ $aboutData['vision'] ?? 'Our mission is to deliver elite-level specialized support, ensuring every professional and individual can scale their performance and knowledge without traditional constraints.' }}
                     </p>
 
-                    <!-- Mini Grid de Pilares / Atributos con Estética de Tarjeta Unificada -->
-                    <div class="mt-8 grid gap-4 sm:grid-cols-2" wire:key="about-features-grid">
+                    <p class="text-sm leading-relaxed text-slate-400 text-justify">
+                        {{ $aboutData['mission'] ?? 'At KORU, we specialize in clinical massage therapy, advanced recovery technologies, IV infusion services, and professional continuing education. Every service is delivered in a clean, structured environment by certified specialists focused on measurable results and long-term wellness.' }}
+                    </p>
 
-                        <!-- Pilar 1 -->
-                        <div
-                            class="group flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-950/30 backdrop-blur-sm p-5 transition-all duration-300 hover:border-[#0EB3B9]/20 hover:bg-slate-950/60">
-                            <div class="flex items-center gap-3">
-                                <div
-                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0EB3B9]/10 text-[#0EB3B9]">
-                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                        stroke-width="2.5" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M4.5 12.75l6 6 9-13.5" />
-                                    </svg>
-                                </div>
-                                <h4 class="text-sm font-bold text-white tracking-tight">
-                                    {{ $aboutData['feature_1_title'] ?? 'Wellness & Therapy' }}</h4>
-                            </div>
-                            <p class="mt-2.5 text-xs text-slate-400 leading-relaxed">
-                                {{ $aboutData['feature_1_description'] ?? 'Tailored operational architectures built for fluid content management and clean UI stability.' }}
-                            </p>
+                    <div class="border-t border-slate-800/80 pt-6" wire:key="about-koru-at-a-glance">
+                        <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0EB3B9]">KORU at a glance</p>
+                        <div class="mt-4 grid gap-x-6 gap-y-5 sm:grid-cols-2">
+                            <article class="border-l border-[#0EB3B9]/50 pl-3">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">Who we are</h4>
+                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">A wellness, recovery, therapy, and professional education center built around practical support and clinical standards.</p>
+                            </article>
+                            <article class="border-l border-[#0EB3B9]/50 pl-3">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">What we do</h4>
+                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">Clinical massage, recovery technologies, IV Therapy, Booster Shots, KORU at Home, and continuing education.</p>
+                            </article>
+                            <article class="border-l border-[#0EB3B9]/50 pl-3">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">Who we serve</h4>
+                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">Individuals seeking relief and wellness, active people focused on recovery, and professionals seeking education.</p>
+                            </article>
+                            <article class="border-l border-[#0EB3B9]/50 pl-3">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">How we work</h4>
+                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">Attentive service, structured protocols, specialized techniques, and clear communication.</p>
+                            </article>
+                            <article class="border-l border-[#0EB3B9]/50 pl-3">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">What sets us apart</h4>
+                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">We bring wellness, recovery, clinical care, and education together in one organized environment.</p>
+                            </article>
+                            <article class="border-l border-[#0EB3B9]/50 pl-3">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-white">What KORU represents</h4>
+                                <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">New life, growth, strength, peace, and the possibility of moving forward with purpose.</p>
+                            </article>
                         </div>
-
-                        <!-- Pilar 2 -->
-                        <div
-                            class="group flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-800/60 bg-slate-950/30 backdrop-blur-sm p-5 transition-all duration-300 hover:border-[#0EB3B9]/20 hover:bg-slate-950/60">
-                            <div class="flex items-center gap-3">
-                                <div
-                                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0EB3B9]/10 text-[#0EB3B9]">
-                                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                        stroke-width="2.5" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 3.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                                    </svg>
-                                </div>
-                                <h4 class="text-sm font-bold text-white tracking-tight">
-                                    {{ $aboutData['feature_2_title'] ?? 'Advanced Education' }}</h4>
-                            </div>
-                            <p class="mt-2.5 text-xs text-slate-400 leading-relaxed">
-                                {{ $aboutData['feature_2_description'] ?? 'Empowering specialists through interactive workshops and fully scalable learning data tracks.' }}
-                            </p>
-                        </div>
-
                     </div>
+
                 </div>
 
-                <!-- Columna Derecha: Mosaico Asimétrico con Imágenes Limpias -->
+                <!-- Columna Derecha: Grid 2x2 de Galería -->
                 <div class="lg:col-span-6 relative" data-sal="slide-left" data-sal-duration="1000" data-sal-delay="400"
                     data-sal-easing="ease-out-cubic">
                     <!-- Efecto Glow Destello Detrás del Mosaico -->
@@ -110,39 +103,27 @@
                         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#0E788D]/15 blur-[100px] rounded-full -z-10">
                     </div>
 
-                    <!-- Estructura de Mosaico Avanzado -->
-                    <div class="grid grid-cols-12 gap-4 items-center" wire:key="about-images-mosaic">
-
-                        <!-- Columna Izquierda del Mosaico (Contiene 2 Imágenes de soporte) -->
-                        <div class="col-span-5 space-y-4">
-                            <!-- Imagen 1: Superior Izquierda -->
-                            <div
-                                class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
-                                <img class="object-cover w-full h-36 sm:h-44 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
-                                    src="{{ $aboutData['image_1'] ?? asset('img/about/therapy.webp') }}"
-                                    alt="KORU Therapy Session" width="400" height="280" loading="lazy" decoding="async" fetchpriority="high">
-                            </div>
-
-                            <!-- Imagen 2: Inferior Izquierda -->
-                            <div
-                                class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
-                                <img class="object-cover w-full h-36 sm:h-44 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
-                                    src="{{ $aboutData['image_2'] ?? asset('img/about/massage.webp') }}"
-                                    alt="KORU Team Collaboration" width="400" height="280" loading="lazy" decoding="async" fetchpriority="high">
-                            </div>
+                    <div class="grid grid-cols-2 gap-4" wire:key="about-gallery-grid">
+                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
+                            <img class="object-cover w-full h-40 sm:h-52 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
+                                 src="{{ $aboutData['image_1'] ?? asset('img/about/therapy.webp') }}"
+                                 alt="KORU Center interior" width="400" height="280" decoding="async">
                         </div>
-
-                        <!-- Columna Derecha del Mosaico (Imagen Principal Destacada) -->
-                        <div class="col-span-7">
-                            <!-- Imagen 3: Principal Derecha -->
-                            <div
-                                class="group relative overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 p-2 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30 shadow-[0_20px_50px_-20px_rgba(14,120,141,0.3)]">
-                                <img class="object-cover w-full h-[304px] sm:h-[368px] rounded-2xl transition-all duration-500 scale-100 group-hover:scale-105"
-                                    src="{{ $aboutData['image_3'] ?? asset('img/about/team.webp') }}"
-                                    alt="KORU Wellness Environment" width="800" height="500" loading="lazy" decoding="async" fetchpriority="high">
-                            </div>
+                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
+                            <img class="object-cover w-full h-40 sm:h-52 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
+                                 src="{{ $aboutData['image_2'] ?? asset('img/about/massage.webp') }}"
+                                 alt="Treatment room" width="400" height="280" decoding="async">
                         </div>
-
+                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
+                            <img class="object-cover w-full h-40 sm:h-52 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
+                                 src="{{ $aboutData['image_3'] ?? asset('img/about/team.webp') }}"
+                                 alt="Our team" width="400" height="280" decoding="async">
+                        </div>
+                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
+                            <img class="object-cover w-full h-40 sm:h-52 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
+                                 src="{{ $aboutData['image_4'] ?? asset('img/services/relaxingMen.webp') }}"
+                                 alt="Clinical massage therapy" width="400" height="280" decoding="async">
+                        </div>
                     </div>
                 </div>
 
@@ -151,3 +132,4 @@
 
     </div>
 </section>
+

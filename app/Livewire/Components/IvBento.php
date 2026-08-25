@@ -8,9 +8,12 @@ class IvBento extends Component
 {
     public array $ivDrips = [];
 
-    public function mount(array $ivDrips = []): void
+    public array $boosterShots = [];
+
+    public function mount(array $ivDrips = [], array $boosterShots = []): void
     {
         $this->ivDrips = $ivDrips;
+        $this->boosterShots = $boosterShots;
     }
 
     public function render()

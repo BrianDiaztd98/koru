@@ -10,7 +10,7 @@ use App\Models\PackageTerm;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Models\TeamMember;
-use App\Models\Testimonial;
+use App\Models\GoogleReview;
 use App\Services\AdminMediaService;
 use App\Services\DiscountService;
 use Livewire\Attributes\Computed;
@@ -90,7 +90,8 @@ class LandingPage extends Component
     {
         return Service::query()
             ->where('active_status', true)
-            ->orderByRaw("case when category = 'manual_therapy' then 1 when category = 'recovery_performance' then 2 when category = 'medical_services' then 3 when category = 'koru_at_home' then 4 else 5 end")
+            ->whereNot('category', 'medical_services')
+            ->orderByRaw("case when category = 'manual_therapy' then 1 when category = 'recovery_performance' then 2 when category = 'koru_at_home' then 3 else 4 end")
             ->orderBy('name_en')
             ->get()
             ->groupBy('category')
@@ -237,8 +238,6 @@ class LandingPage extends Component
                     'price' => number_format($course->price, 2),
                 ];
 
-                $courseData['whatsapp_url'] = $this->buildCourseInquiryWhatsappUrl($courseData);
-
                 return $courseData;
             })
             ->toArray();
@@ -379,13 +378,9 @@ class LandingPage extends Component
                 'title' => 'Therapy Services',
                 'summary' => 'Assessment, therapeutic rehab, and advanced recovery technology.',
             ],
-            'medical_services' => [
-                'title' => 'Medical Services',
-                'summary' => 'Specialized medical consultations in metabolism, endocrinology, and clinical assessment.',
-            ],
             'koru_at_home' => [
                 'title' => 'KORU At Home',
-                'summary' => 'Therapeutic massage and advanced recovery in the comfort of your home.',
+                'summary' => 'Therapeutic massage and advanced recovery in the comfort of your home. Price may vary.',
             ],
         ];
     }
@@ -393,16 +388,19 @@ class LandingPage extends Component
     #[Computed]
     public function getTestimonialsProperty(): array
     {
-        return Testimonial::query()
+        return GoogleReview::query()
             ->active()
+            ->orderBy('sort_order')
             ->orderBy('id')
             ->get()
-            ->map(fn (Testimonial $testimonial) => [
-                'id' => $testimonial->id,
-                'category' => $testimonial->category ?? 'clinical',
-                'title' => $testimonial->title ?? $testimonial->author_name,
-                'description' => $testimonial->description ?? $testimonial->quote_en,
-                'video_path' => $testimonial->video_path ?? $testimonial->video_url,
+            ->map(fn (GoogleReview $review) => [
+                'id' => $review->id,
+                'category' => 'google',
+                'title' => $review->author_name,
+                'author_role' => $review->author_role,
+                'description' => $review->content,
+                'rating' => $review->rating,
+                'image_path' => AdminMediaService::resolveImageUrl($review->image_path),
             ])
             ->toArray();
     }

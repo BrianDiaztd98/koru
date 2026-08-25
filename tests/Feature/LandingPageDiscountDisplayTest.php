@@ -49,4 +49,17 @@ class LandingPageDiscountDisplayTest extends TestCase
         $response->assertSee('$90.00');
         $response->assertDontSee('50% off today');
     }
+
+    public function test_landing_page_hides_medical_services_and_uses_price_may_vary_for_home_services(): void
+    {
+        Service::factory()->create(['name_en' => 'Medical Consultation', 'category' => 'medical_services', 'active_status' => true]);
+        Service::factory()->create(['name_en' => 'KORU At Home Care', 'category' => 'koru_at_home', 'active_status' => true, 'price' => 149.00]);
+
+        $response = $this->get('/');
+
+        $response->assertOk();
+        $response->assertDontSee('Medical Services');
+
+        $this->assertStringContainsString('Price may vary.', $response->getContent());
+    }
 }

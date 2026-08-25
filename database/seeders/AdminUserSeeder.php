@@ -18,7 +18,7 @@ class AdminUserSeeder extends Seeder
             [
                 'primer_nombre' => 'Brian',
                 'segundo_nombre' => 'Diaz',
-                'password' => Hash::make('AdminPass123!'),
+                'password' => Hash::make('12345678'),
                 'is_admin' => true,
                 'role' => 'admin',
                 'status' => 'activo',

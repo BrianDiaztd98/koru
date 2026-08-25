@@ -15,8 +15,8 @@
                 <h2 id="koru-services-heading" class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                     Clinical services built for recovery, performance and wellness.
                 </h2>
-                <p class="mt-4 text-base text-slate-400">
-                    Explore KORU's clinical massage, recovery technology, medical services, and at-home concierge care.
+                <p class="mt-4 text-base text-slate-400 text-justify">
+                    Explore KORU's clinical massage, recovery technology, and at-home concierge care designed to support your health and performance.
                 </p>
             </div>
 
@@ -84,9 +84,15 @@
 
                                 <!-- Badge de Precio Flotante Moderno -->
                                 <div class="absolute top-4 right-4">
-                                    <span class="inline-flex items-center justify-center rounded-xl bg-slate-900/90 border border-slate-800 px-3 py-1 text-xs font-bold text-white shadow-sm font-mono backdrop-blur-sm">
-                                        ${{ $service['price'] }}
-                                    </span>
+                                    @if($activePillar === 'koru_at_home')
+                                        <span class="inline-flex items-center justify-center rounded-xl bg-slate-900/90 border border-slate-800 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#0EB3B9] shadow-sm backdrop-blur-sm">
+                                            Price may vary.
+                                        </span>
+                                    @else
+                                        <span class="inline-flex items-center justify-center rounded-xl bg-slate-900/90 border border-slate-800 px-3 py-1 text-xs font-bold text-white shadow-sm font-mono backdrop-blur-sm">
+                                            ${{ $service['price'] }}
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -109,21 +115,9 @@
                                 @endif
 
                                 <div class="relative">
-                                    <p class="text-xs sm:text-sm leading-relaxed text-slate-400 transition-all duration-300" :class="{ 'line-clamp-3': !expanded }" x-ref="svcDesc">
+                                    <p class="text-xs sm:text-sm leading-relaxed text-slate-400 text-justify">
                                         {{ $service['description'] }}
                                     </p>
-
-                                    <button @click="expanded = !expanded" 
-                                            x-show="true" 
-                                            x-cloak
-                                            type="button"
-                                            class="mt-2 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] hover:text-[#0E788D] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded"
-                                            :aria-expanded="expanded.toString()">
-                                        <span x-text="expanded ? 'Show Less' : 'Read More'"></span>
-                                        <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                        </svg>
-                                    </button>
                                 </div>
                             </div>
                         </div>

@@ -98,6 +98,11 @@
         @apply w-full rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none transition focus:border-[#0EB3B9];
     }
 
+    /* Label administrativo */
+    .admin-label {
+        @apply mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-slate-400;
+    }
+
     /* Select administrativo */
     .admin-select {
         @apply w-full rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none transition focus:border-[#0EB3B9];

@@ -13,10 +13,9 @@
                             <path d="M2 12l10 5 10-5" />
                         </svg>
                     </div>
-                    <h2 class="text-xl font-bold tracking-tight text-white">KORU Center</h2>
                 </div>
-                <p class="text-sm leading-6 text-slate-400">
-                    Clinical massage, recovery technology, medical services, and at-home concierge care in Virginia Gardens, Miami.
+                <p class="text-sm leading-6 text-slate-400 text-justify">
+                    Clinical massage, recovery technology, and at-home concierge care in Virginia Gardens, Miami.
                 </p>
                 <div class="space-y-3 pt-2">
                     <h4 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Follow us</h4>
@@ -42,7 +41,7 @@
             </div>
 
             <div class="space-y-6">
-                <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Contact & Hours</h3>
+                <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Contact</h3>
                 <div class="space-y-3.5 text-sm">
                     <a href="tel:+17867528054" aria-label="Call us at {{ $localizedSettings['phone'] ?? '+1 (786) 752-8054' }}" class="group flex items-center gap-3 text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded">
                         <svg class="h-4 w-4 text-[#0EB3B9]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -51,12 +50,12 @@
                         <span class="font-medium group-hover:underline decoration-[#0EB3B9]">{{ $localizedSettings['phone'] ?? '+1 (786) 752-8054' }}</span>
                     </a>
                     
-                    <a href="mailto:{{ $localizedSettings['contact_email'] ?? 'info@korucenter.com' }}" aria-label="Send email to {{ $localizedSettings['contact_email'] ?? 'info@korucenter.com' }}" class="group flex items-center gap-3 text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded">
+                    <a href="mailto:{{ $localizedSettings['contact_email'] ?? 'info@korucenters.com' }}" aria-label="Send email to {{ $localizedSettings['contact_email'] ?? 'info@korucenters.com' }}" class="group flex items-center gap-3 text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded">
                         <svg class="h-4 w-4 text-[#0EB3B9]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <rect width="20" height="16" x="2" y="4" rx="2" />
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                         </svg>
-                        <span class="font-medium group-hover:underline decoration-[#0EB3B9] text-ellipsis overflow-hidden">{{ $localizedSettings['contact_email'] ?? 'info@korucenter.com' }}</span>
+                        <span class="font-medium group-hover:underline decoration-[#0EB3B9] text-ellipsis overflow-hidden">{{ $localizedSettings['contact_email'] ?? 'info@korucenters.com' }}</span>
                     </a>
 
                     <a href="https://wa.me/17867528054" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="group flex items-center gap-3 text-slate-300 transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded">
@@ -71,16 +70,17 @@
             </div>
 
             <div class="space-y-4">
-                <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Schedule</h3>
+                <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Schedules</h3>
                 <div class="mt-3 space-y-2 text-xs font-medium text-slate-300">
                     <p>Monday - Friday: 8:00 a.m. - 8:00 p.m.</p>
-                    <p>Saturdays: 9:00 a.m. - 3:00 p.m. (Appointment required)</p>
-                    <p>Sundays: 9:00 a.m. - 1:00 p.m. (Appointment &amp; 50% deposit required)</p>
+                    <p>Saturday: 9:00 a.m. - 3:00 p.m.</p>
+                    <p>Sunday: 9:00 a.m. - 1:00 p.m.</p>
+                    <p class="pt-2 text-slate-400">Appointment required.</p>
                 </div>
             </div>
 
             <div class="space-y-4">
-                <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Our Location</h3>
+                <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Location</h3>
                 <div class="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900 shadow-xl transition-all duration-300 hover:border-slate-700">
                     <div class="flex flex-col items-center justify-center h-36 w-full text-center p-4">
                         <svg class="h-8 w-8 text-[#0EB3B9] mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

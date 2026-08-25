@@ -72,21 +72,7 @@
                         <!-- Bloque de Descripción Expandible Interactivo -->
                         <div class="relative mt-4 flex-1 flex flex-col justify-between">
                             <div>
-                                <p class="text-xs sm:text-sm leading-relaxed text-slate-400 transition-all duration-300" 
-                                   :class="{ 'line-clamp-3': !expanded }" 
-                                   x-ref="pkgDesc">{{ $package['description'] }}</p>
-                                
-                                <button @click="expanded = !expanded" 
-                                        x-show="$refs.pkgDesc.scrollHeight > 60" 
-                                        x-cloak
-                                        type="button"
-                                        class="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] hover:text-[#0E788D] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded"
-                                        :aria-expanded="expanded.toString()">
-                                    <span x-text="expanded ? 'Show Less' : 'Read More'"></span>
-                                    <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                    </svg>
-                                </button>
+                                <p class="text-xs sm:text-sm leading-relaxed text-slate-400 text-justify">{{ $package['description'] }}</p>
                             </div>
                         </div>
                     </div>
@@ -97,7 +83,7 @@
                            target="_blank" 
                            rel="noopener noreferrer"
                            class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-3 text-xs font-bold text-slate-200 shadow-sm transition-all duration-200 hover:bg-[#0EB3B9] hover:border-[#0EB3B9] hover:text-white hover:shadow-md active:scale-[0.98]">
-                            Book Package Now
+                            Buy a Package
                         </a>
                     </div>
                 </div>
