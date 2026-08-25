@@ -14,6 +14,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # 3. Configurar Apache
 RUN a2enmod rewrite deflate filter
+RUN a2enmod rewrite deflate filter expires headers
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
 # 4. Configurar directorio de trabajo
