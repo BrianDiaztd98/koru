@@ -111,7 +111,7 @@ class DiscountService
     public function activeMap(): array
     {
         /** @var array<int, float> $map */
-        $map = Cache::remember(self::CACHE_KEY, 3600, function (): array {
+        $map = Cache::remember(self::CACHE_KEY, 86400, function (): array {
             return DayDiscountSetting::query()
                 ->where('active_status', true)
                 ->pluck('percentage', 'day_of_week')

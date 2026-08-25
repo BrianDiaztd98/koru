@@ -24,7 +24,7 @@ class SiteSetting extends Model
 
     public static function allSettings(): array
     {
-        return Cache::remember(self::cacheKey(), 3600, fn () => self::query()->pluck('value', 'key')->all());
+        return Cache::remember(self::cacheKey(), 86400, fn () => self::query()->pluck('value', 'key')->all());
     }
 
     public static function getValue(string $key, mixed $default = null): mixed

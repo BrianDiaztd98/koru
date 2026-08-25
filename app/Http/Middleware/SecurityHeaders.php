@@ -17,6 +17,12 @@ class SecurityHeaders
             'accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()'
         );
 
+        // Caché moderada para HTML: permite reutilizar la página en visitas repetidas
+        // pero fuerza revalidación cuando el contenido pudo cambiar.
+        if ($response->headers->get('Content-Type') === 'text/html; charset=UTF-8') {
+            $response->headers->set('Cache-Control', 'public, max-age=3600, must-revalidate');
+        }
+
         return $response;
     }
 }

@@ -69,7 +69,7 @@ class DepositManager extends Component
             ->pluck('percentage', 'day_of_week')
             ->map(fn ($v) => (float) $v)
             ->all();
-        Cache::put(DayDiscountSetting::CACHE_KEY, $map, 3600);
+        Cache::put(DayDiscountSetting::CACHE_KEY, $map, 86400);
 
         session()->flash('success', 'Abonos por día guardados correctamente.');
         $this->saved = true;
