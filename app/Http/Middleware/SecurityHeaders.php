@@ -23,6 +23,12 @@ class SecurityHeaders
             $response->headers->set('Cache-Control', 'public, max-age=3600, must-revalidate');
         }
 
+        // Caché larga para assets estáticos versionados (imágenes, CSS, JS, fuentes).
+        // Vite genera hashes en el nombre de archivo, por lo que son inmutables.
+        if (preg_match('/\.(ico|jpe?g|png|gif|webp|svg|css|js|woff2?|ttf|eot|otf|pdf|mp4|webm|mp3)(\?.*)?$/i', $request->getPathInfo())) {
+            $response->headers->set('Cache-Control', 'public, max-age=31536000, immutable');
+        }
+
         return $response;
     }
 }
