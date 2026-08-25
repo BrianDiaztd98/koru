@@ -2,7 +2,6 @@
     <div class="flex items-center justify-between mb-6 lg:hidden">
         <a href="{{ route('admin.management.index') }}" class="flex items-center gap-3 shrink-0">
             <img src="{{ asset('img/logo.png') }}" alt="KORU CMS" class="h-10 w-auto object-contain brightness-110" loading="lazy" />
-            <img src="{{ asset('img/logo.webp') }}" alt="KORU CMS" class="h-10 w-auto object-contain brightness-110" loading="lazy" />
         </a>
         <button @click="sidebarOpen = false"
                 type="button"
@@ -17,7 +16,6 @@
 
     <a href="{{ route('admin.management.index') }}" class="hidden lg:flex items-center gap-3 mb-6 shrink-0 px-1">
         <img src="{{ asset('img/logo.png') }}" alt="KORU CMS" class="h-10 w-auto object-contain brightness-110" loading="lazy" />
-        <img src="{{ asset('img/logo.webp') }}" alt="KORU CMS" class="h-10 w-auto object-contain brightness-110" loading="lazy" />
     </a>
 
     <div class="flex-1 overflow-y-auto koru-scrollbar px-1 space-y-6">
