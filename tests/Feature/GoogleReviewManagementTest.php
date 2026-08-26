@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Livewire\Components\TestimonialsShowcase;
 use App\Models\GoogleReview;
 use App\Models\User;
-use App\Livewire\Components\TestimonialsShowcase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;

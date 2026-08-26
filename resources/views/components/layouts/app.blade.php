@@ -6,27 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Preconnect para fuentes críticas -->
-    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
-
-    <!-- SEO: Meta Descripcin Obligatoria -->
+    <!-- SEO: Meta Descripción Obligatoria -->
     <meta name="description"
         content="{{ $metaDescription ?? 'Advanced medical center management platform for specialized care, clinical history records, and healthcare supply inventory.' }}">
 
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
 
-    <!-- El ttulo por defecto ahora es ms corporativo y claro para el mercado de salud en USA -->
+    <!-- El título por defecto ahora es más corporativo y claro para el mercado de salud en USA -->
     <meta name="title" content="{{ $title ?? 'KORU Center | Clinical Management & Medical Supply Platform' }}">
     <title>{{ $title ?? 'KORU Center | Clinical Management & Medical Supply Platform' }}</title>
 
-    <!-- Rendimiento: Cargar scripts juntos para optimizar HTTP/2 en Vite -->
-    @livewireStyles
-    @if (app()->environment('production'))
-        <style>{!! Vite::content('resources/css/app.css') !!}</style>
-        @vite(['resources/js/app.js'])
-    @else
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @endif
+    <!-- Rendimiento: Cargar CSS como recurso externo cacheable en producción -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('head')
 </head>
 
@@ -37,7 +28,7 @@
         {{ $slot }}
     </main>
 
-    @livewireScripts(['defer' => true])
+    @livewireScripts
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/17867528054"

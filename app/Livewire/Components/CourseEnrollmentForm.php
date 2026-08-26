@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components;
 
+use App\Mail\CourseEnrollmentSubmitted;
 use App\Models\Course;
 use App\Models\CourseEnrollment;
 use Illuminate\Contracts\View\View;
@@ -63,7 +64,7 @@ class CourseEnrollmentForm extends Component
         ]);
 
         Mail::to(config('mail.course_enrollment_recipient'))
-            ->send(new \App\Mail\CourseEnrollmentSubmitted($enrollment->load('course')));
+            ->send(new CourseEnrollmentSubmitted($enrollment->load('course')));
 
         $this->reset(['full_name', 'email', 'phone', 'license_number', 'message']);
         $this->course_id = $course->id;

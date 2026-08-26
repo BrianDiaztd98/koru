@@ -61,7 +61,7 @@
         </div>
     </main>
 
-    @livewireScripts(['defer' => true])
+    @livewireScripts
 </body>
 
 </html>
