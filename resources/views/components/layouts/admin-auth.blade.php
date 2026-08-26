@@ -26,7 +26,7 @@
         {{ $slot }}
     </div>
 
-    @livewireScripts
+    @livewireScripts(['defer' => true])
 </body>
 
 </html>

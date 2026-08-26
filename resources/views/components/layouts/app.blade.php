@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Preconnect para fuentes y assets crticos -->
+    <!-- Preconnect para fuentes críticas -->
     <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
-    <link rel="preconnect" href="{{ asset('') }}" crossorigin>
 
     <!-- SEO: Meta Descripcin Obligatoria -->
     <meta name="description"
@@ -38,7 +37,7 @@
         {{ $slot }}
     </main>
 
-    @livewireScripts
+    @livewireScripts(['defer' => true])
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/17867528054"
