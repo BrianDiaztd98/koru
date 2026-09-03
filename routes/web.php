@@ -17,10 +17,13 @@ use App\Livewire\Admin\PackageManager\PackageManager;
 use App\Livewire\Admin\ServiceManager\ServiceManager;
 use App\Livewire\Admin\TeamMembersManager\TeamMembersManager;
 use App\Livewire\Admin\UserManager\UserManager;
+use App\Livewire\Components\CourseEnrollmentForm;
 use App\Livewire\Components\LandingPage;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', LandingPage::class)->middleware(TrackLandingPageVisit::class);
+Route::get('professional-ce/register/{course}', CourseEnrollmentForm::class)
+    ->name('professional-ce.register');
 
 Route::middleware(['guest'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('login', Login::class)->name('login');

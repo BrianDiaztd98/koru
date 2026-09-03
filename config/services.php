@@ -22,6 +22,13 @@ return [
         'key' => env('RESEND_API_KEY'),
     ],
 
+    'cloudflare' => [
+        'turnstile' => [
+            'site_key' => env('CLOUDFLARE_TURNSTILE_SITE_KEY'),
+            'secret' => env('CLOUDFLARE_TURNSTILE_SECRET'),
+        ],
+    ],
+
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),

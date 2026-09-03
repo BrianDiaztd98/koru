@@ -7,6 +7,7 @@ use App\Mail\CourseEnrollmentSubmitted;
 use App\Models\Course;
 use App\Models\CourseEnrollment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -14,6 +15,32 @@ use Tests\TestCase;
 class CourseEnrollmentTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        config([
+            'services.cloudflare.turnstile.secret' => null,
+        ]);
+    }
+
+    public function test_professional_ce_cards_open_registration_for_the_selected_course(): void
+    {
+        $course = Course::query()->create([
+            'title_en' => 'Advanced Recovery Workshop',
+            'description_en' => 'Clinical recovery training.',
+            'ce_credits' => 8,
+            'price' => 250,
+            'date' => now()->addMonth()->toDateString(),
+            'active_status' => true,
+        ]);
+
+        $this->get(route('professional-ce.register', $course))
+            ->assertOk()
+            ->assertSee($course->title_en)
+            ->assertSee('Tell us about yourself');
+    }
 
     public function test_visitor_can_enroll_in_an_active_course_from_the_website(): void
     {
@@ -35,7 +62,8 @@ class CourseEnrollmentTest extends TestCase
             ]],
         ])
             ->set('course_id', $course->id)
-            ->set('full_name', 'Alex Morgan')
+            ->set('first_name', 'Alex')
+            ->set('last_name', 'Morgan')
             ->set('email', 'alex@example.com')
             ->set('phone', '7865550100')
             ->set('license_number', 'MA 12345')
@@ -55,6 +83,40 @@ class CourseEnrollmentTest extends TestCase
         Mail::assertSent(CourseEnrollmentSubmitted::class);
     }
 
+    public function test_visitor_cannot_enroll_when_turnstile_rejects_the_token(): void
+    {
+        config([
+            'services.cloudflare.turnstile.secret' => 'turnstile-secret',
+        ]);
+        Http::fake([
+            'https://challenges.cloudflare.com/turnstile/v0/siteverify' => Http::response(['success' => false], 200),
+        ]);
+
+        $course = Course::query()->create([
+            'title_en' => 'Advanced Recovery Workshop',
+            'description_en' => 'Clinical recovery training.',
+            'ce_credits' => 8,
+            'price' => 250,
+            'date' => now()->addMonth()->toDateString(),
+            'active_status' => true,
+        ]);
+
+        Livewire::test(CourseEnrollmentForm::class, [
+            'courses' => [['id' => $course->id, 'title' => $course->title_en]],
+        ])
+            ->set('course_id', $course->id)
+            ->set('first_name', 'Alex')
+            ->set('last_name', 'Morgan')
+            ->set('email', 'alex@example.com')
+            ->set('phone', '7865550100')
+            ->set('license_number', 'MA12345')
+            ->set('turnstile_token', 'invalid-token')
+            ->call('submit')
+            ->assertHasErrors(['turnstile_token']);
+
+        $this->assertSame(0, CourseEnrollment::query()->count());
+    }
+
     public function test_visitor_must_complete_required_enrollment_fields(): void
     {
         $course = Course::query()->create([
@@ -71,7 +133,7 @@ class CourseEnrollmentTest extends TestCase
         ])
             ->set('course_id', $course->id)
             ->call('submit')
-            ->assertHasErrors(['full_name', 'email', 'phone', 'license_number']);
+            ->assertHasErrors(['first_name', 'last_name', 'email', 'phone', 'license_number']);
 
         $this->assertSame(0, CourseEnrollment::query()->count());
     }
@@ -91,7 +153,8 @@ class CourseEnrollmentTest extends TestCase
             'courses' => [['id' => $course->id, 'title' => $course->title_en]],
         ])
             ->set('course_id', $course->id)
-            ->set('full_name', 'Alex Morgan')
+            ->set('first_name', 'Alex')
+            ->set('last_name', 'Morgan')
             ->set('email', 'alex@example.com')
             ->set('phone', '7865550100')
             ->set('license_number', 'MA12345')
@@ -116,7 +179,8 @@ class CourseEnrollmentTest extends TestCase
             'courses' => [['id' => $course->id, 'title' => $course->title_en]],
         ])
             ->set('course_id', $course->id)
-            ->set('full_name', 'Alex Morgan')
+            ->set('first_name', 'Alex')
+            ->set('last_name', 'Morgan')
             ->set('email', 'alex@example.com')
             ->set('phone', '+1 786-555-0100')
             ->set('license_number', 'MA12345')
@@ -141,7 +205,8 @@ class CourseEnrollmentTest extends TestCase
             'courses' => [['id' => $course->id, 'title' => $course->title_en]],
         ])
             ->set('course_id', $course->id)
-            ->set('full_name', 'Alex Morgan')
+            ->set('first_name', 'Alex')
+            ->set('last_name', 'Morgan')
             ->set('email', 'alex@example.com')
             ->set('phone', '7865550100')
             ->set('license_number', 'RN12345')
