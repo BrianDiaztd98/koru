@@ -131,11 +131,7 @@ class LandingPage extends Component
                     'description' => $service->description_en,
                 ]);
 
-                $shotData['whatsapp_url'] = $this->buildServiceInquiryWhatsappUrl(
-                    title: $shotData['title'],
-                    price: $shotData['price'],
-                    serviceType: 'booster shot'
-                );
+                $shotData['whatsapp_url'] = $this->buildTreatmentInquiryWhatsappUrl($shotData['title']);
 
                 return $shotData;
             })->toArray();
@@ -196,12 +192,7 @@ class LandingPage extends Component
                     'icon' => $this->resolveIvIcon($service),
                 ]);
 
-                $dripData['whatsapp_url'] = $this->buildServiceInquiryWhatsappUrl(
-                    title: $dripData['title'],
-                    price: $dripData['price'],
-                    duration: $dripData['duration'],
-                    serviceType: 'IV therapy'
-                );
+                $dripData['whatsapp_url'] = $this->buildTreatmentInquiryWhatsappUrl($dripData['title']);
 
                 return $dripData;
             })->toArray();
@@ -295,6 +286,11 @@ class LandingPage extends Component
         $message .= ' Please share availability and the next steps to book.';
 
         return $this->buildWhatsappUrl($message);
+    }
+
+    protected function buildTreatmentInquiryWhatsappUrl(string $title): string
+    {
+        return $this->buildWhatsappUrl("Hello, I would like more information about {$title}. Please share availability and the next steps to book.");
     }
 
     /**

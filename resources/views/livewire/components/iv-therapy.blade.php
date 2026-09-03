@@ -5,10 +5,10 @@
         <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-start mb-16" data-sal="fade" data-sal-duration="800" wire:ignore>
             <div>
                 <div class="inline-flex items-center gap-2.5 rounded-md bg-[#02B8BC]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#02B8BC]">
-                    IV Therapy
+                    Wellness Infusions
                 </div>
                 <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                    Advanced IV therapy for hydration, recovery and wellness.
+                    Advanced hydration, recovery and wellness.
                 </h2>
                 <p class="mt-4 max-w-2xl text-base text-slate-400 text-justify">
                     Each lounge drip is formulated for targeted recovery, energy, and immune support with strict medical guidance and evidence-based nutrient dosing.
@@ -18,7 +18,7 @@
             <div class="rounded-2xl border border-slate-800 bg-slate-950/40 p-5 backdrop-blur-sm">
                 <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3 flex items-center gap-2">
                     <span class="h-1.5 w-1.5 rounded-full bg-[#02B8BC]"></span>
-                    IV Therapy Highlights
+                    Treatment Highlights
                 </h3>
                 <ul class="space-y-2.5 text-xs text-slate-400">
                     <li class="flex items-center gap-2">
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        @if(empty($therapyItems))
+        @if(empty($ivDrips) && empty($boosterShots))
             <div class="rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10">
             <h3 class="text-xl font-semibold text-white">No IV therapy content available yet</h3>
                 <p class="mt-3 max-w-sm mx-auto text-sm leading-relaxed text-slate-400">
@@ -45,29 +45,56 @@
                 </p>
             </div>
         @else
-            <div class="grid gap-8 lg:grid-cols-12 items-stretch"
+            <div class="grid items-start gap-8 lg:grid-cols-12"
                  x-data="{
+                    activeCategory: 'iv_therapy',
                     activeDrip: 0,
-                    drips: @js($therapyItems),
                     currentPage: 1,
-                    perPage: 4,
-                    totalDrips: {{ count($therapyItems) }},
+                    get categoryLabel() { return this.activeCategory === 'iv_therapy' ? 'IV Therapy' : 'Booster Shots'; },
+                    get perPage() { return this.activeCategory === 'iv_therapy' ? 4 : 6; },
+                    get totalDrips() { return this.activeCategory === 'iv_therapy' ? {{ count($ivDrips) }} : {{ count($boosterShots) }}; },
                     get totalPages() { return Math.ceil(this.totalDrips / this.perPage) },
-                    get activeDripData() { return this.drips[this.activeDrip] ?? null; },
+                    get activeDripData() { return this.activeCategory === 'iv_therapy' ? @js($ivDrips)[this.activeDrip] : @js($boosterShots)[this.activeDrip]; },
                     isInPage(index) { return index >= (this.currentPage - 1) * this.perPage && index < this.currentPage * this.perPage; },
                     nextPage() { if (this.currentPage < this.totalPages) this.currentPage++; },
                     prevPage() { if (this.currentPage > 1) this.currentPage--; },
                     goToPage(page) { this.currentPage = page; },
+                    setCategory(category) { this.activeCategory = category; this.activeDrip = 0; this.currentPage = 1; },
                     setFirstActiveInPage() { this.activeDrip = (this.currentPage - 1) * this.perPage; $nextTick(() => { if (typeof AOS !== 'undefined') AOS.refresh(); }); }
                  }"
                  x-init="$watch('currentPage', value => setFirstActiveInPage())">
+
+                <div class="lg:col-span-12 flex gap-2 border-b border-slate-800 pb-4" role="tablist" aria-label="IV service category">
+                    <button @click="setCategory('iv_therapy')"
+                            type="button"
+                            class="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold uppercase tracking-wider transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
+                            :class="activeCategory === 'iv_therapy' ? 'border-b-2 border-[#02B8BC] text-[#02B8BC]' : 'text-slate-400 hover:text-white'"
+                            :aria-selected="activeCategory === 'iv_therapy'"
+                            role="tab">
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7z" />
+                        </svg>
+                        IV Therapy
+                    </button>
+                    <button @click="setCategory('booster_shots')"
+                            type="button"
+                            class="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold uppercase tracking-wider transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
+                            :class="activeCategory === 'booster_shots' ? 'border-b-2 border-[#02B8BC] text-[#02B8BC]' : 'text-slate-400 hover:text-white'"
+                            :aria-selected="activeCategory === 'booster_shots'"
+                            role="tab">
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M10 2h4M12 2v3M7 5h10v12a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3V5zM12 10v4M10 12h4" />
+                        </svg>
+                        Booster Shots
+                    </button>
+                </div>
 
                 <div class="lg:order-2 lg:col-span-5 flex flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950/60 p-8 backdrop-blur-md relative overflow-hidden scroll-animate" data-speed="0.08" data-sal="slide-left" data-sal-duration="800">
                     <div class="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-[#02B8BC]/10 blur-3xl"></div>
 
                     <div class="relative z-10 flex-1 flex flex-col justify-between min-h-[380px] sm:min-h-[340px]">
-                        @foreach($therapyItems as $index => $drip)
-                            <div x-show="activeDrip === {{ $index }}"
+                        @foreach($ivDrips as $index => $drip)
+                            <div x-show="activeCategory === 'iv_therapy' && activeDrip === {{ $index }}"
                                  x-cloak
                                  x-transition:enter="transition ease-out duration-300"
                                  x-transition:enter-start="opacity-0 translate-y-4"
@@ -75,25 +102,6 @@
                                  class="space-y-6 h-full flex flex-col justify-between">
 
                                 <div class="space-y-4">
-                                    <div class="flex flex-wrap items-center gap-2">
-                                        <div class="inline-flex items-baseline gap-0.5 rounded-xl bg-[#02B8BC]/10 px-3.5 py-1.5 text-[#02B8BC]">
-                                            <span class="text-xs font-bold">$</span>
-                                            <span class="text-2xl font-extrabold tracking-tight">{{ $drip['price'] }}</span>
-                                            <span class="text-[10px] font-medium text-slate-400 uppercase tracking-wider ml-1">/ session</span>
-                                        </div>
-                                        @if($drip['has_down_payment'])
-                                            <span class="text-xs uppercase tracking-wide text-emerald-300">
-                                                Pay {{ $drip['down_payment_percentage'] }}% today: ${{ $drip['down_payment'] }}, remaining ${{ $drip['remaining_balance'] }}
-                                            </span>
-                                        @endif
-                                        <span class="inline-flex items-center gap-1.5 rounded-xl border border-slate-800 bg-slate-900/60 px-3 py-1.5 text-xs font-medium text-slate-300">
-                                            <svg class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                            {{ $drip['duration'] }}
-                                        </span>
-                                    </div>
-
                                     <h3 class="text-2xl font-bold text-white tracking-tight">
                                         {{ $drip['title'] }}
                                     </h3>
@@ -115,6 +123,24 @@
                                 </div>
                             </div>
                         @endforeach
+                        @foreach($boosterShots as $index => $drip)
+                            <div x-show="activeCategory === 'booster_shots' && activeDrip === {{ $index }}"
+                                 x-cloak
+                                 x-transition:enter="transition ease-out duration-300"
+                                 x-transition:enter-start="opacity-0 translate-y-4"
+                                 x-transition:enter-end="opacity-100 translate-y-0"
+                                 class="space-y-6 h-full flex flex-col justify-between">
+
+                                <div class="space-y-4">
+                                    <h3 class="text-2xl font-bold text-white tracking-tight">{{ $drip['title'] }}</h3>
+                                    <p class="text-sm leading-relaxed text-slate-400 text-justify">{{ $drip['description'] }}</p>
+                                </div>
+                                <div class="space-y-2.5 pt-6 border-t border-slate-800/80 mt-auto">
+                                    <div class="flex items-center gap-2.5 text-xs font-medium text-slate-300"><div class="h-1.5 w-1.5 rounded-full bg-[#02B8BC]"></div>Targeted booster shot</div>
+                                    <div class="flex items-center gap-2.5 text-xs font-medium text-slate-300"><div class="h-1.5 w-1.5 rounded-full bg-[#02B8BC]"></div>Medical-grade sterile environment</div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
 
                     <div class="mt-8 relative z-10">
@@ -122,19 +148,20 @@
                            target="_blank"
                            rel="noopener noreferrer"
                            class="inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#02B8BC] px-5 py-4 text-sm font-bold text-white shadow-lg shadow-[#02B8BC]/10 transition-all duration-200 hover:bg-[#037E93] hover:shadow-xl active:scale-[0.99]">
-                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v12a2 2 0 002 2z" />
+                            <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 012 2v13a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m9 16 2 2 4-4" />
                             </svg>
-                            Reserve IV Therapy
+                            <span x-text="'Reserve ' + categoryLabel"></span>
                         </a>
                     </div>
                 </div>
 
                 <div class="lg:order-1 lg:col-span-7 flex flex-col justify-between scroll-animate" data-speed="0.06" data-sal="slide-right" data-sal-duration="800">
-                    <div class="flex flex-col gap-3 min-h-[340px]">
-                        @foreach($therapyItems as $index => $drip)
+                    <div class="grid gap-3" :class="activeCategory === 'booster_shots' ? 'md:grid-cols-2' : 'grid-cols-1'">
+                        @foreach($ivDrips as $index => $drip)
                             <button @click="activeDrip = {{ $index }}"
-                                    x-show="isInPage({{ $index }})"
+                                    x-show="activeCategory === 'iv_therapy' && isInPage({{ $index }})"
                                     x-cloak
                                     x-transition:enter="transition ease-out duration-200"
                                     x-transition:enter-start="opacity-0 scale-95"
@@ -147,41 +174,40 @@
                                     :aria-pressed="activeDrip === {{ $index }} ? 'true' : 'false'">
 
                                 <div class="flex items-center gap-4">
-                                    <div class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors duration-300"
-                                         :class="activeDrip === {{ $index }} ? 'bg-[#02B8BC] text-white' : 'bg-slate-800 text-slate-400'">
-                                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                            @if(($drip['icon'] ?? '') === 'hydration')
-                                                <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7z"/>
-                                            @elseif(($drip['icon'] ?? '') === 'performance')
-                                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                                            @elseif(($drip['icon'] ?? '') === 'wellness')
-                                                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                                                <path d="M12 6v12M6 12h12" />
-                                            @else
-                                                <path d="M10 2h4M12 2v3M7 5h10v12a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3V5zM12 10v4M10 12h4" />
-                                            @endif
-                                        </svg>
-                                    </div>
-
                                     <div>
                                         <h4 class="text-sm font-bold tracking-tight transition-colors"
                                             :class="activeDrip === {{ $index }} ? 'text-white' : 'text-slate-300'">
                                             {{ $drip['title'] }}
                                         </h4>
-                                        <span class="text-[11px] text-slate-500 font-medium tracking-wide block mt-0.5">{{ $drip['type_label'] }}</span>
+                                        <span class="text-[11px] text-slate-500 font-medium tracking-wide block mt-0.5">{{ $drip['type_label'] === 'IV Infusion Therapy' ? 'Infusion' : $drip['type_label'] }}</span>
                                     </div>
                                 </div>
 
-                                <div class="flex items-center gap-4">
-                                    <span class="text-sm font-bold font-mono transition-colors"
-                                          :class="activeDrip === {{ $index }} ? 'text-[#02B8BC]' : 'text-slate-400'">
-                                        ${{ $drip['price'] }}
-                                    </span>
+                                                                <div class="flex items-center gap-4">
                                     <div class="transition-transform duration-300"
                                          :class="activeDrip === {{ $index }} ? 'translate-x-0 text-[#02B8BC]' : '-translate-x-1 text-slate-600'">
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                         </svg>
+                                    </div>
+                                </div>
+                            </button>
+                        @endforeach
+                        @foreach($boosterShots as $index => $drip)
+                            <button @click="activeDrip = {{ $index }}"
+                                    x-show="activeCategory === 'booster_shots' && isInPage({{ $index }})"
+                                    x-cloak
+                                    x-transition:enter="transition ease-out duration-200"
+                                    x-transition:enter-start="opacity-0 scale-95"
+                                    x-transition:enter-end="opacity-100 scale-100"
+                                    type="button"
+                                    class="text-left w-full relative flex items-center justify-between rounded-2xl border p-5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
+                                    :class="activeDrip === {{ $index }} ? 'bg-slate-800/60 border-[#02B8BC] shadow-md shadow-[#02B8BC]/5' : 'bg-slate-950/20 border-slate-800/80 hover:bg-slate-800/30 hover:border-slate-700'"
+                                    :aria-pressed="activeDrip === {{ $index }} ? 'true' : 'false'">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <h4 class="text-sm font-bold tracking-tight transition-colors" :class="activeDrip === {{ $index }} ? 'text-white' : 'text-slate-300'">{{ $drip['title'] }}</h4>
+                                        <span class="text-[11px] text-slate-500 font-medium tracking-wide block mt-0.5">{{ $drip['type_label'] }}</span>
                                     </div>
                                 </div>
                             </button>

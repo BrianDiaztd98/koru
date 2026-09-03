@@ -199,7 +199,7 @@ class KoruContentSeeder extends Seeder
             ],
             [
                 'name_en' => 'KORU FLOW',
-                'description_en' => 'Recover faster. Perform stronger. Ingredients: Vitamin C (Ascorbic Acid), Arginine HCL, Citrulline, Lysine HCL, Proline, Magnesium Chloride, Zinc Sulfate, B-Complex (B1, B2, B3, B5, B6). Benefits: Accelerates muscle recovery, reduces inflammation & soreness, enhances endurance & performance, replenishes essential nutrients. Perfect after intense training, competitions, or long weeks.',
+                'description_en' => 'Ingredients: Vitamin C, Arginine, Complex B, B12, Zinc, Glutathione.',
                 'price' => 198.00,
                 'duration' => '45-60 min',
                 'category' => 'iv_therapy',
@@ -207,7 +207,7 @@ class KoruContentSeeder extends Seeder
             ],
             [
                 'name_en' => 'ENERGY BOOST PRO',
-                'description_en' => 'Clean energy. Sharp mind. Peak performance. Ingredients: Arginine HCL, Citrulline, Lysine HCL, Proline, Vitamin B1(Thiamine), Vitamin B2 (Riboflavin), Vitamin B3 (Niacinamide), Vitamin B5 (Dexpanthenol), Vitamin B6 (Pyridoxine). Benefits: Increases natural energy levels, supports metabolism, enhances focus & mental clarity, improves physical performance. Ideal post-workout, long days, or heat exposure.',
+                'description_en' => 'Ingredients: Arginine, Complex B, B12, Zinc.',
                 'price' => 178.00,
                 'duration' => '45-60 min',
                 'category' => 'iv_therapy',
@@ -215,7 +215,7 @@ class KoruContentSeeder extends Seeder
             ],
             [
                 'name_en' => 'HYDRA RESET',
-                'description_en' => 'Rehydrate. Recharge. Reset. Ingredients: Vitamin C (Ascorbic Acid), Olympia Mineral Blend, Olympia Vita-Complex. Benefits: Rapid hydration, electrolyte replenishment, boosts energy levels, supports recovery from dehydration.',
+                'description_en' => 'Ingredients: Vitamin C, Amino Blend (MIC), Complex B12.',
                 'price' => 168.00,
                 'duration' => '45-60 min',
                 'category' => 'iv_therapy',
@@ -223,7 +223,7 @@ class KoruContentSeeder extends Seeder
             ],
             [
                 'name_en' => 'IMMUNE SHIELD',
-                'description_en' => 'Stronger defenses. Faster recovery. Ingredients: High-Dose Vitamin C, Zinc Sulfate, B-Complex (B1, B2, B3, B5, B6). Benefits: Strengthens immune system, reduces inflammation, supports faster recovery, helps prevent burnout. Essential during travel, seasonal changes, or heavy training.',
+                'description_en' => 'Ingredients: Vitamin C, Zinc, Complex B.',
                 'price' => 178.00,
                 'duration' => '45-60 min',
                 'category' => 'iv_therapy',

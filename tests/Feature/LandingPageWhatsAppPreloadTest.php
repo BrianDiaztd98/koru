@@ -46,12 +46,32 @@ class LandingPageWhatsAppPreloadTest extends TestCase
 
         $generalMessage = 'Hello, I would like to schedule an appointment. Please share availability and booking details.';
         $serviceMessage = 'Hello, I would like more information about the DEEP TISSUE MASSAGE service. Price: USD 120.00. Duration: 60 min. Please share availability and the next steps to book.';
-        $ivMessage = 'Hello, I would like more information about the RECOVERY DRIP IV therapy. Price: USD 95.00. Duration: 45 min. Please share availability and the next steps to book.';
-        $boosterMessage = 'Hello, I would like more information about the B12 ENERGY booster shot. Price: USD 35.00. Please share availability and the next steps to book.';
+        $ivMessage = 'Hello, I would like more information about RECOVERY DRIP. Please share availability and the next steps to book.';
+        $boosterMessage = 'Hello, I would like more information about B12 ENERGY. Please share availability and the next steps to book.';
 
         $this->assertStringContainsString(rawurlencode($generalMessage), $content);
         $this->assertStringContainsString(rawurlencode($serviceMessage), $content);
         $this->assertStringContainsString(rawurlencode($ivMessage), $content);
         $this->assertStringContainsString(rawurlencode($boosterMessage), $content);
+    }
+
+    public function test_landing_page_separates_iv_therapy_and_booster_shots(): void
+    {
+        Service::factory()->create([
+            'category' => 'iv_therapy',
+            'active_status' => true,
+        ]);
+
+        Service::factory()->create([
+            'category' => 'booster_shots',
+            'active_status' => true,
+        ]);
+
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('IV Therapy')
+            ->assertSee('Booster Shots')
+            ->assertSee("activeCategory: 'iv_therapy'")
+            ->assertSee("setCategory('booster_shots')");
     }
 }
