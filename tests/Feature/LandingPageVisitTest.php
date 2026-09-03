@@ -22,6 +22,17 @@ class LandingPageVisitTest extends TestCase
         $response->assertSee('x-data="{ isLoaded: true }"', false);
     }
 
+    public function test_landing_page_renders_cookie_consent_choices(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertOk();
+        $response->assertSee('aria-label="Cookie consent"', false);
+        $response->assertSeeText('Reject');
+        $response->assertSeeText('Accept cookies');
+        $response->assertSee("koru_cookie_consent", false);
+    }
+
     public function test_landing_page_visits_are_tracked_once_per_session_and_rendered_in_management_dashboard(): void
     {
         $admin = User::factory()->create(['is_admin' => true]);
