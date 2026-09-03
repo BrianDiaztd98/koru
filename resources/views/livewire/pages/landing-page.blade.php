@@ -18,7 +18,10 @@
             <livewire:components.hero-carousel :slides="$this->heroSlides" />
 
             {{-- AUTORIDAD: About Us temprano --}}
-            <livewire:components.about-us :aboutData="$this->aboutData" />
+            <livewire:components.about-us
+                :aboutData="$this->aboutData"
+                :bookingUrl="$this->generalAppointmentWhatsappUrl"
+            />
 
             {{-- NAVEGACIÓN DE SERVICIOS --}}
             <livewire:components.service-pillars

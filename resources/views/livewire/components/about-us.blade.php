@@ -32,11 +32,11 @@
                 <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                     {{ $aboutData['subtitle'] ?? 'Bridging the gap between recovery, movement, and education' }}
                 </h2>
-                <p class="mt-4 max-w-2xl mx-auto text-sm leading-relaxed text-slate-400 text-justify">
-                    {{ $aboutData['description'] ?? 'Discover the philosophy and technical framework behind our specialized wellness and learning ecosystem.' }}
+                <p class="mt-4 max-w-2xl mx-auto text-sm leading-relaxed text-slate-400">
+                    {{ $aboutData['description'] ?? 'Therapy, recovery, and professional education in Miami, under one roof.' }}
                 </p>
                 <p class="mt-6 text-sm font-bold uppercase tracking-[0.24em] text-[#02B8BC]">
-                    PAIN FREE, BETTER LIFE.
+                    LESS PAIN, BETTER LIFE.
                 </p>
             </div>
 
@@ -46,36 +46,29 @@
                 <!-- Columna Izquierda: Texto Dinámico consumido desde Base de Datos -->
                 <div class="lg:col-span-6 space-y-6" data-sal="slide-right" data-sal-duration="1000"
                     data-sal-delay="200" data-sal-easing="ease-out-cubic">
-                    <h3 class="text-xl font-bold text-white tracking-tight sm:text-2xl">
-                        {{ $aboutData['title'] ?? 'About KORU' }}
-                    </h3>
-
                     <!-- El texto principal renderizado dinámicamente desde tu modelo de Laravel -->
-                    <p class="text-sm leading-relaxed text-slate-400 text-justify">
-                        {{ $aboutData['philosophy'] ?? 'Named after the Māori symbol for a new unfurling fern frond, KORU represents new life, growth, strength, and peace. We provide a clean, structured environment where movement and teaching are treated with clinical excellence.' }}
+                    <p class="text-sm leading-relaxed text-slate-400">
+                        {{ $aboutData['philosophy'] ?? "Koru is the Māori symbol of the unfurling fern frond — new life, growth, and forward movement. It's the name we chose because it's what we want for every person who walks in." }}
                     </p>
 
-                    <p class="text-sm leading-relaxed text-slate-400 text-justify">
-                        {{ $aboutData['vision'] ?? 'Our mission is to deliver elite-level specialized support, ensuring every professional and individual can scale their performance and knowledge without traditional constraints.' }}
+                    <p class="text-sm leading-relaxed text-slate-400">
+                        {{ $aboutData['vision'] ?? 'KORU is a therapy, recovery, and professional education center in Miami. We combine clinical massage therapy, advanced recovery technologies, IV therapy, and continuing education for practitioners — under one roof, with real clinical standards behind each service.' }}
                     </p>
 
-                    <p class="text-sm leading-relaxed text-slate-400 text-justify">
-                        {{ $aboutData['mission'] ?? 'At KORU, we specialize in clinical massage therapy, advanced recovery technologies, IV infusion services, and professional continuing education. Every service is delivered in a clean, structured environment by certified specialists focused on measurable results and long-term wellness.' }}
+                    <p class="text-sm leading-relaxed text-slate-400">
+                        {{ $aboutData['mission'] ?? 'Care here is led by licensed professionals with backgrounds in physiotherapy and orthopedic manual therapy. Structured protocols, clear communication, and honest expectations about what each treatment can do.' }}
                     </p>
 
                     <div class="border-t border-slate-800/80 pt-6" wire:key="about-koru-at-a-glance">
                         <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#02B8BC]">KORU at a glance</p>
                         <div class="mt-4 grid gap-x-6 gap-y-5 sm:grid-cols-2">
                             @php
-                                $glanceItems = $aboutData['glance_items'] ?? [];
+                                $glanceItems = array_slice($aboutData['glance_items'] ?? [], 0, 3);
                                 if (empty($glanceItems)) {
                                     $glanceItems = [
-                                        ['title' => 'Who we are', 'description' => 'A wellness, recovery, therapy, and professional education center built around practical support and clinical standards.'],
-                                        ['title' => 'What we do', 'description' => 'Clinical massage, recovery technologies, IV Therapy, Booster Shots, KORU at Home, and continuing education.'],
-                                        ['title' => 'Who we serve', 'description' => 'Individuals seeking relief and wellness, active people focused on recovery, and professionals seeking education.'],
-                                        ['title' => 'How we work', 'description' => 'Attentive service, structured protocols, specialized techniques, and clear communication.'],
-                                        ['title' => 'What sets us apart', 'description' => 'We bring wellness, recovery, clinical care, and education together in one organized environment.'],
-                                        ['title' => 'What KORU represents', 'description' => 'New life, growth, strength, peace, and the possibility of moving forward with purpose.'],
+                                        ['title' => 'What we offer', 'description' => 'Clinical massage therapy, recovery technologies, IV therapy and booster shots, KORU at Home, and continuing education for professionals.'],
+                                        ['title' => 'Who we work with', 'description' => 'People living with pain or tension, active people focused on recovery, and practitioners looking to expand their clinical skills.'],
+                                        ['title' => 'Why KORU', 'description' => 'Licensed Massage Therapist (Florida), Certified Cyriax Practitioner, and a physiotherapy background with published work in chronic pain and orthopedic rehabilitation.'],
                                     ];
                                 }
                             @endphp
@@ -83,9 +76,19 @@
                             @foreach($glanceItems as $item)
                                 <article class="border-l border-[#02B8BC]/50 pl-3">
                                     <h4 class="text-xs font-bold uppercase tracking-wider text-white">{{ $item['title'] }}</h4>
-                                    <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">{{ $item['description'] }}</p>
+                                    <p class="mt-1.5 text-xs leading-relaxed text-slate-400">{{ $item['description'] }}</p>
                                 </article>
                             @endforeach
+                        </div>
+                        <div class="mt-7 flex flex-wrap gap-3">
+                            <a href="{{ $bookingUrl }}" target="_blank" rel="noopener noreferrer"
+                                class="inline-flex items-center rounded-xl bg-[#02B8BC] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#02B8BC]/15 transition hover:bg-[#037E93] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
+                                Book a session
+                            </a>
+                            <a href="#services"
+                                class="inline-flex items-center rounded-xl border border-slate-600 px-5 py-3 text-sm font-bold text-slate-200 transition hover:border-[#02B8BC] hover:text-[#02B8BC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]">
+                                See our services
+                            </a>
                         </div>
                     </div>
 

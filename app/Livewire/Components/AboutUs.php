@@ -8,9 +8,12 @@ class AboutUs extends Component
 {
     public array $aboutData = [];
 
-    public function mount(array $aboutData = []): void
+    public string $bookingUrl = '#location';
+
+    public function mount(array $aboutData = [], string $bookingUrl = '#location'): void
     {
         $this->aboutData = $aboutData;
+        $this->bookingUrl = $bookingUrl;
     }
 
     public function render()

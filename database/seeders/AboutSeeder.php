@@ -17,10 +17,10 @@ class AboutSeeder extends Seeder
         $about = About::query()->create([
             'title' => 'About KORU',
             'subtitle' => 'Bridging the gap between recovery, movement, and education',
-            'description' => 'Discover the philosophy and technical framework behind our specialized wellness and learning ecosystem.',
-            'philosophy' => 'Named after the Māori symbol for a new unfurling fern frond, KORU represents new life, growth, strength, and peace. We provide a clean, structured environment where movement and teaching are treated with clinical excellence.',
-            'vision' => 'Our mission is to deliver elite-level specialized support, ensuring every professional and individual can scale their performance and knowledge without traditional constraints.',
-            'mission' => 'At KORU, we specialize in clinical massage therapy, advanced recovery technologies, IV infusion services, and professional continuing education. Every service is delivered in a clean, structured environment by certified specialists focused on measurable results and long-term wellness.',
+            'description' => 'Therapy, recovery, and professional education in Miami, under one roof.',
+            'philosophy' => "Koru is the Māori symbol of the unfurling fern frond — new life, growth, and forward movement. It's the name we chose because it's what we want for every person who walks in.",
+            'vision' => 'KORU is a therapy, recovery, and professional education center in Miami. We combine clinical massage therapy, advanced recovery technologies, IV therapy, and continuing education for practitioners — under one roof, with real clinical standards behind each service.',
+            'mission' => 'Care here is led by licensed professionals with backgrounds in physiotherapy and orthopedic manual therapy. Structured protocols, clear communication, and honest expectations about what each treatment can do.',
             'feature_1_title' => 'Wellness & Therapy',
             'feature_1_description' => 'Tailored operational architectures built for fluid content management and clean UI stability.',
             'feature_2_title' => 'Advanced Education',
@@ -34,33 +34,18 @@ class AboutSeeder extends Seeder
         $glanceItems = [
             [
                 'order' => 1,
-                'title' => 'Who we are',
-                'description' => 'A wellness, recovery, therapy, and professional education center built around practical support and clinical standards.',
+                'title' => 'What we offer',
+                'description' => 'Clinical massage therapy, recovery technologies, IV therapy and booster shots, KORU at Home, and continuing education for professionals.',
             ],
             [
                 'order' => 2,
-                'title' => 'What we do',
-                'description' => 'Clinical massage, recovery technologies, IV Therapy, Booster Shots, KORU at Home, and continuing education.',
+                'title' => 'Who we work with',
+                'description' => 'People living with pain or tension, active people focused on recovery, and practitioners looking to expand their clinical skills.',
             ],
             [
                 'order' => 3,
-                'title' => 'Who we serve',
-                'description' => 'Individuals seeking relief and wellness, active people focused on recovery, and professionals seeking education.',
-            ],
-            [
-                'order' => 4,
-                'title' => 'How we work',
-                'description' => 'Attentive service, structured protocols, specialized techniques, and clear communication.',
-            ],
-            [
-                'order' => 5,
-                'title' => 'What sets us apart',
-                'description' => 'We bring wellness, recovery, clinical care, and education together in one organized environment.',
-            ],
-            [
-                'order' => 6,
-                'title' => 'What KORU represents',
-                'description' => 'New life, growth, strength, peace, and the possibility of moving forward with purpose.',
+                'title' => 'Why KORU',
+                'description' => 'Licensed Massage Therapist (Florida), Certified Cyriax Practitioner, and a physiotherapy background with published work in chronic pain and orthopedic rehabilitation.',
             ],
         ];
 
