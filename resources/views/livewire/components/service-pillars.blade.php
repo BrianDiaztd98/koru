@@ -84,7 +84,7 @@
 
                                 <!-- Badge de Precio Flotante Moderno -->
                                 <div class="absolute top-4 right-4">
-                                    @if($activePillar === 'koru_at_home')
+                                    @if($activePillar === 'koru_at_home' || (float) $service['price'] === 0.0)
                                         <span class="inline-flex items-center justify-center rounded-xl bg-slate-900/90 border border-slate-800 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#02B8BC] shadow-sm backdrop-blur-sm">
                                             Price may vary.
                                         </span>
