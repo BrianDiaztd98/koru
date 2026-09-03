@@ -12,7 +12,7 @@ class HeroSlideSeeder extends Seeder
         $slides = [
             [
                 'badge' => 'PAIN FREE, BETTER LIFE.',
-                'title_line_1' => 'Wellness, Recovery',
+                'title_line_1' => 'Wellness, Therapy',
                 'title_line_2' => '& Education',
                 'description' => 'KORU Center brings together clinical care, recovery therapies, wellness services, and continuing education in a structured environment designed to help people move better, recover stronger, and live well.',
                 'btn_primary_text' => 'Learn About KORU',
