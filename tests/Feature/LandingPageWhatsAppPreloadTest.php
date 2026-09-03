@@ -74,4 +74,22 @@ class LandingPageWhatsAppPreloadTest extends TestCase
             ->assertSee("activeCategory: 'iv_therapy'")
             ->assertSee("setCategory('booster_shots')");
     }
+
+    public function test_price_may_vary_services_do_not_include_price_or_duration_in_whatsapp_message(): void
+    {
+        Service::factory()->create([
+            'name_en' => 'KORU AT HOME',
+            'price' => 120,
+            'duration' => '60-90 min',
+            'category' => 'koru_at_home',
+            'active_status' => true,
+            'discount_eligible' => false,
+        ]);
+
+        $content = $this->get('/')->assertOk()->getContent();
+
+        $message = 'Hello, I would like more information about the KORU AT HOME service. Please share availability and the next steps to book.';
+
+        $this->assertStringContainsString(rawurlencode($message), $content);
+    }
 }

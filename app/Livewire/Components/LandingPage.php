@@ -108,7 +108,8 @@ class LandingPage extends Component
                 $serviceData['whatsapp_url'] = $this->buildServiceInquiryWhatsappUrl(
                     title: $serviceData['title'],
                     price: $serviceData['price'],
-                    duration: $serviceData['duration']
+                    duration: $serviceData['duration'],
+                    priceMayVary: $service->category === 'koru_at_home' || (float) $service->price === 0.0
                 );
 
                 return $serviceData;
@@ -274,9 +275,15 @@ class LandingPage extends Component
         string $title,
         string $price,
         ?string $duration = null,
-        ?string $serviceType = null
+        ?string $serviceType = null,
+        bool $priceMayVary = false
     ): string {
         $typeSuffix = $serviceType ? ' '.$serviceType : ' service';
+
+        if ($priceMayVary) {
+            return $this->buildWhatsappUrl("Hello, I would like more information about the {$title}{$typeSuffix}. Please share availability and the next steps to book.");
+        }
+
         $message = "Hello, I would like more information about the {$title}{$typeSuffix}. Price: USD {$price}.";
 
         if (! empty($duration)) {
