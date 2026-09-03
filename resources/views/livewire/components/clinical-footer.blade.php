@@ -1,12 +1,12 @@
 <footer id="location" class="relative overflow-hidden bg-slate-900 text-slate-300" wire:lazy.1s>
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#037E93]/10 via-slate-900 to-slate-900"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:py-20">
             
             <div class="space-y-6">
                 <div class="flex items-center gap-3">
-                    <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#0EB3B9]/10 text-[#0EB3B9]">
+                    <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#02B8BC]/10 text-[#02B8BC]">
                         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M12 2L2 7l10 5 10-5-10-5z" />
                             <path d="M2 17l10 5 10-5" />
@@ -21,7 +21,7 @@
                     <h4 class="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Follow us</h4>
                     <div class="flex items-center gap-2">
                         @if(!empty($localizedSettings['social_instagram']))
-                            <a href="{{ $localizedSettings['social_instagram'] }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-800/40 text-slate-400 transition hover:border-[#0EB3B9] hover:text-[#0EB3B9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]">
+                            <a href="{{ $localizedSettings['social_instagram'] }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-800/40 text-slate-400 transition hover:border-[#02B8BC] hover:text-[#02B8BC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]">
                                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -30,7 +30,7 @@
                             </a>
                         @endif
                         @if(!empty($localizedSettings['social_facebook']))
-                            <a href="{{ !empty($localizedSettings['social_facebook']) ? $localizedSettings['social_facebook'] : 'https://www.facebook.com/profile.php?id=61587013239438' }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-800/40 text-slate-400 transition hover:border-[#0EB3B9] hover:text-[#0EB3B9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]">
+                            <a href="{{ !empty($localizedSettings['social_facebook']) ? $localizedSettings['social_facebook'] : 'https://www.facebook.com/profile.php?id=61587013239438' }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-800 bg-slate-800/40 text-slate-400 transition hover:border-[#02B8BC] hover:text-[#02B8BC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]">
                                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                                 </svg>
@@ -43,19 +43,19 @@
             <div class="space-y-6">
                 <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Contact</h3>
                 <div class="space-y-3.5 text-sm">
-                    <a href="tel:+17867528054" aria-label="Call us at {{ $localizedSettings['phone'] ?? '+1 (786) 752-8054' }}" class="group flex items-center gap-3 text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded">
-                        <svg class="h-4 w-4 text-[#0EB3B9]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <a href="tel:+17867528054" aria-label="Call us at {{ $localizedSettings['phone'] ?? '+1 (786) 752-8054' }}" class="group flex items-center gap-3 text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC] rounded">
+                        <svg class="h-4 w-4 text-[#02B8BC]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" />
                         </svg>
-                        <span class="font-medium group-hover:underline decoration-[#0EB3B9]">{{ $localizedSettings['phone'] ?? '+1 (786) 752-8054' }}</span>
+                        <span class="font-medium group-hover:underline decoration-[#02B8BC]">{{ $localizedSettings['phone'] ?? '+1 (786) 752-8054' }}</span>
                     </a>
                     
-                    <a href="mailto:{{ $localizedSettings['contact_email'] ?? 'info@korucenters.com' }}" aria-label="Send email to {{ $localizedSettings['contact_email'] ?? 'info@korucenters.com' }}" class="group flex items-center gap-3 text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded">
-                        <svg class="h-4 w-4 text-[#0EB3B9]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <a href="mailto:{{ $localizedSettings['contact_email'] ?? 'info@korucenters.com' }}" aria-label="Send email to {{ $localizedSettings['contact_email'] ?? 'info@korucenters.com' }}" class="group flex items-center gap-3 text-slate-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC] rounded">
+                        <svg class="h-4 w-4 text-[#02B8BC]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <rect width="20" height="16" x="2" y="4" rx="2" />
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                         </svg>
-                        <span class="font-medium group-hover:underline decoration-[#0EB3B9] text-ellipsis overflow-hidden">{{ $localizedSettings['contact_email'] ?? 'info@korucenters.com' }}</span>
+                        <span class="font-medium group-hover:underline decoration-[#02B8BC] text-ellipsis overflow-hidden">{{ $localizedSettings['contact_email'] ?? 'info@korucenters.com' }}</span>
                     </a>
 
                     <a href="https://wa.me/17867528054" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" class="group flex items-center gap-3 text-slate-300 transition hover:text-green-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded">
@@ -83,7 +83,7 @@
                 <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Location</h3>
                 <div class="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900 shadow-xl transition-all duration-300 hover:border-slate-700">
                     <div class="flex flex-col items-center justify-center h-36 w-full text-center p-4">
-                        <svg class="h-8 w-8 text-[#0EB3B9] mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg class="h-8 w-8 text-[#02B8BC] mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                             <circle cx="12" cy="10" r="3" />
                         </svg>
@@ -93,7 +93,7 @@
                         <a href="https://www.google.com/maps/dir/?api=1&destination=6405+NW+36th+St,+Virginia+Gardens,+FL+33166" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           class="mt-3 inline-flex items-center gap-2 rounded-lg bg-slate-800/60 border border-slate-700 px-3 py-1.5 text-xs font-bold text-slate-200 transition hover:bg-[#0EB3B9] hover:border-[#0EB3B9] hover:text-white">
+                           class="mt-3 inline-flex items-center gap-2 rounded-lg bg-slate-800/60 border border-slate-700 px-3 py-1.5 text-xs font-bold text-slate-200 transition hover:bg-[#02B8BC] hover:border-[#02B8BC] hover:text-white">
                             <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 2a8 8 0 0 0-8 8c0 5.4 8 12 8 12s8-6.6 8-12a8 8 0 0 0-8-8Z" />
                                 <circle cx="12" cy="10" r="3" />
@@ -113,8 +113,8 @@
                 {{ $localizedSettings['footer_copyright'] ?? '© '.date('Y').' KORU Center. All rights reserved.' }}
             </p>
             <div class="flex gap-4 text-[11px] text-slate-500">
-                <a href="#" class="hover:text-slate-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded">Privacy Policy</a>
-                <a href="#" class="hover:text-slate-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded">Terms of Service</a>
+                <a href="#" class="hover:text-slate-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC] rounded">Privacy Policy</a>
+                <a href="#" class="hover:text-slate-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC] rounded">Terms of Service</a>
             </div>
         </div>
     </div>

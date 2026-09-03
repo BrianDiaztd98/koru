@@ -51,7 +51,7 @@
             </label>
             <div class="relative">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-500">$</span>
-                <input type="number" wire:model.defer="price" step="0.01" min="0" max="999999.99" class="w-full rounded-xl border border-slate-800 bg-slate-900/70 pl-7 pr-3 py-3 text-sm text-slate-200 outline-none focus:border-[#0EB3B9]" placeholder="0.00" />
+                <input type="number" wire:model.defer="price" step="0.01" min="0" max="999999.99" class="w-full rounded-xl border border-slate-800 bg-slate-900/70 pl-7 pr-3 py-3 text-sm text-slate-200 outline-none focus:border-[#02B8BC]" placeholder="0.00" />
             </div>
             @error('price') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
@@ -71,7 +71,7 @@
                 Image <span class="text-slate-500">(Opcional)</span>
             </label>
             @if($this->isImageCategory())
-                <input type="file" wire:model="image_path" accept="image/jpeg,image/png,image/webp" class="w-full text-sm text-slate-400 file:mr-3 file:rounded-md file:border-0 file:bg-[#0EB3B9]/10 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-[#0EB3B9]" />
+                <input type="file" wire:model="image_path" accept="image/jpeg,image/png,image/webp" class="w-full text-sm text-slate-400 file:mr-3 file:rounded-md file:border-0 file:bg-[#02B8BC]/10 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-[#02B8BC]" />
                 <p class="mt-1 text-[11px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
                 @error('image_path') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
             @else
@@ -79,12 +79,12 @@
             @endif
         </div>
         <div class="md:col-span-2 flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
-            <input id="service_active_status" type="checkbox" wire:model.defer="active_status" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#0EB3B9] focus:ring-[#0EB3B9]" />
+            <input id="service_active_status" type="checkbox" wire:model.defer="active_status" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#02B8BC] focus:ring-[#02B8BC]" />
             <label for="service_active_status" class="text-sm text-slate-300">Publish this service</label>
         </div>
 
         <div class="md:col-span-2 flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
-            <input id="service_discount_eligible" type="checkbox" wire:model.defer="discount_eligible" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#0EB3B9] focus:ring-[#0EB3B9]" />
+            <input id="service_discount_eligible" type="checkbox" wire:model.defer="discount_eligible" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#02B8BC] focus:ring-[#02B8BC]" />
             <label for="service_discount_eligible" class="text-sm text-slate-300">Active for deposits</label>
         </div>
 

@@ -16,11 +16,11 @@
     @livewireStyles
 </head>
 
-<body class="h-full bg-slate-950 text-slate-100 antialiased selection:bg-[#0EB3B9]/30 selection:text-white">
+<body class="h-full bg-slate-950 text-slate-100 antialiased selection:bg-[#02B8BC]/30 selection:text-white">
 
     <!-- Luces ambientales de fondo estilo consola clínica -->
-    <div class="fixed inset-0 bg-[radial-gradient(circle_at_top,_rgba(14,179,185,0.06)_0%,_transparent_40%)] pointer-events-none"></div>
-    <div class="fixed top-20 -right-40 w-96 h-96 bg-[#0E788D]/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed inset-0 bg-[radial-gradient(circle_at_top,_rgba(2,184,188,0.06)_0%,_transparent_40%)] pointer-events-none"></div>
+    <div class="fixed top-20 -right-40 w-96 h-96 bg-[#037E93]/5 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
         {{ $slot }}

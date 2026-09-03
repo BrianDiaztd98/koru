@@ -1,10 +1,10 @@
 <div class="lg:col-span-3 space-y-8 animate-fadeIn text-slate-200">
 
     <div class="rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 sm:p-8 shadow-2xl shadow-black/40 relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#0EB3B9]/40 to-transparent"></div>
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#02B8BC]/40 to-transparent"></div>
 
         <div class="relative z-10">
-            <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">Deposit Settings</p>
+            <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#02B8BC]">Deposit Settings</p>
             <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">
                 Deposits by <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">day of the week</span>
             </h1>
@@ -36,7 +36,7 @@
                         <span class="text-sm font-semibold text-slate-200">{{ $dayLabels[$dayOfWeek] ?? $dayKey }}</span>
                         <label class="inline-flex items-center gap-2 cursor-pointer text-xs text-slate-400">
                             <input type="checkbox" wire:model="activeStatuses.{{ $dayOfWeek }}"
-                                   class="rounded border-slate-700 bg-slate-900 text-[#0EB3B9] focus:ring-[#0EB3B9]" />
+                                   class="rounded border-slate-700 bg-slate-900 text-[#02B8BC] focus:ring-[#02B8BC]" />
                             Active
                         </label>
                     </div>
@@ -45,7 +45,7 @@
                         <input type="number" min="0" max="100" step="0.01"
                                wire:model="percentages.{{ $dayOfWeek }}"
                                placeholder="0"
-                               class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2.5 pr-9 text-sm text-slate-200 focus:border-[#0EB3B9] focus:outline-none focus:ring-1 focus:ring-[#0EB3B9]" />
+                               class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2.5 pr-9 text-sm text-slate-200 focus:border-[#02B8BC] focus:outline-none focus:ring-1 focus:ring-[#02B8BC]" />
                         <span class="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-mono text-slate-500">%</span>
                     </div>
 
@@ -58,7 +58,7 @@
 
         <div class="flex items-center justify-end gap-3 pt-2">
             <button type="submit"
-                    class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-800/80 bg-[#0EB3B9] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] hover:shadow-[#0E788D]/20 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]">
+                    class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-800/80 bg-[#02B8BC] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#02B8BC]/10 transition-all duration-200 hover:bg-[#037E93] hover:shadow-[#037E93]/20 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>

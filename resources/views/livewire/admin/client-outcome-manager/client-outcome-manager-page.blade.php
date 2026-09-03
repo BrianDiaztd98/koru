@@ -3,7 +3,7 @@
 <div class="lg:col-span-3 space-y-6">
     <!-- Título de ubicación actual -->
     <div class="mb-6">
-        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">Client Outcomes</p>
+        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#02B8BC]">Client Outcomes</p>
         <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">Client Outcomes</h1>
         <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Manage the stories shown in the landing page section.</p>
     </div>

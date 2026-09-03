@@ -26,7 +26,7 @@
                     <div class="absolute inset-0 bg-slate-900/60 animate-pulse"></div>
                     <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pt-20">
                         <div class="max-w-2xl w-full space-y-6">
-                            <div class="h-6 w-40 rounded-md bg-[#0EB3B9]/10 animate-pulse"></div>
+                            <div class="h-6 w-40 rounded-md bg-[#02B8BC]/10 animate-pulse"></div>
                             <div class="space-y-3">
                                 <div class="h-12 w-3/4 rounded bg-slate-800 animate-pulse"></div>
                                 <div class="h-12 w-2/3 rounded bg-slate-800 animate-pulse"></div>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
-                        <div class="h-1 w-8 rounded-full bg-[#0EB3B9] animate-pulse"></div>
+                        <div class="h-1 w-8 rounded-full bg-[#02B8BC] animate-pulse"></div>
                         <div class="h-1 w-3 rounded-full bg-slate-700 animate-pulse"></div>
                         <div class="h-1 w-3 rounded-full bg-slate-700 animate-pulse"></div>
                     </div>
@@ -49,10 +49,10 @@
 
             <!-- ABOUT US -->
             <section class="relative pt-20 pb-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#037E93]/10 via-slate-900 to-slate-900"></div>
                 <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="mb-12 text-center space-y-4">
-                        <div class="mx-auto h-6 w-32 rounded-md bg-[#0EB3B9]/10 animate-pulse"></div>
+                        <div class="mx-auto h-6 w-32 rounded-md bg-[#02B8BC]/10 animate-pulse"></div>
                         <div class="mx-auto h-9 w-2/3 rounded bg-slate-800 animate-pulse"></div>
                         <div class="mx-auto h-4 w-1/2 rounded bg-slate-800/70 animate-pulse"></div>
                     </div>
@@ -84,11 +84,11 @@
 
             <!-- SERVICE PILLARS -->
             <section class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_var(--tw-gradient-stops))] from-[#0E788D]/15 via-slate-900 to-slate-900"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_var(--tw-gradient-stops))] from-[#037E93]/15 via-slate-900 to-slate-900"></div>
                 <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between mb-16">
                         <div class="max-w-xl space-y-4">
-                            <div class="h-6 w-36 rounded-md bg-[#0EB3B9]/10 animate-pulse"></div>
+                            <div class="h-6 w-36 rounded-md bg-[#02B8BC]/10 animate-pulse"></div>
                             <div class="h-9 w-3/4 rounded bg-slate-800 animate-pulse"></div>
                             <div class="h-4 w-full rounded bg-slate-800/70 animate-pulse"></div>
                         </div>
@@ -120,11 +120,11 @@
 
             <!-- IV BENTO -->
             <section id="iv-lounge" class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,_var(--tw-gradient-stops))] from-[#0E788D]/15 via-slate-900 to-slate-900"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,_var(--tw-gradient-stops))] from-[#037E93]/15 via-slate-900 to-slate-900"></div>
                 <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-start mb-16">
                         <div class="space-y-4">
-                            <div class="h-6 w-32 rounded-md bg-[#0EB3B9]/10 animate-pulse"></div>
+                            <div class="h-6 w-32 rounded-md bg-[#02B8BC]/10 animate-pulse"></div>
                             <div class="h-9 w-3/4 rounded bg-slate-800 animate-pulse"></div>
                             <div class="h-4 w-full rounded bg-slate-800/70 animate-pulse"></div>
                         </div>
@@ -153,10 +153,10 @@
 
             <!-- BOOSTER SHOTS -->
             <section id="booster-shots" class="relative pt-24 pb-12 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_var(--tw-gradient-stops))] from-[#0E788D]/15 via-slate-900 to-slate-900"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_var(--tw-gradient-stops))] from-[#037E93]/15 via-slate-900 to-slate-900"></div>
                 <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="mb-16 max-w-3xl space-y-4">
-                        <div class="h-6 w-32 rounded-md bg-[#0EB3B9]/10 animate-pulse"></div>
+                        <div class="h-6 w-32 rounded-md bg-[#02B8BC]/10 animate-pulse"></div>
                         <div class="h-9 w-2/3 rounded bg-slate-800 animate-pulse"></div>
                         <div class="h-4 w-full rounded bg-slate-800/70 animate-pulse"></div>
                     </div>
@@ -183,10 +183,10 @@
 
             <!-- TESTIMONIALS -->
             <section id="testimonials" class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#037E93]/10 via-slate-900 to-slate-900"></div>
                 <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="mb-16 text-center space-y-4">
-                        <div class="mx-auto h-6 w-36 rounded-md bg-[#0EB3B9]/10 animate-pulse"></div>
+                        <div class="mx-auto h-6 w-36 rounded-md bg-[#02B8BC]/10 animate-pulse"></div>
                         <div class="mx-auto h-9 w-2/3 rounded bg-slate-800 animate-pulse"></div>
                         <div class="mx-auto h-4 w-1/2 rounded bg-slate-800/70 animate-pulse"></div>
                     </div>
@@ -208,10 +208,10 @@
 
             <!-- PACKAGES -->
             <section id="packages" class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_var(--tw-gradient-stops))] from-[#0E788D]/15 via-slate-900 to-slate-900"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_var(--tw-gradient-stops))] from-[#037E93]/15 via-slate-900 to-slate-900"></div>
                 <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="text-center mb-16 space-y-4">
-                        <div class="mx-auto h-6 w-32 rounded-md bg-[#0EB3B9]/10 animate-pulse"></div>
+                        <div class="mx-auto h-6 w-32 rounded-md bg-[#02B8BC]/10 animate-pulse"></div>
                         <div class="mx-auto h-9 w-3/4 rounded bg-slate-800 animate-pulse"></div>
                         <div class="mx-auto h-4 w-1/2 rounded bg-slate-800/70 animate-pulse"></div>
                     </div>
@@ -241,10 +241,10 @@
 
             <!-- TEAM -->
             <section class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_var(--tw-gradient-stops))] from-[#0E788D]/15 via-slate-900 to-slate-900"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_var(--tw-gradient-stops))] from-[#037E93]/15 via-slate-900 to-slate-900"></div>
                 <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="text-center mb-16 space-y-4">
-                        <div class="mx-auto h-6 w-28 rounded-md bg-[#0EB3B9]/10 animate-pulse"></div>
+                        <div class="mx-auto h-6 w-28 rounded-md bg-[#02B8BC]/10 animate-pulse"></div>
                         <div class="mx-auto h-9 w-2/3 rounded bg-slate-800 animate-pulse"></div>
                         <div class="mx-auto h-4 w-1/2 rounded bg-slate-800/70 animate-pulse"></div>
                     </div>
@@ -266,10 +266,10 @@
 
             <!-- EDUCATION BOARD -->
             <section class="relative pt-20 pb-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#037E93]/10 via-slate-900 to-slate-900"></div>
                 <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="mb-12 text-center space-y-4">
-                        <div class="mx-auto h-6 w-32 rounded-md bg-[#0EB3B9]/10 animate-pulse"></div>
+                        <div class="mx-auto h-6 w-32 rounded-md bg-[#02B8BC]/10 animate-pulse"></div>
                         <div class="mx-auto h-9 w-3/4 rounded bg-slate-800 animate-pulse"></div>
                         <div class="mx-auto h-4 w-1/2 rounded bg-slate-800/70 animate-pulse"></div>
                     </div>
@@ -297,10 +297,10 @@
 
             <!-- VIDEO MODAL / EXPERIENCE CTA -->
             <section class="relative bg-slate-900 py-24 overflow-hidden">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_var(--tw-gradient-stops))] from-[#037E93]/10 via-slate-900 to-slate-900"></div>
                 <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="mx-auto max-w-4xl rounded-[2.5rem] border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center animate-pulse">
-                        <div class="mx-auto h-6 w-36 rounded-md bg-[#0EB3B9]/10"></div>
+                        <div class="mx-auto h-6 w-36 rounded-md bg-[#02B8BC]/10"></div>
                         <div class="mx-auto mt-6 h-7 w-1/2 rounded bg-slate-800"></div>
                         <div class="mx-auto mt-3 h-4 w-1/3 rounded bg-slate-800/70"></div>
                     </div>
@@ -309,7 +309,7 @@
 
             <!-- CLINICAL FOOTER -->
             <footer class="relative overflow-hidden bg-slate-900 text-slate-300">
-                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#037E93]/10 via-slate-900 to-slate-900"></div>
                 <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:py-20">
                         <div class="space-y-6">

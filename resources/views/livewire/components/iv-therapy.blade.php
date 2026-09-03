@@ -1,10 +1,10 @@
 <section id="iv-therapy" class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,_var(--tw-gradient-stops))] from-[#0E788D]/15 via-slate-900 to-slate-900"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,_var(--tw-gradient-stops))] from-[#037E93]/15 via-slate-900 to-slate-900"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] items-start mb-16" data-sal="fade" data-sal-duration="800" wire:ignore>
             <div>
-                <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
+                <div class="inline-flex items-center gap-2.5 rounded-md bg-[#02B8BC]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#02B8BC]">
                     IV Therapy
                 </div>
                 <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -17,20 +17,20 @@
 
             <div class="rounded-2xl border border-slate-800 bg-slate-950/40 p-5 backdrop-blur-sm">
                 <h3 class="text-xs font-bold text-white uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <span class="h-1.5 w-1.5 rounded-full bg-[#0EB3B9]"></span>
+                    <span class="h-1.5 w-1.5 rounded-full bg-[#02B8BC]"></span>
                     IV Therapy Highlights
                 </h3>
                 <ul class="space-y-2.5 text-xs text-slate-400">
                     <li class="flex items-center gap-2">
-                        <svg class="h-3.5 w-3.5 text-[#0EB3B9] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        <svg class="h-3.5 w-3.5 text-[#02B8BC] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                         Premium hydration with physician-led protocols.
                     </li>
                     <li class="flex items-center gap-2">
-                        <svg class="h-3.5 w-3.5 text-[#0EB3B9] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        <svg class="h-3.5 w-3.5 text-[#02B8BC] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                         Custom blends for fatigue, performance and immunity.
                     </li>
                     <li class="flex items-center gap-2">
-                        <svg class="h-3.5 w-3.5 text-[#0EB3B9] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        <svg class="h-3.5 w-3.5 text-[#02B8BC] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                         Fast absorption & maximum cellular bioavailability.
                     </li>
                 </ul>
@@ -63,7 +63,7 @@
                  x-init="$watch('currentPage', value => setFirstActiveInPage())">
 
                 <div class="lg:order-2 lg:col-span-5 flex flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950/60 p-8 backdrop-blur-md relative overflow-hidden scroll-animate" data-speed="0.08" data-sal="slide-left" data-sal-duration="800">
-                    <div class="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-[#0EB3B9]/10 blur-3xl"></div>
+                    <div class="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-[#02B8BC]/10 blur-3xl"></div>
 
                     <div class="relative z-10 flex-1 flex flex-col justify-between min-h-[380px] sm:min-h-[340px]">
                         @foreach($therapyItems as $index => $drip)
@@ -76,7 +76,7 @@
 
                                 <div class="space-y-4">
                                     <div class="flex flex-wrap items-center gap-2">
-                                        <div class="inline-flex items-baseline gap-0.5 rounded-xl bg-[#0EB3B9]/10 px-3.5 py-1.5 text-[#0EB3B9]">
+                                        <div class="inline-flex items-baseline gap-0.5 rounded-xl bg-[#02B8BC]/10 px-3.5 py-1.5 text-[#02B8BC]">
                                             <span class="text-xs font-bold">$</span>
                                             <span class="text-2xl font-extrabold tracking-tight">{{ $drip['price'] }}</span>
                                             <span class="text-[10px] font-medium text-slate-400 uppercase tracking-wider ml-1">/ session</span>
@@ -105,11 +105,11 @@
 
                                 <div class="space-y-2.5 pt-6 border-t border-slate-800/80 mt-auto">
                                     <div class="flex items-center gap-2.5 text-xs font-medium text-slate-300">
-                                        <div class="h-1.5 w-1.5 rounded-full bg-[#0EB3B9]"></div>
+                                        <div class="h-1.5 w-1.5 rounded-full bg-[#02B8BC]"></div>
                                         {{ $drip['type'] === 'booster' ? 'Targeted booster shot' : 'Intravenous (IV) infusion' }}
                                     </div>
                                     <div class="flex items-center gap-2.5 text-xs font-medium text-slate-300">
-                                        <div class="h-1.5 w-1.5 rounded-full bg-[#0EB3B9]"></div>
+                                        <div class="h-1.5 w-1.5 rounded-full bg-[#02B8BC]"></div>
                                         Medical-grade sterile environment
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@
                         <a :href="activeDripData?.whatsapp_url || 'https://wa.me/17867528054'"
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#0EB3B9] px-5 py-4 text-sm font-bold text-white shadow-lg shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] hover:shadow-xl active:scale-[0.99]">
+                           class="inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#02B8BC] px-5 py-4 text-sm font-bold text-white shadow-lg shadow-[#02B8BC]/10 transition-all duration-200 hover:bg-[#037E93] hover:shadow-xl active:scale-[0.99]">
                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v12a2 2 0 002 2z" />
                             </svg>
@@ -140,15 +140,15 @@
                                     x-transition:enter-start="opacity-0 scale-95"
                                     x-transition:enter-end="opacity-100 scale-100"
                                     type="button"
-                                    class="text-left w-full relative flex items-center justify-between rounded-2xl border p-5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
+                                    class="text-left w-full relative flex items-center justify-between rounded-2xl border p-5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
                                     :class="activeDrip === {{ $index }} 
-                                            ? 'bg-slate-800/60 border-[#0EB3B9] shadow-md shadow-[#0EB3B9]/5' 
+                                            ? 'bg-slate-800/60 border-[#02B8BC] shadow-md shadow-[#02B8BC]/5' 
                                             : 'bg-slate-950/20 border-slate-800/80 hover:bg-slate-800/30 hover:border-slate-700'"
                                     :aria-pressed="activeDrip === {{ $index }} ? 'true' : 'false'">
 
                                 <div class="flex items-center gap-4">
                                     <div class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors duration-300"
-                                         :class="activeDrip === {{ $index }} ? 'bg-[#0EB3B9] text-white' : 'bg-slate-800 text-slate-400'">
+                                         :class="activeDrip === {{ $index }} ? 'bg-[#02B8BC] text-white' : 'bg-slate-800 text-slate-400'">
                                         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                             @if(($drip['icon'] ?? '') === 'hydration')
                                                 <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7z"/>
@@ -174,11 +174,11 @@
 
                                 <div class="flex items-center gap-4">
                                     <span class="text-sm font-bold font-mono transition-colors"
-                                          :class="activeDrip === {{ $index }} ? 'text-[#0EB3B9]' : 'text-slate-400'">
+                                          :class="activeDrip === {{ $index }} ? 'text-[#02B8BC]' : 'text-slate-400'">
                                         ${{ $drip['price'] }}
                                     </span>
                                     <div class="transition-transform duration-300"
-                                         :class="activeDrip === {{ $index }} ? 'translate-x-0 text-[#0EB3B9]' : '-translate-x-1 text-slate-600'">
+                                         :class="activeDrip === {{ $index }} ? 'translate-x-0 text-[#02B8BC]' : '-translate-x-1 text-slate-600'">
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                                         </svg>
@@ -197,7 +197,7 @@
                             <button @click="prevPage()"
                                     :disabled="currentPage === 1"
                                     type="button"
-                                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
+                                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
                                     aria-label="Previous page">
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -209,9 +209,9 @@
                                     <button @click="goToPage(page)"
                                             type="button"
                                             x-text="page"
-                                            class="inline-flex h-9 w-9 items-center justify-center rounded-xl text-xs font-bold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
+                                            class="inline-flex h-9 w-9 items-center justify-center rounded-xl text-xs font-bold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
                                             :class="currentPage === page 
-                                                    ? 'bg-[#0EB3B9] text-white shadow-md shadow-[#0EB3B9]/10' 
+                                                    ? 'bg-[#02B8BC] text-white shadow-md shadow-[#02B8BC]/10' 
                                                     : 'border border-slate-800 bg-slate-950/20 text-slate-400 hover:bg-slate-800 hover:text-slate-200'"
                                             :aria-label="'Page ' + page"
                                             :aria-current="currentPage === page ? 'page' : 'false'">
@@ -222,7 +222,7 @@
                             <button @click="nextPage()"
                                     :disabled="currentPage === totalPages"
                                     type="button"
-                                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
+                                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-800 bg-slate-950/40 text-slate-400 transition hover:bg-slate-800 hover:text-white disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
                                     aria-label="Next page">
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />

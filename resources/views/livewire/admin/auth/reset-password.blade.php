@@ -3,18 +3,18 @@
         class="relative rounded-2xl border border-slate-800/60 bg-slate-900/40 backdrop-blur-2xl p-5 sm:p-6 shadow-2xl shadow-black/40 overflow-hidden mx-2 sm:mx-0 box-border">
 
         <div
-            class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#0EB3B9]/60 to-transparent">
+            class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#02B8BC]/60 to-transparent">
         </div>
-        <div class="absolute -top-16 -right-16 w-40 h-40 bg-[#0EB3B9]/[0.03] rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-16 -right-16 w-40 h-40 bg-[#02B8BC]/[0.03] rounded-full blur-3xl pointer-events-none"></div>
         <div
-            class="absolute -bottom-16 -left-16 w-40 h-40 bg-[#0E788D]/[0.03] rounded-full blur-3xl pointer-events-none">
+            class="absolute -bottom-16 -left-16 w-40 h-40 bg-[#037E93]/[0.03] rounded-full blur-3xl pointer-events-none">
         </div>
 
         <div class="relative z-10">
             <div class="flex items-center gap-2 mb-5">
                 <span
-                    class="inline-flex items-center gap-1.5 rounded-full bg-[#0EB3B9]/10 border border-[#0EB3B9]/20 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#0EB3B9] font-mono">
-                    <span class="h-1.5 w-1.5 rounded-full bg-[#0EB3B9] animate-pulse"></span>
+                    class="inline-flex items-center gap-1.5 rounded-full bg-[#02B8BC]/10 border border-[#02B8BC]/20 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.2em] text-[#02B8BC] font-mono">
+                    <span class="h-1.5 w-1.5 rounded-full bg-[#02B8BC] animate-pulse"></span>
                     KORU Core v1.0
                 </span>
             </div>
@@ -27,7 +27,7 @@
 
             @if (session('status'))
                 <div
-                    class="mb-5 rounded-xl border border-[#0EB3B9]/20 bg-[#0EB3B9]/[0.07] p-3 text-xs text-[#0EB3B9] font-medium flex items-start gap-2.5 animate-fade-in">
+                    class="mb-5 rounded-xl border border-[#02B8BC]/20 bg-[#02B8BC]/[0.07] p-3 text-xs text-[#02B8BC] font-medium flex items-start gap-2.5 animate-fade-in">
                     <svg class="h-4 w-4 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -44,7 +44,7 @@
                         address</label>
                     <div class="relative group">
                         <div
-                            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500 transition-colors group-focus-within:text-[#0EB3B9]">
+                            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500 transition-colors group-focus-within:text-[#02B8BC]">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -52,7 +52,7 @@
                             </svg>
                         </div>
                         <input id="email" wire:model="email" type="email" required
-                            class="w-full rounded-lg border border-slate-800/80 bg-slate-950/60 pl-9 pr-3 py-2.5 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600"
+                            class="w-full rounded-lg border border-slate-800/80 bg-slate-950/60 pl-9 pr-3 py-2.5 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#02B8BC] focus:ring-2 focus:ring-[#02B8BC]/10 placeholder:text-slate-600"
                             placeholder="admin@koru.center">
                     </div>
                     @error('email')
@@ -73,7 +73,7 @@
                         password</label>
                     <div class="relative group">
                         <div
-                            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500 transition-colors group-focus-within:text-[#0EB3B9]">
+                            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500 transition-colors group-focus-within:text-[#02B8BC]">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -81,7 +81,7 @@
                             </svg>
                         </div>
                         <input id="password" wire:model="password" type="password" required
-                            class="w-full rounded-lg border border-slate-800/80 bg-slate-950/60 pl-9 pr-3 py-2.5 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600"
+                            class="w-full rounded-lg border border-slate-800/80 bg-slate-950/60 pl-9 pr-3 py-2.5 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#02B8BC] focus:ring-2 focus:ring-[#02B8BC]/10 placeholder:text-slate-600"
                             placeholder="Min 8 chars, upper, lower, number & symbol">
                     </div>
 
@@ -195,7 +195,7 @@
                         password</label>
                     <div class="relative group">
                         <div
-                            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500 transition-colors group-focus-within:text-[#0EB3B9]">
+                            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500 transition-colors group-focus-within:text-[#02B8BC]">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -203,7 +203,7 @@
                             </svg>
                         </div>
                         <input id="password_confirmation" wire:model="password_confirmation" type="password" required
-                            class="w-full rounded-lg border border-slate-800/80 bg-slate-950/60 pl-9 pr-3 py-2.5 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#0EB3B9] focus:ring-2 focus:ring-[#0EB3B9]/10 placeholder:text-slate-600"
+                            class="w-full rounded-lg border border-slate-800/80 bg-slate-950/60 pl-9 pr-3 py-2.5 text-sm text-slate-200 outline-none transition-all duration-200 shadow-inner focus:border-[#02B8BC] focus:ring-2 focus:ring-[#02B8BC]/10 placeholder:text-slate-600"
                             placeholder="••••••••">
                     </div>
                     @error('password_confirmation')
@@ -220,7 +220,7 @@
 
                 <div class="pt-1">
                     <button type="submit" wire:loading.attr="disabled"
-                        class="group relative w-full h-[40px] inline-flex items-center justify-center rounded-lg bg-[#0EB3B9] px-4 text-sm font-semibold text-white shadow-md shadow-[#0EB3B9]/10 transition-all duration-200 hover:bg-[#0E788D] hover:shadow-[#0EB3B9]/20 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[#0EB3B9] focus:ring-offset-2 focus:ring-offset-slate-900 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100">
+                        class="group relative w-full h-[40px] inline-flex items-center justify-center rounded-lg bg-[#02B8BC] px-4 text-sm font-semibold text-white shadow-md shadow-[#02B8BC]/10 transition-all duration-200 hover:bg-[#037E93] hover:shadow-[#02B8BC]/20 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[#02B8BC] focus:ring-offset-2 focus:ring-offset-slate-900 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100">
 
                         <span wire:loading.remove wire:target="resetPassword"
                             class="flex items-center justify-center gap-1.5">
@@ -251,7 +251,7 @@
 
             <div class="mt-5 pt-4 border-t border-slate-800/50 flex items-center justify-center">
                 <a href="{{ route('admin.login') }}"
-                    class="inline-flex items-center gap-1.5 text-[11px] text-slate-400 hover:text-[#0EB3B9] transition-colors font-medium">
+                    class="inline-flex items-center gap-1.5 text-[11px] text-slate-400 hover:text-[#02B8BC] transition-colors font-medium">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                     </svg>

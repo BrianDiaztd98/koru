@@ -5,7 +5,7 @@
         </a>
         <button @click="sidebarOpen = false"
                 type="button"
-                class="inline-flex items-center justify-center rounded-xl border border-slate-800 bg-slate-950/60 p-2 text-slate-400 hover:text-white hover:border-[#0EB3B9]/40 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
+                class="inline-flex items-center justify-center rounded-xl border border-slate-800 bg-slate-950/60 p-2 text-slate-400 hover:text-white hover:border-[#02B8BC]/40 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
                 aria-label="Close menu">
             <span class="sr-only">Close menu</span>
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -20,7 +20,7 @@
 
     <div class="flex-1 overflow-y-auto koru-scrollbar px-1 space-y-6">
         <div>
-            <h3 class="text-xs font-bold uppercase tracking-widest text-[#0EB3B9] font-mono pb-2.5 border-b border-slate-800/50">
+            <h3 class="text-xs font-bold uppercase tracking-widest text-[#02B8BC] font-mono pb-2.5 border-b border-slate-800/50">
                 Core Sections
             </h3>
 
@@ -38,7 +38,7 @@
 
                 <!-- ENLACE RAÍZ: Inicio -->
                 <a href="{{ route('admin.management.index') }}"
-                   class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.management.index') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                   class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.management.index') ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
                    aria-current="{{ request()->routeIs('admin.management.index') ? 'true' : 'false' }}">
                     <span class="flex items-center gap-2.5">
                         <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -46,23 +46,23 @@
                         </svg>
                         Home
                     </span>
-                    <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.management.index') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                    <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.management.index') ? 'bg-[#02B8BC] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                 </a>
 
                 <!-- DROPDOWN 1: OFERTA COMERCIAL -->
                 <div class="group">
                     <button type="button"
                             @click="comercialOpen = !comercialOpen"
-                            class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ (request()->routeIs('admin.services.*') || request()->routeIs('admin.packages.*') || request()->routeIs('admin.discounts.*')) ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                            class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ (request()->routeIs('admin.services.*') || request()->routeIs('admin.packages.*') || request()->routeIs('admin.discounts.*')) ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
                             aria-expanded="{{ request()->routeIs('admin.services.*') || request()->routeIs('admin.packages.*') || request()->routeIs('admin.discounts.*') ? 'true' : 'false' }}"
                             aria-controls="comercial-submenu">
                         <span class="flex items-center gap-2.5">
-                            <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110 text-[#0EB3B9]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110 text-[#02B8BC]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                             </svg>
                             Commercial Offer
                         </span>
-                        <svg class="w-4 h-4 shrink-0 text-slate-500 transition-transform duration-300 ease-out" :class="{ 'rotate-180 text-[#0EB3B9]': comercialOpen }" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 shrink-0 text-slate-500 transition-transform duration-300 ease-out" :class="{ 'rotate-180 text-[#02B8BC]': comercialOpen }" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
@@ -70,7 +70,7 @@
                     <div id="comercial-submenu" x-show="comercialOpen" x-collapse x-cloak class="border-l border-slate-800/60 ml-5 mt-1 space-y-1">
                         <!-- Services -->
                         <a href="{{ route('admin.services.index') }}"
-                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.services.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.services.*') ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
                            aria-current="{{ request()->routeIs('admin.services.*') ? 'true' : 'false' }}">
                             <span class="flex items-center gap-2">
                                 <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -78,12 +78,12 @@
                                 </svg>
                                 Services
                             </span>
-                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.services.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.services.*') ? 'bg-[#02B8BC] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                         </a>
 
                         <!-- Packages -->
                         <a href="{{ route('admin.packages.index') }}"
-                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.packages.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.packages.*') ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
                            aria-current="{{ request()->routeIs('admin.packages.*') ? 'true' : 'false' }}">
                             <span class="flex items-center gap-2">
                                 <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -93,12 +93,12 @@
                                 </svg>
                                 Packages
                             </span>
-                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.packages.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.packages.*') ? 'bg-[#02B8BC] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                         </a>
 
                         <!-- Deposits -->
                         <a href="{{ route('admin.discounts.index') }}"
-                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.discounts.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.discounts.*') ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
                            aria-current="{{ request()->routeIs('admin.discounts.*') ? 'true' : 'false' }}">
                             <span class="flex items-center gap-2">
                                 <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -107,7 +107,7 @@
                                 </svg>
                                 Deposits
                             </span>
-                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.discounts.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.discounts.*') ? 'bg-[#02B8BC] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                         </a>
                     </div>
                 </div>
@@ -116,16 +116,16 @@
                 <div class="group">
                     <button type="button"
                             @click="contenidoOpen = !contenidoOpen"
-                            class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $isContentRoute ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                            class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $isContentRoute ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
                             aria-expanded="{{ $isContentRoute ? 'true' : 'false' }}"
                             aria-controls="contenido-submenu">
                         <span class="flex items-center gap-2.5">
-                            <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110 text-[#0EB3B9]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110 text-[#02B8BC]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17a.75.75 0 01-.75-.75v-4.5a.75.75 0 011.5 0v4.5A.75.75 0 017 17z" />
                             </svg>
                             Identity & Content
                         </span>
-                        <svg class="w-4 h-4 shrink-0 text-slate-500 transition-transform duration-300 ease-out" :class="{ 'rotate-180 text-[#0EB3B9]': contenidoOpen }" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 shrink-0 text-slate-500 transition-transform duration-300 ease-out" :class="{ 'rotate-180 text-[#02B8BC]': contenidoOpen }" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
@@ -133,7 +133,7 @@
                     <div id="contenido-submenu" x-show="contenidoOpen" x-collapse x-cloak class="border-l border-slate-800/60 ml-5 mt-1 space-y-1">
                         <!-- Hero Carousel -->
                         <a href="{{ route('admin.hero-carousel.index') }}"
-                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.hero-carousel.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.hero-carousel.*') ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
                            aria-current="{{ request()->routeIs('admin.hero-carousel.*') ? 'true' : 'false' }}">
                             <span class="flex items-center gap-2">
                                 <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -141,12 +141,12 @@
                                 </svg>
                                 Hero Carousel
                             </span>
-                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.hero-carousel.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.hero-carousel.*') ? 'bg-[#02B8BC] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                         </a>
 
                         <!-- About Section -->
                         <a href="{{ route('admin.about.index') }}"
-                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.about.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.about.*') ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
                            aria-current="{{ request()->routeIs('admin.about.*') ? 'true' : 'false' }}">
                             <span class="flex items-center gap-2">
                                 <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -154,12 +154,12 @@
                                 </svg>
                                 About Section
                             </span>
-                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.about.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.about.*') ? 'bg-[#02B8BC] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                         </a>
 
                         <!-- Team -->
                         <a href="{{ route('admin.team.index') }}"
-                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.team.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.team.*') ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
                            aria-current="{{ request()->routeIs('admin.team.*') ? 'true' : 'false' }}">
                             <span class="flex items-center gap-2">
                                 <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -167,12 +167,12 @@
                                 </svg>
                                 Team
                             </span>
-                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.team.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.team.*') ? 'bg-[#02B8BC] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                         </a>
 
                         <!-- Client Outcomes -->
                         <a href="{{ route('admin.client-outcomes.index') }}"
-                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.client-outcomes.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.client-outcomes.*') ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
                            aria-current="{{ request()->routeIs('admin.client-outcomes.*') ? 'true' : 'false' }}">
                             <span class="flex items-center gap-2">
                                 <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -180,12 +180,12 @@
                                 </svg>
                                 Client Outcomes
                             </span>
-                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.client-outcomes.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.client-outcomes.*') ? 'bg-[#02B8BC] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                         </a>
 
                         <!-- Google Reviews -->
                         <a href="{{ route('admin.google-reviews.index') }}"
-                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.google-reviews.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.google-reviews.*') ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
                            aria-current="{{ request()->routeIs('admin.google-reviews.*') ? 'true' : 'false' }}">
                             <span class="flex items-center gap-2">
                                 <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -193,12 +193,12 @@
                                 </svg>
                                 Google Reviews
                             </span>
-                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.google-reviews.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.google-reviews.*') ? 'bg-[#02B8BC] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                         </a>
 
                         <!-- CE Courses -->
                         <a href="{{ route('admin.education.index') }}"
-                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.education.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.education.*') ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
                            aria-current="{{ request()->routeIs('admin.education.*') ? 'true' : 'false' }}">
                             <span class="flex items-center gap-2">
                                 <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -206,7 +206,7 @@
                                 </svg>
                                 CE Courses
                             </span>
-                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.education.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.education.*') ? 'bg-[#02B8BC] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                         </a>
                     </div>
                 </div>
@@ -215,16 +215,16 @@
                 <div class="group">
                     <button type="button"
                             @click="adminOpen = !adminOpen"
-                            class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $isAdministrationRoute ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                            class="sidebar-link group relative w-full text-left px-3.5 py-2.5 rounded-xl font-medium text-sm flex items-center justify-between border transition-all duration-300 ease-out {{ $isAdministrationRoute ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/40 hover:translate-x-1' }}"
                             aria-expanded="{{ $isAdministrationRoute ? 'true' : 'false' }}"
                             aria-controls="admin-submenu">
                         <span class="flex items-center gap-2.5">
-                            <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110 text-[#0EB3B9]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <svg class="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:scale-110 text-[#02B8BC]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                             </svg>
                             Administration
                         </span>
-                        <svg class="w-4 h-4 shrink-0 text-slate-500 transition-transform duration-300 ease-out" :class="{ 'rotate-180 text-[#0EB3B9]': adminOpen }" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 shrink-0 text-slate-500 transition-transform duration-300 ease-out" :class="{ 'rotate-180 text-[#02B8BC]': adminOpen }" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
@@ -232,7 +232,7 @@
                     <div id="admin-submenu" x-show="adminOpen" x-collapse x-cloak class="border-l border-slate-800/60 ml-5 mt-1 space-y-1">
                         <!-- User Management -->
                         <a href="{{ route('admin.users.index') }}"
-                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.users.*') ? 'border-[#0EB3B9]/30 bg-[#0EB3B9]/10 text-[#0EB3B9] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
+                           class="sidebar-link group relative w-full text-left px-3.5 py-2 rounded-xl font-medium text-xs flex items-center justify-between border transition-all duration-300 ease-out {{ request()->routeIs('admin.users.*') ? 'border-[#02B8BC]/30 bg-[#02B8BC]/10 text-[#02B8BC] font-semibold translate-x-1' : 'border-slate-900/0 bg-transparent text-slate-500 hover:text-slate-300 hover:bg-slate-900/40 hover:translate-x-1' }}"
                            aria-current="{{ request()->routeIs('admin.users.*') ? 'true' : 'false' }}">
                             <span class="flex items-center gap-2">
                                 <svg class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -240,7 +240,7 @@
                                 </svg>
                                 User Management
                             </span>
-                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.users.*') ? 'bg-[#0EB3B9] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
+                            <span class="w-1.5 h-1.5 rounded-full transition-all duration-300 {{ request()->routeIs('admin.users.*') ? 'bg-[#02B8BC] scale-100' : 'bg-slate-600 scale-0 group-hover:scale-100' }}"></span>
                         </a>
                     </div>
                 </div>
@@ -251,7 +251,7 @@
 
     <div class="mt-auto pt-6 border-t border-slate-800/50 shrink-0 space-y-3 px-1">
         <div class="flex items-center gap-3 px-1">
-            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-[#0EB3B9]/10 text-[#0EB3B9]">
+            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-[#02B8BC]/10 text-[#02B8BC]">
                 <span class="text-xs font-bold">{{ substr(auth()->user()->name, 0, 1) }}</span>
             </div>
             <div class="flex flex-col">

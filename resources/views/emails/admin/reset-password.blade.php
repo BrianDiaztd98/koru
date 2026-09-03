@@ -61,7 +61,7 @@
                                         <div class="text-muted" style="color: #6b7280; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;">
                                             Account identifier
                                         </div>
-                                        <div style="color: #0eb3b9; font-size: 15px; font-weight: 600; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;">
+                                        <div style="color: #02B8BC; font-size: 15px; font-weight: 600; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;">
                                             {{ $username }}
                                         </div>
                                     </td>
@@ -78,7 +78,7 @@
                                     <td align="left">
                                         <table border="0" cellpadding="0" cellspacing="0">
                                             <tr>
-                                                <td align="center" bgcolor="#0eb3b9" style="border-radius: 6px;">
+                                                <td align="center" bgcolor="#02B8BC" style="border-radius: 6px;">
                                                     <a href="{{ $resetUrl }}" target="_blank" rel="noopener" style="display: inline-block; padding: 12px 24px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; font-weight: 500; color: #ffffff; text-decoration: none;">
                                                         Set new password
                                                     </a>
@@ -101,7 +101,7 @@
 
                             <p class="text-muted" style="color: #6b7280; font-size: 12px; line-height: 18px; margin: 0 0 24px 0; word-break: break-all;">
                                 If you experience issues with the button, copy and paste this direct link into your browser's address bar:<br />
-                                <a href="{{ $resetUrl }}" style="color: #0eb3b9; text-decoration: none;">{{ $resetUrl }}</a>
+                                <a href="{{ $resetUrl }}" style="color: #02B8BC; text-decoration: none;">{{ $resetUrl }}</a>
                             </p>
 
                             <p class="text-muted" style="color: #6b7280; font-size: 12px; line-height: 18px; margin: 0;">

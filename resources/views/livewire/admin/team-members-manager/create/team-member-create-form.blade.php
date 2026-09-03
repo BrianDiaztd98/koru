@@ -59,12 +59,12 @@
             <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
                 Profile Image <span class="text-slate-500">(Opcional)</span>
             </label>
-            <input type="file" wire:model="image_file" accept="image/jpeg,image/png,image/webp" class="w-full text-sm text-slate-400 file:mr-3 file:rounded-md file:border-0 file:bg-[#0EB3B9]/10 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-[#0EB3B9]" />
+            <input type="file" wire:model="image_file" accept="image/jpeg,image/png,image/webp" class="w-full text-sm text-slate-400 file:mr-3 file:rounded-md file:border-0 file:bg-[#02B8BC]/10 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-[#02B8BC]" />
             <p class="mt-1 text-[11px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
             @error('image_file') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
         <div class="flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
-            <input id="active_status" type="checkbox" wire:model.defer="active_status" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#0EB3B9] focus:ring-[#0EB3B9]" />
+            <input id="active_status" type="checkbox" wire:model.defer="active_status" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#02B8BC] focus:ring-[#02B8BC]" />
             <label for="active_status" class="text-sm text-slate-300">Publish on the landing page</label>
         </div>
 

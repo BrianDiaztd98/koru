@@ -1,9 +1,9 @@
 <section id="testimonials" class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24" wire:lazy.1s>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#037E93]/10 via-slate-900 to-slate-900"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mb-16 text-center" data-sal="fade" data-sal-duration="800" wire:ignore>
-            <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
+            <div class="inline-flex items-center gap-2.5 rounded-md bg-[#02B8BC]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#02B8BC]">
                 Google Reviews
             </div>
             <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -28,10 +28,10 @@
                              data-sal="slide-up"
                              data-sal-delay="{{ 100 + ($loop->index * 100) }}"
                              data-sal-duration="700"
-                             class="group relative flex min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)] scroll-animate" data-speed="0.06">
+                             class="group relative flex min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#02B8BC]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)] scroll-animate" data-speed="0.06">
 
                         <div class="flex-1 flex flex-col">
-                            <div class="mb-6 flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 text-[#0EB3B9] shadow-sm group-hover:bg-[#0EB3B9]/10 group-hover:border-[#0EB3B9]/30 transition-all duration-300">
+                            <div class="mb-6 flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 text-[#02B8BC] shadow-sm group-hover:bg-[#02B8BC]/10 group-hover:border-[#02B8BC]/30 transition-all duration-300">
                                 @if(!empty($testimonial['image_path']))
                                     <img src="{{ $testimonial['image_path'] }}" alt="{{ $testimonial['title'] }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
                                 @elseif(($testimonial['category'] ?? '') === 'lounge')
@@ -50,11 +50,11 @@
                                 @endif
                             </div>
 
-                            <h3 class="text-xl font-bold text-white tracking-tight group-hover:text-[#0EB3B9] transition-colors duration-200">
+                            <h3 class="text-xl font-bold text-white tracking-tight group-hover:text-[#02B8BC] transition-colors duration-200">
                                 {{ $testimonial['title'] }}
                             </h3>
                             @if(!empty($testimonial['author_role']))
-                                <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-[#0EB3B9]">
+                                <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-[#02B8BC]">
                                     {{ $testimonial['author_role'] }}
                                 </p>
                             @endif
@@ -79,7 +79,7 @@
                         @class([
                             'inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/70 px-4 py-2 text-sm font-semibold text-slate-300 transition',
                             'opacity-50 cursor-not-allowed' => $page === 1,
-                            'hover:border-[#0EB3B9] hover:text-white' => $page > 1,
+                            'hover:border-[#02B8BC] hover:text-white' => $page > 1,
                         ])
                         @disabled($page === 1)>
                     <span aria-hidden="true">←</span>
@@ -90,7 +90,7 @@
                     @for($i = 1; $i <= $totalPages; $i++)
                         <button type="button"
                                 wire:click="setPage({{ $i }})"
-                                class="flex h-9 w-9 items-center justify-center rounded-full border transition {{ $page === $i ? 'border-[#0EB3B9] bg-[#0EB3B9]/15 text-[#0EB3B9]' : 'border-slate-700 bg-slate-950/70 text-slate-400 hover:border-[#0EB3B9] hover:text-white' }}">
+                                class="flex h-9 w-9 items-center justify-center rounded-full border transition {{ $page === $i ? 'border-[#02B8BC] bg-[#02B8BC]/15 text-[#02B8BC]' : 'border-slate-700 bg-slate-950/70 text-slate-400 hover:border-[#02B8BC] hover:text-white' }}">
                             {{ $i }}
                         </button>
                     @endfor
@@ -101,7 +101,7 @@
                         @class([
                             'inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/70 px-4 py-2 text-sm font-semibold text-slate-300 transition',
                             'opacity-50 cursor-not-allowed' => $page === $totalPages,
-                            'hover:border-[#0EB3B9] hover:text-white' => $page < $totalPages,
+                            'hover:border-[#02B8BC] hover:text-white' => $page < $totalPages,
                         ])
                         @disabled($page === $totalPages)>
                     <span class="mr-2">Next</span>

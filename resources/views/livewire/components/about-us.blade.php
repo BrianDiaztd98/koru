@@ -2,7 +2,7 @@
 <section id="about-us" class="relative pt-20 pb-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24">
     <!-- Luces ambientales de fondo clínicas con gradiente ascendente inverso idéntico al sitio -->
     <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900">
+        class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#037E93]/10 via-slate-900 to-slate-900">
     </div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -11,7 +11,7 @@
             <div
                 class="rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10">
                 <div
-                    class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
+                    class="inline-flex items-center gap-2.5 rounded-md bg-[#02B8BC]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#02B8BC]">
                     {{ $aboutData['title'] ?? 'About KORU' }}
                 </div>
                 <h2 class="mt-6 text-xl font-semibold text-white">
@@ -26,7 +26,7 @@
             <div class="mb-12 text-center" data-sal="fade" data-sal-duration="800" data-sal-delay="0"
                 data-sal-easing="ease-out-cubic">
                 <div
-                    class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
+                    class="inline-flex items-center gap-2.5 rounded-md bg-[#02B8BC]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#02B8BC]">
                     {{ $aboutData['title'] ?? 'About KORU' }}
                 </div>
                 <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -35,7 +35,7 @@
                 <p class="mt-4 max-w-2xl mx-auto text-sm leading-relaxed text-slate-400 text-justify">
                     {{ $aboutData['description'] ?? 'Discover the philosophy and technical framework behind our specialized wellness and learning ecosystem.' }}
                 </p>
-                <p class="mt-6 text-sm font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">
+                <p class="mt-6 text-sm font-bold uppercase tracking-[0.24em] text-[#02B8BC]">
                     PAIN FREE, BETTER LIFE.
                 </p>
             </div>
@@ -64,7 +64,7 @@
                     </p>
 
                     <div class="border-t border-slate-800/80 pt-6" wire:key="about-koru-at-a-glance">
-                        <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0EB3B9]">KORU at a glance</p>
+                        <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#02B8BC]">KORU at a glance</p>
                         <div class="mt-4 grid gap-x-6 gap-y-5 sm:grid-cols-2">
                             @php
                                 $glanceItems = $aboutData['glance_items'] ?? [];
@@ -81,7 +81,7 @@
                             @endphp
 
                             @foreach($glanceItems as $item)
-                                <article class="border-l border-[#0EB3B9]/50 pl-3">
+                                <article class="border-l border-[#02B8BC]/50 pl-3">
                                     <h4 class="text-xs font-bold uppercase tracking-wider text-white">{{ $item['title'] }}</h4>
                                     <p class="mt-1.5 text-xs leading-relaxed text-slate-400 text-justify">{{ $item['description'] }}</p>
                                 </article>
@@ -96,26 +96,26 @@
                     data-sal-easing="ease-out-cubic">
                     <!-- Efecto Glow Destello Detrás del Mosaico -->
                     <div
-                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#0E788D]/15 blur-[100px] rounded-full -z-10">
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#037E93]/15 blur-[100px] rounded-full -z-10">
                     </div>
 
                     <div class="grid grid-cols-2 gap-4" wire:key="about-gallery-grid">
-                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
+                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#02B8BC]/30">
                             <img class="object-cover w-full h-40 sm:h-52 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
                                  src="{{ $aboutData['image_1'] ?? asset('img/about/therapy.webp') }}"
                                  alt="KORU Center interior" width="400" height="280" decoding="async">
                         </div>
-                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
+                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#02B8BC]/30">
                             <img class="object-cover w-full h-40 sm:h-52 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
                                  src="{{ $aboutData['image_2'] ?? asset('img/about/massage.webp') }}"
                                  alt="Treatment room" width="400" height="280" decoding="async">
                         </div>
-                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
+                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#02B8BC]/30">
                             <img class="object-cover w-full h-40 sm:h-52 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
                                  src="{{ $aboutData['image_3'] ?? asset('img/about/team.webp') }}"
                                  alt="Our team" width="400" height="280" decoding="async">
                         </div>
-                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#0EB3B9]/30">
+                        <div class="group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-950/40 p-1.5 backdrop-blur-sm transition-all duration-300 hover:border-[#02B8BC]/30">
                             <img class="object-cover w-full h-40 sm:h-52 rounded-xl transition-all duration-500 scale-100 group-hover:scale-105"
                                  src="{{ $aboutData['image_4'] ?? asset('img/services/relaxingMen.webp') }}"
                                  alt="Clinical massage therapy" width="400" height="280" decoding="async">

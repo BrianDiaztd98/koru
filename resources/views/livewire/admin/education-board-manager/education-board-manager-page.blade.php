@@ -1,6 +1,6 @@
 <div class="lg:col-span-3 space-y-6">
     <div class="mb-6">
-        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">CE Courses</p>
+        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#02B8BC]">CE Courses</p>
         <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">CE Courses</h1>
         <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Manage educational offerings and enrollment activity.</p>
     </div>
@@ -91,7 +91,7 @@
                     <span class="text-sm text-slate-300">Published on landing page</span>
                     <label class="inline-flex items-center cursor-pointer">
                         <input type="checkbox" wire:model.defer="active_status" class="sr-only peer">
-                        <span class="relative h-6 w-11 rounded-full bg-slate-700 transition peer-checked:bg-[#0EB3B9]">
+                        <span class="relative h-6 w-11 rounded-full bg-slate-700 transition peer-checked:bg-[#02B8BC]">
                             <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition peer-checked:translate-x-5"></span>
                         </span>
                     </label>
@@ -133,7 +133,7 @@
                                 <p class="font-semibold text-white">{{ $enrollment->full_name }}</p>
                                 <p class="text-xs text-slate-400">{{ $enrollment->course?->title_en ?? 'Course deleted' }}</p>
                             </div>
-                            <span class="inline-flex rounded-full bg-[#0EB3B9]/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#0EB3B9]">{{ $enrollment->status }}</span>
+                            <span class="inline-flex rounded-full bg-[#02B8BC]/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-[#02B8BC]">{{ $enrollment->status }}</span>
                         </div>
                         <div class="mt-3 grid gap-2 text-sm text-slate-300 md:grid-cols-3">
                             <span>{{ $enrollment->email }}</span>

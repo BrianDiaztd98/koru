@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 @import 'tailwindcss';
 @import 'sal.js/dist/sal.css';
 
@@ -7,16 +8,21 @@
 @source '../../resources/js';
 
 @theme {
-    --font-sans: 'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
 
-    --color-navy: #0E788D;
-    --color-mint: #0EB3B9;
+    --color-teal: #037e93;
+    --color-aqua: #02b8bc;
+    --color-cool-gray: #e2e4e7;
+    --color-grafito: #404647;
+    --color-ink: #252a2c;
+    --color-paper: #f8f9fa;
 }
 
 @layer base {
     body {
-        @apply bg-[#0b1329] text-slate-100 font-sans antialiased overflow-x-hidden min-h-screen;
+        @apply bg-cool-gray text-grafito font-sans antialiased overflow-x-hidden min-h-screen;
+        font-feature-settings: 'kern' 1, 'liga' 1;
     }
 
     [x-cloak] {
@@ -28,14 +34,14 @@
         width: 6px;
     }
     html::-webkit-scrollbar-track {
-        background: #0b1329;
+        background: var(--color-cool-gray);
     }
     html::-webkit-scrollbar-thumb {
-        background: #1e293b; /* slate-800 */
+        background: var(--color-teal);
         border-radius: 9999px;
     }
     html:hover::-webkit-scrollbar-thumb {
-        background: rgba(14, 179, 185, 0.3); /* Mint con opacidad */
+        background: var(--color-aqua);
     }
 }
 
@@ -71,7 +77,7 @@
 
     .carousel-indicator.active {
         transform: scale(1.45);
-        background-color: var(--color-mint, #0EB3B9);
+        background-color: var(--color-aqua, #02B8BC);
     }
 
     /* Card hover effects with professional timing */
@@ -93,7 +99,7 @@
     }
 
     .section-tag {
-        @apply inline-flex items-center rounded-full bg-mint/10 text-mint px-3 py-1 text-xs uppercase tracking-[0.35em] font-semibold;
+        @apply inline-flex items-center rounded-full bg-aqua/10 text-aqua px-3 py-1 text-xs uppercase tracking-[0.35em] font-semibold;
     }
 
     .section-divider {

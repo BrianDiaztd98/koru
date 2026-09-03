@@ -44,13 +44,13 @@
                             <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pt-20">
                                 <div class="max-w-2xl w-full scroll-animate" data-speed="0.12" data-sal="slide-up" data-sal-duration="1000" data-sal-easing="ease-out-bounce">
 
-                                    <span class="inline-flex items-center rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9] mb-6 font-mono">
+                                    <span class="inline-flex items-center rounded-md bg-[#02B8BC]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#02B8BC] mb-6 font-mono">
                                         {{ $slide['badge'] }}
                                     </span>
 
                                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6">
                                         <span class="block text-white">{{ $slide['title_line_1'] }}</span>
-                                        <span class="block text-[#0EB3B9] mt-2">{{ $slide['title_line_2'] }}</span>
+                                        <span class="block text-[#02B8BC] mt-2">{{ $slide['title_line_2'] }}</span>
                                     </h1>
 
                                     <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-10 max-w-lg">
@@ -58,7 +58,7 @@
                                     </p>
 
                                     <div class="flex flex-wrap gap-4">
-                                        <a href="{{ $slide['btn_primary_url'] }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3.5 bg-[#0EB3B9] text-white font-bold text-sm rounded-xl hover:bg-[#0E788D] transition-all duration-200 shadow-lg shadow-[#0EB3B9]/20 active:scale-[0.98]">
+                                        <a href="{{ $slide['btn_primary_url'] }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3.5 bg-[#02B8BC] text-white font-bold text-sm rounded-xl hover:bg-[#037E93] transition-all duration-200 shadow-lg shadow-[#02B8BC]/20 active:scale-[0.98]">
                                             {{ $slide['btn_primary_text'] }}
                                         </a>
                                         @if(isset($slide['btn_secondary_text']))
@@ -80,7 +80,7 @@
             <!-- FLECHAS DE NAVEGACIÓN -->
             <button @click="prev()"
                     type="button"
-                    class="absolute left-4 top-1/2 translate-x-1/2 z-20 hidden sm:flex items-center justify-center w-11 h-11 rounded-xl bg-slate-900/40 backdrop-blur-md border border-slate-800 text-slate-400 hover:bg-[#0EB3B9] hover:border-[#0EB3B9] hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
+                    class="absolute left-4 top-1/2 translate-x-1/2 z-20 hidden sm:flex items-center justify-center w-11 h-11 rounded-xl bg-slate-900/40 backdrop-blur-md border border-slate-800 text-slate-400 hover:bg-[#02B8BC] hover:border-[#02B8BC] hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
                     aria-label="Previous slide">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
@@ -89,7 +89,7 @@
 
             <button @click="next()"
                     type="button"
-                    class="absolute right-4 top-1/2 -translate-x-1/2 z-20 hidden sm:flex items-center justify-center w-11 h-11 rounded-xl bg-slate-900/40 backdrop-blur-md border border-slate-800 text-slate-400 hover:bg-[#0EB3B9] hover:border-[#0EB3B9] hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
+                    class="absolute right-4 top-1/2 -translate-x-1/2 z-20 hidden sm:flex items-center justify-center w-11 h-11 rounded-xl bg-slate-900/40 backdrop-blur-md border border-slate-800 text-slate-400 hover:bg-[#02B8BC] hover:border-[#02B8BC] hover:text-white transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
                     aria-label="Next slide">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
@@ -104,8 +104,8 @@
                             role="tab"
                             :id="'hero-slide-tab-' + (i - 1)"
                             :aria-controls="'hero-slide-panel-' + (i - 1)"
-                            class="h-1 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
-                            :class="{ 'bg-[#0EB3B9] w-8': currentSlide === i - 1, 'bg-slate-700 w-3 hover:bg-slate-500': currentSlide !== i - 1 }"
+                            class="h-1 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
+                            :class="{ 'bg-[#02B8BC] w-8': currentSlide === i - 1, 'bg-slate-700 w-3 hover:bg-slate-500': currentSlide !== i - 1 }"
                             :aria-label="'Go to slide ' + i"
                             :aria-selected="currentSlide === i - 1"></button>
                 </template>
@@ -113,7 +113,7 @@
 
             <!-- BARRA DE PROGRESO -->
             <div class="absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 z-20 overflow-hidden" aria-hidden="true">
-                <div class="h-full bg-gradient-to-r from-[#0E788D] to-[#0EB3B9] transition-all duration-1000 ease-linear"
+                <div class="h-full bg-gradient-to-r from-[#037E93] to-[#02B8BC] transition-all duration-1000 ease-linear"
                      :style="`width: ${((currentSlide + 1) / totalSlides) * 100}%`"></div>
             </div>
         </div>
@@ -126,7 +126,7 @@
 
                 <div class="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center pt-20">
                     <div class="max-w-2xl w-full">
-                        <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#0EB3B9]">Hero</p>
+                        <p class="text-sm font-semibold uppercase tracking-[0.24em] text-[#02B8BC]">Hero</p>
                         <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold text-white leading-tight">No hero slides configured</h2>
                         <p class="mt-4 text-base text-slate-300 leading-relaxed">Add slides from the admin panel to display content on the landing page hero.</p>
                     </div>

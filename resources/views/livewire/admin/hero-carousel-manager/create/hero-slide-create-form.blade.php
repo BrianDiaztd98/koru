@@ -102,7 +102,7 @@
 
         <div class="md:col-span-2 flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
             <input id="slide_is_featured" type="checkbox" wire:model.defer="is_featured" 
-                   class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#0EB3B9] focus:ring-[#0EB3B9]" />
+                   class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#02B8BC] focus:ring-[#02B8BC]" />
             <label for="slide_is_featured" class="text-sm text-slate-300">Set as Featured (appears first in carousel)</label>
         </div>
 
@@ -112,7 +112,7 @@
             </label>
             <div class="rounded-xl border border-dashed border-slate-800 bg-slate-950/20 p-4 transition-colors hover:border-slate-700">
                 <input type="file" wire:model="image_path" accept="image/jpeg,image/png,image/webp" 
-                       class="w-full text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-[#0EB3B9]/10 file:px-3 file:py-2 file:text-xs file:font-bold file:uppercase file:tracking-wide file:text-[#0EB3B9] file:hover:bg-[#0EB3B9]/20 file:cursor-pointer font-mono" />
+                       class="w-full text-sm text-slate-500 file:mr-4 file:rounded-lg file:border-0 file:bg-[#02B8BC]/10 file:px-3 file:py-2 file:text-xs file:font-bold file:uppercase file:tracking-wide file:text-[#02B8BC] file:hover:bg-[#02B8BC]/20 file:cursor-pointer font-mono" />
                 <p class="mt-1 text-[11px] text-slate-600">JPG, PNG, WebP • Max 4MB</p>
                 @error('image_path') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
             </div>
@@ -120,7 +120,7 @@
 
         <div class="md:col-span-2 flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
             <input id="slide_is_active" type="checkbox" wire:model.defer="is_active" 
-                   class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#0EB3B9] focus:ring-[#0EB3B9]" />
+                   class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#02B8BC] focus:ring-[#02B8BC]" />
             <label for="slide_is_active" class="text-sm text-slate-300">Set Active Visibility Flag</label>
         </div>
 

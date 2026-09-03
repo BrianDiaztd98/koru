@@ -25,11 +25,11 @@
 
 <!-- 2. Cambiamos la estructura a flex para que si hay poco contenido, el footer o fondo no se corten -->
 <body x-data="{ sidebarOpen: false }"
-    class="min-h-full bg-slate-950 text-slate-100 antialiased selection:bg-[#0EB3B9]/30 selection:text-white relative flex flex-col lg:flex-row">
+    class="min-h-full bg-slate-950 text-slate-100 antialiased selection:bg-[#02B8BC]/30 selection:text-white relative flex flex-col lg:flex-row">
 
     <!-- Luces ambientales de fondo estilo consola clínica -->
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(14,179,185,0.06)_0%,_transparent_40%)] pointer-events-none"></div>
-    <div class="absolute top-40 -left-20 w-80 h-80 bg-[#0EB3B9]/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(2,184,188,0.06)_0%,_transparent_40%)] pointer-events-none"></div>
+    <div class="absolute top-40 -left-20 w-80 h-80 bg-[#02B8BC]/5 rounded-full blur-3xl pointer-events-none"></div>
 
     <!-- Overlay (Mobile) -->
     <div x-show="sidebarOpen" x-cloak @click="sidebarOpen = false" class="fixed inset-0 bg-black/60 z-30 lg:hidden">
@@ -48,7 +48,7 @@
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
             <!-- Botón Hamburguesa (Mobile) -->
             <button @click="sidebarOpen = true" type="button"
-                class="lg:hidden inline-flex items-center justify-center rounded-xl border border-slate-800 bg-slate-950/80 p-2.5 text-slate-400 shadow-lg backdrop-blur-md transition-all hover:border-[#0EB3B9]/40 hover:text-white mb-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9]"
+                class="lg:hidden inline-flex items-center justify-center rounded-xl border border-slate-800 bg-slate-950/80 p-2.5 text-slate-400 shadow-lg backdrop-blur-md transition-all hover:border-[#02B8BC]/40 hover:text-white mb-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]"
                 aria-label="Abrir menú" :aria-expanded="sidebarOpen.toString()">
                 <span class="sr-only">Abrir menú</span>
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"

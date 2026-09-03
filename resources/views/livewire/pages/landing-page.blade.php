@@ -1,4 +1,4 @@
-<div class="flex min-h-screen flex-col bg-[#0b1329]" x-data="{ isLoaded: true }">
+<div class="flex min-h-screen flex-col bg-cool-gray" x-data="{ isLoaded: true }">
     @push('head')
         @php
             $firstHero = $this->heroSlides[0]['image'] ?? null;

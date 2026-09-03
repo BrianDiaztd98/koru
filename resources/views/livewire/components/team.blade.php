@@ -1,12 +1,12 @@
 <section id="team" class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24" wire:lazy.1s>
     <!-- Luces ambientales de fondo clínicas -->
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_var(--tw-gradient-stops))] from-[#0E788D]/15 via-slate-900 to-slate-900"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_var(--tw-gradient-stops))] from-[#037E93]/15 via-slate-900 to-slate-900"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <!-- Cabecera de la Sección (Aislada para AOS con wire:ignore) -->
         <div class="text-center mb-16" data-sal="fade" data-sal-duration="800" wire:ignore>
-            <div class="inline-flex items-center justify-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
+            <div class="inline-flex items-center justify-center gap-2.5 rounded-md bg-[#02B8BC]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#02B8BC]">
                 Team
             </div>
             <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4">
@@ -30,7 +30,7 @@
             @foreach($teamMembers as $member)
                 <div wire:key="team-member-desktop-{{ $member['id'] ?? $loop->index }}"
                      x-data="{ expanded: false }" 
-                     class="group scroll-animate flex flex-col h-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" data-speed="0.06" 
+                     class="group scroll-animate flex flex-col h-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#02B8BC]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" data-speed="0.06" 
                      data-sal="slide-up" 
                      data-sal-delay="{{ 100 + ($loop->index * 100) }}" 
                      data-sal-duration="700">
@@ -43,11 +43,11 @@
                     
                     <!-- Cuerpo de la Tarjeta con Distribución Vertical Fluida -->
                     <div class="flex flex-col flex-grow p-6">
-                        <h3 class="text-lg font-bold text-white tracking-tight group-hover:text-[#0EB3B9] transition-colors duration-200">
+                        <h3 class="text-lg font-bold text-white tracking-tight group-hover:text-[#02B8BC] transition-colors duration-200">
                             {{ $member['name'] }}
                         </h3>
                         
-                        <p class="text-[10px] uppercase tracking-widest font-bold text-[#0EB3B9]/90 mt-0.5 mb-4 font-mono">
+                        <p class="text-[10px] uppercase tracking-widest font-bold text-[#02B8BC]/90 mt-0.5 mb-4 font-mono">
                             {{ $member['instagram'] ? '@' . ltrim($member['instagram'], '@') : 'Clinical Staff' }}
                         </p>
                         
@@ -62,7 +62,7 @@
                                         x-show="$refs['teamDesc' + {{ $loop->index }}].scrollHeight > 60" 
                                         x-cloak
                                         type="button"
-                                        class="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] hover:text-[#0E788D] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded"
+                                        class="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#02B8BC] hover:text-[#037E93] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC] rounded"
                                         :aria-expanded="expanded.toString()">
                                     <span x-text="expanded ? 'Show Less' : 'Read More'"></span>
                                     <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">
@@ -79,7 +79,7 @@
                                    target="_blank" 
                                    rel="noopener noreferrer" 
                                    aria-label="View {{ $member['name'] }} on Instagram"
-                                   class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-2.5 text-xs font-bold text-slate-200 shadow-sm transition-all duration-200 hover:bg-[#0EB3B9] hover:border-[#0EB3B9] hover:text-white hover:shadow-md active:scale-[0.98]">
+                                   class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-2.5 text-xs font-bold text-slate-200 shadow-sm transition-all duration-200 hover:bg-[#02B8BC] hover:border-[#02B8BC] hover:text-white hover:shadow-md active:scale-[0.98]">
                                     View Profile
                                 </a>
                             </div>
@@ -115,7 +115,7 @@
                                     {{ $member['name'] }}
                                 </h3>
                                 
-                                <p class="text-[10px] uppercase tracking-widest font-bold text-[#0EB3B9] mt-0.5 mb-3 font-mono">
+                                <p class="text-[10px] uppercase tracking-widest font-bold text-[#02B8BC] mt-0.5 mb-3 font-mono">
                                     {{ $member['instagram'] ? '@' . ltrim($member['instagram'], '@') : 'Clinical Staff' }}
                                 </p>
                                 
@@ -129,7 +129,7 @@
                                                 x-show="$refs['teamDescMob' + {{ $loop->index }}].scrollHeight > 54" 
                                                 x-cloak
                                                 type="button"
-                                                class="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#0EB3B9] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0EB3B9] rounded"
+                                                class="mt-1.5 inline-flex items-center gap-1 text-xs font-bold text-[#02B8BC] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC] rounded"
                                                 :aria-expanded="expanded.toString()">
                                             <span x-text="expanded ? 'Show Less' : 'Read More'"></span>
                                             <svg class="h-3 w-3 transition-transform duration-300" :class="{ 'rotate-180': expanded }" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" aria-hidden="true">

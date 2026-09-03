@@ -6,11 +6,13 @@
 @source '../../resources/js';
 
 @theme {
-    --font-sans: 'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
-    --color-navy: #0E788D;
-    --color-mint: #0EB3B9;
+    --color-teal: #037E93;
+    --color-aqua: #02B8BC;
+    --color-cool-gray: #E2E4E7;
+    --color-grafito: #404647;
 }
 
 @layer base {
@@ -26,7 +28,7 @@
         border-radius: 9999px;
     }
     html:hover::-webkit-scrollbar-thumb {
-        background: rgba(14, 179, 185, 0.3); /* Mint con opacidad */
+        background: rgba(2, 184, 188, 0.3) !important; /* Aqua/30 */
     }
 }
 
@@ -97,7 +99,7 @@
 
     /* Input administrativo */
     .admin-input {
-        @apply w-full rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none transition focus:border-[#0EB3B9];
+        @apply w-full rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none transition focus:border-[#02B8BC];
     }
 
     /* Label administrativo */
@@ -107,12 +109,12 @@
 
     /* Select administrativo */
     .admin-select {
-        @apply w-full rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none transition focus:border-[#0EB3B9];
+        @apply w-full rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-sm text-slate-200 outline-none transition focus:border-[#02B8BC];
     }
 
     /* Botón primario administrativo */
     .admin-btn-primary {
-        @apply inline-flex items-center justify-center rounded-xl bg-[#0EB3B9] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#0EB3B9]/10 transition hover:bg-[#0E788D];
+        @apply inline-flex items-center justify-center rounded-xl bg-[#02B8BC] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-[#02B8BC]/10 transition hover:bg-[#037E93];
     }
 
     /* Botón secundario administrativo */
@@ -122,7 +124,7 @@
 
     /* Botón ghost administrativo */
     .admin-btn-ghost {
-        @apply rounded-lg border border-slate-700 bg-slate-950/70 px-3 py-2 text-xs font-semibold text-slate-300 transition hover:border-[#0EB3B9] hover:text-white;
+        @apply rounded-lg border border-slate-700 bg-slate-950/70 px-3 py-2 text-xs font-semibold text-slate-300 transition hover:border-[#02B8BC] hover:text-white;
     }
 
     /* Botón peligro administrativo */

@@ -1,6 +1,6 @@
 <div class="lg:col-span-3 space-y-6">
     <div class="mb-6">
-        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">Hero Core Manager</p>
+        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#02B8BC]">Hero Core Manager</p>
         <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">Hero Carousel Manager</h1>
         <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Matrix configuration for landing page rotators.</p>
     </div>
@@ -58,8 +58,8 @@
                                             </div>
                                         @endif
                                         <div class="space-y-0.5">
-                                            <p class="font-semibold text-sm text-white tracking-tight group-hover:text-[#0EB3B9] transition-colors">
-                                                {{ $slide->title_line_1 }} <span class="text-[#0EB3B9]/60 font-normal">/</span> {{ $slide->title_line_2 }}
+                                            <p class="font-semibold text-sm text-white tracking-tight group-hover:text-[#02B8BC] transition-colors">
+                                                {{ $slide->title_line_1 }} <span class="text-[#02B8BC]/60 font-normal">/</span> {{ $slide->title_line_2 }}
                                             </p>
                                             <p class="text-xs text-slate-400 line-clamp-1 font-sans leading-relaxed">
                                                 {{ $slide->description }}
@@ -76,7 +76,7 @@
                                         </span>
 
                                         @if ($slide->badge)
-                                            <span class="rounded-md border border-slate-800 bg-slate-900 px-2 py-0.5 font-mono text-[10px] font-semibold text-[#0EB3B9] tracking-tight">
+                                            <span class="rounded-md border border-slate-800 bg-slate-900 px-2 py-0.5 font-mono text-[10px] font-semibold text-[#02B8BC] tracking-tight">
                                                 {{ $slide->badge }}
                                             </span>
                                         @endif
@@ -88,7 +88,7 @@
                                         {{-- Move Up --}}
                                         @if ($index > 0)
                                             <button type="button" wire:click="moveUp({{ $slide->id }})"
-                                                class="admin-btn-ghost p-2 hover:text-[#0EB3B9] cursor-pointer" title="Move up">
+                                                class="admin-btn-ghost p-2 hover:text-[#02B8BC] cursor-pointer" title="Move up">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
                                             </button>
                                         @else
@@ -100,7 +100,7 @@
                                         {{-- Move Down --}}
                                         @if ($index < $slides->count() - 1)
                                             <button type="button" wire:click="moveDown({{ $slide->id }})"
-                                                class="admin-btn-ghost p-2 hover:text-[#0EB3B9] cursor-pointer" title="Move down">
+                                                class="admin-btn-ghost p-2 hover:text-[#02B8BC] cursor-pointer" title="Move down">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V5"></path></svg>
                                             </button>
                                         @else
@@ -119,7 +119,7 @@
 
                                         {{-- Toggle Active --}}
                                         <button type="button" wire:click="toggleActive({{ $slide->id }})"
-                                            class="admin-btn-ghost font-mono text-[11px] hover:text-[#0EB3B9] cursor-pointer">
+                                            class="admin-btn-ghost font-mono text-[11px] hover:text-[#02B8BC] cursor-pointer">
                                             {{ $slide->is_active ? 'Deactivate' : 'Activate' }}
                                         </button>
 

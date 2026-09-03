@@ -1,12 +1,12 @@
 <section id="packages" class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24" wire:lazy.1s>
     <!-- Fondo premium con gradiente radial de enfoque superior -->
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_var(--tw-gradient-stops))] from-[#0E788D]/15 via-slate-900 to-slate-900"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_var(--tw-gradient-stops))] from-[#037E93]/15 via-slate-900 to-slate-900"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <!-- Cabecera Centralizada -->
         <div class="text-center mb-16" data-sal="fade" data-sal-duration="800" wire:ignore>
-            <div class="inline-flex items-center justify-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
+            <div class="inline-flex items-center justify-center gap-2.5 rounded-md bg-[#02B8BC]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#02B8BC]">
                 Packages
             </div>
             <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4">
@@ -30,14 +30,14 @@
             @foreach($packages as $package)
                 <div wire:key="package-card-{{ $package['id'] ?? $loop->index }}"
                      x-data="{ expanded: false }" 
-                     class="group scroll-animate flex flex-col justify-between h-full rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" data-speed="0.06" 
+                     class="group scroll-animate flex flex-col justify-between h-full rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#02B8BC]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" data-speed="0.06" 
                      data-sal="slide-up" 
                      data-sal-delay="{{ 100 + ($loop->index * 100) }}" 
                      data-sal-duration="700">
                     
                     <!-- Contenido Superior de la Tarjeta -->
                     <div class="flex-1 flex flex-col">
-                        <h3 class="text-lg font-bold text-white tracking-tight group-hover:text-[#0EB3B9] transition-colors duration-200">
+                        <h3 class="text-lg font-bold text-white tracking-tight group-hover:text-[#02B8BC] transition-colors duration-200">
                             {{ $package['name'] }}
                         </h3>
                         
@@ -58,7 +58,7 @@
                         
                         <!-- Badges Informativos -->
                         <div class="mt-2.5 flex flex-wrap items-center gap-2">
-                            <span class="inline-flex items-center rounded-md bg-[#0EB3B9]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#0EB3B9]">
+                            <span class="inline-flex items-center rounded-md bg-[#02B8BC]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#02B8BC]">
                                 {{ $package['sessions'] }} Session{{ $package['sessions'] > 1 ? 's' : '' }}
                             </span>
                             @if($package['validity'])
@@ -82,7 +82,7 @@
                                 <a href="{{ $package['whatsapp_url'] ?? 'https://wa.me/17867528054' }}" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-3 text-xs font-bold text-slate-200 shadow-sm transition-all duration-200 hover:bg-[#0EB3B9] hover:border-[#0EB3B9] hover:text-white hover:shadow-md active:scale-[0.98]">
+                           class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-3 text-xs font-bold text-slate-200 shadow-sm transition-all duration-200 hover:bg-[#02B8BC] hover:border-[#02B8BC] hover:text-white hover:shadow-md active:scale-[0.98]">
                             Buy a Package
                         </a>
                     </div>
@@ -94,7 +94,7 @@
         <!-- Contenedor Legal / Políticas de los Paquetes -->
         <div class="mt-12 rounded-3xl border border-slate-800/80 bg-slate-950/30 p-6 sm:p-8 backdrop-blur-sm" data-sal="fade" data-sal-delay="300" data-sal-duration="800" wire:ignore>
             <div class="flex items-center gap-2.5 mb-6 border-b border-slate-800/50 pb-3">
-                <svg class="h-4 w-4 text-[#0EB3B9]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <svg class="h-4 w-4 text-[#02B8BC]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
                 <h3 class="text-sm font-bold uppercase tracking-wider text-white">Package Terms & Policies</h3>
@@ -103,12 +103,12 @@
             <ul class="space-y-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
                 @forelse($terms as $term)
                     <li class="flex items-start gap-3">
-                        <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
+                        <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#02B8BC]"></span>
                         <span>{!! $term['content'] !!}</span>
                     </li>
                 @empty
                     <li class="flex items-start gap-3">
-                        <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#0EB3B9]"></span>
+                        <span class="mt-1.5 flex h-1.5 w-1.5 shrink-0 rounded-full bg-[#02B8BC]"></span>
                         <span class="text-sm leading-relaxed text-slate-400">No package terms available yet.</span>
                     </li>
                 @endforelse

@@ -3,7 +3,7 @@
 <div class="lg:col-span-3 space-y-6">
     <!-- Título de ubicación actual -->
     <div class="mb-6">
-        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#0EB3B9]">Users</p>
+        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#02B8BC]">Users</p>
         <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">User Management</h1>
         <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Manage administrative users. Create, edit, and activate/deactivate accounts.</p>
     </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="text-slate-300">{{ $user->email }}</div>
                         <div>
-                            <span class="inline-flex items-center rounded-full bg-[#0EB3B9]/10 px-2.5 py-0.5 text-xs font-semibold text-[#0EB3B9] border border-[#0EB3B9]/20">
+                            <span class="inline-flex items-center rounded-full bg-[#02B8BC]/10 px-2.5 py-0.5 text-xs font-semibold text-[#02B8BC] border border-[#02B8BC]/20">
                                 {{ ucfirst($user->role) }}
                             </span>
                         </div>

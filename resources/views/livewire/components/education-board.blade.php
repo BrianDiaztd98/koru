@@ -1,14 +1,14 @@
 <!-- CAMBIO: Se cambió py-24 por pt-20 pb-24 para reducir el espacio de transición superior -->
 <section id="education" class="relative pt-20 pb-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24" wire:lazy.1s>
     <!-- Luces ambientales de fondo clínicas con gradiente ascendente inverso -->
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#0E788D]/10 via-slate-900 to-slate-900"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#037E93]/10 via-slate-900 to-slate-900"></div>
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         <!-- Cabecera de la Sección (Protegida con wire:ignore si usas AOS en el sitio) -->
         <!-- CAMBIO: Reducido el mb-16 a mb-12 para compactar el espacio entre el título y las tarjetas -->
         <div class="mb-12 text-center" data-sal="fade" data-sal-duration="800" wire:ignore>
-            <div class="inline-flex items-center gap-2.5 rounded-md bg-[#0EB3B9]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#0EB3B9]">
+            <div class="inline-flex items-center gap-2.5 rounded-md bg-[#02B8BC]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#02B8BC]">
                 Professional CE
             </div>
             <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -34,13 +34,13 @@
                          data-sal="slide-up"
                          data-sal-delay="{{ 100 + ($loop->index * 100) }}"
                          data-sal-duration="700"
-                         class="group scroll-animate flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#0EB3B9]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" data-speed="0.06">
+                         class="group scroll-animate flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#02B8BC]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" data-speed="0.06">
                     
                     <!-- Bloque de Contenido Superior Proporcional -->
                     <div class="flex-1 flex flex-col">
                         <!-- Meta e Información Superior -->
                         <div class="flex items-center justify-between border-b border-slate-800/60 pb-4">
-                            <span class="inline-flex items-center rounded-md bg-[#0EB3B9]/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#0EB3B9]">
+                            <span class="inline-flex items-center rounded-md bg-[#02B8BC]/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#02B8BC]">
                                 CE Credits: {{ $course['ce_credits'] }}
                             </span>
                             <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 font-mono">
@@ -52,7 +52,7 @@
                         </div>
                         
                         <!-- Cuerpo de la Tarjeta -->
-                        <h3 class="mt-5 text-lg font-bold text-white tracking-tight group-hover:text-[#0EB3B9] transition-colors duration-200">
+                        <h3 class="mt-5 text-lg font-bold text-white tracking-tight group-hover:text-[#02B8BC] transition-colors duration-200">
                             {{ $course['title'] }}
                         </h3>
                         
@@ -70,7 +70,7 @@
                             </div>
                             
                                       <a href="#ce-enrollment" 
-                               class="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-2.5 text-xs font-bold text-slate-200 shadow-sm transition-all duration-200 hover:bg-[#0EB3B9] hover:border-[#0EB3B9] hover:text-white hover:shadow-md active:scale-[0.98]">
+                               class="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 border border-slate-800/80 px-4 py-2.5 text-xs font-bold text-slate-200 shadow-sm transition-all duration-200 hover:bg-[#02B8BC] hover:border-[#02B8BC] hover:text-white hover:shadow-md active:scale-[0.98]">
                                   Register on website
                             </a>
                         </div>
