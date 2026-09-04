@@ -17,7 +17,7 @@
             </p>
         </div>
 
-        @if(empty($teamMembers))
+        @if(empty($visibleTeamMembers))
             <div class="rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10">
                 <h3 class="text-xl font-semibold text-white">No team content available yet</h3>
                 <p class="mt-3 max-w-sm mx-auto text-sm leading-relaxed text-slate-400">
@@ -27,7 +27,7 @@
         @else
         <!-- VISTA ESCRITORIO / TABLET: Grid de Especialistas -->
         <div class="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6 py-6" wire:key="team-desktop-grid">
-            @foreach($teamMembers as $member)
+            @foreach($visibleTeamMembers as $member)
                 <div wire:key="team-member-desktop-{{ $member['id'] ?? $loop->index }}"
                      x-data="{ expanded: false }" 
                      class="group scroll-animate flex flex-col h-full overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-[#02B8BC]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)]" data-speed="0.06" 
@@ -93,7 +93,7 @@
         <div class="md:hidden py-4" wire:key="team-mobile-carousel">
             <!-- Contenedor scrollable con eliminación nativa de scrollbars de navegador -->
             <div class="-mx-4 px-4 overflow-x-auto snap-x snap-mandatory flex gap-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-6">
-                @foreach($teamMembers as $member)
+                @foreach($visibleTeamMembers as $member)
                     <div wire:key="team-member-mobile-{{ $member['id'] ?? $loop->index }}" 
                          class="snap-center shrink-0 w-[280px] sm:w-[320px] flex flex-col h-full">
                         
@@ -157,6 +157,48 @@
                 @endforeach
             </div>
         </div>
+        @if($totalPages > 1)
+            <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+                <button type="button"
+                        wire:click="previousPage"
+                        @class([
+                            'inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/70 px-4 py-2 text-sm font-semibold text-slate-300 transition',
+                            'opacity-50 cursor-not-allowed' => $page === 1,
+                            'hover:border-[#02B8BC] hover:text-white' => $page > 1,
+                        ])
+                        @disabled($page === 1)>
+                    <span aria-hidden="true">←</span>
+                    <span class="ml-2">Previous</span>
+                </button>
+
+                <div class="flex items-center gap-2 text-sm text-slate-400">
+                    @for($i = 1; $i <= $totalPages; $i++)
+                        <button type="button"
+                                wire:click="setPage({{ $i }})"
+                                aria-label="Go to team page {{ $i }}"
+                                @class([
+                                    'flex h-9 w-9 items-center justify-center rounded-full border transition',
+                                    'border-[#02B8BC] bg-[#02B8BC]/15 text-[#02B8BC]' => $page === $i,
+                                    'border-slate-700 bg-slate-950/70 text-slate-400 hover:border-[#02B8BC] hover:text-white' => $page !== $i,
+                                ])>
+                            {{ $i }}
+                        </button>
+                    @endfor
+                </div>
+
+                <button type="button"
+                        wire:click="nextPage"
+                        @class([
+                            'inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/70 px-4 py-2 text-sm font-semibold text-slate-300 transition',
+                            'opacity-50 cursor-not-allowed' => $page === $totalPages,
+                            'hover:border-[#02B8BC] hover:text-white' => $page < $totalPages,
+                        ])
+                        @disabled($page === $totalPages)>
+                    <span class="mr-2">Next</span>
+                    <span aria-hidden="true">→</span>
+                </button>
+            </div>
+        @endif
         @endif
 
     </div>

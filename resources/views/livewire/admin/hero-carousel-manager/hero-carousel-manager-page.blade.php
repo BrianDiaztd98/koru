@@ -1,36 +1,32 @@
-<div class="lg:col-span-3 space-y-6">
-    <div class="mb-6">
-        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#02B8BC]">Hero Core Manager</p>
-        <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">Hero Carousel Manager</h1>
-        <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Matrix configuration for landing page rotators.</p>
-    </div>
+<div class="space-y-6">
+    @include('livewire.admin.partials.page-header', [
+        'eyebrow' => 'Identity & Content',
+        'title' => 'Hero Carousel',
+        'description' => 'Matrix configuration for landing page rotators.',
+    ])
 
     @unless ($showForm)
         <div class="admin-card">
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <button type="button" wire:click="openCreateForm"
-                    class="admin-btn-primary font-mono text-xs tracking-wider uppercase cursor-pointer">
+                    class="admin-btn-primary">
                     + Add New Slide
                 </button>
             </div>
 
-            @if (session()->has('success'))
-                <div class="mt-4 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300 font-mono">
-                    [success] {{ session('success') }}
-                </div>
-            @endif
+            @include('livewire.admin.partials.success-alert')
 
-            <div class="mt-6 overflow-hidden rounded-xl border border-slate-900 bg-slate-950/20 backdrop-blur-md">
-                <table class="w-full text-left border-collapse">
+            <div class="admin-table-shell">
+                <table class="admin-table">
                     <thead>
-                        <tr class="border-b border-slate-800/60 bg-slate-950/50 font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                        <tr class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500">
                             <th class="px-4 py-3.5 w-10 text-center">Order</th>
                             <th class="px-4 py-3.5 w-[45%]">Slide Details</th>
                             <th class="px-4 py-3.5 w-[20%]">Status</th>
                             <th class="px-4 py-3.5 w-[25%] text-right">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-900/60">
+                    <tbody>
                         @forelse($slides as $index => $slide)
                             <tr class="group transition-all duration-200 hover:bg-slate-900/30">
                                 <td class="px-4 py-4 align-middle text-center">
@@ -119,19 +115,19 @@
 
                                         {{-- Toggle Active --}}
                                         <button type="button" wire:click="toggleActive({{ $slide->id }})"
-                                            class="admin-btn-ghost font-mono text-[11px] hover:text-[#02B8BC] cursor-pointer">
+                                            class="admin-btn-ghost">
                                             {{ $slide->is_active ? 'Deactivate' : 'Activate' }}
                                         </button>
 
                                         {{-- Edit --}}
                                         <button type="button" wire:click="openEditForm({{ $slide->id }})"
-                                            class="admin-btn-ghost font-mono text-[11px] hover:text-white cursor-pointer">
+                                            class="admin-btn-ghost">
                                             Edit
                                         </button>
 
                                         {{-- Delete --}}
                                         <button type="button" wire:click.prevent="confirmDelete({{ $slide->id }})"
-                                            class="admin-btn-danger font-mono text-[11px] px-2.5 py-1 rounded-lg border border-rose-950/40 bg-rose-950/10 text-rose-400 transition-colors hover:bg-rose-600 hover:text-white cursor-pointer">
+                                            class="admin-btn-danger">
                                             Delete
                                         </button>
                                     </div>
@@ -139,9 +135,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="px-4 py-12 text-center border border-dashed border-slate-900 rounded-b-xl bg-slate-950/10">
-                                    <p class="font-mono text-xs uppercase tracking-widest text-slate-600">emptyDataset // noHeroSlidesFound</p>
-                                </td>
+                                <td colspan="4" class="admin-table-empty">No hero slides found.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -165,7 +159,12 @@
     @endif
 
     @if ($showDeleteModal && $slideToDelete)
-        @include('livewire.admin.hero-carousel-manager.delete.hero-slide-delete-modal')
+        @include('livewire.admin.partials.delete-modal', [
+            'title' => 'Delete slide',
+            'entity' => $slideToDelete->title_line_1,
+            'confirmAction' => 'deleteConfirmed',
+            'cancelAction' => 'closeDeleteModal',
+        ])
     @endif
 </div>
 

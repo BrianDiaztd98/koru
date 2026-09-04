@@ -9,17 +9,7 @@
         this.charCounts[field] = this.$refs[field]?.value?.length || 0;
     }
 }">
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-            <h3 class="text-lg font-semibold text-white">Edit Team Member</h3>
-            <p class="text-sm text-slate-400">Manage team profiles for the landing page.</p>
-        </div>
-        <div class="flex items-center gap-3">
-            <button type="button" wire:click="closeForm" class="admin-btn-secondary">
-                Back
-            </button>
-        </div>
-    </div>
+    @include('livewire.admin.partials.form-header', ['title' => 'Edit Team Member'])
 
     <form wire:submit.prevent="save" class="grid gap-5 md:grid-cols-2 mt-6">
         <div>

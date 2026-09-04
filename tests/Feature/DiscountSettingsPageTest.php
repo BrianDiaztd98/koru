@@ -13,6 +13,15 @@ class DiscountSettingsPageTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Deposits desactivado temporalmente (2026-09): la ruta admin.discounts.index
+        // y el enlace del sidebar están comentados. Eliminar este skip al reactivar.
+        $this->markTestSkipped('Deposits feature temporarily disabled.');
+    }
+
     private function actingAsAdmin(): User
     {
         $user = User::factory()->admin()->create();

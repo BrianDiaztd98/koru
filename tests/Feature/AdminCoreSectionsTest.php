@@ -60,7 +60,7 @@ class AdminCoreSectionsTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Welcome back,');
         $response->assertSee('Core Sections');
-        $response->assertSee('Inicio');
+        $response->assertSee('Home');
         $response->assertSee('About Section');
         $response->assertSee('Services');
         $response->assertSee('Booster Shots');
@@ -76,7 +76,7 @@ class AdminCoreSectionsTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Core Sections');
-        $response->assertSee('Inicio');
+        $response->assertSee('Home');
         $response->assertSee('About Section');
     }
 
@@ -89,7 +89,7 @@ class AdminCoreSectionsTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Core Sections');
-        $response->assertSee('Inicio');
+        $response->assertSee('Home');
         $response->assertSee('About Section');
     }
 
@@ -102,7 +102,7 @@ class AdminCoreSectionsTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Core Sections');
-        $response->assertSee('Inicio');
+        $response->assertSee('Home');
         $response->assertSee('Services');
     }
 
@@ -114,7 +114,7 @@ class AdminCoreSectionsTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Core Sections');
-        $response->assertSee('Inicio');
+        $response->assertSee('Home');
         $response->assertSee('Services');
     }
 
@@ -127,7 +127,7 @@ class AdminCoreSectionsTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Core Sections');
-        $response->assertSee('Inicio');
+        $response->assertSee('Home');
         $response->assertSee('Services');
     }
 

@@ -7,8 +7,8 @@ use App\Livewire\Admin\AboutPageManager\AboutPageManager;
 use App\Livewire\Admin\Auth\ForgotPassword;
 use App\Livewire\Admin\Auth\Login;
 use App\Livewire\Admin\Auth\ResetPassword;
-use App\Livewire\Admin\ClientOutcomeManager\ClientOutcomeManager;
-use App\Livewire\Admin\DepositManager\DepositManager;
+// Deposits (desactivado temporalmente 2026-09): descomentar junto con la ruta discounts más abajo.
+// use App\Livewire\Admin\DepositManager\DepositManager;
 use App\Livewire\Admin\EducationBoardManager\EducationBoardManager;
 use App\Livewire\Admin\GoogleReviewManager\GoogleReviewManager;
 use App\Livewire\Admin\HeroCarouselManager\HeroCarouselManager;
@@ -57,10 +57,6 @@ Route::middleware([AdminAccess::class])->prefix('admin')->name('admin.')->group(
     Route::get('education/create', EducationBoardManager::class)->name('education.create');
     Route::get('education/{course}/edit', EducationBoardManager::class)->name('education.edit');
 
-    Route::get('client-outcomes', ClientOutcomeManager::class)->name('client-outcomes.index');
-    Route::get('client-outcomes/create', ClientOutcomeManager::class)->name('client-outcomes.create');
-    Route::get('client-outcomes/{testimonial}/edit', ClientOutcomeManager::class)->name('client-outcomes.edit');
-
     Route::get('team', TeamMembersManager::class)->name('team.index');
     Route::get('team/create', TeamMembersManager::class)->name('team.create');
     Route::get('team/{teamMember}/edit', TeamMembersManager::class)->name('team.edit');
@@ -71,7 +67,8 @@ Route::middleware([AdminAccess::class])->prefix('admin')->name('admin.')->group(
     Route::get('packages/{package}/edit', PackageManager::class)->name('packages.edit');
 
     // Day-based discount configuration.
-    Route::get('discounts', DepositManager::class)->name('discounts.index');
+    // Deposits desactivado temporalmente (2026-09): descomentar para reactivar.
+    // Route::get('discounts', DepositManager::class)->name('discounts.index');
 
     // Hero carousel management.
     Route::get('hero-carousel', HeroCarouselManager::class)->name('hero-carousel.index');

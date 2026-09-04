@@ -1,27 +1,18 @@
-<?php ?>
-
-<div class="lg:col-span-3 space-y-6">
-    <!-- Título de ubicación actual -->
-    <div class="mb-6">
-        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#02B8BC]">Team</p>
-        <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">Team Management</h1>
-        <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Manage the specialists shown in the Team section.</p>
-    </div>
+<div class="space-y-6">
+    @include('livewire.admin.partials.page-header', [
+        'eyebrow' => 'Identity & Content',
+        'title' => 'Team Management',
+        'description' => 'Manage the specialists shown in the Team section.',
+    ])
 
     <div class="admin-card">
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            @unless($showForm)
-                <button type="button" wire:click="openCreateForm" class="admin-btn-primary">
-                    Add team member
-                </button>
-            @endunless
-        </div>
+        @unless($showForm)
+            <button type="button" wire:click="openCreateForm" class="admin-btn-primary">
+                Add team member
+            </button>
+        @endunless
 
-        @if (session()->has('success'))
-            <div class="mt-4 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">
-                {{ session('success') }}
-            </div>
-        @endif
+        @include('livewire.admin.partials.success-alert')
 
         @unless($showForm)
             <div class="admin-table-shell">
@@ -57,8 +48,13 @@
         @endif
     @endif
 
-    @if ($showDeleteModal)
-        @include('livewire.admin.team-members-manager.delete.team-member-delete-modal')
+    @if ($showDeleteModal && $teamMemberToDelete)
+        @include('livewire.admin.partials.delete-modal', [
+            'title' => 'Delete team member',
+            'entity' => $teamMemberToDelete->name,
+            'confirmAction' => 'deleteConfirmed',
+            'cancelAction' => '$set(\'showDeleteModal\', false)',
+        ])
     @endif
 </div>
 

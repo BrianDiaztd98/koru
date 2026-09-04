@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Livewire\Admin\TeamMembersManager\TeamMembersManager;
+use App\Livewire\Components\Team;
 use App\Models\TeamMember;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -94,5 +95,25 @@ class TeamAdminTest extends TestCase
             ->set('instagram_handle', '@maya.rivera')
             ->call('save')
             ->assertHasNoErrors();
+    }
+
+    public function test_team_showcase_paginates_in_groups_of_four(): void
+    {
+        $teamMembers = collect(range(1, 5))->map(fn (int $index) => [
+            'id' => $index,
+            'name' => 'Specialist '.$index,
+            'instagram' => null,
+            'specialty' => 'Specialty '.$index,
+            'image' => 'image-'.$index.'.jpg',
+        ])->all();
+
+        Livewire::test(Team::class, ['teamMembers' => $teamMembers])
+            ->assertSee('Specialist 1')
+            ->assertSee('Specialist 4')
+            ->assertDontSee('Specialist 5')
+            ->assertSee('Next')
+            ->call('nextPage')
+            ->assertSee('Specialist 5')
+            ->assertDontSee('Specialist 1');
     }
 }

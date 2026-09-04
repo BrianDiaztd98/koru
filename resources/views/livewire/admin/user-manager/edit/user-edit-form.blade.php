@@ -1,15 +1,5 @@
 <div class="admin-form-panel" x-data="passwordStrength()">
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-            <h3 class="text-lg font-semibold text-white">Edit User</h3>
-            <p class="text-sm text-slate-400">Update user account details.</p>
-        </div>
-        <div class="flex items-center gap-3">
-            <button type="button" wire:click="closeForm" class="admin-btn-secondary">
-                Back
-            </button>
-        </div>
-    </div>
+    @include('livewire.admin.partials.form-header', ['title' => 'Edit User'])
 
     <form wire:submit.prevent="save" class="grid gap-5 md:grid-cols-2 mt-6">
         <div>

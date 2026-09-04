@@ -1,11 +1,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<div class="lg:col-span-3 space-y-8 animate-fadeIn text-slate-200">
+<div class="space-y-6 text-slate-200">
 
-    <div class="rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 sm:p-8 shadow-2xl shadow-black/40 relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#02B8BC]/40 to-transparent"></div>
-
-        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between relative z-10">
+    <div class="admin-card">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
                 <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#02B8BC]">Management Dashboard</p>
                 <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">
@@ -29,7 +27,7 @@
                     </svg>
                     Services
                 </a>
-                <a href="{{ route('admin.services.create') }}" class="group flex items-center justify-center rounded-xl border border-slate-800/80 bg-[#02B8BC] px-5 py-3.5 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-lg shadow-[#02B8BC]/10 transition-all duration-200 hover:bg-[#037E93] hover:shadow-[#037E93]/20 active:scale-[0.98]">
+                <a href="{{ route('admin.services.create') }}" class="admin-btn-primary font-mono text-xs uppercase tracking-wider px-5 py-3.5">
                     <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
@@ -40,20 +38,20 @@
     </div>
 
     <div class="grid gap-6 md:grid-cols-3">
-        <div class="rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 shadow-xl shadow-black/20 flex flex-col justify-between space-y-4">
+        <div class="admin-card flex flex-col justify-between space-y-4">
             <div>
                 <p class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">About Section</p>
                 <div class="mt-4 flex items-center gap-3">
                     @if ($about->exists)
-                        <div class="flex items-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5">
+                        <span class="flex items-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5">
                             <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
                             <span class="font-mono text-xs font-bold uppercase text-emerald-400 tracking-wider">Configured</span>
-                        </div>
+                        </span>
                     @else
-                        <div class="flex items-center gap-2 rounded-lg bg-amber-500/10 border border-amber-500/20 px-3 py-1.5">
+                        <span class="flex items-center gap-2 rounded-lg bg-amber-500/10 border border-amber-500/20 px-3 py-1.5">
                             <span class="h-2 w-2 rounded-full bg-amber-400"></span>
                             <span class="font-mono text-xs font-bold uppercase text-amber-400 tracking-wider">Pending</span>
-                        </div>
+                        </span>
                     @endif
                 </div>
             </div>
@@ -62,7 +60,7 @@
             </p>
         </div>
 
-        <div class="rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 shadow-xl shadow-black/20 flex flex-col justify-between space-y-4">
+        <div class="admin-card flex flex-col justify-between space-y-4">
             <div>
                 <p class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">Service Count</p>
                 <div class="mt-3 flex items-baseline gap-2">
@@ -75,7 +73,7 @@
             </p>
         </div>
 
-        <div class="rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 shadow-xl shadow-black/20 flex flex-col justify-between space-y-4">
+        <div class="admin-card flex flex-col justify-between space-y-4">
             <div>
                 <p class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">Package Count</p>
                 <div class="mt-3 flex items-baseline gap-2">
@@ -90,8 +88,8 @@
     </div>
 
     <div class="grid gap-6 lg:grid-cols-3">
-        
-        <div class="lg:col-span-2 rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 shadow-xl shadow-black/20 space-y-6"
+
+        <div class="admin-card lg:col-span-2 space-y-6"
              x-data="{
                 chartInstance: null,
                 init() {
@@ -136,7 +134,7 @@
                     });
                 }
              }">
-            
+
             <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                     <p class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">Landing Page Visits</p>
@@ -160,27 +158,23 @@
                 </form>
             </div>
 
-            <div class="mt-6 rounded-2xl border border-slate-800/60 bg-slate-950/40 p-4">
-                <div class="relative h-64 w-full">
-                    <canvas 
-                        x-ref="canvasVisitas"
-                        data-chart-labels='@json(collect($landingPageVisitStats['monthly'])->pluck('label')->all())'
-                        data-chart-values='@json(collect($landingPageVisitStats['monthly'])->pluck('visits')->all())'
-                    ></canvas>
-                </div>
+            <div class="relative h-64 w-full">
+                <canvas
+                    x-ref="canvasVisitas"
+                    data-chart-labels='@json(collect($landingPageVisitStats['monthly'])->pluck('label')->all())'
+                    data-chart-values='@json(collect($landingPageVisitStats['monthly'])->pluck('visits')->all())'
+                ></canvas>
             </div>
         </div>
 
-        <div class="rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 shadow-xl shadow-black/20 flex flex-col justify-between space-y-4">
+        <div class="admin-card flex flex-col justify-between space-y-4">
             <div class="space-y-4 w-full">
                 <p class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">Service Categories</p>
 
-                <div class="space-y-2.5 max-h-[310px] overflow-y-auto pr-2 koru-scrollbar">
+                <div class="max-h-[310px] overflow-y-auto pr-2 koru-scrollbar divide-y divide-slate-800/50">
                     @foreach ($categoryCounts as $categoryKey => $count)
-                        <div class="group flex items-center justify-between rounded-xl bg-slate-950/40 border border-slate-800/50 px-4 py-3 text-sm text-slate-300 transition-colors hover:border-slate-800 hover:bg-slate-950/80 relative overflow-hidden">
-                            <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-slate-800 group-hover:bg-[#02B8BC] transition-colors"></div>
-
-                            <span class="pl-1 font-medium text-slate-300 group-hover:text-white transition-colors">
+                        <div class="group flex items-center justify-between py-2.5 text-sm">
+                            <span class="font-medium text-slate-300 group-hover:text-white transition-colors">
                                 {{ $categories[$categoryKey] ?? str()->title(str_replace('_', ' ', $categoryKey)) }}
                             </span>
                             <span class="font-mono font-bold text-white bg-slate-900 border border-slate-800/80 rounded-md px-2 py-0.5 text-xs">
@@ -190,7 +184,7 @@
                     @endforeach
                 </div>
             </div>
-            
+
             <p class="text-[11px] text-slate-500 leading-tight">
                 Distribution metrics based on current live taxonomy mappings.
             </p>
@@ -198,5 +192,3 @@
 
     </div>
 </div>
-
-

@@ -1,72 +1,49 @@
-<div class="lg:col-span-3 space-y-8 animate-fadeIn text-slate-200">
+<div class="space-y-6">
+    @include('livewire.admin.partials.page-header', [
+        'eyebrow' => 'Commercial Offer',
+        'title' => 'Deposit Settings',
+        'description' => 'Deposits by day of the week: define the deposit percentage (initial payment) applied automatically to services and packages based on the service day. By default, Sundays apply a 50% deposit: the client pays half when booking and the rest at the appointment.',
+    ])
 
-    <div class="rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 sm:p-8 shadow-2xl shadow-black/40 relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#02B8BC]/40 to-transparent"></div>
+    @include('livewire.admin.partials.success-alert')
 
-        <div class="relative z-10">
-            <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#02B8BC]">Deposit Settings</p>
-            <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">
-                Deposits by <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-slate-400">day of the week</span>
-            </h1>
-            <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">
-                Define the deposit percentage (initial payment) applied automatically to services and packages based on the service day. By default, Sundays apply a 50% deposit: the client pays half when booking and the rest at the appointment.
-            </p>
-        </div>
-    </div>
-
-    @if (session('success'))
-        <div class="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-4 text-sm font-medium text-emerald-300 flex items-center gap-3">
-            <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <form wire:submit.prevent="save" class="rounded-3xl border border-slate-800/80 bg-slate-900/20 backdrop-blur-xl p-6 sm:p-8 shadow-xl shadow-black/20 space-y-6">
+    <form wire:submit.prevent="save" class="admin-card">
         <div class="flex items-center justify-between">
-            <h2 class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">Deposit by day</h2>
+            <h3 class="text-lg font-semibold text-white">Deposit by day</h3>
             <span class="text-[11px] text-slate-500">Allowed range: 0% – 100%</span>
         </div>
 
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="admin-table-shell">
+            <div class="admin-table-head grid-cols-[1fr_0.4fr_0.6fr]">
+                <span>Day</span>
+                <span>Active</span>
+                <span>Deposit %</span>
+            </div>
             @foreach ($days as $dayOfWeek => $dayKey)
-                <div class="rounded-2xl border border-slate-800/60 bg-slate-950/40 p-4 flex flex-col gap-3">
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm font-semibold text-slate-200">{{ $dayLabels[$dayOfWeek] ?? $dayKey }}</span>
-                        <label class="inline-flex items-center gap-2 cursor-pointer text-xs text-slate-400">
-                            <input type="checkbox" wire:model="activeStatuses.{{ $dayOfWeek }}"
-                                   class="rounded border-slate-700 bg-slate-900 text-[#02B8BC] focus:ring-[#02B8BC]" />
-                            Active
-                        </label>
+                <div class="admin-table-row grid-cols-[1fr_0.4fr_0.6fr]">
+                    <div class="font-medium text-slate-200">{{ $dayLabels[$dayOfWeek] ?? $dayKey }}</div>
+                    <div>
+                        <input type="checkbox" wire:model="activeStatuses.{{ $dayOfWeek }}" id="day_active_{{ $dayOfWeek }}"
+                               class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#02B8BC] focus:ring-[#02B8BC]" />
                     </div>
-
-                    <div class="relative">
-                        <input type="number" min="0" max="100" step="0.01"
-                               wire:model="percentages.{{ $dayOfWeek }}"
-                               placeholder="0"
-                               class="w-full rounded-xl border border-slate-800 bg-slate-950/60 px-3 py-2.5 pr-9 text-sm text-slate-200 focus:border-[#02B8BC] focus:outline-none focus:ring-1 focus:ring-[#02B8BC]" />
-                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-mono text-slate-500">%</span>
+                    <div>
+                        <div class="relative max-w-[140px]">
+                            <input type="number" min="0" max="100" step="0.01"
+                                   wire:model="percentages.{{ $dayOfWeek }}"
+                                   placeholder="0"
+                                   class="admin-input pr-9" />
+                            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-mono text-slate-500">%</span>
+                        </div>
+                        @error("percentages.{$dayOfWeek}")
+                            <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span>
+                        @enderror
                     </div>
-
-                    @error("percentages.{$dayOfWeek}")
-                        <span class="text-xs text-red-400">{{ $message }}</span>
-                    @enderror
                 </div>
             @endforeach
         </div>
 
-        <div class="flex items-center justify-end gap-3 pt-2">
-            <button type="submit"
-                    class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-800/80 bg-[#02B8BC] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#02B8BC]/10 transition-all duration-200 hover:bg-[#037E93] hover:shadow-[#037E93]/20 active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC]">
-                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-                Save settings
-            </button>
+        <div class="mt-6 flex justify-end">
+            <button type="submit" class="admin-btn-primary">Save settings</button>
         </div>
     </form>
 </div>
-
-
-

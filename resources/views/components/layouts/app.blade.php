@@ -23,8 +23,24 @@
 
 <body
     x-data="{ cookieConsent: null }"
-    x-init="try { cookieConsent = localStorage.getItem('koru_cookie_consent') } catch (error) { cookieConsent = null }"
+    x-init="cookieConsent = (document.cookie.split('; ').find(row => row.startsWith('koru_cookie_consent=')) || '').split('=')[1] || null"
     class="bg-cool-gray text-grafito antialiased overflow-x-hidden min-h-screen flex flex-col selection:bg-aqua/30 selection:text-teal">
+
+    <script>
+        // Configuración de cookie que funciona en local (HTTP) y producción (HTTPS)
+        window.koruCookieConfig = (() => {
+            const hostname = window.location.hostname;
+            const isLocal = hostname === 'localhost' 
+                || hostname === '127.0.0.1' 
+                || hostname === '[::1]'
+                || hostname.endsWith('.test'); // Laravel Valet / .test domains
+            const domain = isLocal ? '' : '; domain=.' + hostname.replace('www.', '');
+            const secure = isLocal ? '' : '; Secure';
+            // En local, SameSite=Lax puede fallar en .test domains; omitirlo
+            const sameSite = isLocal ? '' : '; SameSite=Lax';
+            return { domain, secure, sameSite };
+        })();
+    </script>
 
     <main class="flex-grow w-full">
         {{ $slot }}
@@ -70,13 +86,13 @@
             <div class="flex shrink-0 flex-col gap-2 sm:flex-row">
                 <button
                     type="button"
-                    @click="cookieConsent = 'rejected'; localStorage.setItem('koru_cookie_consent', 'rejected')"
+                    @click="cookieConsent = 'rejected'; document.cookie = 'koru_cookie_consent=rejected; max-age=31536000; path=/' + window.koruCookieConfig.domain + window.koruCookieConfig.sameSite + window.koruCookieConfig.secure"
                     class="rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-slate-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua">
                     Reject
                 </button>
                 <button
                     type="button"
-                    @click="cookieConsent = 'accepted'; localStorage.setItem('koru_cookie_consent', 'accepted')"
+                    @click="cookieConsent = 'accepted'; document.cookie = 'koru_cookie_consent=accepted; max-age=31536000; path=/' + window.koruCookieConfig.domain + window.koruCookieConfig.sameSite + window.koruCookieConfig.secure"
                     class="rounded-lg bg-aqua px-4 py-2 text-sm font-bold text-white transition hover:bg-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2 focus-visible:ring-offset-[#020617]">
                     Accept cookies
                 </button>

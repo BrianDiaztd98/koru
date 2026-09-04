@@ -9,15 +9,7 @@
         this.charCounts[field] = this.$refs[field]?.value?.length || 0;
     }
 }">
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-            <h3 class="text-lg font-semibold text-white">Edit Service</h3>
-            <p class="text-sm text-slate-400">Manage clinical and sports disciplines across the public system registries.</p>
-        </div>
-        <div class="flex items-center gap-3">
-            <button type="button" wire:click="closeForm" class="admin-btn-secondary">Back</button>
-        </div>
-    </div>
+    @include('livewire.admin.partials.form-header', ['title' => 'Edit Service'])
 
     <form wire:submit.prevent="save" class="mt-6 grid gap-5 md:grid-cols-2">
         <div class="md:col-span-2">

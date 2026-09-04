@@ -8,7 +8,6 @@ use App\Models\PackageTerm;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Models\TeamMember;
-use App\Models\Testimonial;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -25,7 +24,6 @@ class KoruContentSeeder extends Seeder
         PackageTerm::query()->delete();
         Course::query()->delete();
         TeamMember::query()->delete();
-        Testimonial::query()->delete();
 
         $this->seedSiteSettings();
         $this->seedServices();
@@ -33,7 +31,6 @@ class KoruContentSeeder extends Seeder
         $this->seedPackageTerms();
         $this->seedCourses();
         $this->seedTeamMembers();
-        $this->seedTestimonials();
     }
 
     protected function seedSiteSettings(): void
@@ -449,52 +446,6 @@ class KoruContentSeeder extends Seeder
             TeamMember::query()->updateOrCreate(
                 ['name' => $member['name']],
                 $member,
-            );
-        }
-    }
-
-    protected function seedTestimonials(): void
-    {
-        $testimonials = [
-            [
-                'id' => 1,
-                'author_name' => 'KORU Recovery Lounge',
-                'author_role' => 'Recovery Experience',
-                'quote_en' => 'Tour the recovery lounge',
-                'category' => 'lounge',
-                'title' => $this->t('Tour the recovery lounge', 'Recorrido por el lounge de recuperación'),
-                'description' => $this->t('View how our IV and recovery lounge creates a premium clinical environment.', 'Descubre cómo nuestro lounge de IV y recuperación crea un entorno clínico premium.'),
-                'video_path' => 'videos/testimonials/1.mp4',
-                'active_status' => true,
-            ],
-            [
-                'id' => 2,
-                'author_name' => 'KORU Athlete Program',
-                'author_role' => 'Performance Recovery',
-                'quote_en' => 'Athlete recovery in action',
-                'category' => 'athlete',
-                'title' => $this->t('Athlete recovery in action', 'Recuperación de atletas en acción'),
-                'description' => $this->t('See how our protocols support athletes returning to training faster.', 'Observa cómo nuestros protocolos apoyan a los atletas a regresar al entrenamiento más rápido.'),
-                'video_path' => 'videos/testimonials/2.mp4',
-                'active_status' => true,
-            ],
-            [
-                'id' => 3,
-                'author_name' => 'KORU Clinical Team',
-                'author_role' => 'Clinical Outcomes',
-                'quote_en' => 'Clinical performance stories',
-                'category' => 'clinical',
-                'title' => $this->t('Clinical performance stories', 'Historias de rendimiento clínico'),
-                'description' => $this->t('Discover the clinical outcomes behind our premium care services.', 'Descubre los resultados clínicos detrás de nuestros servicios de atención premium.'),
-                'video_path' => 'videos/testimonials/3.mp4',
-                'active_status' => true,
-            ],
-        ];
-
-        foreach ($testimonials as $testimonial) {
-            Testimonial::query()->updateOrCreate(
-                ['id' => $testimonial['id']],
-                $testimonial,
             );
         }
     }

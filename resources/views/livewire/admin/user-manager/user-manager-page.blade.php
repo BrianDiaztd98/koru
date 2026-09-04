@@ -1,27 +1,18 @@
-<?php ?>
-
-<div class="lg:col-span-3 space-y-6">
-    <!-- Título de ubicación actual -->
-    <div class="mb-6">
-        <p class="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#02B8BC]">Users</p>
-        <h1 class="mt-2 text-3xl font-extrabold text-white tracking-tight">User Management</h1>
-        <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-slate-400">Manage administrative users. Create, edit, and activate/deactivate accounts.</p>
-    </div>
+<div class="space-y-6">
+    @include('livewire.admin.partials.page-header', [
+        'eyebrow' => 'Administration',
+        'title' => 'User Management',
+        'description' => 'Manage administrative users. Create, edit, and activate/deactivate accounts.',
+    ])
 
     <div class="admin-card">
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            @unless($showForm)
-                <button type="button" wire:click="openCreateForm" class="admin-btn-primary">
-                    Add User
-                </button>
-            @endunless
-        </div>
+        @unless($showForm)
+            <button type="button" wire:click="openCreateForm" class="admin-btn-primary">
+                Add User
+            </button>
+        @endunless
 
-        @if (session()->has('success'))
-            <div class="mt-4 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">
-                {{ session('success') }}
-            </div>
-        @endif
+        @include('livewire.admin.partials.success-alert')
 
         @if (session()->has('error'))
             <div class="mt-4 rounded-xl border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">

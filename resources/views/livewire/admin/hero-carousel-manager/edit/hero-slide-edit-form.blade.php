@@ -9,15 +9,7 @@
         this.charCounts[field] = this.$refs[field]?.value?.length || 0;
     }
 }">
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-            <h3 class="text-lg font-semibold text-white">Edit Slide</h3>
-            <p class="text-sm text-slate-400">Configure slide parameters for the hero carousel.</p>
-        </div>
-        <button type="button" wire:click="closeForm" class="admin-btn-secondary">
-            Back
-        </button>
-    </div>
+    @include('livewire.admin.partials.form-header', ['title' => 'Edit Slide'])
 
     <form wire:submit.prevent="save" class="grid gap-5 md:grid-cols-2 mt-6">
         <div class="md:col-span-2">

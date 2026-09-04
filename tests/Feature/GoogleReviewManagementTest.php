@@ -60,4 +60,21 @@ class GoogleReviewManagementTest extends TestCase
             ->assertDontSee('Hidden reviewer')
             ->assertDontSee('Hidden review content.');
     }
+
+    public function test_testimonials_showcase_paginates_in_groups_of_three(): void
+    {
+        $testimonials = collect(range(1, 5))->map(fn (int $index) => [
+            'id' => $index,
+            'category' => 'google',
+            'title' => 'Reviewer '.$index,
+            'description' => 'Review content '.$index,
+        ])->all();
+
+        Livewire::test(TestimonialsShowcase::class, ['testimonials' => $testimonials])
+            ->assertSee('Reviewer 1')
+            ->assertSee('Reviewer 2')
+            ->assertSee('Reviewer 3')
+            ->assertDontSee('Reviewer 4')
+            ->assertSee('Next');
+    }
 }
