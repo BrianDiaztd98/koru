@@ -33,7 +33,7 @@
             <livewire:components.iv-therapy :ivDrips="$this->ivDrips" :boosterShots="$this->boosterShots" />
 
             {{-- PRUEBA SOCIAL: Testimonials (LAZY) --}}
-            <livewire:components.testimonials-showcase :testimonials="$this->testimonials" wire:lazy />
+            <livewire:components.testimonials-showcase wire:lazy />
 
             {{-- OFERTA: Packages (LAZY) --}}
             <livewire:components.packages :packages="$this->packages" :terms="$this->packageTerms" wire:lazy />

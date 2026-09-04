@@ -4,7 +4,6 @@ namespace App\Livewire\Components;
 
 use App\Models\About;
 use App\Models\Course;
-use App\Models\GoogleReview;
 use App\Models\HeroSlide;
 use App\Models\Package;
 use App\Models\PackageTerm;
@@ -386,26 +385,6 @@ class LandingPage extends Component
                 'summary' => 'Therapeutic massage and advanced recovery in the comfort of your home. Price may vary.',
             ],
         ];
-    }
-
-    #[Computed]
-    public function getTestimonialsProperty(): array
-    {
-        return GoogleReview::query()
-            ->active()
-            ->orderBy('sort_order')
-            ->orderBy('id')
-            ->get()
-            ->map(fn (GoogleReview $review) => [
-                'id' => $review->id,
-                'category' => 'google',
-                'title' => $review->author_name,
-                'author_role' => $review->author_role,
-                'description' => $review->content,
-                'rating' => $review->rating,
-                'image_path' => AdminMediaService::resolveImageUrl($review->image_path),
-            ])
-            ->toArray();
     }
 
     public function render()

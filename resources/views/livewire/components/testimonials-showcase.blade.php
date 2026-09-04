@@ -1,113 +1,23 @@
-<section id="testimonials" class="relative py-24 bg-slate-900 text-slate-300 overflow-hidden scroll-mt-24" wire:lazy.1s>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-[#037E93]/10 via-slate-900 to-slate-900"></div>
+<section id="testimonials" class="relative overflow-hidden bg-white py-24 text-slate-700 scroll-mt-24" wire:lazy.1s>
+    @once
+        @push('head')
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+        @endpush
+    @endonce
 
     <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="mb-16 text-center" data-sal="fade" data-sal-duration="800" wire:ignore>
             <div class="inline-flex items-center gap-2.5 rounded-md bg-[#02B8BC]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#02B8BC]">
                 Google Reviews
             </div>
-            <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
                 Real experiences from our community
             </h2>
-            <p class="mt-4 max-w-2xl mx-auto text-sm leading-relaxed text-slate-400">
+            <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-600">
                 Trusted by patients seeking wellness, recovery, and performance support in a caring clinical environment.
             </p>
         </div>
 
-        @if(empty($visibleTestimonials))
-            <div class="rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10">
-                <h3 class="text-xl font-semibold text-white">No client outcomes available yet</h3>
-                <p class="mt-3 max-w-sm mx-auto text-sm leading-relaxed text-slate-400">
-                    This section is waiting for recovery stories.
-                </p>
-            </div>
-        @else
-            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3 items-stretch" wire:key="testimonials-video-grid">
-                @foreach($visibleTestimonials as $index => $testimonial)
-                    <article wire:key="testimonial-card-{{ $testimonial['id'] ?? $index }}"
-                             data-sal="slide-up"
-                             data-sal-delay="{{ 100 + ($loop->index * 100) }}"
-                             data-sal-duration="700"
-                             class="group relative flex min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-slate-950/40 backdrop-blur-sm p-6 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#02B8BC]/30 hover:bg-slate-950/80 hover:shadow-[0_20px_40px_-15px_rgba(14,120,141,0.15)] scroll-animate" data-speed="0.06">
-
-                        <div class="flex-1 flex flex-col">
-                            <div class="mb-6 flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 text-[#02B8BC] shadow-sm group-hover:bg-[#02B8BC]/10 group-hover:border-[#02B8BC]/30 transition-all duration-300">
-                                @if(!empty($testimonial['image_path']))
-                                    <img src="{{ $testimonial['image_path'] }}" alt="{{ $testimonial['title'] }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
-                                @elseif(($testimonial['category'] ?? '') === 'lounge')
-                                    <svg class="h-5 w-5 fill-current transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <path d="M10 8.5v7.5l6-3.75-6-3.75Z" />
-                                    </svg>
-                                @elseif(($testimonial['category'] ?? '') === 'athlete')
-                                    <svg class="h-5 w-5 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <path d="M4 8h16M4 12h16M4 16h16" />
-                                    </svg>
-                                @else
-                                    <svg class="h-5 w-5 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                        <circle cx="12" cy="10" r="3" />
-                                    </svg>
-                                @endif
-                            </div>
-
-                            <h3 class="text-xl font-bold text-white tracking-tight group-hover:text-[#02B8BC] transition-colors duration-200">
-                                {{ $testimonial['title'] }}
-                            </h3>
-                            @if(!empty($testimonial['author_role']))
-                                <p class="mt-1 text-xs font-semibold uppercase tracking-wider text-[#02B8BC]">
-                                    {{ $testimonial['author_role'] }}
-                                </p>
-                            @endif
-                            @if(isset($testimonial['rating']))
-                                <p class="mt-3 text-sm tracking-wide text-amber-300" aria-label="{{ $testimonial['rating'] }} out of 5 stars">
-                                    {{ str_repeat('★', (int) $testimonial['rating']) }}
-                                </p>
-                            @endif
-                            <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-400 flex-1 line-clamp-4">
-                                {{ $testimonial['description'] }}
-                            </p>
-                        </div>
-                    </article>
-                @endforeach
-            </div>
-        @endif
-
-        @if($totalPages > 1)
-            <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-                <button type="button"
-                        wire:click="previousPage"
-                        @class([
-                            'inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/70 px-4 py-2 text-sm font-semibold text-slate-300 transition',
-                            'opacity-50 cursor-not-allowed' => $page === 1,
-                            'hover:border-[#02B8BC] hover:text-white' => $page > 1,
-                        ])
-                        @disabled($page === 1)>
-                    <span aria-hidden="true">←</span>
-                    <span class="ml-2">Previous</span>
-                </button>
-
-                <div class="flex items-center gap-2 text-sm text-slate-400">
-                    @for($i = 1; $i <= $totalPages; $i++)
-                        <button type="button"
-                                wire:click="setPage({{ $i }})"
-                                class="flex h-9 w-9 items-center justify-center rounded-full border transition {{ $page === $i ? 'border-[#02B8BC] bg-[#02B8BC]/15 text-[#02B8BC]' : 'border-slate-700 bg-slate-950/70 text-slate-400 hover:border-[#02B8BC] hover:text-white' }}">
-                            {{ $i }}
-                        </button>
-                    @endfor
-                </div>
-
-                <button type="button"
-                        wire:click="nextPage"
-                        @class([
-                            'inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-950/70 px-4 py-2 text-sm font-semibold text-slate-300 transition',
-                            'opacity-50 cursor-not-allowed' => $page === $totalPages,
-                            'hover:border-[#02B8BC] hover:text-white' => $page < $totalPages,
-                        ])
-                        @disabled($page === $totalPages)>
-                    <span class="mr-2">Next</span>
-                    <span aria-hidden="true">→</span>
-                </button>
-            </div>
-        @endif
+        <div class="elfsight-app-be1013f4-e4b9-4aae-9bbe-a88382263533" data-elfsight-app-lazy></div>
     </div>
 </section>

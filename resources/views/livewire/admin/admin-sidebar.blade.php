@@ -19,7 +19,6 @@
                 ['route' => 'admin.hero-carousel.index', 'pattern' => 'admin.hero-carousel.*', 'label' => 'Hero Carousel', 'icon' => ['M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z']],
                 ['route' => 'admin.about.index', 'pattern' => 'admin.about.*', 'label' => 'About Section', 'icon' => ['M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 3.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25']],
                 ['route' => 'admin.team.index', 'pattern' => 'admin.team.*', 'label' => 'Team', 'icon' => ['M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.25a8.25 8.25 0 0115 0']],
-                ['route' => 'admin.google-reviews.index', 'pattern' => 'admin.google-reviews.*', 'label' => 'Google Reviews', 'icon' => ['M12 17.5l-5.2 2.7 1-5.9-4.2-4.1 5.9-.9L12 3.5l2.6 5.8 5.9.9-4.2 4.1 1 5.9-5.3-2.7z']],
                 ['route' => 'admin.education.index', 'pattern' => 'admin.education.*', 'label' => 'CE Courses', 'icon' => ['M4 6.75A2.75 2.75 0 016.75 4h10.5A2.75 2.75 0 0120 6.75v10.5A2.75 2.75 0 0117.25 20H6.75A2.75 2.75 0 014 17.25V6.75zm4.5 0v10.5m5.25-10.5v10.5']],
             ],
         ],
