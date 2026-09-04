@@ -21,6 +21,8 @@ use App\Livewire\Components\LandingPage;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', LandingPage::class)->middleware(TrackLandingPageVisit::class);
+Route::view('privacy-policy', 'legal.privacy-policy')->name('privacy-policy');
+Route::view('terms-of-service', 'legal.terms-of-service')->name('terms-of-service');
 Route::get('professional-ce/register/{course}', CourseEnrollmentForm::class)
     ->name('professional-ce.register');
 

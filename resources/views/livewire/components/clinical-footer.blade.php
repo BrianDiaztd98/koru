@@ -113,8 +113,8 @@
                 {{ $localizedSettings['footer_copyright'] ?? '© '.date('Y').' KORU Center. All rights reserved.' }}
             </p>
             <div class="flex gap-4 text-[11px] text-slate-500">
-                <a href="#" class="hover:text-slate-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC] rounded">Privacy Policy</a>
-                <a href="#" class="hover:text-slate-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC] rounded">Terms of Service</a>
+                <a href="{{ route('privacy-policy') }}" class="hover:text-slate-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC] rounded">Privacy Policy</a>
+                <a href="{{ route('terms-of-service') }}" class="hover:text-slate-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#02B8BC] rounded">Terms of Service</a>
             </div>
         </div>
     </div>
