@@ -24,7 +24,7 @@
 </head>
 
 <!-- 2. Cambiamos la estructura a flex para que si hay poco contenido, el footer o fondo no se corten -->
-<body x-data="{ sidebarOpen: false }"
+<body x-data="{ sidebarOpen: false, logoutModal: false }" @keydown.escape.window="logoutModal = false"
     class="min-h-full bg-slate-950 text-slate-100 antialiased selection:bg-[#02B8BC]/30 selection:text-white relative flex flex-col lg:flex-row">
 
     <!-- Luces ambientales de fondo estilo consola clínica -->
@@ -60,6 +60,23 @@
             {{ $slot }}
         </div>
     </main>
+
+    <div x-show="logoutModal"
+         x-cloak
+         x-transition.opacity
+         class="fixed inset-0 z-[60] flex items-center justify-center bg-slate-950/80 p-4"
+         @click.self="logoutModal = false">
+        <div class="w-full max-w-md rounded-2xl border border-slate-800/70 bg-slate-900 shadow-2xl">
+            <div class="border-b border-slate-800/70 px-6 py-5">
+                <h3 class="text-lg font-semibold text-white">¿Deseas salir?</h3>
+                <p class="mt-1 text-sm text-slate-400">Tu sesión se cerrará en este dispositivo.</p>
+            </div>
+            <div class="flex flex-col gap-3 p-6 sm:flex-row sm:justify-end">
+                <button type="button" @click="logoutModal = false" class="admin-btn-secondary">Cancelar</button>
+                <button type="submit" form="logout-form" class="admin-btn-danger">Sí, salir</button>
+            </div>
+        </div>
+    </div>
 
     @livewireScripts
 </body>

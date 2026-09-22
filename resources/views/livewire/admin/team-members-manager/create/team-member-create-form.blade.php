@@ -27,6 +27,20 @@
             <p class="mt-1 text-[11px] text-slate-600">With or without @ symbol</p>
             @error('instagram_handle') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
+        <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
+                Instagram URL <span class="text-slate-500">(Opcional)</span>
+            </label>
+            <input type="url" wire:model.defer="instagram_url" class="admin-input" placeholder="https://instagram.com/username" />
+            @error('instagram_url') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
+        </div>
+        <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
+                LinkedIn URL <span class="text-slate-500">(Opcional)</span>
+            </label>
+            <input type="url" wire:model.defer="linkedin_url" class="admin-input" placeholder="https://linkedin.com/in/username" />
+            @error('linkedin_url') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
+        </div>
         <div class="md:col-span-2">
             <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
                 Specialty (EN) <span class="text-slate-500">(Opcional)</span>

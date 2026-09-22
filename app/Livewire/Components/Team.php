@@ -8,37 +8,42 @@ class Team extends Component
 {
     public array $teamMembers = [];
 
-    public int $perPage = 4;
+    public int $perPage = 5;
 
     public int $page = 1;
 
     public function mount(array $teamMembers = []): void
     {
         $this->teamMembers = $teamMembers;
+        $this->page = 1;
     }
 
     public function getVisibleTeamMembersProperty(): array
     {
-        $slice = array_slice($this->teamMembers, ($this->page - 1) * $this->perPage, $this->perPage);
+        $start = ($this->page - 1) * $this->perPage;
 
-        return array_values($slice);
+        return array_values(array_slice($this->teamMembers, $start, $this->perPage));
+    }
+
+    public function getTotalPagesProperty(): int
+    {
+        return max(1, (int) ceil(count($this->teamMembers) / $this->perPage));
     }
 
     public function setPage(int $page): void
     {
-        $maxPage = max(1, (int) ceil(count($this->teamMembers) / $this->perPage));
+        $maxPage = $this->getTotalPagesProperty();
         $this->page = max(1, min($maxPage, $page));
     }
 
     public function nextPage(): void
     {
-        $maxPage = (int) ceil(count($this->teamMembers) / $this->perPage);
-        $this->page = min($maxPage, $this->page + 1);
+        $this->setPage($this->page + 1);
     }
 
     public function previousPage(): void
     {
-        $this->page = max(1, $this->page - 1);
+        $this->setPage($this->page - 1);
     }
 
     public function render()
@@ -46,7 +51,7 @@ class Team extends Component
         return view('livewire.components.team', [
             'visibleTeamMembers' => $this->visibleTeamMembers,
             'page' => $this->page,
-            'totalPages' => max(1, (int) ceil(count($this->teamMembers) / $this->perPage)),
+            'totalPages' => $this->getTotalPagesProperty(),
         ]);
     }
 }

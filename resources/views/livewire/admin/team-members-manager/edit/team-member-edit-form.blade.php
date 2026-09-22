@@ -1,4 +1,5 @@
 <div class="admin-form-panel" x-data="{ 
+    imageModal: false,
     charCounts: {
         bio_en: 0
     },
@@ -27,6 +28,20 @@
             <p class="mt-1 text-[11px] text-slate-600">With or without @ symbol</p>
             @error('instagram_handle') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
         </div>
+        <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
+                Instagram URL <span class="text-slate-500">(Opcional)</span>
+            </label>
+            <input type="url" wire:model.defer="instagram_url" class="admin-input" placeholder="https://instagram.com/username" />
+            @error('instagram_url') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
+        </div>
+        <div>
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
+                LinkedIn URL <span class="text-slate-500">(Opcional)</span>
+            </label>
+            <input type="url" wire:model.defer="linkedin_url" class="admin-input" placeholder="https://linkedin.com/in/username" />
+            @error('linkedin_url') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
+        </div>
         <div class="md:col-span-2">
             <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
                 Specialty (EN) <span class="text-slate-500">(Opcional)</span>
@@ -54,9 +69,29 @@
             @error('image_file') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
 
             @if ($this->currentImageUrl)
-                <div class="mt-4 rounded-2xl border border-slate-800/70 bg-slate-950/80 p-3">
-                    <p class="mb-2 text-xs uppercase tracking-[0.24em] text-slate-400">Current photo</p>
-                    <img src="{{ $this->currentImageUrl }}" alt="Current team photo" class="h-32 w-full rounded-2xl object-cover" />
+                <div class="mt-4">
+                    <button type="button" @click="imageModal = true" class="admin-btn-ghost text-xs">
+                        View image
+                    </button>
+                </div>
+
+                <div
+                    x-show="imageModal"
+                    x-cloak
+                    x-transition.opacity
+                    @keydown.escape.window="imageModal = false"
+                    class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 p-4"
+                    @click.self="imageModal = false"
+                >
+                    <div class="relative w-full max-w-4xl rounded-2xl border border-slate-800/70 bg-slate-900 p-4 shadow-2xl">
+                        <div class="mb-4 flex items-center justify-between gap-3">
+                            <h3 class="text-lg font-semibold text-white">Current photo</h3>
+                            <button type="button" @click="imageModal = false" class="admin-btn-ghost" aria-label="Close image preview">
+                                Close
+                            </button>
+                        </div>
+                        <img src="{{ $this->currentImageUrl }}" alt="Current team photo" class="max-h-[75vh] w-full rounded-xl object-contain" />
+                    </div>
                 </div>
             @endif
         </div>

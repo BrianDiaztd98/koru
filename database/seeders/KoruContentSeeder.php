@@ -95,6 +95,7 @@ class KoruContentSeeder extends Seeder
             [
                 'name_en' => 'SPORT RECOVERY THERAPY',
                 'description_en' => 'A performance-focused session designed to accelerate recovery, reduce muscle fatigue, and prevent injury. This treatment combines assisted stretching, myofascial release, percussion therapy, and targeted mobility techniques to restore optimal function.',
+                'price' => 120.00,
                 'duration' => '60 min',
                 'image_path' => 'img/services/Sport_Recovery.jpg',
                 'category' => 'manual_therapy',
@@ -103,6 +104,7 @@ class KoruContentSeeder extends Seeder
             [
                 'name_en' => 'SUPER RECOVERY',
                 'description_en' => 'The ultimate recovery experience combining a full-body therapeutic massage with advanced red light therapy and a refreshing cold plunge. This session is designed to reduce muscle fatigue, boost circulation, accelerate recovery, and leave you feeling recharged from head to toe.',
+                'price' => 120.00,
                 'duration' => '90 min',
                 'image_path' => 'img/services/luzroja.webp',
                 'category' => 'manual_therapy',
@@ -409,42 +411,60 @@ class KoruContentSeeder extends Seeder
     {
         $members = [
             [
-                'name' => 'Lenys',
+                'name' => 'Lenys Fernández',
                 'instagram_handle' => '@lenysftto',
-                'bio_en' => 'Sports physiotherapist specializing in athletic recovery and therapeutic massage.',
-                'specialty_en' => 'Sports physiotherapist specializing in athletic recovery and therapeutic massage.',
-                'image_path' => 'img/team/team1.webp',
+                'instagram_url' => null,
+                'linkedin_url' => null,
+                'bio_en' => 'Lenys graduated in Physical Therapy and Occupational Therapy in Venezuela. She has dedicated much of her training to the treatment of musculoskeletal injuries and to care for older adults, helping patients regain function, independence, and confidence in their daily lives.',
+                'specialty_en' => 'Physical and occupational therapy graduate focused on musculoskeletal.',
+                'image_path' => 'img/team/KORU_Lenys_Fernandez_HD.jpg.jpeg',
                 'active_status' => true,
             ],
             [
-                'name' => 'Raúl',
+                'name' => 'Raúl Díaz',
                 'instagram_handle' => '@rauldiazfisio',
-                'bio_en' => 'Performance specialist focused on biomechanical assessment and functional rehabilitation.',
-                'specialty_en' => 'Performance specialist focused on biomechanical assessment and functional rehabilitation.',
-                'image_path' => 'img/team/team2.webp',
+                'instagram_url' => null,
+                'linkedin_url' => null,
+                'bio_en' => 'Raúl is a Physical Therapy graduate from Venezuela with extensive experience in musculoskeletal rehabilitation and pain management. His clinical approach focuses on identifying and addressing the underlying causes of pain rather than simply managing symptoms. He integrates orthopedic manual therapy, shockwave therapy, therapeutic exercise, myofascial techniques, and individualized movement strategies to help patients reduce pain, restore mobility, and return to their daily activities and active lifestyles. With additional clinical experience in cardiovascular and respiratory rehabilitation, Raúl brings a comprehensive perspective to patient care, considering not only the area of pain but the individual’s overall function, movement, and well-being. His goal is simple: help every patient move better, feel better, and live with less pain.',
+                'specialty_en' => 'Pain Management Clinician Integrating orthopedic manual therapy, shockwave therapy, and therapeutic exercise to help reduce pain, restore movement, and improve function.',
+                'image_path' => 'img/team/KORU_Raul_Diaz_HD.jpg.jpeg',
                 'active_status' => true,
             ],
             [
-                'name' => 'Pierre',
+                'name' => 'Pierre Ahmar',
                 'instagram_handle' => '@fisiopierre',
-                'bio_en' => 'Sports therapist creating recovery plans for athletes.',
-                'specialty_en' => 'Sports therapist creating recovery plans for athletes.',
-                'image_path' => 'img/team/team3.webp',
+                'instagram_url' => null,
+                'linkedin_url' => 'https://www.linkedin.com/authwall?trkInfo=AQHBKEcgl4AHKwAAAaDKDsoQBU8v1pyd1r_3b1tJfWWdm_w7iZXhs1lbOcGq44u_IVv74xVBeWQ_DliH3yqM2VG8zM30dQ4htvRsOj2Lx6Draf0fLWUMDE-urax0F3PUH7MSb60=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fpierreahmar%3Futm_source%3Dshare_via%26utm_content%3Dprofile%26utm_medium%3Dmember_ios',
+                'bio_en' => 'Pierre is a Physical Therapy graduate from Venezuela with a focus on orthopedic manual therapy. He combines manual therapy, therapeutic exercise, and myofascial release to treat musculoskeletal injuries and guide patients through post-operative rehabilitation, helping them move with less pain and return to the activities they love.',
+                'specialty_en' => 'Orthopedic manual therapy clinician treating musculoskeletal injuries and post-surgical recovery.',
+                'image_path' => 'img/team/KORU_Pierre_Ahmar_HD.jpg.jpeg',
                 'active_status' => true,
             ],
             [
-                'name' => 'Angie',
+                'name' => 'Angie Galvez',
                 'instagram_handle' => '@angietherapy',
-                'bio_en' => 'Mobility coach specializing in advanced mobility and injury prevention.',
-                'specialty_en' => 'Mobility coach specializing in advanced mobility and injury prevention.',
-                'image_path' => 'img/team/team4.webp',
+                'instagram_url' => null,
+                'linkedin_url' => null,
+                'bio_en' => 'Angie specializes in sports massage, using targeted manual techniques to enhance athletic performance, speed up recovery, and reduce the risk of sports injuries. She works with athletes and active individuals to keep their bodies moving efficiently, so they can train harder, recover faster, and stay in the game.',
+                'specialty_en' => 'Sports massage therapist helping athletes perform better and stay injury-free.',
+                'image_path' => 'img/team/KORU_Angie_Galvez_HD.jpg.jpeg',
+                'active_status' => true,
+            ],
+            [
+                'name' => 'Grecia Reyes',
+                'instagram_handle' => '@greciareyes',
+                'instagram_url' => 'http://instagram.com/greciavreyes?stkn=MzFkdGI5a2RheHAw',
+                'linkedin_url' => 'https://www.linkedin.com/in/greciavreyes',
+                'bio_en' => 'Grecia is a Physical Therapy graduate from Venezuela with a focus on sports. She treats and helps prevent sports injuries, using movement as the core of every treatment and combining it with hands-on manual techniques. She also works with post-surgical patients, guiding them safely back to full function.',
+                'specialty_en' => 'Sports injury clinician who uses movement as medicine for recovery and prevention.',
+                'image_path' => 'img/team/KORU_Grecia_Reyes_HD.jpg.jpeg',
                 'active_status' => true,
             ],
         ];
 
         foreach ($members as $member) {
             TeamMember::query()->updateOrCreate(
-                ['name' => $member['name']],
+                ['image_path' => $member['image_path']],
                 $member,
             );
         }

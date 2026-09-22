@@ -26,7 +26,12 @@ function registerLivewireSalSync() {
     }
 
     window.Livewire.hook('morphed', ({ component }) => {
-        if (component?.name !== 'components.service-pillars') {
+        const livewireComponentsNeedingSalRefresh = [
+            'components.service-pillars',
+            'components.team',
+        ];
+
+        if (!livewireComponentsNeedingSalRefresh.includes(component?.name)) {
             return;
         }
 

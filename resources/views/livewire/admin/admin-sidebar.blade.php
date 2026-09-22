@@ -144,9 +144,10 @@
             </div>
         </div>
 
-        <form action="{{ route('admin.logout') }}" method="POST" class="inline-flex w-full">
+        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="inline-flex w-full">
             @csrf
-            <button type="submit"
+            <button type="button"
+                @click="logoutModal = true"
                     title="Logout"
                     class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-2.5 text-sm font-medium text-slate-400 transition-all duration-200 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400 active:scale-95 focus:outline-none">
                 <span class="sr-only">Logout</span>
@@ -157,4 +158,5 @@
             </button>
         </form>
     </div>
+
 </div>

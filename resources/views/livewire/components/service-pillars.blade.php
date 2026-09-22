@@ -43,21 +43,72 @@
                     currentPage: 1,
                     perPage: 3,
                     totalServices: {{ count($servicesByPillar[$activePillar] ?? []) }},
+                    autoPlayTimer: null,
+                    autoPlayResumeTimer: null,
+                    isPaused: false,
+                    reduceMotion: false,
                     get totalPages() { return Math.ceil(this.totalServices / this.perPage) },
                     isInPage(index) {
                         return index >= (this.currentPage - 1) * this.perPage && index < this.currentPage * this.perPage;
+                    },
+                    init() {
+                        this.reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+
+                        if (this.totalPages > 1 && !this.reduceMotion) {
+                            this.startAutoPlay();
+                        }
+                    },
+                    startAutoPlay() {
+                        this.stopAutoPlay();
+                        this.autoPlayTimer = setInterval(() => {
+                            if (!this.isPaused) {
+                                this.currentPage = this.currentPage === this.totalPages ? 1 : this.currentPage + 1;
+                            }
+                        }, 5500);
+                    },
+                    stopAutoPlay() {
+                        clearInterval(this.autoPlayTimer);
+                        this.autoPlayTimer = null;
+                    },
+                    pauseAutoPlay() {
+                        this.isPaused = true;
+                        clearTimeout(this.autoPlayResumeTimer);
+                        this.stopAutoPlay();
+                    },
+                    resumeAutoPlay() {
+                        if (this.reduceMotion || this.totalPages <= 1) {
+                            return;
+                        }
+
+                        this.isPaused = false;
+                        this.startAutoPlay();
+                    },
+                    resumeAutoPlayAfterInteraction() {
+                        this.pauseAutoPlay();
+                        clearTimeout(this.autoPlayResumeTimer);
+                        this.autoPlayResumeTimer = setTimeout(() => this.resumeAutoPlay(), 10000);
                     },
                     nextPage() { 
                         if (this.currentPage < this.totalPages) {
                             this.currentPage++;
                         }
+                        this.resumeAutoPlayAfterInteraction();
                     },
                     prevPage() { 
                         if (this.currentPage > 1) {
                             this.currentPage--;
                         }
+                        this.resumeAutoPlayAfterInteraction();
+                    },
+                    destroy() {
+                        this.stopAutoPlay();
+                        clearTimeout(this.autoPlayResumeTimer);
                     }
                  }" 
+                 @mouseenter="pauseAutoPlay()"
+                 @mouseleave="resumeAutoPlay()"
+                 @focusin="pauseAutoPlay()"
+                 @focusout="if (!$el.contains($event.relatedTarget)) resumeAutoPlay()"
                  class="flex flex-col gap-10">
 
             <!-- Grid de Tarjetas de Servicios -->
@@ -149,9 +200,9 @@
             </div>
 
             <!-- CONTROLES DE PAGINACIÓN INTERNA -->
-            <div x-show="totalPages > 1" x-cloak class="flex items-center justify-between border-t border-slate-800/60 pt-6" wire:key="pagination-controls-{{ $activePillar }}">
+            <div x-show="totalPages > 1" x-cloak class="flex items-center justify-between border-t border-slate-800/60 pt-6" wire:key="pagination-controls-{{ $activePillar }}" aria-live="polite">
                 <span class="text-xs text-slate-500 font-medium">
-                    Viewing <span class="text-slate-300" x-text="currentPage"></span> of <span class="text-slate-300" x-text="totalPages"></span> service pages
+                    Showing <span class="text-slate-300" x-text="currentPage"></span> of <span class="text-slate-300" x-text="totalPages"></span>
                 </span>
 
                 <div class="flex items-center gap-2">

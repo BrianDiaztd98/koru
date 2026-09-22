@@ -9,6 +9,8 @@ class TeamMember extends Model
     protected $fillable = [
         'name',
         'instagram_handle',
+        'instagram_url',
+        'linkedin_url',
         'bio_en',
         'specialty_en',
         'image_path',

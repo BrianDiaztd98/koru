@@ -3,11 +3,15 @@
 namespace Tests\Feature;
 
 use App\Livewire\Components\ServicePillars;
+use App\Models\Service;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
 
 class ServicePillarsTest extends TestCase
 {
+    use RefreshDatabase;
+
     private array $pillarLabels = [
         'manual_therapy' => ['title' => 'Massage Services', 'summary' => 'Clinical massage.'],
         'recovery_performance' => ['title' => 'Therapy Services', 'summary' => 'Recovery tech.'],
@@ -64,5 +68,13 @@ class ServicePillarsTest extends TestCase
         ])
             ->call('setPillar', 'non_existent_pillar')
             ->assertSet('activePillar', 'manual_therapy');
+    }
+
+    public function test_recovery_services_have_a_fixed_price(): void
+    {
+        $this->seed();
+
+        $this->assertSame('120.00', Service::where('name_en', 'SPORT RECOVERY THERAPY')->value('price'));
+        $this->assertSame('120.00', Service::where('name_en', 'SUPER RECOVERY')->value('price'));
     }
 }

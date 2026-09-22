@@ -19,6 +19,10 @@ class TeamMembersManager extends Component
 
     public string $instagram_handle = '';
 
+    public string $instagram_url = '';
+
+    public string $linkedin_url = '';
+
     public string $bio_en = '';
 
     public string $specialty_en = '';
@@ -45,6 +49,8 @@ class TeamMembersManager extends Component
             $this->fill([
                 'name' => $this->teamMember->name ?? '',
                 'instagram_handle' => $this->teamMember->instagram_handle ?? '',
+                'instagram_url' => $this->teamMember->instagram_url ?? '',
+                'linkedin_url' => $this->teamMember->linkedin_url ?? '',
                 'bio_en' => $this->teamMember->bio_en ?? '',
                 'specialty_en' => $this->teamMember->specialty_en ?? '',
                 'active_status' => (bool) $this->teamMember->active_status,
@@ -57,6 +63,8 @@ class TeamMembersManager extends Component
         return [
             'name' => ['required', 'string', 'max:100'],
             'instagram_handle' => ['nullable', 'string', 'max:50', 'regex:/^@?[A-Za-z0-9._]{1,30}$/'],
+            'instagram_url' => ['nullable', 'url'],
+            'linkedin_url' => ['nullable', 'url'],
             'bio_en' => ['nullable', 'string', 'max:1000'],
             'specialty_en' => ['nullable', 'string', 'max:100'],
             'image_file' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
@@ -78,6 +86,8 @@ class TeamMembersManager extends Component
         $this->fill([
             'name' => $teamMember->name ?? '',
             'instagram_handle' => $teamMember->instagram_handle ?? '',
+            'instagram_url' => $teamMember->instagram_url ?? '',
+            'linkedin_url' => $teamMember->linkedin_url ?? '',
             'bio_en' => $teamMember->bio_en ?? '',
             'specialty_en' => $teamMember->specialty_en ?? '',
             'active_status' => (bool) $teamMember->active_status,
@@ -151,6 +161,8 @@ class TeamMembersManager extends Component
         $this->isEdit = false;
         $this->name = '';
         $this->instagram_handle = '';
+        $this->instagram_url = '';
+        $this->linkedin_url = '';
         $this->bio_en = '';
         $this->specialty_en = '';
         $this->image_file = null;

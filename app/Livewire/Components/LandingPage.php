@@ -328,19 +328,37 @@ class LandingPage extends Component
     #[Computed]
     public function getTeamMembersProperty(): array
     {
-        return TeamMember::query()
+        $teamMembers = TeamMember::query()
             ->where('active_status', true)
-            ->orderBy('name')
             ->get()
             ->map(fn (TeamMember $member) => [
                 'id' => $member->id,
                 'name' => $member->name,
                 'instagram' => $member->instagram_handle,
+                'instagram_url' => $member->instagram_url,
+                'linkedin_url' => $member->linkedin_url,
                 'bio' => $member->bio_en,
                 'specialty' => $member->specialty_en ?? $member->bio_en,
                 'image' => AdminMediaService::resolveImageUrl($member->image_path) ?: asset('img/team/placeholder.png'),
             ])
             ->toArray();
+
+        $displayOrder = [
+            'Angie Galvez' => 1,
+            'Raúl Díaz' => 2,
+            'Lenys Fernández' => 3,
+            'Pierre Ahmar' => 4,
+            'Grecia Reyes' => 5,
+        ];
+
+        usort($teamMembers, function (array $left, array $right) use ($displayOrder): int {
+            $leftOrder = $displayOrder[$left['name']] ?? PHP_INT_MAX;
+            $rightOrder = $displayOrder[$right['name']] ?? PHP_INT_MAX;
+
+            return $leftOrder <=> $rightOrder;
+        });
+
+        return $teamMembers;
     }
 
     #[Computed]
