@@ -68,12 +68,12 @@
          @click.self="logoutModal = false">
         <div class="w-full max-w-md rounded-2xl border border-slate-800/70 bg-slate-900 shadow-2xl">
             <div class="border-b border-slate-800/70 px-6 py-5">
-                <h3 class="text-lg font-semibold text-white">¿Deseas salir?</h3>
-                <p class="mt-1 text-sm text-slate-400">Tu sesión se cerrará en este dispositivo.</p>
+                <h3 class="text-lg font-semibold text-white">Do you want to log out?</h3>
+                <p class="mt-1 text-sm text-slate-400">Your session will be closed on this device.</p>
             </div>
             <div class="flex flex-col gap-3 p-6 sm:flex-row sm:justify-end">
-                <button type="button" @click="logoutModal = false" class="admin-btn-secondary">Cancelar</button>
-                <button type="submit" form="logout-form" class="admin-btn-danger">Sí, salir</button>
+                <button type="button" @click="logoutModal = false" class="admin-btn-secondary">Cancel</button>
+                <button type="submit" form="logout-form" class="admin-btn-danger">Yes, log out</button>
             </div>
         </div>
     </div>
