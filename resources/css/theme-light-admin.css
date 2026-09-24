@@ -1,0 +1,375 @@
+/* Light mode overrides for Admin tables and components */
+html.theme-light .admin-card {
+    background-color: rgba(255, 255, 255, 0.96) !important;
+    border-color: rgba(64, 70, 71, 0.18) !important;
+    box-shadow: 0 4px 12px rgba(64, 70, 71, 0.08) !important;
+}
+
+html.theme-light .admin-table-shell {
+    border-color: rgba(64, 70, 71, 0.18) !important;
+}
+
+html.theme-light .admin-table-head {
+    border-color: rgba(64, 70, 71, 0.18) !important;
+    background-color: rgba(226, 228, 231, 0.72) !important;
+    color: #596164 !important;
+}
+
+html.theme-light .admin-table-row {
+    border-color: rgba(64, 70, 71, 0.12) !important;
+    background-color: rgba(255, 255, 255, 0.86) !important;
+    color: #404647 !important;
+}
+
+html.theme-light .admin-table-row:last-child {
+    border-bottom: none !important;
+}
+
+html.theme-light .admin-table-empty {
+    color: #596164 !important;
+}
+
+html.theme-light .admin-form-panel {
+    border-color: rgba(64, 70, 71, 0.18) !important;
+    background-color: rgba(255, 255, 255, 0.96) !important;
+    box-shadow: 0 4px 12px rgba(64, 70, 71, 0.08) !important;
+}
+
+html.theme-light .admin-input,
+html.theme-light .admin-select {
+    border-color: rgba(64, 70, 71, 0.24) !important;
+    background-color: rgba(255, 255, 255, 0.94) !important;
+    color: #252a2c !important;
+}
+
+html.theme-light .admin-input:focus,
+html.theme-light .admin-select:focus {
+    border-color: #02b8bc !important;
+}
+
+html.theme-light .admin-label {
+    color: #596164 !important;
+}
+
+html.theme-light .admin-btn-ghost {
+    border-color: rgba(64, 70, 71, 0.24) !important;
+    background-color: rgba(226, 228, 231, 0.72) !important;
+    color: #404647 !important;
+}
+
+html.theme-light .admin-btn-ghost:hover {
+    border-color: #02b8bc !important;
+    color: #ffffff !important;
+    background-color: #02b8bc !important;
+}
+
+html.theme-light .admin-btn-danger {
+    border-color: rgba(244, 63, 94, 0.3) !important;
+    background-color: rgba(244, 63, 94, 0.1) !important;
+    color: #dc2626 !important;
+}
+
+html.theme-light .admin-btn-danger:hover {
+    background-color: rgba(244, 63, 94, 0.2) !important;
+}
+
+html.theme-light .admin-table {
+    color: #404647 !important;
+}
+
+html.theme-light .admin-table thead {
+    background-color: rgba(226, 228, 231, 0.72) !important;
+    color: #596164 !important;
+}
+
+html.theme-light .admin-table tbody {
+    border-color: rgba(64, 70, 71, 0.12) !important;
+    color: #404647 !important;
+}
+
+html.theme-light .admin-table th,
+html.theme-light .admin-table td {
+    border-color: rgba(64, 70, 71, 0.12) !important;
+}
+
+/* Fix inline styles in admin tables */
+html.theme-light .text-slate-500 {
+    color: #596164 !important;
+}
+
+html.theme-light .text-slate-400 {
+    color: #596164 !important;
+}
+
+html.theme-light .text-slate-300 {
+    color: #404647 !important;
+}
+
+html.theme-light .text-white {
+    color: #252a2c !important;
+}
+
+html.theme-light .text-slate-200 {
+    color: #404647 !important;
+}
+
+html.theme-light .bg-slate-900\/80,
+html.theme-light .bg-slate-900\/70,
+html.theme-light .bg-slate-900\/60,
+html.theme-light .bg-slate-900\/40,
+html.theme-light .bg-slate-900\/20,
+html.theme-light .bg-slate-900 {
+    background-color: rgba(226, 228, 231, 0.72) !important;
+}
+
+html.theme-light .bg-slate-950\/80,
+html.theme-light .bg-slate-950\/70,
+html.theme-light .bg-slate-950\/60,
+html.theme-light .bg-slate-950\/40,
+html.theme-light .bg-slate-950\/20,
+html.theme-light .bg-slate-950 {
+    background-color: rgba(248, 249, 250, 0.96) !important;
+}
+
+html.theme-light .bg-slate-800\/80,
+html.theme-light .bg-slate-800\/70,
+html.theme-light .bg-slate-800\/60,
+html.theme-light .bg-slate-800\/50,
+html.theme-light .bg-slate-800\/40,
+html.theme-light .bg-slate-800\/30,
+html.theme-light .bg-slate-800\/20,
+html.theme-light .bg-slate-800 {
+    background-color: rgba(64, 70, 71, 0.1) !important;
+}
+
+html.theme-light .border-slate-800\/80,
+html.theme-light .border-slate-800\/70,
+html.theme-light .border-slate-800\/60,
+html.theme-light .border-slate-800\/50,
+html.theme-light .border-slate-800\/40,
+html.theme-light .border-slate-800\/30,
+html.theme-light .border-slate-800\/20,
+html.theme-light .border-slate-800 {
+    border-color: rgba(64, 70, 71, 0.18) !important;
+}
+
+html.theme-light .border-slate-700\/60,
+html.theme-light .border-slate-700\/50,
+html.theme-light .border-slate-700\/40,
+html.theme-light .border-slate-700\/30,
+html.theme-light .border-slate-700\/20,
+html.theme-light .border-slate-700 {
+    border-color: rgba(64, 70, 71, 0.2) !important;
+}
+
+/* Status badges */
+html.theme-light .bg-emerald-500\/10 {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+html.theme-light .text-emerald-400 {
+    color: #059669 !important;
+}
+
+html.theme-light .border-emerald-500\/20 {
+    border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+html.theme-light .bg-emerald-400 {
+    background-color: #10b981 !important;
+}
+
+html.theme-light .bg-rose-500\/10 {
+    background-color: rgba(244, 63, 94, 0.1) !important;
+}
+
+html.theme-light .text-rose-400 {
+    color: #dc2626 !important;
+}
+
+html.theme-light .border-rose-500\/20 {
+    border-color: rgba(244, 63, 94, 0.2) !important;
+}
+
+html.theme-light .bg-rose-400 {
+    background-color: #ef4444 !important;
+}
+
+/* Featured/Most Seller badges */
+html.theme-light .bg-\[\#02B8BC\]\/10 {
+    background-color: rgba(2, 184, 188, 0.1) !important;
+}
+
+html.theme-light .text-\[\#02B8BC\] {
+    color: #02b8bc !important;
+}
+
+html.theme-light .border-\[\#02B8BC\]\/20 {
+    border-color: rgba(2, 184, 188, 0.2) !important;
+}
+
+html.theme-light .bg-amber-400\/10 {
+    background-color: rgba(245, 158, 11, 0.1) !important;
+}
+
+html.theme-light .text-amber-300 {
+    color: #d97706 !important;
+}
+
+html.theme-light .border-amber-400\/20 {
+    border-color: rgba(245, 158, 11, 0.2) !important;
+}
+
+/* Discount eligible badge */
+html.theme-light .bg-emerald-500\/10 {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+html.theme-light .text-emerald-400 {
+    color: #059669 !important;
+}
+
+html.theme-light .border-emerald-500\/20 {
+    border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Inactive badge */
+html.theme-light .bg-slate-800\/60 {
+    background-color: rgba(64, 70, 71, 0.1) !important;
+}
+
+html.theme-light .text-slate-400 {
+    color: #596164 !important;
+}
+
+html.theme-light .border-slate-700\/60 {
+    border-color: rgba(64, 70, 71, 0.2) !important;
+}
+
+html.theme-light .bg-slate-500 {
+    background-color: #64748b !important;
+}
+
+/* Pagination */
+html.theme-light .pagination {
+    color: #404647 !important;
+}
+
+html.theme-light .pagination a,
+html.theme-light .pagination span {
+    border-color: rgba(64, 70, 71, 0.18) !important;
+    background-color: rgba(255, 255, 255, 0.94) !important;
+    color: #404647 !important;
+}
+
+html.theme-light .pagination a:hover {
+    background-color: #02b8bc !important;
+    border-color: #02b8bc !important;
+    color: #ffffff !important;
+}
+
+html.theme-light .pagination .current {
+    background-color: #02b8bc !important;
+    border-color: #02b8bc !important;
+    color: #ffffff !important;
+}
+
+/* Scrollbar for light mode */
+html.theme-light .koru-scrollbar::-webkit-scrollbar-track {
+    background: rgba(226, 228, 231, 0.3) !important;
+}
+
+html.theme-light .koru-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(64, 70, 71, 0.3) !important;
+}
+
+html.theme-light .koru-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: rgba(2, 184, 188, 0.4) !important;
+}
+
+/* Modal and form backgrounds */
+html.theme-light .fixed.inset-0.bg-slate-950\/80,
+html.theme-light .fixed.inset-0.bg-slate-900\/80 {
+    background-color: rgba(37, 42, 44, 0.6) !important;
+}
+
+html.theme-light .bg-slate-950\/90,
+html.theme-light .bg-slate-950\/95 {
+    background-color: rgba(248, 249, 250, 0.98) !important;
+}
+
+/* Textarea and other form elements */
+html.theme-light textarea.admin-input {
+    color: #252a2c !important;
+}
+
+html.theme-light select.admin-select option {
+    background-color: #ffffff;
+    color: #252a2c;
+}
+
+/* Delete modal */
+html.theme-light .bg-slate-950 {
+    background-color: rgba(248, 249, 250, 0.96) !important;
+}
+
+html.theme-light .border-slate-700 {
+    border-color: rgba(64, 70, 71, 0.18) !important;
+}
+
+/* Success alert */
+html.theme-light .bg-emerald-500\/10 {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+html.theme-light .text-emerald-300 {
+    color: #059669 !important;
+}
+
+html.theme-light .border-emerald-500\/20 {
+    border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Error alert */
+html.theme-light .bg-rose-500\/10 {
+    background-color: rgba(244, 63, 94, 0.1) !important;
+}
+
+html.theme-light .text-rose-300 {
+    color: #dc2626 !important;
+}
+
+html.theme-light .border-rose-500\/20 {
+    border-color: rgba(244, 63, 94, 0.2) !important;
+}
+
+/* Page header */
+html.theme-light .text-slate-400 {
+    color: #596164 !important;
+}
+
+/* Sidebar */
+html.theme-light .bg-slate-900 {
+    background-color: rgba(226, 228, 231, 0.72) !important;
+}
+
+html.theme-light .border-slate-800 {
+    border-color: rgba(64, 70, 71, 0.18) !important;
+}
+
+/* Button text colors */
+html.theme-light .admin-btn-primary {
+    color: #ffffff !important;
+}
+
+html.theme-light .admin-btn-secondary {
+    border-color: rgba(64, 70, 71, 0.24) !important;
+    background-color: rgba(226, 228, 231, 0.72) !important;
+    color: #404647 !important;
+}
+
+html.theme-light .admin-btn-secondary:hover {
+    border-color: #02b8bc !important;
+    color: #ffffff !important;
+    background-color: #02b8bc !important;
+}
