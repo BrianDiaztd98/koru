@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Livewire\Admin\TeamMembersManager\TeamMembersManager;
+use App\Livewire\Components\LandingPage;
 use App\Livewire\Components\Team;
 use App\Models\TeamMember;
 use App\Models\User;
@@ -42,6 +43,7 @@ class TeamAdminTest extends TestCase
             ->set('instagram_handle', '@maya')
             ->set('bio_en', 'Expert in recovery and mobility.')
             ->set('specialty_en', 'Physical Therapy')
+            ->set('card_description_en', 'Recovery and mobility specialist.')
             ->call('save')
             ->assertHasNoErrors();
 
@@ -50,6 +52,7 @@ class TeamAdminTest extends TestCase
             'instagram_handle' => '@maya',
             'bio_en' => 'Expert in recovery and mobility.',
             'specialty_en' => 'Physical Therapy',
+            'card_description_en' => 'Recovery and mobility specialist.',
             'active_status' => true,
         ]);
     }
@@ -161,7 +164,7 @@ class TeamAdminTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('team_members', [
-            'name' => 'Angie Galvez',
+            'name' => 'Angie Gálvez',
             'image_path' => 'img/team/KORU_Angie_Galvez_HD.jpg.jpeg',
             'active_status' => true,
         ]);
@@ -173,6 +176,32 @@ class TeamAdminTest extends TestCase
         ]);
 
         $this->assertDatabaseCount('team_members', 5);
+    }
+
+    public function test_landing_page_team_order_matches_requested_staff_sequence(): void
+    {
+        $seedMembers = [
+            'Angie Gálvez',
+            'Raúl Díaz',
+            'Lenys Fernández',
+            'Pierre Ahmar',
+            'Grecia Reyes',
+        ];
+
+        foreach ($seedMembers as $name) {
+            TeamMember::query()->create([
+                'name' => $name,
+                'instagram_handle' => '@'.$name,
+                'bio_en' => 'Team bio for '.$name,
+                'specialty_en' => 'Specialty',
+                'image_path' => 'img/team/'.$name.'.jpg',
+                'active_status' => true,
+            ]);
+        }
+
+        $orderedNames = array_column(Livewire::test(LandingPage::class)->instance()->getTeamMembersProperty(), 'name');
+
+        $this->assertSame($seedMembers, $orderedNames);
     }
 
     public function test_team_showcase_paginates_in_groups_of_five_without_losing_members(): void

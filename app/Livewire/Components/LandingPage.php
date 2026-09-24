@@ -91,6 +91,7 @@ class LandingPage extends Component
             ->where('active_status', true)
             ->whereNot('category', 'medical_services')
             ->orderByRaw("case when category = 'manual_therapy' then 1 when category = 'recovery_performance' then 2 when category = 'koru_at_home' then 3 else 4 end")
+            ->orderByDesc('is_featured')
             ->orderBy('name_en')
             ->get()
             ->groupBy('category')
@@ -101,6 +102,8 @@ class LandingPage extends Component
                     'title' => $service->name_en,
                     'description' => $service->description_en,
                     'duration' => $service->duration,
+                    'is_featured' => $service->is_featured && ! in_array($service->category, ['iv_therapy', 'booster_shots'], true),
+                    'is_best_seller' => $service->is_best_seller && $service->is_featured && ! in_array($service->category, ['iv_therapy', 'booster_shots'], true),
                     'image' => AdminMediaService::resolveImageUrl($service->image_path) ?: asset('img/carrucel/relaxing.webp'),
                 ]);
 
@@ -337,15 +340,18 @@ class LandingPage extends Component
                 'instagram' => $member->instagram_handle,
                 'instagram_url' => $member->instagram_url,
                 'linkedin_url' => $member->linkedin_url,
+                'title' => $member->specialty_en ?? $member->bio_en,
+                'card' => $member->card_description_en ?? $member->specialty_en ?? $member->bio_en,
                 'bio' => $member->bio_en,
-                'specialty' => $member->specialty_en ?? $member->bio_en,
                 'image' => AdminMediaService::resolveImageUrl($member->image_path) ?: asset('img/team/placeholder.png'),
             ])
             ->toArray();
 
         $displayOrder = [
-            'Angie Galvez' => 1,
             'Raúl Díaz' => 2,
+            'Angie Gálvez' => 1,
+            'Raúl' => 2,
+            'Angie Galvez' => 1,
             'Lenys Fernández' => 3,
             'Pierre Ahmar' => 4,
             'Grecia Reyes' => 5,

@@ -50,6 +50,13 @@
         </div>
         <div class="md:col-span-2">
             <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
+                Card Text (EN) <span class="text-slate-500">(Opcional)</span>
+            </label>
+            <textarea wire:model.defer="card_description_en" rows="2" maxlength="300" class="admin-input" placeholder="Short text shown on the specialist card (max 300 chars)"></textarea>
+            @error('card_description_en') <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
+        </div>
+        <div class="md:col-span-2">
+            <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
                 Bio (EN) <span class="text-slate-500">(Opcional)</span>
             </label>
             <textarea wire:model.defer="bio_en" rows="3" x-ref="bio_en" @input="updateCount('bio_en')" class="admin-input" placeholder="Professional biography (max 1000 chars)"></textarea>

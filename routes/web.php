@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Middleware\AdminAccess;
 use App\Http\Middleware\TrackLandingPageVisit;
 use App\Livewire\Admin\AboutPageManager\AboutPageManager;
+use App\Livewire\Admin\AppearanceManager\AppearanceManager;
 use App\Livewire\Admin\Auth\ForgotPassword;
 use App\Livewire\Admin\Auth\Login;
 use App\Livewire\Admin\Auth\ResetPassword;
@@ -39,6 +40,7 @@ Route::post('admin/logout', [LoginController::class, 'destroy'])
 Route::middleware([AdminAccess::class])->prefix('admin')->name('admin.')->group(function () {
     // Livewire SPA entry points for admin
     Route::get('management', LandingPageManager::class)->name('management.index');
+    Route::get('appearance', AppearanceManager::class)->name('appearance.index');
 
     // About page (SPA) - map GET routes used by tests/views to the Livewire component
     Route::get('about', AboutPageManager::class)->name('about.index');

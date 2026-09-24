@@ -4,26 +4,13 @@ namespace App\Livewire\Admin\AboutPageManager;
 
 use App\Models\About;
 use App\Models\AboutGlanceItem;
-use App\Services\AdminMediaService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use Livewire\Component;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
-use Livewire\WithFileUploads;
 
 class AboutPageManager extends Component
 {
-    use WithFileUploads;
-
     public ?About $about = null;
-
-    public ?TemporaryUploadedFile $image_1 = null;
-
-    public ?TemporaryUploadedFile $image_2 = null;
-
-    public ?TemporaryUploadedFile $image_3 = null;
-
-    public ?TemporaryUploadedFile $image_4 = null;
 
     public string $title = '';
 
@@ -79,10 +66,6 @@ class AboutPageManager extends Component
             'philosophy' => ['required', 'string', 'max:2000'],
             'vision' => ['required', 'string', 'max:2000'],
             'mission' => ['nullable', 'string', 'max:2000'],
-            'image_1' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
-            'image_2' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
-            'image_3' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
-            'image_4' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             'glanceItems' => ['nullable', 'array'],
             'glanceItems.*.title' => ['nullable', 'string', 'max:80'],
             'glanceItems.*.description' => ['nullable', 'string', 'max:500'],
@@ -98,12 +81,6 @@ class AboutPageManager extends Component
     {
         if (! $this->about) {
             return;
-        }
-
-        foreach (['image_1', 'image_2', 'image_3', 'image_4'] as $field) {
-            if ($this->about->{$field}) {
-                AdminMediaService::deleteImage($this->about->{$field});
-            }
         }
 
         $this->about->delete();
@@ -126,8 +103,6 @@ class AboutPageManager extends Component
             'mission',
         ]);
 
-        $this->handleUploadedImages($data);
-
         if ($this->about && $this->about->exists) {
             $this->about->update($data);
             session()->flash('success', 'About section updated successfully.');
@@ -139,18 +114,6 @@ class AboutPageManager extends Component
         $this->syncGlanceItems();
 
         $this->mount();
-    }
-
-    private function handleUploadedImages(array &$data): void
-    {
-        foreach (['image_1', 'image_2', 'image_3', 'image_4'] as $field) {
-            if ($this->{$field} instanceof TemporaryUploadedFile) {
-                if ($this->about && $this->about->exists) {
-                    AdminMediaService::deleteImage($this->about->{$field});
-                }
-                $data[$field] = AdminMediaService::storeImage($this->{$field}, 'about');
-            }
-        }
     }
 
     private function syncGlanceItems(): void

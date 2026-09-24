@@ -13,6 +13,7 @@ class TeamMember extends Model
         'linkedin_url',
         'bio_en',
         'specialty_en',
+        'card_description_en',
         'image_path',
         'active_status',
     ];

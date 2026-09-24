@@ -50,7 +50,7 @@
 
                             <div class="relative flex-grow">
                                 <p class="text-xs sm:text-sm leading-relaxed text-slate-400 text-justify line-clamp-4">
-                                    {{ $member['specialty'] ?? $member['bio'] ?? '' }}
+                                    {{ $member['card'] ?? $member['bio'] ?? '' }}
                                 </p>
 
                                 <button @click="activeMember = @js($member)"
@@ -117,7 +117,7 @@
              aria-modal="true"
              aria-labelledby="team-modal-title"
              x-init="document.body.classList.toggle('overflow-hidden', activeMember !== null); $watch('activeMember', value => document.body.classList.toggle('overflow-hidden', value !== null));">
-            <div class="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-slate-700 bg-slate-950 shadow-2xl shadow-black/40">
+            <div class="relative w-full max-w-3xl overflow-hidden rounded-3xl border border-slate-700 bg-slate-950 shadow-2xl shadow-black/40">
                 <button @click="activeMember = null"
                         type="button"
                         class="absolute right-4 top-4 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-700 bg-slate-900/80 text-slate-200 transition hover:border-[#02B8BC] hover:text-white"
@@ -125,8 +125,8 @@
                     ×
                 </button>
 
-                <div class="grid md:grid-cols-[220px_1fr]">
-                    <div class="relative aspect-[3/4] w-full overflow-hidden bg-slate-900 md:min-h-full">
+                <div class="grid md:grid-cols-[240px_1fr] md:min-h-[380px]">
+                    <div class="relative aspect-[3/4] w-full overflow-hidden bg-slate-900 md:h-full md:aspect-auto">
                         <img x-bind:src="activeMember?.image" x-bind:alt="activeMember?.name || 'Team member'" class="h-full w-full object-cover" loading="lazy" decoding="async">
                     </div>
 
@@ -136,9 +136,9 @@
                             <p class="mt-1 text-[11px] uppercase tracking-[0.22em] font-bold text-[#02B8BC]" x-text="activeMember?.instagram ? '@' + activeMember.instagram.replace(/^@/, '') : 'Clinical Staff'"></p>
                         </div>
 
-                        <p class="mb-5 text-sm font-medium text-slate-300" x-text="activeMember?.specialty || activeMember?.bio || ''"></p>
+                        <p class="mb-5 text-sm font-medium text-slate-300" x-text="activeMember?.title || activeMember?.bio || ''"></p>
 
-                        <div class="overflow-y-auto pr-1 text-sm leading-relaxed text-slate-300" x-text="activeMember?.bio || activeMember?.specialty || ''"></div>
+                        <div class="overflow-y-auto pr-1 text-sm leading-relaxed text-slate-300 text-justify" x-text="activeMember?.bio || activeMember?.specialty || ''"></div>
                     </div>
                 </div>
             </div>

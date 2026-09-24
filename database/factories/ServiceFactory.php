@@ -22,6 +22,8 @@ class ServiceFactory extends Factory
             'category' => fake()->randomElement(array_keys(Service::categories())),
             'active_status' => true,
             'discount_eligible' => false,
+            'is_featured' => false,
+            'is_best_seller' => false,
         ];
     }
 }

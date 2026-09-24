@@ -30,6 +30,87 @@
     html:hover::-webkit-scrollbar-thumb {
         background: rgba(2, 184, 188, 0.3) !important; /* Aqua/30 */
     }
+
+    html.theme-light body {
+        background-color: #f8f9fa;
+        color: #404647;
+    }
+
+    html.theme-light .bg-slate-950,
+    html.theme-light .bg-slate-950\/60,
+    html.theme-light .bg-slate-950\/80,
+    html.theme-light .bg-slate-950\/95 {
+        background-color: rgba(248, 249, 250, 0.96) !important;
+    }
+
+    html.theme-light .bg-slate-900,
+    html.theme-light .bg-slate-900\/20,
+    html.theme-light .bg-slate-900\/40,
+    html.theme-light .bg-slate-900\/60,
+    html.theme-light .bg-slate-900\/70 {
+        background-color: rgba(226, 228, 231, 0.72) !important;
+    }
+
+    html.theme-light .text-white,
+    html.theme-light .text-slate-100,
+    html.theme-light .text-slate-200,
+    html.theme-light .text-slate-300 {
+        color: #252a2c !important;
+    }
+
+    html.theme-light .text-slate-400,
+    html.theme-light .text-slate-500 {
+        color: #596164 !important;
+    }
+
+    html.theme-light .border-slate-700,
+    html.theme-light .border-slate-800,
+    html.theme-light .border-slate-800\/50,
+    html.theme-light .border-slate-800\/70,
+    html.theme-light .border-slate-800\/80 {
+        border-color: rgba(64, 70, 71, 0.18) !important;
+    }
+
+    html.theme-light .appearance-settings-panel {
+        background: #f8fafb !important;
+        border-color: rgba(64, 70, 71, 0.2) !important;
+    }
+
+    html.theme-light .appearance-card-dark {
+        background: #1f2937 !important;
+        border-color: #334155 !important;
+    }
+
+    html.theme-light label:has(input:checked) .appearance-card-dark {
+        background: #233c42 !important;
+        border-color: #02b8bc !important;
+    }
+
+    html.theme-light .appearance-card-dark-title {
+        color: #ffffff !important;
+    }
+
+    html.theme-light .appearance-card-dark-description {
+        color: #d1d5db !important;
+    }
+
+    html.theme-light .appearance-card-light {
+        background: #ffffff !important;
+        border-color: rgba(64, 70, 71, 0.18) !important;
+    }
+
+    html.theme-light label:has(input:checked) .appearance-card-light {
+        background: #f0fbfb !important;
+        border-color: #02b8bc !important;
+    }
+
+    html.theme-light .appearance-card-light-title {
+        color: #252a2c !important;
+    }
+
+    html.theme-light .appearance-card-light-description {
+        color: #596164 !important;
+    }
 }
 
 @layer utilities {

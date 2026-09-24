@@ -22,9 +22,6 @@
         <button type="button" @click="activeTab = 'glance'" :class="activeTab === 'glance' ? 'bg-[#02B8BC]/10 text-[#02B8BC] border-slate-700/50' : 'text-slate-400 border-transparent'" class="px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-lg border transition-all duration-150">
             At a Glance
         </button>
-        <button type="button" @click="activeTab = 'media'" :class="activeTab === 'media' ? 'bg-[#02B8BC]/10 text-[#02B8BC] border-slate-700/50' : 'text-slate-400 border-transparent'" class="px-3 py-1.5 text-xs font-mono font-bold uppercase rounded-lg border transition-all duration-150">
-            Media
-        </button>
     </div>
 
     <form wire:submit.prevent="save" enctype="multipart/form-data" class="mt-6">
@@ -116,29 +113,6 @@
                     </div>
                 </div>
             @endforeach
-        </div>
-
-        <div x-show="activeTab === 'media'" x-cloak x-transition>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                @foreach (range(1, 4) as $slot)
-                    @php $upload = ${'image_' . $slot}; @endphp
-                    <div class="space-y-2">
-                        <div class="flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-xl border border-slate-800 bg-slate-950/40">
-                            @if ($upload && method_exists($upload, 'temporaryUrl'))
-                                <img src="{{ $upload->temporaryUrl() }}" class="h-full w-full object-cover" loading="lazy" decoding="async" fetchpriority="low">
-                            @elseif ($about?->{'image_' . $slot})
-                                <img src="{{ asset($about->{'image_' . $slot}) }}" class="h-full w-full object-cover" loading="lazy" decoding="async" fetchpriority="low">
-                            @else
-                                <span class="font-mono text-[10px] uppercase tracking-wider text-slate-600">Empty</span>
-                            @endif
-                        </div>
-                        <label class="admin-label">Image {{ $slot }} <span class="text-slate-500">(Opcional)</span></label>
-                        <input wire:model="image_{{ $slot }}" type="file" accept="image/*" class="w-full text-[11px] text-slate-500 file:mr-2 file:rounded-md file:border-0 file:bg-[#02B8BC]/10 file:px-2.5 file:py-1 file:font-mono file:text-[10px] file:font-bold file:text-[#02B8BC] cursor-pointer" />
-                        @error('image_' . $slot) <span class="mt-1.5 block text-xs text-rose-400 font-mono">{{ $message }}</span> @enderror
-                    </div>
-                @endforeach
-            </div>
-            <p class="mt-2 text-[11px] text-slate-600">JPG, PNG, WebP • Max 2MB</p>
         </div>
 
         <div class="mt-8 flex flex-col gap-4 border-t border-slate-800/60 pt-5 sm:flex-row sm:items-center sm:justify-between">

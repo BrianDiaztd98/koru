@@ -23,7 +23,7 @@ class ServiceManager extends Component
 
     public string $category = 'manual_therapy';
 
-    public string $filterCategory = 'all';
+    public string $filterCategory = 'manual_therapy';
 
     public int $perPage = 5;
 
@@ -38,6 +38,10 @@ class ServiceManager extends Component
     public bool $active_status = true;
 
     public bool $discount_eligible = false;
+
+    public bool $is_featured = false;
+
+    public bool $is_best_seller = false;
 
     public ?TemporaryUploadedFile $image_path = null;
 
@@ -57,7 +61,7 @@ class ServiceManager extends Component
     protected string $paginationTheme = 'tailwind';
 
     protected array $queryString = [
-        'filterCategory' => ['except' => 'all'],
+        'filterCategory' => ['except' => 'manual_therapy'],
     ];
 
     public bool $isEdit = false;
@@ -65,6 +69,9 @@ class ServiceManager extends Component
     public function mount(?Service $service = null, ?string $category = null): void
     {
         $this->categories = Service::categories();
+        if (! array_key_exists($this->filterCategory, $this->categories)) {
+            $this->filterCategory = 'manual_therapy';
+        }
         $this->category = $service ? $service->category : ($category ?? 'manual_therapy');
         $this->service = $service;
         $this->isEdit = $service !== null;
@@ -79,6 +86,8 @@ class ServiceManager extends Component
                 'active_status' => $service->active_status,
                 'category' => $service->category,
                 'discount_eligible' => (bool) $service->discount_eligible,
+                'is_featured' => (bool) $service->is_featured,
+                'is_best_seller' => (bool) $service->is_best_seller,
             ]);
         }
     }
@@ -94,6 +103,8 @@ class ServiceManager extends Component
             'image_path' => ['nullable', 'image', 'max:4096', 'mimes:jpg,jpeg,png,webp'],
             'active_status' => ['boolean'],
             'discount_eligible' => ['boolean'],
+            'is_featured' => ['boolean'],
+            'is_best_seller' => ['boolean'],
         ];
     }
 
@@ -125,6 +136,8 @@ class ServiceManager extends Component
             'active_status' => $service->active_status,
             'category' => $service->category,
             'discount_eligible' => (bool) $service->discount_eligible,
+            'is_featured' => (bool) $service->is_featured,
+            'is_best_seller' => (bool) $service->is_best_seller,
         ]);
         $this->showForm = true;
     }
@@ -189,6 +202,38 @@ class ServiceManager extends Component
         $validated['category'] = $this->category;
         $validated['active_status'] = $this->active_status;
         $validated['discount_eligible'] = $this->discount_eligible;
+        $validated['is_featured'] = $this->canFeatureService() && $this->is_featured;
+        $validated['is_best_seller'] = $validated['is_featured'] && $this->is_best_seller;
+
+        if ($validated['is_featured']) {
+            $featuredCount = Service::query()
+                ->where('is_featured', true)
+                ->when($this->service, fn ($query) => $query->whereKeyNot($this->service->id))
+                ->count() + 1;
+
+            if ($featuredCount > 3) {
+                $this->addError('is_featured', 'You can feature a maximum of 3 services.');
+
+                return;
+            }
+        }
+
+        if ($validated['is_best_seller']) {
+            $featuredCount = Service::query()
+                ->where('is_featured', true)
+                ->when($this->service, fn ($query) => $query->whereKeyNot($this->service->id))
+                ->count() + 1;
+            $bestSellerCount = Service::query()
+                ->where('is_best_seller', true)
+                ->when($this->service, fn ($query) => $query->whereKeyNot($this->service->id))
+                ->count();
+
+            if ($bestSellerCount >= min(3, $featuredCount)) {
+                $this->addError('is_best_seller', 'You can mark up to the number of Featured services as Most Seller.');
+
+                return;
+            }
+        }
 
         if ($this->isImageCategory()) {
             if ($this->image_path instanceof TemporaryUploadedFile) {
@@ -231,6 +276,59 @@ class ServiceManager extends Component
         $this->redirectRoute('admin.services.index', $routeParams);
     }
 
+    public function toggleFeatured(int $serviceId): void
+    {
+        $service = Service::findOrFail($serviceId);
+
+        if (! $this->canFeatureCategory($service->category)) {
+            return;
+        }
+
+        $newFeatured = ! $service->is_featured;
+
+        if ($newFeatured) {
+            if (Service::query()->where('is_featured', true)->count() >= 3) {
+                session()->flash('error', 'You can feature a maximum of 3 services.');
+
+                return;
+            }
+        }
+
+        $service->update(['is_featured' => $newFeatured]);
+
+        if (! $newFeatured && $service->is_best_seller) {
+            $service->update(['is_best_seller' => false]);
+        }
+    }
+
+    public function toggleBestSeller(int $serviceId): void
+    {
+        $service = Service::findOrFail($serviceId);
+
+        if (! $this->canFeatureCategory($service->category) || ! $service->is_featured) {
+            return;
+        }
+
+        $newBestSeller = ! $service->is_best_seller;
+
+        if ($newBestSeller) {
+            $featuredCount = Service::query()
+                ->where('is_featured', true)
+                ->count();
+            $bestSellerCount = Service::query()
+                ->where('is_best_seller', true)
+                ->count();
+
+            if ($bestSellerCount >= min(3, $featuredCount)) {
+                session()->flash('error', 'You can mark up to the number of Featured services as Most Seller.');
+
+                return;
+            }
+        }
+
+        $service->update(['is_best_seller' => $newBestSeller]);
+    }
+
     public function resetForm(): void
     {
         $this->service = null;
@@ -241,8 +339,10 @@ class ServiceManager extends Component
         $this->price = '';
         $this->active_status = true;
         $this->image_path = null;
-        $this->category = $this->filterCategory === 'all' ? 'manual_therapy' : $this->filterCategory;
+        $this->category = $this->filterCategory;
         $this->discount_eligible = false;
+        $this->is_featured = false;
+        $this->is_best_seller = false;
     }
 
     private function loadServices(): LengthAwarePaginator
@@ -253,16 +353,24 @@ class ServiceManager extends Component
 
         $query = Service::query();
 
-        if ($this->filterCategory !== 'all') {
-            $query->where('category', $this->filterCategory);
-        }
+        $query->where('category', $this->filterCategory);
 
-        return $query->orderBy('category')->orderBy('name_en')->paginate($this->perPage);
+        return $query->orderByDesc('is_featured')->orderBy('category')->orderBy('name_en')->paginate($this->perPage);
     }
 
     private function isImageCategory(): bool
     {
         return in_array($this->category, $this->imageCategories, true);
+    }
+
+    public function canFeatureService(): bool
+    {
+        return $this->canFeatureCategory($this->category);
+    }
+
+    public function canFeatureCategory(string $category): bool
+    {
+        return ! in_array($category, ['iv_therapy', 'booster_shots'], true);
     }
 
     public function render(): View

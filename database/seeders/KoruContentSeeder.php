@@ -36,6 +36,7 @@ class KoruContentSeeder extends Seeder
     protected function seedSiteSettings(): void
     {
         $settings = [
+            'theme_mode' => 'dark',
             'hero_title' => 'Pain free, better life',
             'clinic_address' => '6405 NW 36th St, Suite 100, Virginia Gardens, FL 33166',
             'clinic_hours' => 'Thu-Tue: 8:00 AM - 8:00 PM (Wednesdays: Closed)',
@@ -137,6 +138,8 @@ class KoruContentSeeder extends Seeder
             [
                 'name_en' => 'THERAPEUTIC EXERCISES',
                 'description_en' => 'Guided exercises designed to improve mobility, strength, stability, and functional movement as part of your recovery plan.',
+                'price' => 120.00,
+                'duration' => '60 min',
                 'category' => 'recovery_performance',
                 'active_status' => true,
             ],
@@ -380,44 +383,21 @@ class KoruContentSeeder extends Seeder
 
     protected function seedCourses(): void
     {
-        $courses = [
-            [
-                'title_en' => 'Advanced Manual Therapy Techniques',
-                'description_en' => 'High-visibility continuing education experience for Florida PTs, PTAs, and LMTs. Includes live assessment labs, manual release progressions, post-surgical precautions, and documentation frameworks aligned with license renewal requirements. Continuing Education Credits (CE) included.',
-                'ce_credits' => 8,
-                'date' => now()->addDays(45)->toDateString(),
-                'price' => 695.00,
-                'active_status' => true,
-            ],
-            [
-                'title_en' => 'Sports Recovery Tech Certification',
-                'description_en' => 'Multi-language certification for PTs, PTAs, and LMTs covering contrast therapy, compression systems, red-light recovery, hydration protocols, and biohacking technologies used in elite sports recovery lounges.',
-                'ce_credits' => 10,
-                'date' => now()->addDays(75)->toDateString(),
-                'price' => 895.00,
-                'active_status' => true,
-            ],
-        ];
-
-        foreach ($courses as $course) {
-            Course::query()->updateOrCreate(
-                ['title_en' => $course['title_en']],
-                $course,
-            );
-        }
+        // Education/course data intentionally left empty.
     }
 
     protected function seedTeamMembers(): void
     {
         $members = [
             [
-                'name' => 'Lenys Fernández',
-                'instagram_handle' => '@lenysftto',
+                'name' => 'Angie Gálvez',
+                'instagram_handle' => '@angietherapy',
                 'instagram_url' => null,
                 'linkedin_url' => null,
-                'bio_en' => 'Lenys graduated in Physical Therapy and Occupational Therapy in Venezuela. She has dedicated much of her training to the treatment of musculoskeletal injuries and to care for older adults, helping patients regain function, independence, and confidence in their daily lives.',
-                'specialty_en' => 'Physical and occupational therapy graduate focused on musculoskeletal.',
-                'image_path' => 'img/team/KORU_Lenys_Fernandez_HD.jpg.jpeg',
+                'bio_en' => "Angie is a Licensed Massage Therapist specializing in sports massage and athletic recovery. She works with athletes and active individuals to keep the body moving efficiently under the demands of training and competition, combining deep tissue work, soft tissue mobilization, and targeted manual techniques with recovery protocols built around each person's training load and schedule. Her focus is on addressing restrictions and imbalances before they become injuries, so athletes can train consistently, recover faster between sessions, and sustain performance throughout a full season.",
+                'specialty_en' => 'Sports Recovery Specialist',
+                'card_description_en' => 'Sports massage and recovery that keeps athletes training consistently and ahead of injury.',
+                'image_path' => 'img/team/KORU_Angie_Galvez_HD.jpg.jpeg',
                 'active_status' => true,
             ],
             [
@@ -425,9 +405,21 @@ class KoruContentSeeder extends Seeder
                 'instagram_handle' => '@rauldiazfisio',
                 'instagram_url' => null,
                 'linkedin_url' => null,
-                'bio_en' => 'Raúl is a Physical Therapy graduate from Venezuela with extensive experience in musculoskeletal rehabilitation and pain management. His clinical approach focuses on identifying and addressing the underlying causes of pain rather than simply managing symptoms. He integrates orthopedic manual therapy, shockwave therapy, therapeutic exercise, myofascial techniques, and individualized movement strategies to help patients reduce pain, restore mobility, and return to their daily activities and active lifestyles. With additional clinical experience in cardiovascular and respiratory rehabilitation, Raúl brings a comprehensive perspective to patient care, considering not only the area of pain but the individual’s overall function, movement, and well-being. His goal is simple: help every patient move better, feel better, and live with less pain.',
-                'specialty_en' => 'Pain Management Clinician Integrating orthopedic manual therapy, shockwave therapy, and therapeutic exercise to help reduce pain, restore movement, and improve function.',
+                'bio_en' => "Raúl is a Physical Therapy graduate from Venezuela with extensive experience in musculoskeletal rehabilitation and pain management. His approach focuses on identifying and addressing the underlying causes of pain rather than simply managing symptoms, integrating orthopedic manual therapy, shockwave therapy, therapeutic exercise, and myofascial techniques to reduce pain and restore mobility. With additional clinical experience in cardiovascular and respiratory rehabilitation, he considers not only the area of pain but each patient's overall movement and well-being.",
+                'specialty_en' => 'Pain Management Specialist',
+                'card_description_en' => 'Pain treatment that targets the cause, not just the symptom, with a multi-technique approach.',
                 'image_path' => 'img/team/KORU_Raul_Diaz_HD.jpg.jpeg',
+                'active_status' => true,
+            ],
+            [
+                'name' => 'Lenys Fernández',
+                'instagram_handle' => '@lenysftto',
+                'instagram_url' => null,
+                'linkedin_url' => null,
+                'bio_en' => 'Lenys is a graduate in Physical Therapy and Occupational Therapy from Venezuela, a dual background that lets her treat both the injury and the daily activities it takes away. She has dedicated much of her training to musculoskeletal conditions and to care for older adults, combining therapeutic exercise, manual techniques, and functional retraining designed around what each patient needs to do at home, at work, and in their routine. With older adults, she focuses on mobility, balance, strength, and safe independence, helping patients stay active and confident in their own environment.',
+                'specialty_en' => 'Functional Rehab Specialist',
+                'card_description_en' => 'Physical and occupational therapy combined to restore movement, function and independence.',
+                'image_path' => 'img/team/KORU_Lenys_Fernandez_HD.jpg.jpeg',
                 'active_status' => true,
             ],
             [
@@ -435,19 +427,10 @@ class KoruContentSeeder extends Seeder
                 'instagram_handle' => '@fisiopierre',
                 'instagram_url' => null,
                 'linkedin_url' => 'https://www.linkedin.com/authwall?trkInfo=AQHBKEcgl4AHKwAAAaDKDsoQBU8v1pyd1r_3b1tJfWWdm_w7iZXhs1lbOcGq44u_IVv74xVBeWQ_DliH3yqM2VG8zM30dQ4htvRsOj2Lx6Draf0fLWUMDE-urax0F3PUH7MSb60=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fpierreahmar%3Futm_source%3Dshare_via%26utm_content%3Dprofile%26utm_medium%3Dmember_ios',
-                'bio_en' => 'Pierre is a Physical Therapy graduate from Venezuela with a focus on orthopedic manual therapy. He combines manual therapy, therapeutic exercise, and myofascial release to treat musculoskeletal injuries and guide patients through post-operative rehabilitation, helping them move with less pain and return to the activities they love.',
-                'specialty_en' => 'Orthopedic manual therapy clinician treating musculoskeletal injuries and post-surgical recovery.',
+                'bio_en' => 'Pierre is a Physical Therapy graduate from Venezuela with a clinical focus on orthopedic manual therapy. His approach starts with precise assessment: understanding how an injury changes the way a person moves, and treating the source of the dysfunction rather than the site of the symptom. He combines orthopedic manual therapy, therapeutic exercise, and myofascial release to treat musculoskeletal injuries and guide patients through post-operative rehabilitation, progressing from initial pain relief toward restored strength and full function.',
+                'specialty_en' => 'Manual Therapy Specialist',
+                'card_description_en' => 'Manual therapy and exercise for musculoskeletal injuries and post-operative recovery.',
                 'image_path' => 'img/team/KORU_Pierre_Ahmar_HD.jpg.jpeg',
-                'active_status' => true,
-            ],
-            [
-                'name' => 'Angie Galvez',
-                'instagram_handle' => '@angietherapy',
-                'instagram_url' => null,
-                'linkedin_url' => null,
-                'bio_en' => 'Angie specializes in sports massage, using targeted manual techniques to enhance athletic performance, speed up recovery, and reduce the risk of sports injuries. She works with athletes and active individuals to keep their bodies moving efficiently, so they can train harder, recover faster, and stay in the game.',
-                'specialty_en' => 'Sports massage therapist helping athletes perform better and stay injury-free.',
-                'image_path' => 'img/team/KORU_Angie_Galvez_HD.jpg.jpeg',
                 'active_status' => true,
             ],
             [
@@ -455,8 +438,9 @@ class KoruContentSeeder extends Seeder
                 'instagram_handle' => '@greciareyes',
                 'instagram_url' => 'http://instagram.com/greciavreyes?stkn=MzFkdGI5a2RheHAw',
                 'linkedin_url' => 'https://www.linkedin.com/in/greciavreyes',
-                'bio_en' => 'Grecia is a Physical Therapy graduate from Venezuela with a focus on sports. She treats and helps prevent sports injuries, using movement as the core of every treatment and combining it with hands-on manual techniques. She also works with post-surgical patients, guiding them safely back to full function.',
-                'specialty_en' => 'Sports injury clinician who uses movement as medicine for recovery and prevention.',
+                'bio_en' => 'Grecia is a Physical Therapy graduate from Venezuela with a clinical focus on sports rehabilitation. Her work follows a clear principle: movement is the treatment, and the right dose of it at the right time is what turns an injury into a full recovery. She treats and helps prevent sports injuries by combining progressive therapeutic exercise with hands-on manual techniques that restore strength, control, and confidence in the movements each athlete depends on. She also guides post-surgical patients through each stage of recovery, protecting healing tissue while rebuilding function.',
+                'specialty_en' => 'Sports Rehab Specialist',
+                'card_description_en' => 'Sports injury treatment and prevention built on movement and hands-on manual techniques.',
                 'image_path' => 'img/team/KORU_Grecia_Reyes_HD.jpg.jpeg',
                 'active_status' => true,
             ],

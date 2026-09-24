@@ -145,6 +145,20 @@
                                         </span>
                                     @endif
                                 </div>
+                                @if(!empty($service['is_featured']))
+                                    <div class="absolute top-4 left-4">
+                                        <span class="inline-flex items-center rounded-xl border border-[#02B8BC]/30 bg-slate-950/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#02B8BC] shadow-sm backdrop-blur-sm">
+                                            Featured
+                                        </span>
+                                    </div>
+                                @endif
+                                @if(!empty($service['is_best_seller']))
+                                    <div class="absolute bottom-4 left-4">
+                                        <span class="inline-flex items-center rounded-xl border border-amber-400/30 bg-slate-950/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-amber-300 shadow-sm backdrop-blur-sm">
+                                            Most Seller
+                                        </span>
+                                    </div>
+                                @endif
                             </div>
 
                             <!-- Contenido del Servicio -->

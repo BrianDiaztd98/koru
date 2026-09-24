@@ -51,7 +51,7 @@
             <label class="mb-2 block text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 flex items-center gap-1">
                 Category <span class="text-rose-400">(*)</span>
             </label>
-            <select wire:model.defer="category" class="admin-select">
+            <select wire:model.live="category" class="admin-select">
                 @foreach($categories as $key => $label)
                     <option value="{{ $key }}">{{ $label }}</option>
                 @endforeach
@@ -79,6 +79,20 @@
             <input id="service_discount_eligible" type="checkbox" wire:model.defer="discount_eligible" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#02B8BC] focus:ring-[#02B8BC]" />
             <label for="service_discount_eligible" class="text-sm text-slate-300">Active for deposits</label>
         </div>
+
+        @if($this->canFeatureService())
+            <div class="md:col-span-2 flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
+                <input id="service_is_featured" type="checkbox" wire:model.live="is_featured" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#02B8BC] focus:ring-[#02B8BC]" />
+                <label for="service_is_featured" class="text-sm text-slate-300">Feature this service on the landing page</label>
+            </div>
+        @endif
+
+        @if($this->canFeatureService() && $is_featured)
+            <div class="md:col-span-2 flex items-center gap-3 rounded-xl border border-slate-800/70 bg-slate-900/60 px-4 py-3">
+                <input id="service_is_best_seller" type="checkbox" wire:model.defer="is_best_seller" class="h-4 w-4 rounded border-slate-700 bg-slate-900 text-[#02B8BC] focus:ring-[#02B8BC]" />
+                <label for="service_is_best_seller" class="text-sm text-slate-300">Mark as Most Seller</label>
+            </div>
+        @endif
 
         <div class="md:col-span-2 flex flex-wrap gap-3 pt-2">
             <button type="submit" class="admin-btn-primary">Create service</button>

@@ -40,7 +40,7 @@ class ServiceManagerFilterTest extends TestCase
         $response->assertDontSee('Medical 1');
     }
 
-    public function test_service_manager_shows_all_services_when_filter_is_all(): void
+    public function test_service_manager_defaults_to_manual_therapy(): void
     {
         $user = $this->actingAsAdmin();
 
@@ -51,6 +51,6 @@ class ServiceManagerFilterTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Massage 1');
-        $response->assertSee('Medical 1');
+        $response->assertDontSee('Medical 1');
     }
 }

@@ -21,9 +21,9 @@
 
         @if(empty($activeCourses))
             <div class="rounded-3xl border border-dashed border-slate-700 bg-slate-950/40 p-10 text-center shadow-inner shadow-black/10" data-sal="fade" data-sal-duration="600">
-                <h4 class="text-xl font-semibold text-white">Próximamente. Cursos en construcción.</h4>
-                <p class="mt-3 max-w-md mx-auto text-sm leading-relaxed text-slate-400 text-justify">
-                    Estamos preparando nuevas ediciones para profesionales. La información y la inscripción se publicarán cuando el programa esté listo.
+                <h4 class="text-xl font-semibold text-white">Coming soon. Courses in development.</h4>
+                <p class="mt-3 max-w-xl mx-auto text-sm leading-relaxed text-slate-400">
+                    We are preparing new editions for professionals. Course details and registration information will be shared as soon as the program is ready.
                 </p>
             </div>
         @else

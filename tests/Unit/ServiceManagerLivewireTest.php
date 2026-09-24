@@ -34,7 +34,7 @@ class ServiceManagerLivewireTest extends TestCase
             ->assertDontSee('Medical 1');
     }
 
-    public function test_filter_category_all_shows_all_services(): void
+    public function test_default_filter_shows_manual_therapy_services(): void
     {
         $user = $this->adminUser();
 
@@ -43,9 +43,22 @@ class ServiceManagerLivewireTest extends TestCase
 
         $test = Livewire::test(ServiceManager::class);
         $test->actingAs($user, 'web');
-        $test->set('filterCategory', 'all')
+        $test
             ->assertSee('Massage 1')
-            ->assertSee('Medical 1');
+            ->assertDontSee('Medical 1');
+    }
+
+    public function test_featured_column_is_hidden_for_iv_therapy_and_booster_shots(): void
+    {
+        $user = $this->adminUser();
+
+        Service::factory()->create(['category' => 'iv_therapy', 'name_en' => 'Vitamin Infusion']);
+
+        $test = Livewire::test(ServiceManager::class);
+        $test->actingAs($user, 'web');
+        $test->set('filterCategory', 'iv_therapy')
+            ->assertSee('Vitamin Infusion')
+            ->assertDontSee('Featured');
     }
 
     public function test_creating_a_service_shows_the_inline_form_panel(): void
@@ -83,5 +96,93 @@ class ServiceManagerLivewireTest extends TestCase
             ->set('category', 'manual_therapy')
             ->call('save')
             ->assertHasNoErrors();
+    }
+
+    public function test_service_can_be_marked_as_featured(): void
+    {
+        $user = $this->adminUser();
+
+        $test = Livewire::test(ServiceManager::class);
+        $test->actingAs($user, 'web');
+        $test
+            ->set('name_en', 'Featured Service')
+            ->set('description_en', 'A featured service')
+            ->set('duration', '60 min')
+            ->set('price', '149.99')
+            ->set('category', 'manual_therapy')
+            ->set('is_featured', true)
+            ->call('save')
+            ->assertHasNoErrors();
+
+        $this->assertDatabaseHas('services', [
+            'name_en' => 'Featured Service',
+            'is_featured' => true,
+        ]);
+    }
+
+    public function test_iv_therapy_and_booster_shots_cannot_be_featured(): void
+    {
+        $user = $this->adminUser();
+
+        foreach (['iv_therapy', 'booster_shots'] as $category) {
+            $test = Livewire::test(ServiceManager::class);
+            $test->actingAs($user, 'web');
+            $test->set('name_en', ucfirst(str_replace('_', ' ', $category)))
+                ->set('description_en', 'A service that cannot be featured')
+                ->set('duration', '30 min')
+                ->set('price', '99.99')
+                ->set('category', $category)
+                ->set('is_featured', true)
+                ->call('save')
+                ->assertHasNoErrors();
+        }
+
+        $this->assertDatabaseCount('services', 2);
+        $this->assertDatabaseHas('services', ['category' => 'iv_therapy', 'is_featured' => false]);
+        $this->assertDatabaseHas('services', ['category' => 'booster_shots', 'is_featured' => false]);
+    }
+
+    public function test_up_to_three_services_can_be_featured_and_fourth_is_rejected(): void
+    {
+        $user = $this->adminUser();
+        $featuredServices = Service::factory()->count(3)->create(['category' => 'manual_therapy', 'is_featured' => true]);
+        $fourthService = Service::factory()->create(['category' => 'recovery_performance']);
+
+        $test = Livewire::test(ServiceManager::class);
+        $test->actingAs($user, 'web');
+        $test->call('toggleFeatured', $fourthService->id);
+
+        $this->assertSame(3, Service::query()->where('is_featured', true)->count());
+        $this->assertDatabaseHas('services', ['id' => $fourthService->id, 'is_featured' => false]);
+
+        $test->call('toggleFeatured', $featuredServices->first()->id);
+
+        $this->assertDatabaseHas('services', ['id' => $featuredServices->first()->id, 'is_featured' => false]);
+    }
+
+    public function test_featured_services_can_be_marked_as_most_sellers(): void
+    {
+        $user = $this->adminUser();
+        $firstService = Service::factory()->create(['category' => 'manual_therapy', 'is_featured' => true, 'is_best_seller' => true]);
+        $secondService = Service::factory()->create(['category' => 'recovery_performance', 'is_featured' => true]);
+
+        $test = Livewire::test(ServiceManager::class);
+        $test->actingAs($user, 'web');
+        $test->call('toggleBestSeller', $secondService->id);
+
+        $this->assertDatabaseHas('services', ['id' => $firstService->id, 'is_best_seller' => true]);
+        $this->assertDatabaseHas('services', ['id' => $secondService->id, 'is_best_seller' => true]);
+    }
+
+    public function test_non_featured_services_cannot_be_marked_as_most_seller(): void
+    {
+        $user = $this->adminUser();
+        $service = Service::factory()->create(['category' => 'manual_therapy', 'is_featured' => false]);
+
+        $test = Livewire::test(ServiceManager::class);
+        $test->actingAs($user, 'web');
+        $test->call('toggleBestSeller', $service->id);
+
+        $this->assertDatabaseHas('services', ['id' => $service->id, 'is_best_seller' => false]);
     }
 }

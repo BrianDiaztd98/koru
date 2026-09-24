@@ -27,6 +27,8 @@ class TeamMembersManager extends Component
 
     public string $specialty_en = '';
 
+    public string $card_description_en = '';
+
     public ?TemporaryUploadedFile $image_file = null;
 
     public bool $active_status = true;
@@ -53,6 +55,7 @@ class TeamMembersManager extends Component
                 'linkedin_url' => $this->teamMember->linkedin_url ?? '',
                 'bio_en' => $this->teamMember->bio_en ?? '',
                 'specialty_en' => $this->teamMember->specialty_en ?? '',
+                'card_description_en' => $this->teamMember->card_description_en ?? '',
                 'active_status' => (bool) $this->teamMember->active_status,
             ]);
         }
@@ -67,6 +70,7 @@ class TeamMembersManager extends Component
             'linkedin_url' => ['nullable', 'url'],
             'bio_en' => ['nullable', 'string', 'max:1000'],
             'specialty_en' => ['nullable', 'string', 'max:100'],
+            'card_description_en' => ['nullable', 'string', 'max:300'],
             'image_file' => ['nullable', 'image', 'max:2048', 'mimes:jpg,jpeg,png,webp'],
             'active_status' => ['boolean'],
         ];
@@ -90,6 +94,7 @@ class TeamMembersManager extends Component
             'linkedin_url' => $teamMember->linkedin_url ?? '',
             'bio_en' => $teamMember->bio_en ?? '',
             'specialty_en' => $teamMember->specialty_en ?? '',
+            'card_description_en' => $teamMember->card_description_en ?? '',
             'active_status' => (bool) $teamMember->active_status,
         ]);
         $this->showForm = true;
@@ -165,6 +170,7 @@ class TeamMembersManager extends Component
         $this->linkedin_url = '';
         $this->bio_en = '';
         $this->specialty_en = '';
+        $this->card_description_en = '';
         $this->image_file = null;
         $this->active_status = true;
         $this->showForm = false;

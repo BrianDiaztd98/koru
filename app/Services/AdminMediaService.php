@@ -8,24 +8,19 @@ use Illuminate\Support\Facades\Storage;
 class AdminMediaService
 {
     /**
-     * Store and optimize an uploaded image in one step.
-     *
-     * @param  string  $directory  Storage directory (e.g., 'services', 'packages', 'team')
-     * @param  int  $maxWidth  Maximum width for optimization (default: 1200)
-     * @param  int  $quality  WebP quality 0-100 (default: 75)
-     * @return string Optimized WebP path relative to storage disk (e.g., 'services/abc123.webp')
+     * Store an uploaded image without changing its format, dimensions, or quality.
      */
-    public static function storeImage(UploadedFile $file, string $directory, int $maxWidth = 1200, int $quality = 75): string
+    public static function storeImage(UploadedFile $file, string $directory): string
     {
-        return ImageOptimizer::optimizeUploadedFile($file, $directory, $maxWidth, $quality);
+        return $file->store($directory, 'public');
     }
 
     /**
-     * Store an image WITHOUT optimization (for formats that shouldn't be converted, like SVGs).
+     * Store an image without changing its format, dimensions, or quality.
      */
     public static function storeImageRaw(UploadedFile $file, string $directory): string
     {
-        return $file->store($directory, 'public');
+        return self::storeImage($file, $directory);
     }
 
     public static function deleteImage(?string $path): void

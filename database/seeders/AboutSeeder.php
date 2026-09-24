@@ -22,7 +22,7 @@ class AboutSeeder extends Seeder
             'vision' => 'KORU is a therapy, recovery, and professional education center in Miami. We combine clinical massage therapy, advanced recovery technologies, IV therapy, and continuing education for practitioners — under one roof, with real clinical standards behind each service.',
             'mission' => 'Care here is led by licensed professionals with backgrounds in physiotherapy and orthopedic manual therapy. Structured protocols, clear communication, and honest expectations about what each treatment can do.',
             'feature_1_title' => 'Wellness & Therapy',
-            'feature_1_description' => 'Tailored operational architectures built for fluid content management and clean UI stability.',
+            'feature_1_description' => '"Our goal isn\'t just to ease pain today. It\'s to help you move better for the long run."',
             'feature_2_title' => 'Advanced Education',
             'feature_2_description' => 'Empowering specialists through interactive workshops and fully scalable learning data tracks.',
             'image_1' => 'img/about/therapy.webp',
