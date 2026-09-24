@@ -19,7 +19,7 @@ class HeroSlideSeeder extends Seeder
                 'btn_primary_url' => '#about-us',
                 'btn_secondary_text' => 'Explore Services',
                 'btn_secondary_url' => '#services',
-                'image_path' => 'img/carrucel/relaxing.webp',
+                'image_path' => 'img/carrucel/relaxing.jpg',
                 'sort_order' => 0,
                 'is_active' => true,
             ],

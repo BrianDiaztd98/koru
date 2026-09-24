@@ -70,7 +70,7 @@ class LandingPage extends Component
                 'btn_primary_url' => $slide->btn_primary_url,
                 'btn_secondary_text' => $slide->btn_secondary_text,
                 'btn_secondary_url' => $slide->btn_secondary_url,
-                'image' => $slide->image_url ?: asset('img/carrucel/relaxing.webp'),
+                'image' => $slide->image_url ?: asset('img/carrucel/relaxing.jpg'),
             ])
             ->toArray();
     }
@@ -104,7 +104,7 @@ class LandingPage extends Component
                     'duration' => $service->duration,
                     'is_featured' => $service->is_featured && ! in_array($service->category, ['iv_therapy', 'booster_shots'], true),
                     'is_best_seller' => $service->is_best_seller && $service->is_featured && ! in_array($service->category, ['iv_therapy', 'booster_shots'], true),
-                    'image' => AdminMediaService::resolveImageUrl($service->image_path) ?: asset('img/carrucel/relaxing.webp'),
+                    'image' => AdminMediaService::resolveImageUrl($service->image_path) ?: asset('img/carrucel/relaxing.jpg'),
                 ]);
 
                 $serviceData['whatsapp_url'] = $this->buildServiceInquiryWhatsappUrl(
